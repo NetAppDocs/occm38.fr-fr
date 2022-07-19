@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_azure.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, azure, blob, azure blob 
+summary: 'Libérez de l"espace sur vos clusters ONTAP sur site grâce au Tiering des données vers le stockage Azure Blob. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.' 
+---
+= Tiering des données depuis les clusters ONTAP sur site vers le stockage Azure Blob
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Libérez de l'espace sur vos clusters ONTAP sur site grâce au Tiering des données vers le stockage Azure Blob. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.
+
+
+
+==== Préparez le Tiering des données vers le stockage Azure Blob
+
+[role="quick-margin-para"]
+Il faut les éléments suivants :
+
+* Un système AFF ou FAS doté d'agrégats 100 % SSD qui exécutent ONTAP 9.4 ou version ultérieure et qui dispose d'une connexion HTTPS vers le stockage Azure Blob.
+* Un connecteur installé dans un Azure VNet.
+* Mise en réseau d'un connecteur qui permet une connexion HTTPS sortante vers le cluster ONTAP du data Center, vers le stockage Azure Blob et vers le service NetApp Cloud Tiering.
+
+
+
+
+==== Configurer le Tiering
+
+[role="quick-margin-para"]
+Dans Cloud Manager, sélectionnez un environnement de travail sur site, cliquez sur *Setup Tiering* et suivez les invites pour hiérarchiser les données sur le stockage Azure Blob.
+
+
+
+==== Configuration des licences
+
+[role="quick-margin-para"]
+Après la fin de votre essai gratuit, payez pour Cloud Tiering par l'intermédiaire d'un abonnement avec paiement à l'utilisation, d'une licence de Tiering ONTAP ou d'une combinaison des deux :
+
+* Pour vous abonner à Azure Marketplace, cliquez sur *Tiering > licences*, cliquez sur *Subscribe*, puis suivez les invites.
+* Pour ajouter une licence de hiérarchisation, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[contactez-nous si vous devez en acheter une], puis link:task_licensing_cloud_tiering.html["Ajoutez-le à votre cluster à partir de NetApp Cloud Tiering"].
+
+
+
+
+== De formation
+
+Vérifiez la prise en charge de votre cluster ONTAP, configurez votre réseau et préparez votre stockage objet.
+
+L'image suivante montre chaque composant et les connexions que vous devez préparer entre eux :
+
+image:diagram_cloud_tiering_azure.png["Image d'architecture montrant le service NetApp Cloud Tiering avec une connexion au connecteur de services de votre fournisseur cloud, le connecteur de service avec une connexion à votre cluster ONTAP, ainsi qu'une connexion entre le cluster ONTAP et le stockage objet de votre fournisseur cloud. Les données actives résident sur le cluster ONTAP, tandis que les données inactives résident dans le stockage objet."]
+
+
+NOTE: La communication entre le connecteur et le stockage Blob est uniquement destinée à la configuration du stockage objet.
+
+
+
+=== Préparation des clusters ONTAP
+
+Lors du Tiering des données vers le stockage Azure Blob, vos clusters ONTAP doivent répondre aux exigences suivantes.
+
+Plateformes ONTAP prises en charge:: NetApp Cloud Tiering prend en charge les systèmes AFF ainsi que les agrégats 100 % SSD sur les systèmes FAS.
+Version ONTAP prise en charge:: ONTAP 9.4 ou version ultérieure
+Configuration requise pour la mise en réseau des clusters::
++
+--
+* Le cluster ONTAP établit une connexion HTTPS via le port 443 vers le stockage Azure Blob.
++
+Le ONTAP lit et écrit les données vers et à partir du stockage objet. Le stockage objet ne démarre jamais, il répond simplement.
+
++
+Bien qu'ExpressRoute offre de meilleures performances et des frais de transfert de données inférieurs, il n'est pas nécessaire d'avoir entre le cluster ONTAP et le stockage Azure Blob. Les performances étant considérablement meilleures après avoir utilisé ExpressRoute, il est conseillé de les utiliser.
+
+* NetApp Service Connector, qui réside dans un vnet Azure, nécessite une connexion entrante.
++
+Aucune connexion entre le cluster et le service Cloud Tiering n'est requise.
+
+* Un LIF intercluster est nécessaire sur chaque nœud ONTAP qui héberge des volumes hiérarchisés. La LIF doit être associée au _IPspace_ que ONTAP doit utiliser pour se connecter au stockage objet.
++
+Les IPspaces permettent la ségrégation du trafic réseau. Vous pouvez ainsi séparer le trafic client pour préserver votre confidentialité et votre sécurité. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["En savoir plus sur les IPspaces"^].
+
++
+Lorsque vous configurez le Tiering des données, Cloud Tiering vous invite à utiliser l'IPspace. Vous devez choisir l'IPspace auquel chaque LIF est associée. Il peut s'agir de l'IPspace par défaut ou d'un IPspace personnalisé que vous avez créé.
+
+
+
+--
+Volumes et agrégats pris en charge:: Le nombre total de volumes que vous pouvez effectuer le Tiering dans Cloud Tiering peut être inférieur au nombre de volumes sur votre système ONTAP. En effet, certains volumes ne peuvent pas être hiérarchisés à partir de certains agrégats. Par exemple, vous ne pouvez pas hiérarchiser les données depuis les volumes SnapLock ou depuis les configurations MetroCluster. Consultez la documentation ONTAP pour link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["Fonctionnalité ou fonctionnalités non prises en charge par FabricPool"^].
+
+
+
+NOTE: NetApp Cloud Tiering prend en charge les volumes FlexGroup, à partir de ONTAP 9.5. Le réglage fonctionne de la même façon que tout autre volume.
+
+
+
+=== Création ou commutation de connecteurs
+
+Un connecteur est nécessaire pour transférer les données vers le cloud. Lors du Tiering des données vers le stockage Azure Blob, un connecteur doit être disponible dans un vnet Azure. Vous devrez soit créer un nouveau connecteur, soit vérifier que le connecteur actuellement sélectionné réside dans Azure.
+
+* link:concept_connectors.html["En savoir plus sur les connecteurs"]
+* link:task_creating_connectors_azure.html["Création d'un connecteur dans Azure"]
+* link:task_managing_connectors.html["Basculement entre les connecteurs"]
+
+
+
+
+=== Préparation de la mise en réseau pour le connecteur
+
+Assurez-vous que le connecteur dispose des connexions réseau requises.
+
+.Étapes
+. S'assurer que le vnet où le connecteur est installé active les connexions suivantes :
++
+** Une connexion Internet sortante vers le service Cloud Tiering via le port 443 (HTTPS)
+** Une connexion HTTPS via le port 443 vers le stockage Azure Blob
+** Une connexion HTTPS via le port 443 vers vos clusters ONTAP
+
+
+. Si nécessaire, activez un terminal du service VNet sur le stockage Azure.
++
+Un point de terminaison du service VNet pour le stockage Azure est recommandé si vous disposez d'une connexion ExpressRoute ou VPN entre le cluster ONTAP et le vnet et que vous souhaitez que la communication entre le connecteur et le stockage Blob reste sur votre réseau privé virtuel.
+
+
+
+
+
+== Tiering des données inactives de votre premier cluster vers le stockage Azure Blob
+
+Une fois votre environnement Azure prêt, commencez le Tiering des données inactives à partir du premier cluster.
+
+link:task_discovering_ontap.html["Un environnement de travail sur site"].
+
+.Étapes
+. Sélectionnez un cluster sur site.
+. Cliquez sur *Configuration Tiering*.
++
+image:screenshot_setup_tiering_onprem.gif["Capture d'écran indiquant l'option de hiérarchisation de configuration qui s'affiche à droite de l'écran après avoir sélectionné un environnement de travail ONTAP sur site."]
+
++
+Vous utilisez désormais le tableau de bord de Tiering.
+
+. Cliquez sur *configurer le Tiering* en regard du cluster.
+. Suivez les étapes de la page *Configuration de la hiérarchisation* :
++
+.. *Groupe de ressources* : sélectionnez un groupe de ressources dans lequel un conteneur existant est géré ou où vous souhaitez créer un nouveau conteneur pour les données hiérarchisées.
+.. *Conteneur Azure* : ajoutez un nouveau conteneur Blob à un compte de stockage ou sélectionnez un conteneur existant et cliquez sur *Continuer*.
++
+Le compte de stockage et les conteneurs qui apparaissent à cette étape appartiennent au groupe de ressources que vous avez sélectionné à l'étape précédente.
+
+.. *Access Tier* : sélectionnez le niveau d'accès que vous souhaitez utiliser pour les données hiérarchisées et cliquez sur *Continuer*.
+.. *Cluster Network* : sélectionnez l'IPspace ONTAP à utiliser pour se connecter au stockage objet et cliquez sur *Continuer*.
++
+Le choix du bon IPspace garantit que Cloud Tiering peut établir une connexion de ONTAP au stockage objet de votre fournisseur cloud.
+
+
+
+. Cliquez sur *Continuer* pour sélectionner les volumes à mettre en niveau.
+. Sur la page *Tier volumes*, configurez le Tiering pour chaque volume. Cliquez sur le bouton image:screenshot_edit_icon.gif["Capture d'écran de l'icône d'édition qui apparaît à la fin de chaque ligne du tableau pour les volumes de Tiering"] Sélectionnez une stratégie de hiérarchisation, ajustez éventuellement les jours de refroidissement, puis cliquez sur *appliquer*.
++
+link:concept_cloud_tiering.html#volume-tiering-policies["En savoir plus sur les règles de Tiering des volumes"].
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["Capture d'écran présentant les volumes sélectionnés dans la page Sélectionner les volumes source."]
+
+
+
+Vous avez configuré le Tiering des données depuis les volumes du cluster vers le stockage objet Azure Blob.
+
+link:task_licensing_cloud_tiering.html["Pensez à vous abonner au service NetApp Cloud Tiering"].
+
+Vous pouvez également ajouter des clusters ou consulter des informations sur les données actives et inactives sur le cluster. Pour plus de détails, voir link:task_managing_tiering.html["Gestion du Tiering des données à partir des clusters"].

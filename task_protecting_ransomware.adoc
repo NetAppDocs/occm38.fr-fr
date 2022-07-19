@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task_protecting_ransomware.html 
+keywords: snapshot policy, ransomware, protection, fpolicy, block, extension, attacks 
+summary: 'Les attaques par ransomware peuvent coûter du temps, des ressources et de la réputation à l"entreprise. Cloud Manager vous permet d"implémenter la solution NetApp contre les attaques par ransomware qui fournit des outils efficaces pour la visibilité, la détection et la résolution de problèmes.' 
+---
+= Renforcer la protection contre les attaques par ransomware
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Les attaques par ransomware peuvent coûter du temps, des ressources et de la réputation à l'entreprise. Cloud Manager vous permet d'implémenter la solution NetApp contre les attaques par ransomware qui fournit des outils efficaces pour la visibilité, la détection et la résolution de problèmes.
+
+.Étapes
+. Dans l'environnement de travail, cliquez sur l'icône *ransomware*.
++
+image:screenshot_ransomware_icon.gif["Capture d'écran affichant l'icône ransomware disponible en haut à droite de la page lors de l'affichage d'un environnement de travail."]
+
+. Implémentez la solution NetApp en cas d'attaque par ransomware :
++
+.. Cliquez sur *Activer la stratégie de snapshot*, si des volumes n'ont pas de règle de snapshot activée.
++
+La technologie Snapshot de NetApp offre la meilleure solution du secteur pour résoudre les problèmes liés aux attaques par ransomware. Le mieux pour réussir la récupération est d'effectuer une restauration à partir de sauvegardes non infectées. Les copies Snapshot sont en lecture seule, ce qui empêche la corruption par ransomware. Ils peuvent également assurer la granularité pour créer des images d'une copie de fichiers unique ou d'une solution complète de reprise après incident.
+
+.. Cliquez sur *Activer FPolicy* pour activer la solution FPolicy d'ONTAP, qui peut bloquer les opérations de fichiers en fonction de l'extension d'un fichier.
++
+Cette solution préventive améliore la protection contre les attaques par ransomware en bloquant les types de fichiers généralement utilisés.
+
+
+
+
+
+image:screenshot_ransomware_protection.gif["Capture d'écran affichant la page protection contre les attaques par ransomware disponible dans un environnement de travail. L'écran affiche le nombre de volumes sans une règle Snapshot et la possibilité de bloquer les extensions de fichier ransomware."]

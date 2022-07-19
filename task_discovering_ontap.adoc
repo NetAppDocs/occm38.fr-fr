@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: task_discovering_ontap.html 
+keywords: ontap, cluster, discover, manage, discovering, fas, aff, discover onprem, discover aff cluster, discover cluster, add cluster 
+summary: 'Cloud Manager peut découvrir les clusters ONTAP dans votre environnement sur site, dans une configuration de stockage privé NetApp et dans IBM Cloud. La détection d"un cluster ONTAP vous permet de provisionner le stockage, de répliquer les données et de transférer les données inactives à partir d"un cluster sur site vers le cloud.' 
+---
+= Découverte des clusters ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Cloud Manager peut découvrir les clusters ONTAP dans votre environnement sur site, dans une configuration de stockage privé NetApp et dans IBM Cloud. Il vous permet de ONTAP provisionner le stockage, de répliquer les données, de sauvegarder et de déplacer les données inactives dans le cloud à partir d'un cluster sur site.
+
+.Ce dont vous avez besoin, 8217;ll
+* Connecteur installé dans un fournisseur cloud ou sur site.
++
+Si vous voulez transférer les données inactives vers le cloud, consultez les conditions du connecteur en fonction de l'emplacement où vous prévoyez d'effectuer le Tiering des données inactives.
+
++
+** link:concept_connectors.html["En savoir plus sur les connecteurs"]
+** link:task_managing_connectors.html["Basculement entre les connecteurs"]
+** link:concept_cloud_tiering.html["Découvrez NetApp Cloud Tiering"]
+
+
+* L'adresse IP de gestion du cluster et le mot de passe du compte utilisateur admin pour ajouter le cluster à Cloud Manager.
++
+Cloud Manager détecte les clusters ONTAP à l'aide de HTTPS. Si vous utilisez des stratégies de pare-feu personnalisées, elles doivent répondre aux exigences suivantes :
+
++
+** L'hôte du connecteur doit autoriser l'accès HTTPS sortant via le port 443.
++
+Si le connecteur est dans le Cloud, toutes les communications sortantes sont autorisées par le groupe de sécurité prédéfini.
+
+** Le cluster ONTAP doit autoriser l'accès HTTPS entrant via le port 443.
++
+La stratégie de pare-feu " mgmt " par défaut permet l'accès HTTPS entrant à partir de toutes les adresses IP. Si vous avez modifié cette stratégie par défaut ou si vous avez créé votre propre stratégie de pare-feu, vous devez associer le protocole HTTPS à cette politique et activer l'accès à partir de l'hôte du connecteur.
+
+
+
+
+
+.Étapes
+. Sur la page environnements de travail, cliquez sur *Ajouter un environnement de travail* et sélectionnez *ONTAP sur site*.
+. Si vous y êtes invité, créez un connecteur.
++
+Reportez-vous aux liens ci-dessus pour plus de détails.
+
+. Sur la page *ONTAP Détails du cluster*, entrez l'adresse IP de gestion du cluster, le mot de passe du compte utilisateur admin et l'emplacement du cluster.
++
+image:screenshot_discover_ontap.gif["Copie d'écran montrant un exemple de page des détails du cluster ONTAP : l'adresse IP de gestion du cluster, le nom d'utilisateur et le mot de passe, ainsi que sur site sélectionné comme emplacement du cluster."]
+
+. Sur la page Détails, entrez un nom et une description pour l'environnement de travail, puis cliquez sur *Go*.
+
+
+Cloud Manager détecte le cluster. Vous pouvez désormais créer des volumes, répliquer les données depuis et vers le cluster, configurer le Tiering des données dans le cloud, sauvegarder des volumes dans le cloud et lancer System Manager pour exécuter des tâches avancées.

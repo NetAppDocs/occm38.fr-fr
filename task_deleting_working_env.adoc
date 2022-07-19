@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: task_deleting_working_env.html 
+keywords: terminate, delete, working environment, remove, cloudformation 
+summary: 'Il est préférable de supprimer les systèmes Cloud Volumes ONTAP de Cloud Manager plutôt que d"AWS ou Azure.' 
+---
+= Suppression d'un environnement de travail Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Il est préférable de supprimer les systèmes Cloud Volumes ONTAP de Cloud Manager, plutôt que de la console de votre fournisseur cloud. Par exemple, si vous mettez fin à une instance Cloud Volumes ONTAP sous licence depuis AWS, vous ne pouvez pas utiliser la clé de licence pour une autre instance. Vous devez supprimer l'environnement de travail de Cloud Manager pour libérer la licence.
+
+Lorsque vous supprimez un environnement de travail, Cloud Manager met fin aux instances, supprime les disques et les snapshots.
+
+
+IMPORTANT: Les instances de Cloud Volumes ONTAP bénéficient d'une protection de terminaison pour empêcher la fermeture accidentelle d'AWS. Cependant, si vous arrêtez une instance Cloud Volumes ONTAP d'AWS, vous devez accéder à la console AWS CloudFormation et supprimer la pile de l'instance. Le nom de la pile est le nom de l'environnement de travail.
+
+.Étapes
+. Dans l'environnement de travail, cliquez sur l'icône de menu, puis sur *Supprimer*.
+. Saisissez le nom de l'environnement de travail, puis cliquez sur *Supprimer*.
++
+La suppression de l'environnement de travail peut prendre jusqu'à 5 minutes.
+
+

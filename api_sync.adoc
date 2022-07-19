@@ -1,0 +1,189 @@
+---
+sidebar: sidebar 
+permalink: api_sync.html 
+keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis, 202, https status code 202, status code 202, id, id field 
+summary: 'Les fonctionnalités Cloud Sync disponibles via l"interface utilisateur Web sont également disponibles via les API RESTful.' 
+---
+= API Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Les fonctionnalités Cloud Sync disponibles via l'interface utilisateur Web sont également disponibles via les API RESTful.
+
+
+
+== Pour commencer
+
+Pour commencer à utiliser les API Cloud Sync, vous devez obtenir un jeton d'utilisateur et votre identifiant de compte Cloud Central. Vous devrez ajouter le jeton et l'ID de compte à l'en-tête autorisation lorsque vous passez des appels API.
+
+.Étapes
+. Obtenez un jeton utilisateur auprès de NetApp Cloud Central.
++
+[source, http]
+----
+POST https://netapp-cloud-account.auth0.com/oauth/token
+Header: Content-Type: application/json
+Body:
+{
+              "username": "<user_email>",
+              "scope": "profile",
+              "audience": "https://api.cloud.netapp.com",
+              "client_id": "UaVhOIXMWQs5i1WdDxauXe5Mqkb34NJQ",
+              "grant_type": "password",
+              "password": "<user_password>"
+}
+----
+. Obtenez votre ID de compte Cloud Central.
++
+[source, http]
+----
+GET https://cloudsync.netapp.com/api/accounts
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+----
++
+Cette API renvoie une réponse comme suit :
+
++
+[source, json]
+----
+[
+  {
+    "accountId": "account-JeL97Ry3",
+    "name": "Test"
+  }
+]
+----
+. Ajoutez le jeton utilisateur et l'ID de compte dans l'en-tête autorisation de chaque appel d'API.
++
+*Exemple*
+
++
+L'exemple suivant montre un appel API pour créer un courtier de données dans Microsoft Azure. Il vous suffit de remplacer <user_token> et <AccountID> par le jeton et l'ID obtenus lors des étapes précédentes.
+
++
+[source, http]
+----
+POST https://cloudsync.netapp.com/api/data-brokers
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+Body: { "name": "databroker1", "type": "AZURE" }
+----
+
+
+.Que dois-je faire lorsque le jeton expire ?
+****
+Le jeton utilisateur de NetApp Cloud Central a une date d'expiration. Pour actualiser le jeton, vous devez à nouveau appeler l'API à partir de l'étape 1.
+
+La réponse de l'API inclut un champ " expire_in " qui indique la date d'expiration du jeton.
+
+****
+
+
+== Référence API
+
+La documentation de chaque API Cloud Sync est disponible à partir de https://cloudsync.netapp.com/docs/["NetApp Cloud Central"^].
+
+
+
+== Utilisation d'API de liste
+
+Les API de liste sont des API asynchrones. Les résultats ne reviennent donc pas immédiatement (par exemple : `GET /data-brokers/{id}/list-nfs-export-folders` et `GET /data-brokers/{id}/list-s3-buckets`). La seule réponse du serveur est l'état HTTP 202. Pour obtenir le résultat réel, vous devez utiliser le `GET /messages/client` API.
+
+.Étapes
+. Appelez l'API de liste que vous souhaitez utiliser.
+. Utilisez le `GET /messages/client` API pour afficher le résultat de l'opération.
+. Utilisez la même API en l'ajoutant avec l'ID que vous venez de recevoir : `GET \http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>`
++
+Notez que l'ID change chaque fois que vous appelez le `GET /messages/client` API.
+
+
+
+*Exemple*
+
+Lorsque vous appelez le `list-s3-buckets` API, le résultat n'est pas immédiatement renvoyé :
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/data-brokers/<data-broker-id>/list-s3-buckets
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Le résultat est le code d'état HTTP 202, ce qui signifie que le message a été accepté, mais qu'il n'a pas encore été traité.
+
+Pour obtenir le résultat de l'opération, vous devez utiliser l'API suivante :
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Le résultat est un tableau avec un objet qui inclut un champ ID. Le champ ID représente le dernier message envoyé par le serveur. Par exemple :
+
+[source, json]
+----
+[
+    {
+        "header": {
+            "requestId": "init",
+            "clientId": "init",
+            "agentId": "init"
+        },
+        "payload": {
+            "init": {}
+        },
+        "id": "5801"
+    }
+]
+----
+Vous devez maintenant passer l'appel API suivant à l'aide de l'ID que vous venez de recevoir :
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+Le résultat est un tableau de messages. Dans chaque message se trouve un objet Payload, qui se compose du nom de l'opération (en tant que clé) et de son résultat (en valeur). Par exemple :
+
+[source, json]
+----
+[
+    {
+        "payload": {
+            "list-s3-buckets": [
+                {
+                    "tags": [
+                        {
+                            "Value": "100$",
+                            "Key": "price"
+                        }
+                    ],
+                    "region": {
+                        "displayName": "US West (Oregon)",
+                        "name": "us-west-2"
+                    },
+                    "name": "small"
+                }
+            ]
+        },
+        "header": {
+            "requestId": "f687ac55-2f0c-40e3-9fa6-57fb8c4094a3",
+            "clientId": "5beb032f548e6e35f4ed1ba9",
+            "agentId": "5bed61f4489fb04e34a9aac6"
+        },
+        "id": "5802"
+    }
+]
+----

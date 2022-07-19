@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_generating_compliance_reports.html 
+keywords: report, privacy, risk, privacy risk assessment, compliance status, severity, compliance, privacy risk, data subjects, privacy, credit cards, pci dss, hipaa 
+summary: 'Cloud Compliance fournit des rapports qui vous aideront à mieux comprendre l"état du programme de confidentialité des données de votre entreprise.' 
+---
+= Affichage des rapports de conformité
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance fournit des rapports qui vous aideront à mieux comprendre l'état du programme de confidentialité des données de votre entreprise.
+
+Par défaut, le tableau de bord Cloud Compliance affiche les données de conformité pour tous les environnements en travail et toutes les bases de données. Si vous souhaitez afficher des rapports contenant des données pour certains environnements de travail uniquement,  the working environments for reports,sélectionnez ces environnements de travail.
+
+
+NOTE: NetApp ne peut garantir une précision de 100 % des données personnelles et des données personnelles sensibles que Cloud Compliance identifie. Vous devez toujours valider les informations en examinant les données.
+
+
+
+== Rapport d'évaluation des risques pour la confidentialité
+
+Le rapport d’évaluation des risques pour la protection de la vie privée fournit une vue d’ensemble de l’état des risques pour la confidentialité de votre organisation, conformément aux réglementations en matière de confidentialité, telles que le Règlement sur la protection de la vie privée et l’ACFPC. Le rapport contient les informations suivantes :
+
+Statut de conformité:: A  score,indice de gravité et la distribution des données, qu'elles soient non sensibles, personnelles ou sensibles.
+Présentation de l'évaluation:: Une ventilation des types de données personnelles ainsi que des catégories de données.
+Sujets de données dans cette évaluation:: Nombre de personnes, par lieu, pour lesquelles des identificateurs nationaux ont été trouvés.
+
+
+
+
+=== Génération du rapport d'évaluation des risques pour la confidentialité
+
+Accédez à l'onglet conformité pour générer le rapport.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Cloud Compliance*.
+. Sous *Rapports*, cliquez sur l'icône de téléchargement en regard de *évaluation des risques pour la vie privée*.
++
+image:screenshot_privacy_risk_assessment.gif["Une capture d'écran de l'onglet conformité de Cloud Manager affiche le volet Rapports, dans lequel vous pouvez cliquer sur évaluation des risques pour la confidentialité."]
+
+
+
+Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
+
+
+
+=== Indice de gravité
+
+Cloud Compliance calcule le score de gravité pour le rapport d'évaluation des risques liés à la confidentialité, sur la base de trois variables :
+
+* Pourcentage de données personnelles sur toutes les données.
+* Le pourcentage de données personnelles sensibles hors de toutes les données.
+* Le pourcentage de fichiers qui incluent des sujets de données, déterminé par des identificateurs nationaux tels que les ID nationaux, les numéros de sécurité sociale et les numéros d'identification fiscale.
+
+
+La logique utilisée pour déterminer le score est la suivante :
+
+[cols="27,73"]
+|===
+| Indice de gravité | Logique 
+
+
+| 0 | Les trois variables sont exactement 0 % 
+
+
+| 1 | L'une des variables est supérieure à 0 % 
+
+
+| 2 | L'une des variables est supérieure à 3 % 
+
+
+| 3 | Deux des variables sont supérieures à 3 % 
+
+
+| 4 | Trois des variables sont supérieures à 3 % 
+
+
+| 5 | L'une des variables est supérieure à 6 % 
+
+
+| 6 | Deux des variables sont supérieures à 6 % 
+
+
+| 7 | Trois des variables sont supérieures à 6 % 
+
+
+| 8 | L'une des variables est supérieure à 15 % 
+
+
+| 9 | Deux des variables sont supérieures à 15 % 
+
+
+| 10 | Trois des variables sont supérieures à 15 % 
+|===
+
+
+== Rapport PCI DSS
+
+Le rapport PCI DSS (Payment Card Industry Data Security Standard) peut vous aider à identifier la distribution des informations de carte de crédit dans vos dossiers. Le rapport contient les informations suivantes :
+
+Présentation:: Combien de fichiers contiennent des informations de carte de crédit et dans quels environnements de travail.
+Le cryptage:: Le pourcentage de fichiers contenant des informations de carte de crédit sur des environnements de travail cryptés ou non cryptés. Ces informations sont spécifiques à Cloud Volumes ONTAP.
+Protection contre les ransomwares:: Le pourcentage de fichiers contenant des informations de carte de crédit sur des environnements de travail où la protection par ransomware est activée ou non. Ces informations sont spécifiques à Cloud Volumes ONTAP.
+La conservation:: Délai de la dernière modification des fichiers. Ceci est utile car vous ne devez pas conserver les informations de carte de crédit plus longtemps que vous n'avez besoin de les traiter.
+Distribution des informations de carte de crédit:: Les environnements de travail où les informations de carte de crédit ont été trouvées et où le chiffrement et la protection contre les ransomwares sont activés.
+
+
+
+
+=== Génération du rapport PCI DSS
+
+Accédez à l'onglet conformité pour générer le rapport.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Cloud Compliance*.
+. Sous *Rapports*, cliquez sur l'icône de téléchargement en regard de *PCI DSS Report*.
++
+image:screenshot_pci_dss.gif["Une capture d'écran de l'onglet conformité de Cloud Manager affiche le volet Rapports, dans lequel vous pouvez cliquer sur évaluation des risques pour la confidentialité."]
+
+
+
+Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
+
+
+
+== Rapport HIPAA
+
+Le rapport HIPAA (Health Insurance Portability and Accountability Act) peut vous aider à identifier les fichiers contenant des informations sur la santé. Il est conçu pour aider votre organisation à respecter les lois HIPAA sur la protection des données personnelles. Les informations fournies par Cloud Compliance sont les suivantes :
+
+* Modèle de référence de santé
+* Code médical ICD-10-cm
+* Code médical ICD-9-cm
+* RH – catégorie Santé
+* Catégorie données d'application de santé
+
+
+Le rapport contient les informations suivantes :
+
+Présentation:: Combien de fichiers contiennent des informations sur l'état de santé et dans quels environnements de travail.
+Le cryptage:: Le pourcentage de fichiers contenant des informations de santé sur des environnements de travail chiffrés ou non cryptés. Ces informations sont spécifiques à Cloud Volumes ONTAP.
+Protection contre les ransomwares:: Le pourcentage de fichiers contenant des informations d'état sur des environnements de travail qui n'ont pas ou qui sont sur lesquels une protection par ransomware est activée. Ces informations sont spécifiques à Cloud Volumes ONTAP.
+La conservation:: Délai de la dernière modification des fichiers. Ceci est utile parce que vous ne devez pas conserver les renseignements sur la santé plus longtemps que vous n'avez besoin de les traiter.
+Distribution des renseignements sur la santé:: Les environnements de travail dans lesquels les informations de santé ont été trouvées et si le chiffrement et la protection par ransomware sont activés.
+
+
+
+
+=== Génération du rapport HIPAA
+
+Accédez à l'onglet conformité pour générer le rapport.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Cloud Compliance*.
+. Sous *Rapports*, cliquez sur l'icône de téléchargement en regard de *Rapport HIPAA*.
++
+image:screenshot_hipaa.gif["Capture d'écran de l'onglet conformité dans Cloud Manager qui affiche le volet Rapports, dans lequel vous pouvez cliquer sur HIPAA."]
+
+
+
+Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
+
+
+
+== Sélection des environnements de travail pour les rapports
+
+Vous pouvez filtrer le contenu du tableau de bord Cloud Compliance pour consulter les données de conformité pour tous les environnements de travail et bases de données, ou pour des environnements de travail spécifiques uniquement.
+
+Lorsque vous filtrez le tableau de bord, Cloud Compliance évalue les données de conformité et les rapports aux environnements de travail que vous avez sélectionnés.
+
+.Étapes
+. Cliquez sur la liste déroulante du filtre, sélectionnez les environnements de travail pour lesquels vous souhaitez afficher les données, puis cliquez sur *Afficher*.
++
+image:screenshot_cloud_compliance_filter.gif["Capture d'écran de la sélection des environnements de travail pour les rapports que vous souhaitez exécuter."]
+
+

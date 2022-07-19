@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_managing_connectors.html 
+keywords: managing connectors, uninstall connector, switch connectors, switch between connectors, go to local UI, local interface, local connector, local cloud manager 
+summary: 'Après avoir créé un ou plusieurs connecteurs, vous pouvez les gérer en passant d"un connecteur à l"autre, en vous connectant à l"interface utilisateur locale s"exécutant sur un connecteur, et plus encore.' 
+---
+= Gestion des connecteurs existants
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Après avoir créé un ou plusieurs connecteurs, vous pouvez les gérer en passant d'un connecteur à l'autre, en vous connectant à l'interface utilisateur locale s'exécutant sur un connecteur, et plus encore.
+
+
+
+== Basculement entre les connecteurs
+
+Si vous avez plusieurs connecteurs, vous pouvez passer de l'un à l'autre pour voir les environnements de travail associés à un connecteur spécifique.
+
+Imaginons par exemple que vous travaillez dans un environnement multicloud. Vous avez peut-être un connecteur dans AWS et un autre dans Google Cloud. Il faudrait basculer entre ces connecteurs pour gérer les systèmes Cloud Volumes ONTAP présents dans ces clouds.
+
+.Étape
+. Cliquez sur la liste déroulante *Connector*, sélectionnez un autre connecteur, puis cliquez sur *Switch*.
++
+image:screenshot_connector_switch.gif["Capture d'écran affichant l'icône du connecteur dans l'en-tête et l'action basculer."]
+
++
+Cloud Manager actualise et affiche les environnements de travail associés au connecteur sélectionné.
+
+
+
+
+
+== Accès à l'interface utilisateur locale
+
+Bien que vous devriez effectuer presque toutes les tâches à partir de l'interface utilisateur SaaS, une interface utilisateur locale est toujours disponible sur le connecteur. Cette interface est nécessaire pour quelques tâches qui doivent être effectuées à partir du connecteur lui-même :
+
+* link:task_configuring_proxy.html["Configuration d'un serveur proxy"]
+* Installation d'un correctif (en général, vous travaillerez avec le personnel NetApp pour installer un correctif)
+* Téléchargement de messages AutoSupport (généralement dirigés par le personnel NetApp en cas de problème)
+
+
+.Étapes
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["Connectez-vous à l'interface SaaS Cloud Manager"^] À partir d'une machine dotée d'une connexion réseau à l'instance de connecteur.
++
+Si le connecteur n'est pas doté d'une adresse IP publique, vous aurez besoin d'une connexion VPN ou vous devrez vous connecter à partir d'un hôte de secours situé sur le même réseau que le connecteur.
+
+. Cliquez sur la liste déroulante *Connector*, cliquez sur le menu d'action d'un connecteur, puis cliquez sur *allez à l'interface utilisateur locale*.
++
+image:screenshot_connector_local_ui.gif["Capture d'écran affichant l'icône du connecteur dans l'en-tête et l'action aller à l'interface utilisateur locale."]
+
++
+L'interface Cloud Manager exécutée sur le connecteur est chargée dans un nouvel onglet du navigateur.
+
+
+
+
+
+== Retrait de connecteurs de Cloud Manager
+
+Si un connecteur est inactif, vous pouvez le supprimer de la liste des connecteurs dans Cloud Manager. Vous pouvez le faire si vous avez supprimé la machine virtuelle Connector ou si vous avez désinstallé le logiciel Connector.
+
+Notez ce qui suit sur le retrait d'un connecteur :
+
+* Cette action ne supprime pas la machine virtuelle.
+* Cette action ne peut pas être rétablie, car une fois que vous avez supprimé un connecteur de Cloud Manager, vous ne pouvez pas le réintégrer.
+
+
+.Étapes
+. Dans la liste déroulante connecteur, cliquez sur l'en-tête Cloud Manager.
+. Cliquez sur le menu d'action d'un connecteur inactif et cliquez sur *Supprimer le connecteur*.
++
+image:screenshot_connector_remove.gif["Capture d'écran du widget connecteur dans lequel vous pouvez supprimer un connecteur inactif."]
+
+. Entrez le nom du connecteur à confirmer, puis cliquez sur Supprimer.
+
+
+Cloud Manager élimine le connecteur de ses enregistrements.
+
+
+
+== Désinstallation du logiciel du connecteur
+
+Le connecteur inclut un script de désinstallation que vous pouvez utiliser pour désinstaller le logiciel pour résoudre des problèmes ou pour supprimer définitivement le logiciel de l'hôte.
+
+.Étape
+. À partir de l'hôte Linux, exécutez le script de désinstallation :
++
+*/opt/application/netapp/cloudmanager/bin/uninstall.sh [silencieux]*
+
++
+_silent_ exécute le script sans vous demander de confirmer.
+
+
+
+.Qu'en est-il des mises à niveau logicielles
+****
+Le connecteur met automatiquement à jour son logiciel à la dernière version, tant qu'il l'a fait link:reference_networking_cloud_manager.html["accès internet sortant"] pour obtenir la mise à jour logicielle.
+
+****

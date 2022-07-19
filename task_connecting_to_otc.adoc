@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: task_connecting_to_otc.html 
+keywords: system manager, connecting, cli, command, command line, connect, shell, interface 
+summary: 'Si vous avez besoin d"une gestion avancée de Cloud Volumes ONTAP, vous pouvez le faire à l"aide d"OnCommand System Manager ou de l"interface de ligne de commande.' 
+---
+= Connexion à Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Si vous avez besoin d'une gestion avancée de Cloud Volumes ONTAP, vous pouvez le faire à l'aide d'OnCommand System Manager ou de l'interface de ligne de commande.
+
+
+
+== Connexion à System Manager
+
+Vous devrez peut-être effectuer certaines tâches Cloud Volumes ONTAP à partir de System Manager, un outil de gestion basé sur un navigateur qui s'exécute sur le système Cloud Volumes ONTAP. Par exemple, vous devez utiliser System Manager pour créer des LUN.
+
+L'ordinateur à partir duquel vous accédez à Cloud Manager doit disposer d'une connexion réseau à Cloud Volumes ONTAP. Par exemple, vous devrez peut-être vous connecter à Cloud Manager à partir d'un hôte de saut dans AWS ou Azure.
+
+
+NOTE: Lorsqu'elles sont déployées dans plusieurs zones de disponibilité AWS, les configurations Cloud Volumes ONTAP HA utilisent une adresse IP flottante pour l'interface de gestion de cluster, ce qui signifie que le routage externe n'est pas disponible. Vous devez vous connecter à partir d'un hôte faisant partie du même domaine de routage.
+
+.Étapes
+. Sur la page Working Environments, double-cliquez sur le système Cloud Volumes ONTAP que vous souhaitez gérer avec System Manager.
+. Cliquez sur l'icône de menu, puis sur *Avancé > System Manager*.
+. Cliquez sur *lancer*.
++
+System Manager se charge dans un nouvel onglet de navigateur.
+
+. Sur l'écran de connexion, saisissez *admin* dans le champ Nom d'utilisateur, saisissez le mot de passe que vous avez spécifié lors de la création de l'environnement de travail, puis cliquez sur *connexion*.
+
+
+La console System Manager se charge. Vous pouvez désormais l'utiliser pour gérer Cloud Volumes ONTAP.
+
+
+
+== Connexion à l'interface de ligne de commande Cloud Volumes ONTAP
+
+L'interface de ligne de commande Cloud Volumes ONTAP vous permet d'exécuter toutes les commandes administratives et constitue un bon choix pour les tâches avancées ou si vous êtes plus à l'aise avec l'interface de ligne de commande. Vous pouvez vous connecter à l'interface de ligne de commande à l'aide de Secure Shell (SSH).
+
+L'hôte à partir duquel vous utilisez SSH pour vous connecter à Cloud Volumes ONTAP doit disposer d'une connexion réseau à Cloud Volumes ONTAP. Par exemple, vous devrez peut-être utiliser SSH à partir d'un hôte de saut dans AWS ou Azure.
+
+
+NOTE: Lorsqu'elles sont déployées dans plusieurs environnements AZS, les configurations Cloud Volumes ONTAP HA utilisent une adresse IP flottante pour l'interface de gestion de cluster, ce qui signifie que le routage externe n'est pas disponible. Vous devez vous connecter à partir d'un hôte faisant partie du même domaine de routage.
+
+.Étapes
+. Dans Cloud Manager, identifiez l'adresse IP de l'interface de gestion du cluster :
++
+.. Sur la page Working Environments, sélectionnez le système Cloud Volumes ONTAP.
+.. Copiez l'adresse IP de gestion du cluster qui apparaît dans le volet droit.
+
+
+. Utilisez SSH pour vous connecter à l'adresse IP de l'interface de gestion du cluster à l'aide du compte admin.
++
+*Exemple*
+
++
+L'image suivante montre un exemple utilisant PuTTY :
+
++
+image:screenshot_cli2.gif["Capture d'écran : affiche la destination admin@192.168.11.5 sur le port 22."]
+
+. À l'invite de connexion, entrez le mot de passe du compte admin.
++
+*Exemple*
+
++
+....
+Password: ********
+COT2::>
+....
+

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compute.html 
+keywords: compute, cloud insights, cloud analyzer, connect cloud analyzer, connect master payer account, connect payer account, aws payer account 
+summary: Réalisez quelques étapes pour analyser de manière approfondie les coûts de vos ressources de calcul cloud avec Cloud Analyzer de Spot. 
+---
+= Commencez à optimiser les coûts du cloud computing
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Connectez votre compte AWS, puis visualisez l'analyse pour commencer à optimiser les coûts de calcul du cloud.
+
+
+
+== Connectez Cloud Analyzer à votre compte AWS
+
+Cliquez sur *Compute* et connectez votre compte AWS payeur.
+
+.Étapes
+. Cliquez sur *Compute*.
+. Cliquez sur *Ajouter les informations d'identification AWS pour démarrer*.
+. Suivez les étapes indiquées sur la page pour connecter votre compte AWS :
++
+.. Connectez-vous à votre compte principal payeur AWS.
+.. Configurez les rapports sur les coûts et l'utilisation sur le compte AWS.
+.. Exécuter le modèle CloudFormation.
+.. Coller le point RoleARN.
++
+https://help.spot.io/cloud-analyzer/connect-your-aws-account-2/["Afficher plus de détails sur ces étapes"^].
+
++
+image:screenshot_compute_add_account.gif["Capture d'écran affichant chaque champ disponible sur la page de connexion."]
+
+
+
+
+
+Cloud Analyzer commence à traiter les données de votre compte AWS. Si vous avez plusieurs comptes, Cloud Analyzer commence par des capacités en lecture seule pour tous les comptes liés sous le compte payeur principal. Si vous souhaitez obtenir plus d'informations sur les économies potentielles pour ces comptes, vous devrez également les connecter. Vous trouverez plus de détails sur ce processus dans la section ci-dessous.
+
+
+
+== Analysez les coûts de calcul
+
+Une fois que Cloud Analyzer a terminé le traitement des données de votre compte, l'onglet Compute vous donne des informations sur les coûts cloud passés, actuels et futurs.
+
+image:screenshot_compute_dashboard.gif["Capture d'écran affichant la page d'analyse des coûts dans Cloud Manager. Cette page contient les informations décrites dans le texte ci-dessous."]
+
+Coût mois à ce jour:: Coût total de vos charges de travail depuis le début du mois en cours.
+Coûts prévus:: Le coût prévu à la fin du mois, d'après l'analyse de votre modèle d'utilisation.
+Économies manquées de la semaine dernière:: Des économies qui auraient pu être réalisées au cours des sept derniers jours grâce à l'optimisation des instances SPOT et des réservations.
+Efficacité des dépenses pour un compte AWS:: Les 10 plus grands comptes selon le plus grand montant estimé d'économies supplémentaires.
++
+--
+Chaque compte se voit attribuer un score d'efficacité en fonction des économies actuelles et potentielles supplémentaires. Les économies supplémentaires estimées indiquent la somme qui peut être économisée en utilisant les instances ponctuelles et réservées.
+
+Vous pouvez prendre les mesures suivantes pour optimiser davantage vos comptes :
+
+* *Afficher les détails*: Affichez vos possibilités d'optimisation des coûts en accédant à Cloud Analyzer de Spot.
+* *Connect* : permet de connecter un compte qui n'est pas encore géré. Vous serez dirigé vers l'assistant qui connecte le compte.
+
+
+--
+Principaux comptes AWS:: Il s'agit d'un graphique à barres indiquant les dix principaux comptes en fonction de leur coût. Le graphique est basé sur les 30 derniers jours de l'activité de dépense.
+
+
+https://help.spot.io/cloud-analyzer/cost-analysis/["Découvrez la page d'analyse des coûts disponible dans le Cloud Analyzer de Spot"^].
+
+
+
+== Accédez à Cloud Analyzer pour plus d'analyse et de recommandations
+
+Cliquez sur *Get Full Analysis* à tout moment pour accéder à plus de graphiques et d'analyses, des recommandations détaillées, une description de l'optimisation des cas d'utilisation (conteneurs, ElasticApps, et réservations), et plus encore.
+
+Voici un exemple de ce que vous verrez dans Cloud Analyzer :
+
+image:screenshot_compute_dashboard_spot.gif["Capture d'écran affichant la page d'analyse des coûts dans Cloud Analyzer de Spot."]
+
+* https://spot.io/products/cloud-analyzer/["Consultez la page produit de Cloud Analyzer pour en savoir plus sur ses fonctionnalités"^].
+* https://help.spot.io/cloud-analyzer/["Consultez la documentation de Spot pour obtenir de l'aide sur Cloud Analyzer"^].
+

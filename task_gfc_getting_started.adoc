@@ -1,0 +1,200 @@
+---
+sidebar: sidebar 
+permalink: task_gfc_getting_started.html 
+keywords: global file cache, core, management server 
+summary: 'Cloud Manager vous permet de déployer le serveur de gestion du cache global des fichiers et le logiciel Global File cache Core dans l"environnement de travail.' 
+---
+= Pour commencer
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager vous permet de déployer le serveur de gestion du cache global des fichiers et le logiciel Global File cache Core dans l'environnement de travail.
+
+
+
+== Activation du cache global de fichiers à l'aide de Cloud Manager
+
+Dans cette configuration, vous déployez le serveur de gestion du cache de fichiers global et le noyau du cache de fichiers global dans le même environnement de travail où vous avez créé le système Cloud Volumes ONTAP à l'aide de Cloud Manager.
+
+Regarder link:https://www.youtube.com/watch?v=TGIQVssr43A["vidéo"^] pour voir les étapes du début à la fin.
+
+
+
+=== Démarrage rapide
+
+Pour démarrer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir des informations détaillées :
+
+
+
+==== Déployez Cloud Volumes ONTAP
+
+[role="quick-margin-para"]
+Déployez Cloud Volumes ONTAP dans Azure ou AWS et configurez les partages de fichiers SMB. Pour plus d'informations, voir link:task_deploying_otc_azure.html["Lancement d'Cloud Volumes ONTAP dans Azure"^] ou link:task_deploying_otc_aws.html["Lancement d'Cloud Volumes ONTAP dans AWS"^].
+
+
+
+==== Déployez le serveur Global File cache Management Server
+
+[role="quick-margin-para"]
+Déployer une instance du serveur de gestion globale du cache des fichiers dans le même environnement de travail que l'instance de Cloud Volumes ONTAP.
+
+
+
+==== Déployez Global File cache Core
+
+[role="quick-margin-para"]
+Déployez une ou plusieurs instances de Global File cache Core dans le même environnement de travail que l'instance de Cloud Volumes ONTAP et joignez-la à votre domaine Active Directory.
+
+
+
+==== Cache global des fichiers de licence
+
+[role="quick-margin-para"]
+Configurez le service LMS (Global File cache License Management Server) sur une instance de base Global File cache. Pour activer votre abonnement, vous devez disposer de vos identifiants NSS ou d'un identifiant client fourni par NetApp.
+
+
+
+==== Déployez les instances Global File cache Edge
+
+[role="quick-margin-para"]
+Voir link:task_deploy_gfc_edge_instances.html["Déploiement des instances Global File cache Edge"^] Pour déployer les instances Global File cache Edge dans chaque emplacement distant. Cette étape n'a pas été effectuée avec Cloud Manager.
+
+
+
+=== Déployez Cloud Volumes ONTAP comme plateforme de stockage
+
+Dans la version actuelle, Global File cache prend en charge Cloud Volumes ONTAP déployé dans Azure ou AWS. Pour obtenir des informations détaillées sur les prérequis, les exigences et les instructions de déploiement, voir link:task_deploying_otc_azure.html["Lancement d'Cloud Volumes ONTAP dans Azure"^] ou link:task_deploying_otc_aws.html["Lancement d'Cloud Volumes ONTAP dans AWS"^].
+
+Notez la nécessité supplémentaire suivante de Global File cache :
+
+* Vous devez configurer les partages de fichiers SMB sur l'instance de Cloud Volumes ONTAP.
++
+Si aucun partage de fichiers SMB n'est configuré sur l'instance, vous êtes invité à configurer les partages SMB lors de l'installation des composants Global File cache.
+
+
+
+
+
+=== Activez Global File cache dans votre environnement de travail
+
+L'assistant Global File cache vous guide dans les étapes de déploiement de l'instance Global File cache Management Server et de l'instance Global File cache Core, comme indiqué ci-dessous.
+
+image:screenshot_gfc_install1.png["Capture d'écran de la page d'installation initiale de Global File cache."]
+
+.Étapes
+. Sélectionnez l'environnement de travail dans lequel vous avez déployé Cloud Volumes ONTAP.
+. Dans le panneau Services, cliquez sur *Activer le réseau de réseau sans réseau sans réseau.
++
+image:screenshot_gfc_install2.png["Capture d'écran du bouton Activer le réseau de stockage sur réseau sans commutateur initial dans l'environnement de travail pour activer le cache de fichiers global."]
+
+. Lisez la page vue d'ensemble et cliquez sur *Continuer*.
+. Si aucun partage SMB n'est disponible sur l'instance Cloud Volumes ONTAP, vous êtes invité à entrer les informations du serveur SMB et du partage SMB afin de créer le partage maintenant. Pour plus de détails sur la configuration SMB, voir link:concept_before_you_begin_to_deploy_gfc.html#storage-platform-volumes["Plateforme de stockage"^].
++
+Lorsque vous avez terminé, cliquez sur *Continuer* pour créer le partage SMB.
+
++
+image:screenshot_gfc_install3.png["Capture d'écran affichant les informations requises pour créer un partage SMB si celui-ci n'est pas disponible."]
+
+. Sur la page Service de cache de fichiers global, entrez le nombre d'instances Global File cache Edge que vous prévoyez de déployer, puis assurez-vous que votre système répond aux exigences relatives aux règles de configuration réseau et de pare-feu, aux paramètres Active Directory et aux exclusions antivirus. Voir link:concept_before_you_begin_to_deploy_gfc.html#prerequisites["Prérequis"] pour en savoir plus.
++
+image:screenshot_gfc_install4.png["Capture d'écran présentant les conditions préalables avant le déploiement du serveur de gestion du cache de fichiers global et des instances principales."]
+
+. Après avoir vérifié que les exigences ont été respectées ou que vous disposez des informations nécessaires pour répondre à ces exigences, cliquez sur *Continuer*.
+. Entrez les informations d'identification administratives que vous utiliserez pour accéder à la VM du serveur de gestion du cache de fichiers global, puis cliquez sur *Activer le service de réseau réseau sans réseau sans réseau (GFC)*. Dans Azure, vous saisissez les identifiants sous forme de nom d'utilisateur et de mot de passe. Pour AWS, vous sélectionnez la paire de clés appropriée. Vous pouvez modifier le nom de la machine virtuelle/de l'instance si vous le souhaitez.
++
+image:screenshot_gfc_install5.png["Capture d'écran indiquant les informations de configuration nécessaires à la configuration du serveur de gestion du cache de fichiers global."]
+
+. Une fois le service Global File cache Management déployé, cliquez sur *Continuer*.
+. Pour Global File cache Core, entrez les informations d'identification de l'utilisateur admin pour rejoindre le domaine Active Directory et les informations d'identification de l'utilisateur du compte de service. Cliquez ensuite sur *Continuer*.
++
+** L'instance principale du cache de fichiers global doit être déployée dans le même domaine Active Directory que l'instance Cloud Volumes ONTAP.
+** Le compte de service est un utilisateur de domaine et fait partie du groupe BULILTIN\opérateurs de sauvegarde sur l'instance Cloud Volumes ONTAP.
++
+image:screenshot_gfc_install6.png["Capture d'écran indiquant les informations de configuration nécessaires à la configuration du répertoire actif et du compte de service Global File cache Core."]
+
+
+
+. Entrez les informations d'identification administratives que vous utiliserez pour accéder à la VM de base du cache de fichiers global et cliquez sur *déployer le réseau de stockage virtuel Fibre Channel Core*. Dans Azure, vous saisissez les identifiants sous forme de nom d'utilisateur et de mot de passe. Pour AWS, vous sélectionnez la paire de clés appropriée. Vous pouvez modifier le nom de la machine virtuelle/de l'instance si vous le souhaitez.
++
+image:screenshot_gfc_install7.png["Capture d'écran indiquant les informations de configuration nécessaires à la configuration de l'instance principale du cache de fichiers global."]
+
+. Une fois que Global File cache Core a été déployé avec succès, cliquez sur *allez à Dashboard*.
++
+image:screenshot_gfc_install8.png["Capture d'écran affichant le tableau de bord Global File cache une fois l'installation terminée."]
+
+
+
+Le tableau de bord indique que l'instance du serveur de gestion et l'instance Core sont à la fois * On* et fonctionnent.
+
+
+
+=== Concéder une licence à l'installation de Global File cache
+
+Avant de pouvoir utiliser Global File cache, vous devez configurer le service LMS (Global File cache License Management Server) sur une instance Core de cache de fichiers global. Pour activer votre abonnement, vous aurez besoin de vos identifiants NSS ou d'un identifiant client fourni par NetApp.
+
+Dans cet exemple, nous allons configurer le service LMS sur une instance Core que vous venez de déployer dans le cloud public. Il s'agit d'un processus unique qui configure votre service LMS.
+
+.Étapes
+. Ouvrez la page d'enregistrement de la licence du cache de fichiers global sur le noyau du cache de fichiers global (le noyau que vous désignant comme service LMS) à l'aide de l'URL suivante. Remplacez _<adresse_ip>_ par l'adresse IP du cœur de cache de fichiers global :https://<ip_address>/lms/api/v1/config/lmsconfig.html[]
+. Cliquez sur « Continuer vers ce site Web (non recommandé) » pour continuer. Une page qui vous permet de configurer le LMS ou de vérifier les informations de licence existantes s'affiche.
++
+image:screenshot_gfc_license1.png["Capture d'écran de la page d'enregistrement de licence du cache de fichiers global."]
+
+. Choisissez le mode d'enregistrement en sélectionnant “LMS sur site” ou “MS cloud”.
++
+** « LMS sur site » est utilisé pour les clients existants ou les clients de test qui ont reçu un identifiant client via le service de support NetApp.
+** « Cloud MS » est utilisé pour les clients qui ont acheté des licences NetApp Global File cache Edge auprès de NetApp ou de ses partenaires certifiés et qui disposent de leurs identifiants NetApp.
+
+
+. Pour Cloud MS, cliquez sur *Cloud MS*, entrez vos informations d'identification NSS et cliquez sur *Submit*.
++
+image:screenshot_gfc_license3.png["Capture d'écran de la saisie des informations d'identification Cloud MS NSS sur la page d'enregistrement de licence dans le cache de fichiers global."]
+
+. Pour LMS sur site, cliquez sur *LMS* sur site, saisissez votre ID client, puis cliquez sur *Enregistrer LMS*.
++
+image:screenshot_gfc_license2.png["Capture d'écran de saisie d'un ID client LMS sur site dans la page enregistrement de licence du cache de fichiers global."]
+
+
+
+Si vous avez déterminé que vous devez déployer plusieurs cœurs de cache de fichiers globaux pour prendre en charge votre configuration, cliquez sur *Ajouter une instance principale* dans le tableau de bord et suivez l'assistant de déploiement.
+
+Une fois votre déploiement Core terminé, vous devez link:download_gfc_resources.html["Déployez les instances Global File cache Edge"^] dans chacun de vos bureaux distants.
+
+
+
+== Déployer des instances Core supplémentaires
+
+Si votre configuration nécessite l'installation de plusieurs cœurs de cache de fichiers globaux en raison d'un grand nombre d'instances Edge, vous pouvez ajouter un autre Core à l'environnement de travail.
+
+Lors du déploiement d'instances Edge, vous configurez certains pour vous connecter au premier Core et d'autres au second Core. Les deux instances de base accèdent au même système de stockage back-end (votre instance Cloud Volumes ONTAP) dans l'environnement de travail.
+
+. Dans le tableau de bord Global File cache, cliquez sur *Add Core instance*.
++
+image:screenshot_gfc_add_another_core.png["Capture d'écran du tableau de bord Fibre Channel et du bouton pour ajouter une instance Core supplémentaire."]
+
+. Entrez les informations d'identification de l'utilisateur admin pour rejoindre le domaine Active Directory et les informations d'identification de l'utilisateur du compte de service. Cliquez ensuite sur *Continuer*.
++
+** L'instance principale du cache de fichiers global doit se trouver dans le même domaine Active Directory que l'instance Cloud Volumes ONTAP.
+** Le compte de service est un utilisateur de domaine et fait partie du groupe BULILTIN\opérateurs de sauvegarde sur l'instance Cloud Volumes ONTAP.
++
+image:screenshot_gfc_install6.png["Capture d'écran indiquant les informations de configuration nécessaires à la configuration du répertoire actif et du compte de service Global File cache Core."]
+
+
+
+. Entrez les informations d'identification administratives que vous utiliserez pour accéder à la VM de base du cache de fichiers global et cliquez sur *déployer le réseau de stockage virtuel Fibre Channel Core*. Dans Azure, vous saisissez les identifiants sous forme de nom d'utilisateur et de mot de passe. Pour AWS, vous sélectionnez la paire de clés appropriée. Vous pouvez modifier le nom de la machine virtuelle si vous le souhaitez.
++
+image:screenshot_gfc_install7.png["Capture d'écran indiquant les informations de configuration nécessaires à la configuration de l'instance principale du cache de fichiers global."]
+
+. Une fois que Global File cache Core a été déployé avec succès, cliquez sur *allez à Dashboard*.
++
+image:screenshot_gfc_dashboard_2cores.png["Capture d'écran affichant le tableau de bord Global File cache une fois l'installation terminée."]
+
+
+
+Le Tableau de bord reflète la deuxième instance Core pour l'environnement de travail.

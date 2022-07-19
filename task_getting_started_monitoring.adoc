@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_monitoring.html 
+keywords: monitoring, cloud insights, tenant, acquisition unit, iops, throughput, latency, performance, cloud volumes ontap performance, volume performance 
+summary: 'Suivez quelques étapes pour contrôler les performances d"Cloud Volumes ONTAP.' 
+---
+= Contrôle d'Cloud Volumes ONTAP dans AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Suivez quelques étapes pour contrôler les performances d'Cloud Volumes ONTAP.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.
+
+
+
+==== Vérifiez la prise en charge de votre configuration
+
+[role="quick-margin-para"]
+Vous devez avoir installé Cloud Manager 3.8.4 ou une version ultérieure dans AWS et Cloud Volumes ONTAP dans AWS. Vous devez également être un nouveau client Cloud Insights.
+
+
+
+==== Activez la surveillance sur votre système nouveau ou existant
+
+* Nouveaux environnements de travail : assurez-vous de maintenir l'option surveillance activée lorsque vous créez l'environnement de travail (activé par défaut).
+* Environnements de travail existants : sélectionnez un environnement de travail et cliquez sur *Démarrer la surveillance*.
+
+
+
+
+==== Afficher les données de performances
+
+[role="quick-margin-para"]
+Cliquez sur *Monitoring* et affichez les données de performances de vos volumes.
+
+
+
+==== Abonnez-vous à Cloud Insights
+
+[role="quick-margin-para"]
+Abonnez-vous avant la fin de votre essai gratuit de 30 jours pour continuer à consulter les données de performances dans Cloud Manager et Cloud Insights. https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["Découvrez comment vous inscrire"^].
+
+
+
+== De formation
+
+Lisez les informations suivantes pour vous assurer que votre configuration est prise en charge.
+
+Versions de Cloud Manager prises en charge:: Vous devez installer Cloud Manager 3.8.4 ou une version ultérieure. Une nouvelle installation est nécessaire car une nouvelle infrastructure est requise pour activer le service de surveillance. Cette infrastructure est disponible en commençant par les nouvelles installations de Cloud Manager 3.8.4.
+Versions de Cloud Volumes ONTAP prises en charge:: Toute version d'Cloud Volumes ONTAP dans AWS.
+Condition Cloud Insights:: Vous devez être un nouveau client de Cloud Insights. La surveillance n'est pas prise en charge si vous disposez déjà d'un locataire Cloud Insights.
+Adresse e-mail pour Cloud Central:: L'adresse e-mail de votre compte utilisateur Cloud Central doit être l'adresse e-mail professionnelle. Les domaines de messagerie gratuits tels que gmail et hotmail ne sont pas pris en charge lors de la création d'un locataire Cloud Insights.
+Mise en réseau pour l'unité d'acquisition:: L'unité d'acquisition utilise une authentification bidirectionnelle/mutuelle pour se connecter au serveur Cloud Insights. Le certificat client doit être transmis au serveur Cloud Insights pour être authentifié. Pour ce faire, le proxy doit être configuré pour transférer la requête http au serveur Cloud Insights sans décrypter les données.
++
+--
+L'unité d'acquisition utilise les deux noeuds finaux suivants pour communiquer avec Cloud Insights. Si vous disposez d'un pare-feu entre le serveur de l'unité d'acquisition et Cloud Insights, vous avez besoin de ces noeuds finaux lors de la configuration des règles de pare-feu :
+
+....
+https://aulogin.<Cloud Insights Domain>
+https://<your-tenant-ID>.<Cloud Insights Domain>
+....
+Par exemple :
+
+....
+https://aulogin.c01.cloudinsights.netapp.com
+https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
+....
+Contactez-nous via la discussion interne si vous avez besoin d'aide pour identifier votre domaine Cloud Insights et votre identifiant de locataire.
+
+--
+Mise en réseau du connecteur:: Comme pour l'unité d'acquisition, le connecteur doit disposer d'une connectivité sortante avec le locataire Cloud Insights. Mais le point d'extrémité que les contacts du connecteur sont légèrement différents. Il contacte l'URL de l'hôte du locataire à l'aide de l'ID de locataire raccourci :
++
+--
+ https://<your-short-tenant-ID>.<Cloud Insights Domain>
+Par exemple :
+
+ https://abcd12345.c01.cloudinsights.netapp.com
+Encore une fois, vous pouvez nous contacter par le biais de la discussion sur le produit si vous avez besoin d'aide pour identifier l'URL d'hôte du locataire.
+
+--
+
+
+
+
+== Activation de la surveillance sur un nouveau système
+
+Le service de surveillance est activé par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
+
+.Étapes
+. Cliquez sur *Créer Cloud Volumes ONTAP*.
+. Sélectionnez Amazon Web Services en tant que fournisseur cloud, puis choisissez un système à un seul nœud ou haute disponibilité.
+. Remplissez la page Détails et références.
+. Sur la page Services, laissez le service activé et cliquez sur *Continuer*.
++
+image:screenshot_monitoring.gif["Capture d'écran du service de surveillance que vous pouvez activer à partir de l'assistant environnements de travail."]
+
+
+
+
+
+== Activation de la surveillance sur un système existant
+
+Activez la surveillance à tout moment à partir de l'environnement de travail.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *environnements de travail*.
+. Sélectionnez un environnement de travail.
+. Dans le volet de droite, cliquez sur *Démarrer la surveillance*.
++
+image:screenshot_enable_monitoring.gif["[Capture d'écran qui montre l'icône Activer la surveillance disponible dans l'onglet environnements de travail après avoir sélectionné un environnement de travail."]
+
+
+
+
+
+== Surveillance de vos volumes
+
+Surveillez les performances en affichant les IOPS, le débit et la latence de chacun de vos volumes.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Monitoring*.
+. Filtrez le contenu du tableau de bord pour afficher les informations dont vous avez besoin.
++
+** Sélectionnez un environnement de travail spécifique.
+** Sélectionnez une autre période.
+** Sélectionnez un SVM spécifique.
+** Rechercher un volume spécifique.
++
+L'image suivante met en évidence chacune de ces options :
+
++
+image:screenshot_filter_options.gif["Capture d'écran de l'onglet surveillance affichant les options que vous pouvez utiliser pour filtrer le contenu du tableau de bord."]
+
+
+
+. Cliquez sur un volume dans le tableau pour développer la ligne et afficher une chronologie pour les IOPS, le débit et la latence.
++
+image:screenshot_vol_performance.gif["Copie d'écran des données de performances d'un volume."]
+
+. Utilisez ces données pour identifier les problèmes de performances et minimiser l'impact sur les utilisateurs et les applications.
+
+
+
+
+== Obtenir de plus amples informations sur Cloud Insights
+
+L'onglet Monitoring de Cloud Manager fournit des données de performance de base pour vos volumes. Vous pouvez accéder à l'interface Web de Cloud Insights depuis votre navigateur pour effectuer un contrôle plus approfondi et configurer des alertes pour vos systèmes Cloud Volumes ONTAP.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Monitoring*.
+. Cliquez sur le lien *Cloud Insights*.
++
+image:screenshot_cloud_insights.gif["Capture d'écran affichant le lien Cloud Insights disponible dans le coin supérieur droit de l'onglet surveillance."]
+
+
+
+Cloud Insights s'ouvre dans un nouvel onglet du navigateur. Si vous avez besoin d'aide, reportez-vous au https://docs.netapp.com/us-en/cloudinsights["Documentation Cloud Insights"^].
+
+
+
+== Désactivation de la surveillance
+
+Si vous ne souhaitez plus surveiller Cloud Volumes ONTAP, vous pouvez désactiver le service à tout moment.
+
+
+NOTE: Si vous désactivez la surveillance de chacun de vos environnements de travail, vous devrez supprimer vous-même l'instance EC2. L'instance s'appelle _AcquisitionUnit_ avec un hachage (UUID) généré concaténé. Par exemple : _AcquisitionUnit-FAN7FqeH_
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *environnements de travail*.
+. Sélectionnez un environnement de travail.
+. Dans le volet de droite, cliquez sur image:screenshot_gallery_options.gif["Capture d'écran de l'icône d'options qui s'affiche dans le volet Services après la sélection d'un environnement de travail"] Et sélectionnez *Désactiver l'acquisition*.
+

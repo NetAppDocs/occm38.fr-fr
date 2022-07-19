@@ -1,0 +1,91 @@
+---
+sidebar: sidebar 
+permalink: concept_ha_azure.html 
+keywords: high availability, HA, concepts, understanding, overview, takeover, giveback, rpo, rto, nondisruptive, ha pairs, node, nodes, recovery point objective, recovery time objective, nas, nfs, cifs, iscsi, mpio, alua, failover, failure, azure, shared storage, active, passive, load balancer, availability set, storage accounts, page blobs 
+summary: 'Une paire haute disponibilité Cloud Volumes ONTAP offre une fiabilité exceptionnelle et la continuité de l"activité en cas de défaillances dans votre environnement cloud. Dans Azure, le stockage est partagé entre les deux nœuds.' 
+---
+= Paires haute disponibilité dans Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Une paire haute disponibilité Cloud Volumes ONTAP offre une fiabilité exceptionnelle et la continuité de l'activité en cas de défaillances dans votre environnement cloud. Dans Azure, le stockage est partagé entre les deux nœuds.
+
+
+
+== Composants DE HAUTE DISPONIBILITÉ
+
+Une configuration Cloud Volumes ONTAP HA dans Azure inclut les composants suivants :
+
+image:diagram_ha_azure.png["Image conceptuelle qui affiche un équilibreur de charge gérant le trafic entrant depuis Cloud Manager et les clients, deux nœuds Cloud Volumes ONTAP dans un jeu de disponibilité, des disques SSD pour les données de démarrage et des objets blob de pages pour les données client."]
+
+Les composants Azure que Cloud Manager déploie sont les suivants :
+
+Équilibreur de la charge Azure Standard:: Le répartiteur de charge gère le trafic entrant vers la paire haute disponibilité Cloud Volumes ONTAP.
+Ensemble de disponibilité:: L'ensemble de disponibilité garantit que les nœuds se trouvent dans des domaines de panne et de mise à jour différents.
+Disques:: Les données client résident sur les blobs de la page Premium Storage. Chaque nœud a accès au stockage de l'autre nœud. Du stockage supplémentaire est également requis pour link:reference_default_configs.html#boot-and-root-data-for-cloud-volumes-ontap["des données « boot », « root » et « core »"].
+Comptes de stockage::
++
+--
+* Un seul compte de stockage est nécessaire pour les disques gérés.
+* Un ou plusieurs comptes de stockage sont requis pour les blobs de la page stockage Premium, car la limite de capacité de disque par compte de stockage est atteinte.
++
+https://docs.microsoft.com/en-us/azure/storage/common/storage-scalability-targets["Documentation Azure : objectifs d'évolutivité et de performances du stockage Azure pour les comptes de stockage"^].
+
+* Un seul compte de stockage est nécessaire pour le Tiering des données vers le stockage Azure Blob.
+* Depuis Cloud Volumes ONTAP 9.7, les comptes de stockage créés par Cloud Manager pour les paires HA sont des comptes de stockage v2 à usage général.
+* Vous pouvez activer une connexion HTTPS à partir d'une paire haute disponibilité Cloud Volumes ONTAP 9.7 vers des comptes de stockage Azure lors de la création d'un environnement de travail. Notez que l'activation de cette option peut avoir un impact sur les performances d'écriture. Vous ne pouvez pas modifier le paramètre après avoir créé l'environnement de travail.
+
+
+--
+
+
+
+
+== RPO et RTO
+
+Une configuration haute disponibilité maintient la haute disponibilité de vos données comme suit :
+
+* L'objectif du point de récupération (RPO) est de 0 seconde. Vos données sont transactionnaires, sans perte de données.
+* L'objectif de temps de récupération (RTO) est de 60 secondes. En cas de panne, les données doivent être disponibles en 60 secondes ou moins.
+
+
+
+
+== Reprise et remise du stockage
+
+À l'instar d'un cluster ONTAP physique, le stockage d'une paire HA Azure est partagé entre les nœuds. Des connexions au stockage du partenaire permettent à chaque nœud d'accéder au stockage de l'autre nœud dans le cas d'un _basculement_. Les mécanismes de basculement de chemin réseau garantissent que les clients et les hôtes continuent de communiquer avec le nœud survivant. Le partenaire _fournit_ du stockage supplémentaire lorsque le nœud est revenu en ligne.
+
+Pour les configurations NAS, les adresses IP des données migrent automatiquement entre les nœuds haute disponibilité en cas de défaillance.
+
+Pour iSCSI, Cloud Volumes ONTAP utilise les E/S multichemins (MPIO) et l'accès aux unités logiques asymétriques (ALUA) pour gérer le basculement de chemin entre les chemins optimisés et non optimisés.
+
+
+NOTE: Pour plus d'informations sur les configurations hôtes spécifiques qui prennent en charge ALUA, consultez le http://mysupport.netapp.com/matrix["Matrice d'interopérabilité NetApp"^] Et le Guide d'installation et de configuration des utilitaires hôtes pour votre système d'exploitation hôte.
+
+
+
+== Configurations de stockage
+
+Vous pouvez utiliser une paire HA comme configuration active-active, dans laquelle les deux nœuds servent les données aux clients ou comme configuration active-passive, dans laquelle le nœud passif répond aux demandes de données uniquement s'il a pris en charge le stockage pour le nœud actif.
+
+
+
+== Limitations de LA HAUTE DISPONIBILITÉ
+
+Les limites suivantes affectent les paires HA Cloud Volumes ONTAP dans Azure :
+
+* Les paires HAUTE DISPONIBILITÉ sont prises en charge avec Cloud Volumes ONTAP Standard, Premium et BYOL. Explorer n'est pas pris en charge.
+* NFSv4 n'est pas pris en charge. NFSv3 est pris en charge.
+* Les paires HA ne sont pas prises en charge dans certaines régions.
++
+https://cloud.netapp.com/cloud-volumes-global-regions["Consultez la liste des régions Azure prises en charge"^].
+
+
+
+link:task_deploying_otc_azure.html["Découvrez comment déployer un système HA dans Azure"].

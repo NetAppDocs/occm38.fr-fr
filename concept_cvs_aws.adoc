@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: concept_cvs_aws.html 
+keywords: cloud volumes service for aws, cloud volumes, cloud volumes service subscription, access key, secret key 
+summary: 'NetApp Cloud Volumes Service pour AWS est un service de fichiers cloud natif qui fournit des volumes NAS sur NFS et SMB avec des performances 100 % Flash. Ce service permet l"exécution de tout workload, y compris les applications héritées, dans le cloud AWS.' 
+---
+= En savoir plus sur Cloud Volumes Service pour AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Volumes Service pour AWS est un service de fichiers cloud natif qui fournit des volumes NAS sur NFS et SMB avec des performances 100 % Flash. Ce service permet l'exécution de tout workload, y compris les applications héritées, dans le cloud AWS.
+
+
+
+== Avantages d'Cloud Volumes Service pour AWS
+
+Cloud Volumes Service pour AWS offre plusieurs avantages :
+
+* Service entièrement géré, il n'est donc pas nécessaire de configurer ou de gérer les périphériques de stockage
+* Prise en charge des protocoles NFS v3 et NFS v4.1, et des protocoles NAS SMB 3.0 et 3.1.1
+* Accès sécurisé aux instances Linux et Windows Elastic Container Service (ECS), avec prise en charge notamment :
++
+** Amazon Linux 2, Red Hat Enterprise Linux 7.5, SLES 12 SP3 et Ubuntu 16.04 LTS
+** Windows Server 2008 R2, Windows Server 2012 R2 et Windows Server 2016
+
+
+* Vous avez le choix entre un bundle et une facturation à l'utilisation
+
+
+
+
+== Le coût
+
+Les volumes créés par Cloud Volumes Service pour AWS sont facturés en fonction de l'abonnement que vous avez souscrit au service, et non via Cloud Manager.
+
+Il n'y a aucun frais pour découvrir une région ou un volume Cloud Volumes Service pour AWS depuis Cloud Manager.
+
+
+
+== Avant de commencer
+
+* Cloud Manager peut découvrir les abonnements et volumes Cloud Volumes Service pour AWS. Voir la https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf["Guide de configuration de compte NetApp Cloud Volumes Service pour AWS"^] si vous n'avez pas encore configuré votre abonnement. Vous devez suivre cette procédure d'installation pour chaque région avant de pouvoir ajouter les abonnements et volumes AWS à Cloud Manager.
+* Vous devez obtenir la clé API Cloud volumes et une clé secrète pour les fournir à Cloud Manager. https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key["Pour en savoir plus, consultez la documentation Cloud Volumes Service pour AWS"^].
+
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou passez à la section suivante pour obtenir plus d'informations.
+
+
+
+==== Vérifiez la prise en charge de votre configuration
+
+[role="quick-margin-para"]
+Vous avez configuré AWS pour Cloud Volumes Service et vous devez vous être abonné à l'un de ces https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["Offres NetApp Cloud Volumes Service sur AWS Marketplace"^].
+
+
+
+==== Ajoutez votre abonnement Cloud Volumes Service pour AWS
+
+[role="quick-margin-para"]
+Vous devez créer un environnement de travail pour les volumes basés sur votre abonnement Cloud Volumes Service pour AWS.
+
+
+
+==== Créer des volumes cloud
+
+[role="quick-margin-para"]
+Les volumes Cloud qui existent déjà pour cet abonnement apparaissent dans le nouvel environnement de travail. Sinon, vous créez de nouveaux volumes à partir de Cloud Manager.
+
+
+
+==== Montez un volume cloud
+
+[role="quick-margin-para"]
+Montez de nouveaux volumes cloud sur votre instance AWS pour que les utilisateurs puissent commencer à utiliser le stockage.
+
+
+
+== Obtenir de l'aide
+
+Utilisez la discussion de chat Cloud Manager pour toute question générale sur les services.
+
+Pour les problèmes de support technique associés à vos volumes Cloud, utilisez votre numéro de série à 20 chiffres « 930 » dans l'onglet « support » de l'interface utilisateur Cloud Volumes Service. Utilisez cet ID de support lors de l'ouverture d'un ticket Web ou lorsque vous appelez pour obtenir de l'aide. N'oubliez pas d'activer votre numéro de série Cloud Volumes Service pour le support depuis l'interface utilisateur de Cloud Volumes Service. https://docs.netapp.com/us-en/cloud_volumes/aws/task_activating_support_entitlement.html["Ces étapes sont expliquées ici"^].
+
+
+
+== Limites
+
+* Cloud Manager ne prend pas en charge la réplication des données entre les environnements de travail lors de l'utilisation de volumes Cloud Volumes Service.
+* La suppression de votre abonnement Cloud Volumes Service pour AWS de Cloud Manager n'est pas prise en charge. Pour ce faire, vous devez utiliser l'interface Cloud Volumes Service pour AWS.
+
+
+
+
+== Liens connexes
+
+* https://cloud.netapp.com/cloud-volumes-service-for-aws["NetApp Cloud Central : Cloud Volumes Service pour AWS"^]
+* https://docs.netapp.com/us-en/cloud_volumes/aws/["Documentation sur NetApp Cloud Volumes Service pour AWS"^]
+

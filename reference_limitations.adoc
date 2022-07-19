@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: reference_limitations.html 
+keywords: limitations, active directory, ad, iscsi, key managers, ip address, govcloud, cloud manager, Cloud Volumes ONTAP, days, 14 days, running, Connectors should remain running 
+summary: Les limitations connues identifient les plateformes, les périphériques ou les fonctions qui ne sont pas pris en charge par cette version du produit, ou qui ne fonctionnent pas correctement avec elle. Examinez attentivement ces limites. 
+---
+= Limites connues
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Les limitations connues identifient les plateformes, les périphériques ou les fonctions qui ne sont pas pris en charge par cette version du produit, ou qui ne fonctionnent pas correctement avec elle. Examinez attentivement ces limites.
+
+
+
+== Les connecteurs doivent rester en fonctionnement
+
+Un connecteur doit rester en fonctionnement en permanence. Il est important pour la santé et le fonctionnement continus des services que vous proposez.
+
+Par exemple, un connecteur est un composant clé de la santé et du fonctionnement des systèmes Cloud Volumes ONTAP PAYGO. Si un connecteur est hors tension, les systèmes Cloud Volumes ONTAP PAYGO s'arrêtent après une perte de communication avec un connecteur pendant plus de 14 jours.
+
+
+
+== La plateforme SaaS est désactivée pour les régions du secteur public
+
+Si vous déployez un connecteur dans une région AWS GovCloud, une région Azure Government ou une région Azure DoD, l'accès à Cloud Manager n'est disponible qu'via l'adresse IP d'hôte d'un connecteur. L'accès à la plateforme SaaS est désactivé pour l'ensemble du compte.
+
+Cela signifie que seuls les utilisateurs privilégiés qui peuvent accéder au VPC/vNet interne de l'utilisateur final peuvent utiliser l'interface ou l'API de Cloud Manager.
+
+Cloud Manager ne propose pas non plus les services suivants :
+
+* Conformité cloud
+* Kubernetes
+* Tiering dans le cloud
+* Cache global de fichiers
+* Surveillance (Cloud Insights)
+
+
+Vous devez utiliser la plateforme SaaS pour pouvoir utiliser ces services.
+
+
+
+== Les hôtes Linux partagés ne sont pas pris en charge
+
+Le connecteur n'est pas pris en charge sur un hôte partagé avec d'autres applications. L'hôte doit être un hôte dédié.
+
+
+
+== Cloud Manager ne prend pas en charge les volumes FlexGroup
+
+Cloud Volumes ONTAP prend en charge les volumes FlexGroup, mais pas Cloud Manager. Si vous créez un volume FlexGroup depuis System Manager ou depuis l'interface de ligne de commandes, définissez le mode de gestion de la capacité de Cloud Manager sur Manuel. Le mode automatique peut ne pas fonctionner correctement avec les volumes FlexGroup.

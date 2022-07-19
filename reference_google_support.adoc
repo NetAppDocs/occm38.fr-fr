@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: reference_google_support.html 
+keywords: google, gcp, regions, google regions, gcp regions, storage class, standard storage class 
+summary: NetApp Cloud Tiering prend en charge la classe de stockage standard et la plupart des régions. 
+---
+= Classes et régions de stockage Google Cloud prises en charge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Tiering prend en charge la classe de stockage standard et la plupart des régions Google Cloud.
+
+
+
+== Tiers d'accès pris en charge
+
+La hiérarchisation du cloud utilise le Tier d'accès _Standard_ pour vos données inactives.
+
+
+
+== Régions Google Cloud prises en charge
+
+Cloud Tiering prend en charge les régions suivantes.
+
+
+
+=== Amériques
+
+* Iowa
+* Los Angeles
+* Montréal
+* N. Virginie
+* Oregon
+* Sao Paulo
+* Caroline du Sud
+
+
+
+
+=== Asie Pacifique
+
+* Hong Kong
+* Mumbai
+* Osaka
+* Singapour
+* Sydney
+* Taïwan
+* Tokyo
+
+
+
+
+=== Europe
+
+* Belgique
+* Finlande
+* Francfort
+* Londres
+* Pays-Bas
+* Zurich
+

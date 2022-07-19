@@ -1,0 +1,151 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config_azure.html 
+keywords: license, disk, storage, size, write speed, volume usage, explore, standard, premium, byol, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, premium storage, standard storage, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: Lorsque vous déployez Cloud Volumes ONTAP dans Azure, vous pouvez soit choisir un système préconfiguré qui correspond aux exigences de vos workloads, soit créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez. 
+---
+= Planification de votre configuration Cloud Volumes ONTAP dans Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous déployez Cloud Volumes ONTAP dans Azure, vous pouvez soit choisir un système préconfiguré qui correspond aux exigences de vos workloads, soit créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez.
+
+
+
+== Choix d'un type de licence
+
+Deux options de tarification sont disponibles pour Cloud Volumes ONTAP : le paiement à l'utilisation ou le modèle BYOL (où vous apportez votre propre licence). Le paiement basé sur l'utilisation vous permet de choisir entre trois licences : explore, Standard ou Premium. Chacune d'elles fournit une capacité distincte et des options de calcul différentes.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_azure_97.html["Configurations prises en charge pour Cloud Volumes ONTAP 9.7 dans Azure"^]
+
+
+
+== Compréhension des limites de stockage
+
+La limite de capacité brute d'un système Cloud Volumes ONTAP dépend de la licence. Des limites supplémentaires ont un impact sur la taille des agrégats et des volumes. Il est important de connaître ces dernières lors de la planification de la configuration.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_azure_97.html["Limites de stockage pour Cloud Volumes ONTAP 9.7 dans Azure"]
+
+
+
+== Dimensionnement du système dans Azure
+
+Le dimensionnement du système Cloud Volumes ONTAP permet de répondre à vos besoins de performance et de capacité. Quelques points clés sont à noter lors de la sélection d'un type de VM, d'un type de disque et d'une taille de disque :
+
+Type de machine virtuelle:: Examinez les types de machines virtuelles prises en charge dans le http://docs.netapp.com/cloud-volumes-ontap/us-en/index.html["Notes de version de Cloud Volumes ONTAP"^] Examinez ensuite toutes les informations sur chaque type de machine virtuelle pris en charge. Notez que chaque type de VM prend en charge un nombre spécifique de disques de données.
++
+--
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-general#dsv2-series["Documentation Azure : tailles de machine virtuelle à usage général"^]
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/sizes-memory#dsv2-series-11-15["Documentation Azure : tailles de machines virtuelles optimisées pour la mémoire"^]
+
+
+--
+Type de disque Azure:: Lorsque vous créez des volumes pour Cloud Volumes ONTAP, vous devez choisir le stockage cloud sous-jacent utilisé par Cloud Volumes ONTAP comme disque.
++
+--
+Les systèmes HAUTE DISPONIBILITÉ utilisent des objets blob de pages Premium. En parallèle, les systèmes à un seul nœud peuvent utiliser deux types de disques gérés Azure :
+
+* _Des disques gérés SSD de premier choix_ fournir des performances élevées aux charges de travail exigeantes en E/S à un coût plus élevé.
+* _Des disques gérés SSD standard_ assurent des performances prévisibles pour les charges de travail nécessitant un faible niveau d'IOPS.
+* _Les disques gérés HDD standard_ sont un bon choix si vous n'avez pas besoin d'IOPS élevées et souhaitez réduire vos coûts.
++
+Pour plus d'informations sur les cas d'utilisation de ces disques, reportez-vous à la section https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types["Documentation Microsoft Azure : quels types de disques sont disponibles dans Azure ?"^].
+
+
+
+--
+Taille des disques Azure:: Lorsque vous lancez des instances Cloud Volumes ONTAP, vous devez choisir la taille de disque par défaut des agrégats. Cloud Manager utilise cette taille de disque pour l'agrégat initial, et pour tous les agrégats supplémentaires que vous créez lorsque vous utilisez l'option de provisionnement simple. Vous pouvez créer des agrégats qui utilisent une taille de disque différente de la taille par défaut link:task_provisioning_storage.html#creating-aggregates["utilisation de l'option d'allocation avancée"].
++
+--
+
+TIP: Tous les disques qui composent un agrégat doivent être de la même taille.
+
+Lorsque vous choisissez une taille de disque, vous devez prendre en compte plusieurs facteurs. La taille des disques a une incidence sur le montant de vos frais de stockage, la taille des volumes que vous pouvez créer au sein d'un agrégat, la capacité totale disponible pour Cloud Volumes ONTAP et les performances de stockage.
+
+Les performances du stockage Azure Premium sont liées à la taille des disques. Les disques de grande taille offrent des IOPS et un débit plus élevés. Par exemple, le choix de disques de 1 To peut fournir des performances supérieures à celles des disques de 500 Go, pour un coût plus élevé.
+
+Avec un stockage standard, les performances sont les mêmes pour toutes les tailles de disques. Choisissez la taille de disque en fonction de la capacité dont vous avez besoin.
+
+Pour les IOPS et le débit par taille de disque, consultez Azure :
+
+* https://azure.microsoft.com/en-us/pricing/details/managed-disks/["Microsoft Azure : tarification des disques gérés"^]
+* https://azure.microsoft.com/en-us/pricing/details/storage/page-blobs/["Microsoft Azure : tarification Blobs de page"^]
+
+
+--
+
+
+
+
+== Choix d'une configuration qui prend en charge Flash cache
+
+Une configuration Cloud Volumes ONTAP dans Azure inclut un stockage NVMe local, que Cloud Volumes ONTAP utilise comme _Flash cache_ pour de meilleures performances. link:concept_flash_cache.html["En savoir plus sur Flash cache"].
+
+
+
+== Fiche d'informations sur le réseau Azure
+
+Lorsque vous déployez Cloud Volumes ONTAP dans Azure, vous devez spécifier des informations concernant votre réseau virtuel. Vous pouvez utiliser un modèle pour recueillir ces informations auprès de votre administrateur.
+
+[cols="30,70"]
+|===
+| Informations sur Azure | Votre valeur 
+
+
+| Région |  
+
+
+| Réseau virtuel (vnet) |  
+
+
+| Sous-réseau |  
+
+
+| Groupe de sécurité réseau (s'il s'agit du vôtre) |  
+|===
+
+
+== Sélection d'une vitesse d'écriture
+
+Cloud Manager permet de choisir un paramètre de vitesse d'écriture pour les systèmes Cloud Volumes ONTAP à un seul nœud. Avant de choisir une vitesse d'écriture, vous devez comprendre les différences entre les paramètres normaux et élevés et les risques et les recommandations lors de l'utilisation de la vitesse d'écriture élevée.
+
+
+
+==== Différence entre une vitesse d'écriture standard et une vitesse d'écriture élevée
+
+Lorsque vous choisissez la vitesse d'écriture standard, les données sont écrites directement sur le disque, réduisant ainsi le risque de perte de données en cas d'interruption imprévue du système.
+
+Lorsque vous choisissez la vitesse d'écriture élevée, les données sont mises en tampon dans la mémoire avant d'être écrites sur le disque, ce qui accélère les performances d'écriture. Toutefois, la mise en cache peut entraîner une perte de données en cas de panne système.
+
+Le volume de données pouvant être perdues en cas de panne système correspond à l'étendue des deux derniers points de cohérence. Le point de cohérence consiste à écrire des données mises en tampon sur le disque. Un point de cohérence se produit lorsque le journal d'écriture est plein ou après 10 secondes (selon la première éventualité). Cependant, la performance des volumes AWS EBS peut affecter le temps de traitement des points de cohérence.
+
+
+
+==== Quand utiliser une vitesse d'écriture élevée
+
+Optez pour la vitesse d'écriture élevée si vos workloads nécessitent des performances d'écriture rapides et que vous ne craignez pas de perdre des données.
+
+
+
+==== Recommandations lors de l'utilisation d'une vitesse d'écriture élevée
+
+Si vous activez la vitesse d'écriture élevée, vous devez assurer la protection de l'écriture au niveau de la couche applicative.
+
+
+
+== Choix d'un profil d'utilisation du volume
+
+ONTAP comprend plusieurs fonctionnalités d'efficacité du stockage qui permettent de réduire la quantité totale de stockage nécessaire. Lorsque vous créez un volume dans Cloud Manager, vous pouvez choisir un profil qui active ou désactive ces fonctionnalités. Vous devez en savoir plus sur ces fonctionnalités pour vous aider à choisir le profil à utiliser.
+
+Les fonctionnalités d'efficacité du stockage NetApp offrent les avantages suivants :
+
+Provisionnement fin:: Met à la disposition des hôtes ou des utilisateurs une quantité de stockage logique supérieure au stockage effectivement présent dans votre pool physique. L'espace de stockage est alloué de manière dynamique, et non au préalable, à chaque volume lors de l'écriture des données.
+Déduplication:: Améliore l'efficacité en identifiant les blocs de données identiques et en les remplaçant par des références à un seul bloc partagé. Cette technique réduit les besoins de stockage en éliminant les blocs de données redondants qui résident dans le même volume.
+Compression:: Réduit la capacité physique requise pour stocker les données en les compressant dans un volume sur un stockage primaire, secondaire ou d'archivage.
+

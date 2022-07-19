@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: task_tiering.html 
+keywords: tier, tiering, cold data, hot data, storage tiering, data tiering, S3 tiering, fabricpool, fabric pool, s3 endpoint, endpoint, connection, performance tier, capacity tier, object store, azure tiering, blob tiering, azure blob, container, inactive, gcp, tiering in gcp, tiering requirements 
+summary: Vous pouvez réduire les coûts de stockage pour Cloud Volumes ONTAP en combinant un Tier de performance SSD ou HDD pour les données actives avec un Tier de capacité de stockage objet pour les données inactives. 
+---
+= Tiering des données inactives vers un stockage objet à faible coût
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Vous pouvez réduire les coûts de stockage pour Cloud Volumes ONTAP en combinant un Tier de performance SSD ou HDD pour les données actives avec un Tier de capacité de stockage objet pour les données inactives. Pour une vue d'ensemble de haut niveau, voir link:concept_data_tiering.html["Vue d'ensemble du hiérarchisation des données"].
+
+Pour configurer le tiering des données, il vous suffit d'effectuer les opérations suivantes :
+
+
+
+==== Choisissez une configuration prise en charge
+
+[role="quick-margin-para"]
+La plupart des configurations sont prises en charge. Si votre système Cloud Volumes ONTAP Standard, Premium ou BYOL exécute la version la plus récente, il est préférable de passer à la version précédente. link:task_tiering.html#configurations-that-support-data-tiering["En savoir plus >>"].
+
+
+
+==== Assurez la connectivité entre le Cloud Volumes ONTAP et le stockage objet
+
+* Pour AWS, vous avez besoin d'un terminal VPC vers S3.  to tier cold data to AWS S3,En savoir plus >>.
+* Pour Azure, vous n'aurez rien à faire tant que Cloud Manager dispose des autorisations requises.  to tier cold data to Azure Blob storage,En savoir plus >>.
+* Pour GCP, vous devez configurer le sous-réseau pour Private Google Access et configurer un compte de service.  to tier cold data to a Google Cloud Storage bucket,En savoir plus >>.
+
+
+
+
+==== Choisissez une règle de Tiering lors de la création, de la modification ou de la réplication d'un volume
+
+[role="quick-margin-para"]
+Cloud Manager vous invite à choisir une règle de Tiering lors de la création, de la modification ou de la réplication d'un volume.
+
+* link:task_tiering.html#tiering-data-from-read-write-volumes["Hiérarchisation des données sur les volumes en lecture-écriture"]
+* link:task_tiering.html#tiering-data-from-data-protection-volumes["Hiérarchisation des données sur les volumes de protection des données"]
+
+
+[NOTE]
+.Quelles sont les&#8217;s non requis pour le Tiering des données
+====
+* Vous n'avez pas besoin d'installer une licence pour activer le Tiering des données.
+* Inutile de créer un Tier de capacité (un compartiment S3, un conteneur Azure Blob ou un compartiment GCP). Cloud Manager le fait pour vous.
+
+
+====
+
+
+== Configurations prenant en charge le tiering des données
+
+Vous pouvez activer le tiering des données lors de l'utilisation de configurations et de fonctionnalités spécifiques :
+
+* Le Tiering des données est pris en charge avec Cloud Volumes ONTAP Standard, Premium ou BYOL, à partir des versions suivantes :
++
+** Version 9.2 dans AWS
+** Version 9.4 dans Azure avec des systèmes à un seul nœud
+** Version 9.6 dans Azure avec paires HA
+** Version 9.6 dans GCP
++
+
+NOTE: Le tiering des données n'est pas pris en charge dans Azure avec le type de machine virtuelle DS3_v2.
+
+
+
+* Dans AWS, le niveau de performance peut être des disques SSD à usage général, des disques SSD IOPS provisionnés ou des disques durs optimisés pour le débit.
+* Dans Azure, le Tier de performance peut être soit des disques gérés par SSD premium, soit des disques gérés par SSD standard, soit des disques gérés par des disques durs standard.
+* Dans GCP, le Tier de performance peut être équipé de disques SSD ou HDD (disques standard).
+* Le Tiering des données est pris en charge grâce aux technologies de chiffrement.
+* Le provisionnement fin doit être activé sur les volumes.
+
+
+
+
+== Conditions requises pour le Tiering des données inactives vers AWS S3
+
+Assurez-vous que Cloud Volumes ONTAP dispose d'une connexion à S3. La meilleure façon de fournir cette connexion est de créer un terminal VPC vers le service S3. Pour obtenir des instructions, reportez-vous à la section https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["Documentation AWS : création d'un terminal de passerelle"^].
+
+Lorsque vous créez le terminal VPC, veillez à sélectionner la région, le VPC et la table de routage correspondant à l'instance Cloud Volumes ONTAP. Vous devez également modifier le groupe de sécurité pour ajouter une règle HTTPS sortante qui active le trafic vers le terminal S3. Dans le cas contraire, Cloud Volumes ONTAP ne peut pas se connecter au service S3.
+
+Si vous rencontrez des problèmes, reportez-vous à la section https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["Centre de connaissances du support AWS : pourquoi ne puis-je pas me connecter à un compartiment S3 à l'aide d'un terminal VPC de passerelle ?"^].
+
+
+
+== Il est nécessaire de déplacer les données inactives vers le stockage Azure Blob
+
+Vous n'avez pas besoin de configurer de connexion entre le Tier de performance et le Tier de capacité tant que Cloud Manager dispose des autorisations requises. Cloud Manager active un terminal de service VNet pour vous si la règle Cloud Manager dispose des autorisations suivantes :
+
+[source, json]
+----
+"Microsoft.Network/virtualNetworks/subnets/write",
+"Microsoft.Network/routeTables/join/action",
+----
+Les autorisations sont incluses dans le dernier https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager"].
+
+
+
+== Il est donc nécessaire de transférer les données inactives vers un compartiment Google Cloud Storage
+
+* Le sous-réseau dans lequel réside Cloud Volumes ONTAP doit être configuré pour un accès privé à Google. Pour obtenir des instructions, reportez-vous à la section https://cloud.google.com/vpc/docs/configure-private-google-access["Documentation Google Cloud : configuration de Private Google Access"^].
+* Vous devez disposer d'un compte de service avec le rôle d'administrateur de stockage prédéfini. Vous devez sélectionner ce compte de service lors de la création d'un environnement de travail Cloud Volumes ONTAP.
++
+https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["Configurez ce compte de service de Tiering comme suit"^]:
+
++
+.. Attribuez le rôle _Storage Admin_ prédéfini au compte de service de hiérarchisation.
+.. Ajoutez le compte de service Connector en tant que _Service Account User_ au compte de service Tiering.
++
+Vous pouvez indiquer le rôle d'utilisateur https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["à l'étape 3 de l'assistant lorsque vous créez le compte de service de tiering"], ou https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_user_for_a_service_account["attribuez le rôle après la création du compte de service"^].
+
++
+Lorsque vous créez un environnement de travail Cloud Volumes ONTAP, vous devrez sélectionner le compte de service de Tiering.
+
++
+Si vous n'activez pas le Tiering des données et sélectionnez un compte de service lorsque vous créez le système Cloud Volumes ONTAP, vous devrez désactiver le système et ajouter le compte de service à Cloud Volumes ONTAP à partir de la console GCP.
+
+
+
+
+
+
+
+== Tiering des données à partir de volumes en lecture/écriture
+
+Cloud Volumes ONTAP peut déplacer les données inactives sur des volumes en lecture/écriture vers un stockage objet économique, libérant ainsi le Tier de performance pour les données actives.
+
+.Étapes
+. Dans l'environnement de travail, créez un nouveau volume ou modifiez le niveau d'un volume existant :
++
+[cols="30,70"]
+|===
+| Tâche | Action 
+
+
+| Créez un nouveau volume | Cliquez sur *Ajouter nouveau volume*. 
+
+
+| Modifier un volume existant | Sélectionnez le volume et cliquez sur *Modifier le type de disque et la stratégie de hiérarchisation*. 
+|===
+. Sélectionnez une règle de hiérarchisation.
++
+Pour obtenir une description de ces politiques, reportez-vous à la section link:concept_data_tiering.html["Vue d'ensemble du hiérarchisation des données"].
+
++
+*Exemple*
+
++
+image:screenshot_tiered_storage.gif["Capture d'écran affichant l'icône permettant de hiérarchiser le stockage des objets."]
+
++
+Cloud Manager crée un nouvel agrégat pour le volume si un agrégat compatible avec le hiérarchisation des données n'existe pas déjà.
+
++
+
+TIP: Si vous préférez créer vous-même des agrégats, vous pouvez activer le tiering des données sur les agrégats lorsque vous les créez.
+
+
+
+
+
+== Tiering des données à partir des volumes de protection des données
+
+Cloud Volumes ONTAP permet de hiérarchiser les données d'un volume de protection des données vers un niveau de capacité. Si vous activez le volume de destination, les données passent progressivement au niveau de performance tel qu'il est lu.
+
+.Étapes
+. Sur la page Working Environments (Environnements de travail), sélectionnez l'environnement de travail qui contient le volume source, puis faites-le glisser vers l'environnement de travail vers lequel vous souhaitez répliquer le volume.
+. Suivez les invites jusqu'à ce que vous atteigniez la page de hiérarchisation et que vous activiez le tiering des données vers le stockage d'objets.
++
+*Exemple*
+
++
+image:screenshot_replication_tiering.gif["Capture d'écran indiquant l'option de hiérarchisation S3 lors de la réplication d'un volume."]
+
++
+Pour obtenir de l'aide sur la réplication des données, voir link:task_replicating_data.html["Réplication des données depuis et vers le cloud"].
+
+
+
+
+
+== Modification de la classe de stockage pour les données hiérarchisées
+
+Une fois déployé Cloud Volumes ONTAP, vous pouvez réduire les coûts de stockage en modifiant la classe de stockage pour les données inactives inutilisées depuis 30 jours. Les coûts d'accès sont plus élevés si vous accédez aux données. Vous devez donc prendre en compte ces coûts avant de changer de classe de stockage.
+
+​it stockage des données hiérarchisées est disponible dans l'ensemble du système, et non dans chaque volume.
+
+Pour plus d'informations sur les classes de stockage prises en charge, reportez-vous à la section link:concept_data_tiering.html["Vue d'ensemble du hiérarchisation des données"].
+
+.Étapes
+. Dans l'environnement de travail, cliquez sur l'icône de menu, puis sur *classes de stockage* ou *stockage Blob Storage Tiering*.
+. Choisissez une classe de stockage, puis cliquez sur *Enregistrer*.
+
+
+
+
+== Puis-je activer le Tiering des données sur un agrégat existant ?
+
+Non, vous ne pouvez pas activer le Tiering des données sur un agrégat existant. Vous pouvez uniquement activer le Tiering sur les nouveaux agrégats.
+
+Vous pouvez activer le Tiering des données sur un nouvel agrégat link:task_provisioning_storage.html#creating-aggregates["en créant un agrégat vous-même"] ou  data from read-write volumes,en créant un nouveau volume sur lequel le tiering des données est activé. Cloud Manager crée ensuite un nouvel agrégat pour le volume si un agrégat compatible avec le Tiering des données n'existe pas déjà.

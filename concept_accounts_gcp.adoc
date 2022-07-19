@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: concept_accounts_gcp.html 
+keywords: cloud provider accounts, gcp, gcp accounts, google cloud platform, google accounts, google cloud platform accounts, permissions, tiering, data tiering, account for data tiering, account for tiering, project, projects, add project, select new project, gcp project, google project, google cloud project 
+summary: Vous utilisez un compte Google Cloud pour déployer Cloud Manager dans un projet. Vous pouvez ensuite déployer Cloud Volumes ONTAP dans le même projet ou dans un autre projet. Les comptes Google Cloud que vous ajoutez à Cloud Manager permettent le Tiering des données. 
+---
+= Projets, autorisations et comptes Google Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Un compte de service fournit à Cloud Manager les autorisations de déploiement et de gestion des systèmes Cloud Volumes ONTAP dans le même projet que Cloud Manager, ou dans des projets différents.
+
+
+
+== Projet et autorisations pour Cloud Manager
+
+Avant de déployer Cloud Volumes ONTAP dans Google Cloud, vous devez d'abord déployer un connecteur dans un projet Google Cloud. Il ne peut pas s'exécuter sur site ou dans un autre fournisseur cloud.
+
+Deux ensembles d'autorisations doivent être en place avant de déployer un connecteur directement depuis Cloud Manager :
+
+. Vous devez déployer un connecteur à l'aide d'un compte Google disposant des autorisations nécessaires pour lancer l'instance de VM Connector à partir de Cloud Manager.
+. Lorsque vous déployez le connecteur, vous êtes invité à sélectionner un https://cloud.google.com/iam/docs/service-accounts["compte de service"^] Pour l'instance de VM. Cloud Manager obtient les autorisations du compte de service pour créer et gérer les systèmes Cloud Volumes ONTAP en votre nom. Les autorisations sont fournies en ajoutant un rôle personnalisé au compte de service.
+
+
+Nous avons configuré deux fichiers YAML qui incluent les autorisations requises pour l'utilisateur et le compte de service. link:task_creating_connectors_gcp.html["Découvrez comment utiliser les fichiers YAML pour configurer les autorisations"].
+
+L'image suivante décrit les conditions d'autorisation décrites aux numéros 1 et 2 ci-dessus :
+
+image:diagram_permissions_gcp.png["explication"]
+
+
+
+== Projet pour Cloud Volumes ONTAP
+
+Cloud Volumes ONTAP peut résider dans le même projet que le connecteur ou dans un autre projet. Pour déployer Cloud Volumes ONTAP dans un autre projet, vous devez d'abord ajouter le compte de service Connector et le rôle à ce projet.
+
+* link:task_creating_connectors_gcp.html#setting-up-gcp-permissions-to-create-a-connector["Découvrez comment configurer un compte de service (voir étape 2)"].
+* link:task_deploying_gcp.html["Découvrez comment déployer Cloud Volumes ONTAP dans GCP et sélectionner un projet"].
+
+
+
+
+== Compte tenu du Tiering des données
+
+
+TIP: Cloud Manager requiert un compte GCP pour Cloud Volumes ONTAP 9.6, mais pas pour la version 9.7 et ultérieure. Si vous souhaitez utiliser le Tiering des données avec Cloud Volumes ONTAP 9.7, suivez les étapes 4 à link:task_getting_started_gcp.html["Mise en route de Cloud Volumes ONTAP dans Google Cloud Platform"].
+
+L'ajout d'un compte Google Cloud à Cloud Manager permet le Tiering des données sur un système Cloud Volumes ONTAP 9.6. Le Tiering des données transfère automatiquement les données inactives vers un stockage objet plus économique, ce qui vous permet de récupérer de l'espace dans votre stockage primaire et de réduire le stockage secondaire.
+
+Lorsque vous ajoutez ce compte, vous devez fournir à Cloud Manager une clé d'accès de stockage pour un compte de service disposant des autorisations d'administrateur de stockage. Cloud Manager utilise les clés d'accès pour configurer et gérer un compartiment de stockage cloud pour le Tiering des données.
+
+Une fois que vous avez ajouté un compte Google Cloud, vous pouvez activer le Tiering des données sur les volumes individuels lorsque vous les créez, les modifiez ou les répliquez.
+
+* link:task_adding_gcp_accounts.html["Découvrez comment configurer et ajouter des comptes GCP à Cloud Manager"].
+* link:task_tiering.html["Découvrez comment transférer des données inactives vers un stockage objet à faible coût"].
+

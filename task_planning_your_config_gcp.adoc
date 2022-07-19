@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config_gcp.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: Lorsque vous déployez Cloud Volumes ONTAP, vous pouvez soit choisir un système préconfiguré qui correspond aux exigences de vos workloads, soit créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez. 
+---
+= Planification de votre configuration Cloud Volumes ONTAP dans Google Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous déployez Cloud Volumes ONTAP dans Google Cloud, vous pouvez soit choisir un système préconfiguré qui correspond aux exigences de vos workloads, soit créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez.
+
+
+
+== Choix d'un type de licence
+
+Deux options de tarification sont disponibles pour Cloud Volumes ONTAP : le paiement à l'utilisation ou le modèle BYOL (où vous apportez votre propre licence). Le paiement basé sur l'utilisation vous permet de choisir entre trois licences : explore, Standard ou Premium. Chacune d'elles fournit une capacité distincte et des options de calcul différentes.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_gcp_97.html["Configurations prises en charge pour Cloud Volumes ONTAP 9.7 dans GCP"^]
+
+
+
+== Compréhension des limites de stockage
+
+La limite de capacité brute d'un système Cloud Volumes ONTAP dépend de la licence. Des limites supplémentaires ont un impact sur la taille des agrégats et des volumes. Il est important de connaître ces dernières lors de la planification de la configuration.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_gcp_97.html["Limites de stockage pour Cloud Volumes ONTAP 9.7 dans GCP"]
+
+
+
+== Dimensionnement du système dans GCP
+
+Le dimensionnement du système Cloud Volumes ONTAP permet de répondre à vos besoins de performance et de capacité. Quelques points clés sont à noter lors de la sélection d'un type de machine, d'un type de disque et d'une taille de disque :
+
+Type de machine:: Examiner les types de machine pris en charge dans le http://docs.netapp.com/cloud-volumes-ontap/us-en/index.html["Notes de version de Cloud Volumes ONTAP"^] Puis passez en revue les détails de Google concernant chaque type de machine pris en charge. Faites correspondre les exigences de vos charges de travail au nombre de CPU virtuels et à la mémoire correspondant au type de machine. Notez que chaque cœur de processeur augmente les performances réseau.
++
+--
+Pour plus de détails, reportez-vous aux sections suivantes :
+
+* https://cloud.google.com/compute/docs/machine-types#n1_machine_types["Documentation Google Cloud : types de machine standard N1"^]
+* https://cloud.google.com/docs/compare/data-centers/networking#performance["Documentation Google Cloud : performances"^]
+
+
+--
+Type de disque GCP:: Lorsque vous créez des volumes pour Cloud Volumes ONTAP, vous devez choisir le stockage cloud sous-jacent utilisé par Cloud Volumes ONTAP pour un disque. Le type de disque peut être soit _Zonal SSD persistent disks_ soit _Zonal standard persistent disks_.
++
+--
+Les disques persistants des disques SSD sont parfaitement adaptés aux charges de travail qui exigent des taux élevés d'IOPS aléatoires, tandis que les disques persistants standard sont économiques et peuvent prendre en charge des opérations de lecture/écriture séquentielles. Pour plus de détails, voir https://cloud.google.com/compute/docs/disks/#pdspecs["Documentation Google Cloud : disques persistants zonés (standard et SSD)"^].
+
+--
+Taille des disques GCP:: Lorsque vous déployez un système Cloud Volumes ONTAP, vous devez choisir la taille de disque initiale. Après cela, Cloud Manager vous permet de gérer la capacité d'un système, mais si vous souhaitez créer vous-même des agrégats, sachez que :
++
+--
+* Tous les disques qui composent un agrégat doivent être de la même taille.
+* Déterminez l'espace dont vous avez besoin tout en prenant en compte les performances.
+* Les performances des disques persistants évoluent automatiquement en fonction de la taille des disques et du nombre de CPU virtuels disponibles pour le système.
++
+Pour plus de détails, reportez-vous aux sections suivantes :
+
++
+** https://cloud.google.com/compute/docs/disks/#pdspecs["Documentation Google Cloud : disques persistants zonés (standard et SSD)"^]
+** https://cloud.google.com/compute/docs/disks/performance["Documentation Google Cloud : optimisation des performances des disques persistants et des SSD locaux"^]
+
+
+
+
+--
+
+
+
+
+== Fiche technique d'informations réseau GCP
+
+Lorsque vous déployez Cloud Volumes ONTAP dans GCP, vous devez spécifier des informations relatives à votre réseau virtuel. Vous pouvez utiliser un modèle pour recueillir ces informations auprès de votre administrateur.
+
+[cols="30,70"]
+|===
+| Informations GCP | Votre valeur 
+
+
+| Région |  
+
+
+| Zone |  
+
+
+| Réseau VPC |  
+
+
+| Sous-réseau |  
+
+
+| Politique de pare-feu (s'il s'agit du vôtre) |  
+|===
+
+
+== Sélection d'une vitesse d'écriture
+
+Cloud Manager permet de choisir un paramètre de vitesse d'écriture pour les systèmes Cloud Volumes ONTAP à un seul nœud. Avant de choisir une vitesse d'écriture, vous devez comprendre les différences entre les paramètres normaux et élevés et les risques et les recommandations lors de l'utilisation de la vitesse d'écriture élevée.
+
+
+
+==== Différence entre une vitesse d'écriture standard et une vitesse d'écriture élevée
+
+Lorsque vous choisissez la vitesse d'écriture standard, les données sont écrites directement sur le disque, réduisant ainsi le risque de perte de données en cas d'interruption imprévue du système.
+
+Lorsque vous choisissez la vitesse d'écriture élevée, les données sont mises en tampon dans la mémoire avant d'être écrites sur le disque, ce qui accélère les performances d'écriture. Toutefois, la mise en cache peut entraîner une perte de données en cas de panne système.
+
+Le volume de données pouvant être perdues en cas de panne système correspond à l'étendue des deux derniers points de cohérence. Le point de cohérence consiste à écrire des données mises en tampon sur le disque. Un point de cohérence se produit lorsque le journal d'écriture est plein ou après 10 secondes (selon la première éventualité). Cependant, la performance des volumes AWS EBS peut affecter le temps de traitement des points de cohérence.
+
+
+
+==== Quand utiliser une vitesse d'écriture élevée
+
+Optez pour la vitesse d'écriture élevée si vos workloads nécessitent des performances d'écriture rapides et que vous ne craignez pas de perdre des données.
+
+
+
+==== Recommandations lors de l'utilisation d'une vitesse d'écriture élevée
+
+Si vous activez la vitesse d'écriture élevée, vous devez assurer la protection de l'écriture au niveau de la couche applicative.
+
+
+
+== Choix d'un profil d'utilisation du volume
+
+ONTAP comprend plusieurs fonctionnalités d'efficacité du stockage qui permettent de réduire la quantité totale de stockage nécessaire. Lorsque vous créez un volume dans Cloud Manager, vous pouvez choisir un profil qui active ou désactive ces fonctionnalités. Vous devez en savoir plus sur ces fonctionnalités pour vous aider à choisir le profil à utiliser.
+
+Les fonctionnalités d'efficacité du stockage NetApp offrent les avantages suivants :
+
+Provisionnement fin:: Met à la disposition des hôtes ou des utilisateurs une quantité de stockage logique supérieure au stockage effectivement présent dans votre pool physique. L'espace de stockage est alloué de manière dynamique, et non au préalable, à chaque volume lors de l'écriture des données.
+Déduplication:: Améliore l'efficacité en identifiant les blocs de données identiques et en les remplaçant par des références à un seul bloc partagé. Cette technique réduit les besoins de stockage en éliminant les blocs de données redondants qui résident dans le même volume.
+Compression:: Réduit la capacité physique requise pour stocker les données en les compressant dans un volume sur un stockage primaire, secondaire ou d'archivage.
+

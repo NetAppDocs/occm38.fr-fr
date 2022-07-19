@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: reference_azure_support.html 
+keywords: microsoft azure, azure, hot, access tier, cold, regions 
+summary: 'Cloud Tiering prend en charge le Tier d"accès à chaud et la plupart des régions.' 
+---
+= Tiers et régions d'accès Azure Blob pris en charge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering prend en charge le niveau d'accès _Hot_ et la plupart des régions.
+
+
+
+== Tiers d'accès Azure Blob pris en charge
+
+Lorsque vous configurez le Tiering des données sur Azure, Cloud Tiering utilise automatiquement le Tier d'accès _Hot_ pour vos données inactives.
+
+
+
+== Régions Azure prises en charge
+
+NetApp Cloud Tiering prend en charge les régions Azure suivantes.
+
+
+
+=== Afrique
+
+* Afrique du Sud Nord
+
+
+
+
+=== Asie Pacifique
+
+* Australie Est
+* Australie Sud-Est
+* Asie de l'Est
+* Japon Est
+* Japon Ouest
+* Corée Centrale
+* Corée du Sud
+* Asie du Sud-Est
+
+
+
+
+=== Europe
+
+* France centrale
+* Allemagne Centrale
+* Allemagne Nord-Est
+* Europe du Nord
+* Royaume-Uni Sud
+* Royaume-Uni Ouest
+* Europe de l'Ouest
+
+
+
+
+=== Amérique du Nord
+
+* Canada Central
+* Canada Est
+* Centre DES ÉTATS-UNIS
+* Est-É.-U.
+* Est DES ÉTATS-UNIS 2
+* Centre-nord des États-Unis
+* Centre-sud des États-Unis
+* Ouest des États-Unis
+* Ouest des États-Unis 2
+* Centre Ouest des États-Unis
+
+
+
+
+=== Amérique du Sud
+
+* Brésil Sud
+

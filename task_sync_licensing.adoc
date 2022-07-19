@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_sync_licensing.html 
+keywords: license, subscription, registering, subscribing, subscribing in aws, subscribing in azure, subscribing to aws, subscribing to azure, aws marketplace, azure marketplace, netapp license, byol license, purchase a license, license settings, pay for relationships, paygo, annual, pay-as-you-go 
+summary: 'Il existe deux façons de payer les relations de synchronisation après la fin de votre essai gratuit de 14 jours. La première option consiste à payer en fonction de l"utilisation. La deuxième option consiste à acheter des licences directement auprès de NetApp.' 
+---
+= Payer pour la synchronisation après la fin de votre essai gratuit
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Il existe deux façons de payer les relations de synchronisation après la fin de votre essai gratuit de 14 jours. La première option consiste à vous abonner à AWS ou Azure pour payer à votre gré ou à payer annuellement. La deuxième option consiste à acheter des licences directement auprès de NetApp.
+
+Vous pouvez utiliser les licences de NetApp avec un abonnement AWS ou Azure. Par exemple, si vous disposez de 25 relations de synchronisation, vous pouvez payer les 20 premières relations de synchronisation à l'aide d'une licence, puis effectuer des opérations de paiement à la demande à partir d'AWS ou d'Azure avec les 5 autres relations de synchronisation.
+
+link:concept_cloud_sync.html["En savoir plus sur le fonctionnement des licences"].
+
+.Que dois-je payer immédiatement après 8217 la fin de mon essai gratuit ?
+****
+Vous ne pourrez pas créer de relations supplémentaires. Les relations existantes ne sont pas supprimées, mais vous ne pouvez pas y apporter de modifications tant que vous n'êtes pas abonné ou que vous n'avez pas saisi de licence.
+
+****
+
+
+== Abonnement à AWS
+
+AWS vous permet de payer à votre gré ou de payer chaque année.
+
+.Les étapes à payer en tant que vous-même
+. Cliquez sur *Sync > licences*.
+. Sélectionnez *AWS*
+. Cliquez sur *s'abonner*, puis sur *Continuer*.
+. Abonnez-vous à AWS Marketplace, puis connectez-vous au service Cloud Sync pour terminer l'enregistrement.
++
+La vidéo suivante montre le processus :
+
++
+video::video_cloud_sync_registering.mp4[width=848,height=480]
+
+
+.Étapes à payer annuellement
+. https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Accédez à la page AWS Marketplace"^].
+. Cliquez sur *Continuer pour s'inscrire*.
+. Sélectionnez vos options de contrat et cliquez sur *Créer contrat*.
+
+
+
+
+== S'abonner à Azure
+
+Azure vous permet de payer à votre gré ou de payer chaque année.
+
+Un compte utilisateur Azure disposant des autorisations Contributeur ou Propriétaire dans l'abonnement correspondant.
+
+.Étapes
+. Cliquez sur *Sync > licences*.
+. Sélectionnez *Azure*.
+. Cliquez sur *s'abonner*, puis sur *Continuer*.
+. Dans le portail Azure, cliquez sur *Créer*, sélectionnez vos options et cliquez sur *s'abonner*.
++
+Sélectionnez *mensuel* pour payer par heure, ou *annuel* pour payer une année avant.
+
+. Une fois le déploiement terminé, cliquez sur le nom de la ressource SaaS dans le menu contextuel de notification.
+. Cliquez sur *configurer le compte* pour revenir à Cloud Sync.
++
+La vidéo suivante montre le processus :
+
++
+video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
+
+
+
+
+== Achat de licences auprès de NetApp et ajout de ces licences à Cloud Sync
+
+Pour payer vos relations de synchronisation, vous devez acheter une ou plusieurs licences et les ajouter au service Cloud Sync.
+
+.Étapes
+. Achetez une licence par mailto:ng-cloudsync-contact@netapp.com?subject=Cloud%20Sync%20Service%20-%20BYOL%20License%20Purchase%20Request[contacter NetApp].
+. Dans Cloud Manager, cliquez sur *Sync > licences*.
+. Cliquez sur *Ajouter une licence* et ajoutez la licence.
+

@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: concept_accounts_aws.html 
+keywords: cloud provider accounts, aws, aws accounts, keys, multiple accounts, permissions, aws permissions, policy, policies, json 
+summary: 'Cloud Manager vous permet de choisir les identifiants AWS à utiliser lors du déploiement de Cloud Volumes ONTAP. Vous pouvez déployer tous vos systèmes Cloud Volumes ONTAP à l"aide des identifiants AWS initiaux, ou ajouter des identifiants supplémentaires.' 
+---
+= Identifiants et autorisations AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager vous permet de choisir les identifiants AWS à utiliser lors du déploiement de Cloud Volumes ONTAP. Vous pouvez déployer tous vos systèmes Cloud Volumes ONTAP à l'aide des identifiants AWS initiaux, ou ajouter des identifiants supplémentaires.
+
+
+
+== Identifiants AWS initiaux
+
+Lorsque vous déployez un connecteur depuis Cloud Manager, vous devez utiliser un compte AWS avec des autorisations pour lancer l'instance de connecteur. Les autorisations requises sont répertoriées dans le https://mysupport.netapp.com/site/info/cloud-manager-policies["Règle de déploiement du connecteur pour AWS"^].
+
+Lorsque Cloud Manager lance l'instance de connecteur dans AWS, il crée un rôle IAM et un profil d'instance pour l'instance. Il attache également une règle qui fournit les autorisations nécessaires à Cloud Manager pour gérer les ressources et les processus de ce compte AWS. link:reference_permissions.html#what-cloud-manager-does-with-aws-permissions["Examinez comment Cloud Manager utilise les autorisations"].
+
+image:diagram_permissions_initial_aws.png["Image conceptuelle qui montre Cloud Central déployant Cloud Manager dans un compte AWS. Une règle IAM est attribuée à un rôle IAM, rattaché à l'instance Cloud Manager."]
+
+Cloud Manager sélectionne ces identifiants AWS par défaut lorsque vous créez un nouvel environnement de travail pour Cloud Volumes ONTAP :
+
+image:screenshot_accounts_select_aws.gif["Capture d'écran indiquant l'option changer de compte dans la page Détails et AMP ; informations d'identification."]
+
+
+
+== Autres identifiants AWS
+
+Si vous souhaitez lancer Cloud Volumes ONTAP sur différents comptes AWS, vous pouvez l'un ou l'autre link:task_adding_aws_accounts.html["Fournir des clés AWS pour un utilisateur IAM ou le numéro ARN d'un rôle dans un compte de confiance"]. L'image suivante montre deux comptes supplémentaires, l'un avec des autorisations par le biais d'un rôle IAM dans un compte de confiance et l'autre avec les clés AWS d'un utilisateur IAM :
+
+image:diagram_permissions_multiple_aws.png["Image conceptuelle qui affiche deux comptes supplémentaires. Chaque groupe dispose d'une politique IAM, l'un est rattaché à l'utilisateur IAM et l'autre est associé à un rôle IAM."]
+
+Vous le feriez alors link:task_adding_aws_accounts.html#adding-aws-accounts-to-cloud-manager["Ajoutez les identifiants du compte à Cloud Manager"] En spécifiant le nom de ressource Amazon (ARN) du rôle IAM ou les clés AWS pour l'utilisateur IAM.
+
+Après avoir ajouté un autre ensemble d'informations d'identification, vous pouvez les passer lors de la création d'un nouvel environnement de travail :
+
+image:screenshot_accounts_switch_aws.gif["Capture d'écran indiquant la sélection entre les comptes fournisseurs de services cloud après avoir cliqué sur changer de compte dans la page Détails etamp ; informations d'identification."]
+
+
+
+== Qu'en est-il des déploiements Marketplace et des déploiements sur site ?
+
+Dans les sections ci-dessus, nous décrivons la méthode de déploiement recommandée pour le connecteur, qui provient de Cloud Manager. Vous pouvez également déployer un connecteur dans AWS à partir du link:task_launching_aws_mktp.html["AWS Marketplace"] et vous le pouvez link:task_installing_linux.html["Installer le connecteur sur site"].
+
+Si vous utilisez Marketplace, des autorisations sont fournies de la même manière. Il vous suffit de créer et de configurer manuellement le rôle IAM, puis de fournir des autorisations pour tous les comptes supplémentaires.
+
+Pour les déploiements sur site, vous ne pouvez pas configurer de rôle IAM pour le système Cloud Manager, mais vous pouvez fournir des autorisations exactement comme vous le feriez pour d'autres comptes AWS.
+
+
+
+== Comment faire tourner mes identifiants AWS en toute sécurité ?
+
+Comme décrit ci-dessus, Cloud Manager vous permet de fournir des identifiants AWS de différentes manières : un rôle IAM associé à l'instance Connector, en assumant un rôle IAM dans un compte de confiance ou en fournissant des clés d'accès AWS.
+
+Avec les deux premières options, Cloud Manager utilise le service de token de sécurité AWS pour obtenir des identifiants temporaires qui pivotent en permanence. Ce processus est la meilleure pratique--il automatique et sécurisé.
+
+Si vous fournissez les clés d'accès AWS à Cloud Manager, il est conseillé de les mettre à jour régulièrement dans Cloud Manager. Il s'agit d'un processus entièrement manuel.

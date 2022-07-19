@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: task_sync_copying_acls.html 
+keywords: permissions, access control list, acls, ntfs, cifs, smb, shares, robocopy, copy, transfer, activate, operating system, os, ram, cpu, networking, copy acls to the target 
+summary: 'Cloud Sync peut copier les listes de contrôle d"accès (ACL) entre un partage SMB source et un partage SMB cible. Si nécessaire, vous pouvez conserver manuellement les listes de contrôle d"accès vous-même à l"aide de robocopy.' 
+---
+= Copie de listes de contrôle d'accès entre partages SMB
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Sync peut copier les listes de contrôle d'accès (ACL) entre un partage SMB source et un partage SMB cible. Si nécessaire, vous pouvez conserver manuellement les listes de contrôle d'accès vous-même en utilisant robocopy.
+
+.Choix
+*  up Cloud Sync to copy ACLs between SMB servers,Configurez Cloud Sync pour copier automatiquement les ACL
+*  copying ACLs,Copiez manuellement les ACL vous-même
+
+
+
+
+== Configuration de Cloud Sync pour copier les ACL entre les serveurs SMB
+
+Copiez les ACL entre serveurs SMB en activant un paramètre lors de la création d'une relation ou après la création d'une relation.
+
+Notez que cette fonction est disponible pour les nouvelles relations de synchronisation créées après la version du 23 février 2020. Si vous souhaitez utiliser cette fonction avec des relations existantes créées avant cette date, vous devrez recréer la relation.
+
+.Ce dont vous avez besoin, 8217;ll
+* Une nouvelle relation de synchronisation ou une relation de synchronisation existante créée après la version 23 février 2020.
+* Tout type de courtier en données.
++
+Cette fonctionnalité fonctionne avec _tout_ type de courtier en données : AWS, Azure, Google Cloud Platform ou comme courtier en données sur site. Le courtier en données sur site peut être exécuté link:task_sync_installing_linux.html["tout système d'exploitation pris en charge"].
+
+
+
+.Étapes d'une nouvelle relation
+. Dans Cloud Sync, cliquez sur *Créer une nouvelle synchronisation*.
+. Faites glisser *SMB Server* vers la source et la cible et cliquez sur *Continuer*.
+. Sur la page *SMB Server* :
++
+.. Entrez un nouveau serveur SMB ou sélectionnez un serveur existant et cliquez sur *Continuer*.
+.. Saisissez les informations d'identification du serveur SMB.
+.. Sélectionnez *Copier les listes de contrôle d'accès vers la cible* et cliquez sur *Continuer*.
++
+image:screenshot_acl_support.gif["Capture d'écran montrant l'option permettant d'activer les listes de contrôle d'accès de copie sur la cible."]
+
+
+
+. Suivez les autres invites pour créer la relation de synchronisation.
+
+
+.Étapes d'une relation existante
+. Survolez la relation de synchronisation et cliquez sur le menu d'action.
+. Cliquez sur *Paramètres*.
+. Sélectionnez *Copier les listes de contrôle d'accès vers la cible*.
+. Cliquez sur *Enregistrer les paramètres*.
+
+
+Lors de la synchronisation des données, Cloud Sync préserve les ACL entre les partages SMB source et cible.
+
+
+
+== Copie manuelle des ACL
+
+Vous pouvez conserver manuellement les listes de contrôle d'accès entre les partages SMB à l'aide de la commande Windows robocopy.
+
+.Étapes
+. Identifiez un hôte Windows qui dispose d'un accès complet aux deux partages SMB.
+. Si l'un des noeuds finaux nécessite une authentification, utilisez la commande *net use* pour vous connecter aux noeuds finaux à partir de l'hôte Windows.
++
+Vous devez effectuer cette étape avant d'utiliser Robocopy.
+
+. Dans Cloud Sync, créez une nouvelle relation entre les partages SMB source et cible ou synchronisez une relation existante.
+. Une fois la synchronisation des données terminée, exécutez la commande suivante à partir de l'hôte Windows pour synchroniser les ACL et la propriété :
++
+ robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
++
+_Source_ et _target_ doivent être spécifiés à l'aide du format UNC. Par exemple : \\<serveur>\<partage>\<chemin>
+
+

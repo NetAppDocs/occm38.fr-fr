@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: task_registering.html 
+keywords: Cloud Volumes ONTAP, register, registering, paygo, pay-as-you-go, registration, instance id, serial number, account id, support 
+summary: Le support de NetApp est inclus avec les systèmes Cloud Volumes ONTAP Explore, Standard et Premium, mais vous devez au préalable activer le support en enregistrant les systèmes à NetApp. 
+---
+= Enregistrement des systèmes de paiement à l'utilisation
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Le support de NetApp est inclus avec les systèmes Cloud Volumes ONTAP Explore, Standard et Premium, mais vous devez au préalable activer le support en enregistrant les systèmes à NetApp.
+
+.Étapes
+. Si vous n'avez pas encore ajouté votre compte du site de support NetApp à Cloud Manager, accédez à *Paramètres de compte* et ajoutez-le maintenant.
++
+link:task_adding_nss_accounts.html["Découvrez comment ajouter des comptes au site de support NetApp"].
+
+. Sur la page Working Environments, double-cliquez sur le nom du système que vous souhaitez enregistrer.
+. Cliquez sur l'icône du menu, puis sur *support Registration* :
++
+image:screenshot_menu_registration.gif["Capture d'écran : affiche l'option d'enregistrement Support sélectionnée dans l'icône de menu d'un système Cloud Volumes ONTAP."]
+
+. Sélectionnez un compte sur le site de support NetApp et cliquez sur *Register*.
+
+
+Cloud Manager enregistre le système avec NetApp.

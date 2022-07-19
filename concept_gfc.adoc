@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: concept_gfc.html 
+keywords: global file cache 
+summary: 'NetApp Global File cache vous permet de consolider les silos de serveurs de fichiers distribués en un seul environnement de stockage global cohérent dans le cloud public. Cela crée un système de fichiers accessible partout dans le cloud que tous les emplacements distants peuvent utiliser comme s"ils étaient locaux.' 
+---
+= En savoir plus sur Global File cache
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Global File cache vous permet de consolider les silos de serveurs de fichiers distribués en un seul environnement de stockage global cohérent dans le cloud public. Cela crée un système de fichiers accessible partout dans le cloud que tous les emplacements distants peuvent utiliser comme s'ils étaient locaux.
+
+
+
+== Présentation
+
+La mise en œuvre de Global File cache engendre une empreinte du stockage unique et centralisée, par rapport à une architecture de stockage distribuée qui nécessite une gestion des données locales, des sauvegardes, une gestion de la sécurité, un stockage et une infrastructure réparties sur chaque site.
+
+image:diagram_gfc_image1.png["Diagramme illustrant comment les sites distants accèdent à un système de fichiers partagé à l'aide de Global File cache."]
+
+
+
+== Caractéristiques
+
+Global File cache offre les fonctionnalités suivantes :
+
+* Consolidez et centralisez vos données dans le cloud public, et exploitez l'évolutivité et les performances de vos solutions de stockage
+* Créez un seul ensemble de données pour les utilisateurs du monde entier et exploitez la mise en cache intelligente des fichiers afin d'améliorer l'accès aux données, la collaboration et les performances
+* Utilisez un cache autogéré et autogéré et éliminez les copies et les sauvegardes complètes des données. Utilisation de la mise en cache locale des fichiers pour les données actives et réduction des coûts de stockage
+* Accès transparent depuis les succursales via un espace de noms global avec verrouillage centralisé des fichiers en temps réel
+
+
+En savoir plus sur les fonctionnalités de Global File cache et ses cas d'utilisation https://cloud.netapp.com/global-file-cache["ici"^].
+
+
+
+== Composants du cache de fichiers global
+
+Global File cache comprend les composants suivants :
+
+* Serveur global de gestion du cache des fichiers
+* Cœur de cache de fichiers global
+* Cache global de fichiers Edge (déployé sur vos sites distants)
+
+
+L'instance principale de NetApp Global File cache est montée sur vos partages de fichiers d'entreprise hébergés sur la plateforme de stockage interne au choix (par exemple, Cloud Volumes ONTAP, Cloud Volumes Service, Et Azure NetApp Files). Cet environnement permet de centraliser et de consolider les données non structurées dans un seul ensemble de données, qu'elles résident sur une ou plusieurs plateformes de stockage dans le cloud public.
+
+image:diagram_gfc_image2.png["Schéma illustrant les détails d'un déploiement de cache de fichiers global avec des logiciels installés dans les bureaux distants et dans un serveur central dans le cloud"]
+
+
+
+== Plateformes de stockage prises en charge
+
+Les plates-formes de stockage prises en charge pour Global File cache diffèrent selon l'option de déploiement sélectionnée.
+
+
+
+=== Options de déploiement automatisé
+
+Le cache global de fichiers est pris en charge avec les types d'environnements de travail suivants lorsqu'il est déployé à l'aide de Cloud Manager :
+
+* Cloud Volumes ONTAP dans Azure
+* Cloud Volumes ONTAP dans AWS
+
+
+Cette configuration vous permet de déployer et de gérer l'intégralité du déploiement côté serveur de Global File cache, y compris le serveur de gestion Global File cache et le cache de fichiers global, depuis Cloud Manager.
+
+
+
+=== Options de déploiement manuel
+
+Les configurations globales de cache de fichiers sont également prises en charge avec Cloud Volumes ONTAP, Cloud Volumes Service ou Azure NetApp Files installés sur une infrastructure de stockage de cloud public Microsoft Azure, Google Cloud Platform ou Amazon Web Services. Les solutions sur site sont également disponibles sur les plateformes NetApp AFF et FAS. Dans ces installations, les composants côté serveur Global File cache doivent être configurés et déployés manuellement, et non à l'aide de Cloud Manager.
+
+Voir la link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["Guide de l'utilisateur NetApp Global File cache"^] pour plus d'informations.
+
+
+
+== Fonctionnement de Global File cache
+
+Global File cache crée une structure logicielle qui met en cache les jeux de données actives dans les bureaux distants à travers le monde. Par conséquent, les utilisateurs de l'entreprise bénéficient d'un accès transparent aux données et de performances optimales à l'échelle mondiale.
+
+image:diagram_gfc_image3.png["Schéma illustrant les composants du cache de fichiers global à la périphérie et au cœur."]
+
+La topologie référencée dans cet exemple est un modèle en étoile dans lequel le réseau de bureaux distants/emplacements accède à un ensemble commun de données dans le cloud. Les points clés de cet exemple sont les suivants :
+
+* Magasin de données centralisé :
++
+** Une plateforme de stockage de cloud public d'entreprise, telle qu'Cloud Volumes ONTAP
+
+
+* Structure globale de cache de fichiers :
++
+** Extension du magasin de données central aux sites distants
+** Instance principale du cache de fichiers global, montage sur les partages de fichiers d'entreprise (SMB).
+** Instances globales File cache Edge s'exécutant dans chaque emplacement distant.
+** Présente un partage de fichiers virtuel dans chaque emplacement distant permettant l'accès aux données centrales.
+** Héberge le cache de fichiers intelligent sur un volume NTFS personnalisé (`D:\`).
+
+
+* Configuration réseau :
++
+** Connectivité MPLS (Multiprotocol Label Switching), ExpressRoute ou VPN
+
+
+* Intégration avec les services de domaine Active Directory du client.
+* Espace de noms DFS pour l'utilisation d'un espace de noms global (recommandé).
+
+
+
+
+== Le coût
+
+Le coût d'utilisation de Global File cache dépend du type d'installation que vous avez choisi.
+
+* Toutes les installations nécessitent de déployer un ou plusieurs volumes dans le cloud (Cloud Volumes ONTAP, Cloud Volumes Service ou Azure NetApp Files). Ce qui entraîne des frais pour le fournisseur cloud sélectionné.
+* Toutes les installations nécessitent également de déployer au moins deux machines virtuelles dans le cloud. Ce qui entraîne des frais pour le fournisseur cloud sélectionné.
++
+** Serveur global de gestion du cache des fichiers :
++
+Dans Azure, cette opération s'exécute sur une machine virtuelle D2S_V3 ou équivalent (2 vCPU/8 Go de RAM) avec 127 Go de SSD premium
+
++
+Dans AWS, s'exécute sur une instance m4.large ou équivalente (2 vCPU/8 Go de RAM) avec des disques SSD à usage général de 127 Go
+
+** Cœur de cache de fichiers global :
++
+Dans Azure, cette opération s'exécute sur une machine virtuelle D4S_V3 ou équivalente (4 vCPU/16 Go de RAM) avec un SSD premium de 127 Go
+
++
+Dans AWS, cette instance s'exécute sur une instance m4.XLarge ou équivalent (4 vCPU/16 Go de RAM) avec un SSD générique de 127 Go
+
+
+
+* Lorsqu'elles sont installées avec Cloud Volumes ONTAP dans Azure ou AWS (les configurations prises en charge entièrement déployées via Cloud Manager), les clients ont des frais de 3,000 $ par site (pour chaque instance Global File cache Edge), par an.
+* Lorsqu'ils sont installés à l'aide des options de déploiement manuel, le prix est différent. Pour obtenir une estimation de haut niveau des coûts, voir https://cloud.netapp.com/global-file-cache/roi["Calcul de votre potentiel d'économies"^] Vous pouvez également consulter votre ingénieur solutions Global File cache pour discuter des meilleures options de déploiement pour votre entreprise.
+
+
+
+
+== Licences
+
+Global File cache inclut un serveur de gestion des licences (LMS) basé sur logiciel qui vous permet de consolider votre gestion des licences et de déployer des licences vers toutes les instances Core et Edge à l'aide d'un mécanisme automatisé.
+
+Lorsque vous déployez votre première instance Core dans le data Center ou le cloud, vous pouvez choisir de désigner cette instance comme LMS pour votre organisation. Cette instance LMS est configurée une fois, se connecte au service d'abonnement (via HTTPS) et valide votre abonnement à l'aide de l'ID client fourni par notre service de support/opérations au moment de l'inscription. Après avoir fait cette désignation, vous associez vos instances Edge au LMS en fournissant votre ID client et l'adresse IP de l'instance LMS.
+
+Lorsque vous achetez des licences Edge supplémentaires ou que vous renouvelez votre abonnement, notre service support/opérations met à jour les informations de licence, par exemple le nombre de sites ou la date de fin de l'abonnement. Une fois que le LMS a interrogé le service d'abonnement, les détails de la licence sont automatiquement mis à jour sur l'instance LMS et s'appliquent à vos instances de réseau de réseau central et Edge.
+
+Voir la link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["Guide de l'utilisateur NetApp Global File cache"^] pour plus d'informations sur les licences.
+
+
+
+== Limites
+
+* La version de Global File cache prise en charge dans Cloud Manager nécessite que la plateforme de stockage interne utilisée comme stockage central soit un environnement de travail dans lequel vous avez déployé un seul nœud Cloud Volumes ONTAP ou une paire haute disponibilité dans Azure ou AWS.
++
+Les autres plateformes de stockage et autres fournisseurs de cloud ne sont pas pris en charge à l'heure actuelle via Cloud Manager, mais peuvent être déployés via des procédures de déploiement héritées.
+
+
+
+Ces autres configurations, par exemple le cache de fichiers global avec Cloud Volumes ONTAP, Cloud Volumes Service et Azure NetApp Files sur Microsoft Azure, Google Cloud et AWS, continuent à être prises en charge par les procédures existantes. Voir link:https://cloud.netapp.com/global-file-cache/onboarding["Présentation et intégration de Global File cache"^] pour plus d'informations.

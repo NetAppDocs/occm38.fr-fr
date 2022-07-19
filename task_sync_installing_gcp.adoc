@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_gcp.html 
+keywords: data broker, install, gcp, google, networking, permissions, regions, install data broker in gcp, install in gcp, deploy in gcp, deploy data broker in gcp, install data broker in google, install in google, deploy in google, deploy data broker in google, networking requirements, port, ports, 443, port 443, ntp, network time protocol, gcp data broker, service account 
+summary: 'Lorsque vous créez une relation de synchronisation, choisissez l"option GCP Data Broker pour déployer le logiciel Data Broker sur une nouvelle instance de machine virtuelle dans un VPC. Cloud Sync vous guide tout au long du processus d"installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l"installation.' 
+---
+= Installation du courtier en données dans Google Cloud Platform
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous créez une relation de synchronisation, choisissez l'option GCP Data Broker pour déployer le logiciel Data Broker sur une nouvelle instance de machine virtuelle dans un VPC. Cloud Sync vous guide tout au long du processus d'installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l'installation.
+
+Vous avez également la possibilité d'installer le courtier de données sur un hôte Linux existant dans le cloud ou sur votre site. link:task_sync_installing_linux.html["En savoir plus >>"].
+
+
+
+== Régions GCP prises en charge
+
+Toutes les régions sont prises en charge.
+
+
+
+== Configuration réseau requise
+
+* Le courtier de données a besoin d'une connexion Internet sortante pour pouvoir interroger le service Cloud Sync sur le port 443.
++
+Lorsque Cloud Sync déploie le courtier de données dans GCP, il crée un groupe de sécurité qui active la communication sortante requise.
+
++
+Si vous devez limiter la connectivité sortante, reportez-vous à la section link:reference_sync_networking.html["liste des noeuds finaux que le courtier de données contacte"].
+
+* NetApp recommande de configurer la source, la cible et le courtier de données pour qu'ils utilisent un service NTP (Network Time Protocol). La différence de temps entre les trois composants ne doit pas dépasser 5 minutes.
+
+
+
+
+== Autorisations requises pour déployer le courtier de données dans GCP
+
+Assurez-vous que l'utilisateur GCP qui déploie le courtier de données dispose des autorisations suivantes :
+
+[source, yaml]
+----
+- compute.networks.list
+- compute.regions.list
+- deploymentmanager.deployments.create
+- deploymentmanager.deployments.delete
+- deploymentmanager.operations.get
+- iam.serviceAccounts.list
+----
+
+
+== Autorisations requises pour le compte de service
+
+Lorsque vous déployez le courtier de données, vous devez sélectionner un compte de service disposant des autorisations suivantes :
+
+[source, yaml]
+----
+- logging.logEntries.create
+- resourcemanager.projects.get
+- storage.buckets.get
+- storage.buckets.list
+- storage.objects.*
+----
+
+
+== Installation du data broker
+
+Vous pouvez installer un courtier de données dans GCP lorsque vous créez une relation de synchronisation.
+
+.Étapes
+. Cliquez sur *Créer une nouvelle synchronisation*.
+. Sur la page *Define Sync Relationship*, choisissez une source et une cible et cliquez sur *Continuer*.
++
+Suivez les étapes jusqu'à ce que vous atteiez la page *Data Broker*.
+
+. Sur la page *Data Broker*, cliquez sur *Create Data Broker*, puis sélectionnez *Google Cloud Platform*.
++
+Si vous avez déjà un courtier de données, vous devez cliquer sur le image:screenshot_plus_icon.gif["Une capture d'écran si l'icône plus"] icône en premier.
+
++
+image:screenshot_create_data_broker.gif["Capture d'écran de la page Data Broker qui vous permet de choisir entre AWS, Azure, GCP et un courtier en données sur site."]
+
+. Entrez un nom pour le courtier de données et cliquez sur *Continuer*.
+. Si vous y êtes invité, connectez-vous à l'aide de votre compte Google.
++
+Le formulaire est détenu et hébergé par Google. Vos identifiants ne sont pas fournis à NetApp.
+
+. Sélectionnez un compte de projet et de service, puis choisissez un emplacement pour le courtier de données.
++
+image:screenshot_data_broker_gcp.gif["Copie d'écran montrant les informations requises pour déployer un courtier de données dans Google Cloud."]
+
+. Une fois le courtier de données disponible, cliquez sur *Continuer* dans Cloud Sync.
++
+Le déploiement de l'instance dure environ 5 à 10 minutes. Vous pouvez contrôler la progression à partir du service Cloud Sync, qui est automatiquement actualisé lorsque l'instance est disponible.
+
+. Complétez les pages de l'assistant pour créer la nouvelle relation de synchronisation.
+
+
+Vous avez déployé un courtier en données dans GCP et avez créé une nouvelle relation de synchronisation. Vous pouvez utiliser ce data broker avec des relations de synchronisation supplémentaires.

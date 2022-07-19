@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: task_sync_managing_relationships.html 
+keywords: sync, immediate, now, schedule, minutes, hours, on, off, delete, group, accelerate, accelerating, grouping, multiple data brokers, sync now, turn off, turn on, sync schedule, settings, change settings, recently modified files, delete files on target, retries, retry, file types, exclude file type, include file type, delete relationship 
+summary: Vous pouvez gérer les relations de synchronisation à tout moment en synchronisant immédiatement les données, en modifiant les horaires, etc. 
+---
+= Gestion des relations de synchronisation
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Vous pouvez gérer les relations de synchronisation à tout moment en synchronisant immédiatement les données, en modifiant les horaires, etc.
+
+
+
+== Effectuer une synchronisation immédiate des données
+
+Au lieu d'attendre la synchronisation planifiée suivante, vous pouvez appuyer sur un bouton pour synchroniser immédiatement les données entre la source et la cible.
+
+.Étapes
+. Dans le tableau de bord *Sync*, survolez la relation de synchronisation et cliquez sur le menu d'action.
++
+image:screenshot_relationship_menu.gif["Capture d'écran qui montre le menu d'action qui apparaît lorsque vous passez la souris sur une relation de synchronisation."]
+
+. Cliquez sur *Synchroniser maintenant*, puis sur *Sync* pour confirmer.
++
+image:screenshot_dashboard_actions.gif["Cette capture d'écran montre les actions que vous pouvez effectuer sur une relation de synchronisation."]
+
+
+
+Cloud Sync démarre le processus de synchronisation des données pour la relation.
+
+
+
+== Accélération des performances de synchronisation
+
+Accélérez les performances d'une relation de synchronisation en ajoutant un courtier de données supplémentaire à la relation. Le courtier de données supplémentaire doit être un _New_ Data broker.
+
+Si les courtiers de données existants dans la relation sont utilisés dans d'autres relations de synchronisation, Cloud Sync ajoute automatiquement le nouveau courtier de données à ces relations.
+
+Imaginons par exemple que vous ayez trois relations :
+
+* La relation 1 utilise le courtier de données A
+* La relation 2 utilise le courtier de données B
+* La relation 3 utilise le courtier de données A
+
+
+Vous souhaitez accélérer la performance de la relation 1 afin d'ajouter un nouveau courtier de données à cette relation (data broker C). Comme le courtier de données A est également utilisé dans la relation 3, le nouveau courtier de données est également automatiquement ajouté à la relation 3.
+
+.Étapes
+. Assurez-vous qu'au moins un des courtiers de données existants dans la relation est en ligne.
+. Survolez la relation de synchronisation et cliquez sur le menu d'action.
+. Cliquez sur *accélérer*.
++
+image:screenshot_accelerate.gif["Capture d'écran de Cloud Sync affichant le menu d'action pour une relation de synchronisation. Accélérer est mis en surbrillance à l'aide du pointeur de la souris."]
+
+. Suivez les invites pour créer un nouveau courtier de données.
+
+
+Cloud Sync ajoute le nouveau courtier de données aux relations de synchronisation. Les performances de la prochaine synchronisation des données doivent être accélérées.
+
+
+
+== Modification des paramètres d'une relation de synchronisation
+
+Modifiez les paramètres qui définissent la façon dont les fichiers et dossiers source sont synchronisés et gérés à l'emplacement cible.
+
+. Survolez la relation de synchronisation et cliquez sur le menu d'action.
+. Cliquez sur *Paramètres*.
+. Modifiez l'un des paramètres.
++
+image:screenshot_sync_settings.gif["Capture d'écran affichant les paramètres d'une relation de synchronisation."]
+
++
+[[deleteonsource]] Voici une brève description de chaque paramètre :
+
++
+Planification:: Choisissez un programme récurrent pour les synchronisations ultérieures ou désactivez la planification de synchronisation. Vous pouvez planifier une relation pour synchroniser les données aussi souvent que toutes les 1 minute.
+Tentatives:: Définissez le nombre de tentatives de synchronisation d'un fichier par Cloud Sync avant de l'ignorer.
+Fichiers récemment modifiés:: Choisissez d'exclure les fichiers récemment modifiés avant la synchronisation planifiée.
+Supprimer des fichiers sur la source:: Choisissez de supprimer des fichiers de l'emplacement source une fois que Cloud Sync a copier les fichiers vers l'emplacement cible. Cette option inclut le risque de perte de données car les fichiers source sont supprimés après leur copie.
++
+--
+Si vous activez cette option, vous devez également modifier un paramètre dans le fichier local.json du courtier de données. Ouvrez le fichier et remplacez le paramètre nommé _workers.transferrer.delete-on-source_ par *true*.
+
+--
+Supprimer des fichiers sur la cible:: Choisissez de supprimer des fichiers de l'emplacement cible, s'ils ont été supprimés de la source. La valeur par défaut est de ne jamais supprimer de fichiers de l'emplacement cible.
+Balisage d'objets:: Lorsque AWS S3 est la cible d'une relation de synchronisation, Cloud Sync balise les objets S3 avec des métadonnées pertinentes pour l'opération de synchronisation. Vous pouvez désactiver le balisage des objets S3 si ce n'est pas le cas dans votre environnement. Il n'y a aucun impact sur Cloud Sync si vous désactivez le balisage : Cloud Sync stocke simplement les métadonnées synchronisées d'une autre façon.
+Types de fichiers:: Définissez les types de fichiers à inclure dans chaque synchronisation : fichiers, répertoires et liens symboliques.
+Exclure les extensions de fichier:: Spécifiez les extensions de fichier à exclure de la synchronisation en tapant l'extension de fichier et en appuyant sur *entrée*. Par exemple, tapez _log_ ou _.log_ pour exclure les fichiers *.log. Un séparateur n'est pas nécessaire pour les extensions multiples. La vidéo suivante présente une courte démonstration :
++
+--
+video::video_file_extensions.mp4[width=840,height=240]
+--
+Taille du fichier:: Choisissez de synchroniser tous les fichiers, quelle que soit leur taille ou uniquement les fichiers qui se trouvent dans une plage de taille spécifique.
+Date de modification:: Choisissez tous les fichiers quelle que soit leur date de dernière modification, les fichiers modifiés après une date spécifique, avant une date spécifique ou entre une plage de temps.
+Copier les listes de contrôle d'accès sur la cible:: Choisir de copier les listes de contrôle d'accès (ACL) entre les partages SMB source et les partages SMB cibles. Notez que cette option n'est disponible que pour les relations de synchronisation créées après la version du 23 février 2020.
+
+
+. Cliquez sur *Enregistrer les paramètres*.
+
+
+Cloud Sync modifie la relation de synchronisation avec les nouveaux paramètres.
+
+
+
+== Suppression de relations
+
+Vous pouvez supprimer une relation de synchronisation si vous n'avez plus besoin de synchroniser les données entre la source et la cible. Cette action ne supprime pas l'instance du courtier de données et ne supprime pas les données de la cible.
+
+.Étapes
+. Survolez la relation de synchronisation et cliquez sur le menu d'action.
+. Cliquez sur *Supprimer*, puis cliquez à nouveau sur *Supprimer* pour confirmer.
+
+
+Cloud Sync supprime la relation de synchronisation.

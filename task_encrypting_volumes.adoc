@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: task_encrypting_volumes.html 
+keywords: encrypt, encryption, data, volumes, netapp volume encryption, volume encryption, nve, key managers, kmip, key management servers, license, ssl certificates, nae, netapp aggregate encryption 
+summary: 'Cloud Volumes ONTAP prend en charge NVE (NetApp Volume Encryption) et NAE (NetApp Aggregate Encryption) avec un gestionnaire de clés externe. NVE et NAE sont activés par défaut si vous configurez un gestionnaire de clés externe.' 
+---
+= Cryptage de volumes grâce aux solutions de cryptage NetApp
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volumes ONTAP prend en charge NVE (NetApp Volume Encryption) et NAE (NetApp Aggregate Encryption) avec un gestionnaire de clés externe. NVE et NAE sont des solutions logicielles qui permettent le chiffrement des données au repos (conformes à la norme FIPS) de volumes 140-2. link:concept_security.html["En savoir plus sur ces solutions de cryptage"].
+
+NAE est activé par défaut sur les nouveaux agrégats depuis Cloud Volumes ONTAP 9.7 après la configuration d'un gestionnaire de clés externe. NVE est activé par défaut sur les nouveaux volumes qui ne font pas partie d'un agrégat NAE (par exemple, si des agrégats existants ont été créés avant de configurer un gestionnaire de clés externe).
+
+Cloud Volumes ONTAP ne prend pas en charge la gestion intégrée des clés.
+
+Votre système Cloud Volumes ONTAP doit être enregistré auprès du support NetApp. Depuis la version Cloud Manager 3.7.1, une licence NetApp Volume Encryption est automatiquement installée sur chaque système Cloud Volumes ONTAP enregistré auprès du support NetApp.
+
+* link:task_adding_nss_accounts.html["Ajout de comptes du site de support NetApp à Cloud Manager"]
+* link:task_registering.html["Enregistrement des systèmes de paiement à l'utilisation"]
+
+
+
+NOTE: Cloud Manager n'installe pas la licence NVE sur les systèmes de la région Chine.
+
+.Étapes
+. Consultez la liste des gestionnaires de clés pris en charge dans le http://mysupport.netapp.com/matrix["Matrice d'interopérabilité NetApp"^].
++
+
+TIP: Recherchez la solution *gestionnaires de clés*.
+
+. link:task_connecting_to_otc.html["Connectez-vous à l'interface de ligne de commandes de Cloud Volumes ONTAP"^].
+. Installez les certificats SSL et connectez-vous aux serveurs de gestion des clés externes.
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-DD718B42-038D-4009-84FF-20BBD6530BC2.html["Guide d'alimentation du cryptage ONTAP 9 NetApp : configuration de la gestion externe des clés"^]
+
+

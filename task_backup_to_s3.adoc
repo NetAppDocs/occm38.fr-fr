@@ -1,0 +1,170 @@
+---
+sidebar: sidebar 
+permalink: task_backup_to_s3.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, aws, aws s3, amazon s3, s3 bucket, back up volumes, Backup to Cloud, cloud backup service 
+summary: 'Commencez à sauvegarder des données d"Cloud Volumes ONTAP vers Amazon S3 en quelques étapes.' 
+---
+= Sauvegarde des données dans Amazon S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Commencez à sauvegarder des données d'Cloud Volumes ONTAP vers Amazon S3 en quelques étapes.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.
+
+
+
+==== Vérifiez la prise en charge de votre configuration
+
+* Vous exécutez Cloud Volumes ONTAP 9.6 ou une version ultérieure dans AWS.
+* Vous avez souscrit au https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Offre Cloud Manager Marketplace Backup"^], ou vous avez acheté link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["et activé"^] Licence BYOL pour la sauvegarde dans le cloud de NetApp.
+* Le rôle IAM qui fournit des autorisations Cloud Manager inclut les autorisations S3 à partir de la dernière version https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager"^].
+
+
+
+
+==== Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant
+
+* Nouveaux systèmes : la sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
+* Systèmes existants : sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite, puis suivez l'assistant d'installation.
++
+image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton Backup to Cloud Activate, qui est disponible après la sélection d'un environnement de travail."]
+
+
+
+
+
+==== Définissez la stratégie de sauvegarde
+
+[role="quick-margin-para"]
+La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options. Vous pouvez également modifier le nombre de copies de sauvegarde à conserver.
+
+[role="quick-margin-para"]
+image:screenshot_backup_settings.png["Capture d'écran présentant les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez choisir la planification de sauvegarde et la période de conservation."]
+
+
+
+==== Sélectionnez les volumes à sauvegarder
+
+[role="quick-margin-para"]
+Identifiez les volumes à sauvegarder dans la page Sélectionner les volumes.
+
+
+
+==== Restaurez vos données à la demande
+
+[role="quick-margin-para"]
+Dans la liste de sauvegarde, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données de la sauvegarde vers un nouveau volume.
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_restore_icon.gif["Capture d'écran de l'icône de restauration d'une sauvegarde après avoir sélectionné un volume."]
+
+
+
+== De formation
+
+Avant de commencer à sauvegarder des volumes sur S3, lisez les informations suivantes pour vous assurer que votre configuration est prise en charge.
+
+Versions de ONTAP prises en charge:: Cloud Volumes ONTAP 9.6 et versions ultérieures
+Régions AWS prises en charge:: Backup vers le cloud est pris en charge dans toutes les régions AWS https://cloud.netapp.com/cloud-volumes-global-regions["Dans ce cas, Cloud Volumes ONTAP est pris en charge"^].
+Conditions de licence:: Pour le modèle de licence PAYGO pour la sauvegarde dans le cloud, un abonnement Cloud Manager est disponible sur AWS Marketplace qui permet de déployer Cloud Volumes ONTAP 9.6 et versions ultérieures (PAYGO) et la solution de sauvegarde dans le cloud. Vous devez le faire https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Abonnez-vous à cet abonnement Cloud Manager"^] Avant d'activer la sauvegarde dans le cloud. La facturation pour la sauvegarde dans le cloud se fait via cet abonnement.
++
+--
+Pour les licences BYOL pour la sauvegarde dans le cloud, vous n'avez pas besoin d'un abonnement AWS Backup vers Cloud. Vous avez besoin du numéro de série de NetApp qui vous permet d'utiliser le service pendant la durée et la capacité de la licence. Voir link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Ajout et mise à jour de votre licence Backup BYOL"^].
+
+Vous devez également disposer d'un abonnement AWS pour l'espace de stockage où vos sauvegardes seront stockées.
+
+--
+Autorisations AWS requises:: Le rôle IAM qui fournit des autorisations à Cloud Manager doit inclure les autorisations S3 les plus récentes https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager"^].
++
+--
+Voici les autorisations spécifiques de la stratégie :
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+--
+
+
+
+
+== Activation de la sauvegarde dans le cloud sur un nouveau système
+
+La sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
+
+.Étapes
+. Cliquez sur *Créer Cloud Volumes ONTAP*.
+. Sélectionnez Amazon Web Services en tant que fournisseur cloud, puis choisissez un système à un seul nœud ou haute disponibilité.
+. Remplissez la page Détails et références.
+. Sur la page Services, laissez le service activé et cliquez sur *Continuer*.
++
+image:screenshot_backup_to_s3.gif["L'option sauvegarde dans le cloud est illustrée dans l'assistant."]
+
+. Complétez les pages de l'assistant pour déployer le système.
+
+
+La sauvegarde dans le cloud est activée sur le système. Elle sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes.
+
+link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].
+
+
+
+== Activation de la sauvegarde dans le cloud sur un système existant
+
+Activation de la sauvegarde dans le cloud à tout moment directement depuis l'environnement de travail
+
+.Étapes
+. Sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite.
++
+image:screenshot_backup_to_s3_icon.gif["Une copie d'écran affiche le bouton Backup to Cloud Settings, disponible après la sélection d'un environnement de travail."]
+
+. Définissez le programme de sauvegarde et la valeur de conservation, puis cliquez sur *Continuer*.
++
+image:screenshot_backup_settings.png["Une capture d'écran montre les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez choisir la planification et la conservation des sauvegardes."]
+
++
+Voir link:concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination["liste des stratégies existantes"^].
+
+. Sélectionnez les volumes à sauvegarder et cliquez sur *Activer*.
++
+image:screenshot_backup_select_volumes.png["Capture d'écran de la sélection des volumes qui seront sauvegardés."]
+
+
+
+La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.
+
+link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].

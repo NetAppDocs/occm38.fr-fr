@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_aws.html 
+keywords: data broker, install, aws, networking, permissions, regions, install data broker in aws, install in aws, deploy in aws, deploy data broker in aws, cft, template, iam role, use your own iam role, regions, supported regions, networking requirements, port, ports, 443, port 443, ntp, network time protocol, permissions, iam role, iam permissions, aws data broker 
+summary: 'Lorsque vous créez une relation de synchronisation, choisissez l"option AWS Data Broker pour déployer le logiciel Data Broker sur une nouvelle instance EC2 dans un VPC. Cloud Sync vous guide tout au long du processus d"installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l"installation.' 
+---
+= Installation du courtier de données dans AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous créez une relation de synchronisation, choisissez l'option AWS Data Broker pour déployer le logiciel Data Broker sur une nouvelle instance EC2 dans un VPC. Cloud Sync vous guide tout au long du processus d'installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l'installation.
+
+Vous avez également la possibilité d'installer le courtier de données sur un hôte Linux existant dans le cloud ou sur votre site. link:task_sync_installing_linux.html["En savoir plus >>"].
+
+
+
+== Régions AWS prises en charge
+
+Toutes les régions sont prises en charge à l'exception des régions Chine et GovCloud (États-Unis).
+
+
+
+== Configuration réseau requise
+
+* Le courtier de données a besoin d'une connexion Internet sortante pour pouvoir interroger le service Cloud Sync sur le port 443.
++
+Lorsque Cloud Sync déploie le courtier de données dans AWS, il crée un groupe de sécurité qui active la communication sortante requise. Notez que vous pouvez configurer le courtier de données pour qu'il utilise un serveur proxy pendant le processus d'installation.
+
++
+Si vous devez limiter la connectivité sortante, reportez-vous à la section link:reference_sync_networking.html["liste des noeuds finaux que le courtier de données contacte"].
+
+* NetApp recommande de configurer la source, la cible et le courtier de données pour qu'ils utilisent un service NTP (Network Time Protocol). La différence de temps entre les trois composants ne doit pas dépasser 5 minutes.
+
+
+
+
+== Autorisations requises pour déployer le courtier de données dans AWS
+
+Le compte utilisateur AWS que vous utilisez pour déployer le courtier de données doit disposer des autorisations incluses dans https://s3.amazonaws.com/metadata.datafabric.io/docs/aws_iam_policy.json["Politique fournie par NetApp"^].
+
+
+
+== Exigences relatives à l'utilisation de votre propre rôle IAM avec le courtier de données AWS
+
+Lorsque Cloud Sync déploie le data broker, il crée un rôle IAM pour l'instance du data broker. Si vous le souhaitez, vous pouvez déployer le data broker à l'aide de votre propre rôle IAM. Vous pouvez utiliser cette option si votre entreprise dispose de règles de sécurité strictes.
+
+Le rôle IAM doit répondre aux exigences suivantes :
+
+* Le service EC2 doit être autorisé à assumer le rôle IAM en tant qu'entité de confiance.
+* link:media/aws_iam_policy_data_broker.json["Les autorisations définies dans ce fichier JSON"^] Doit être attaché au rôle IAM pour que le courtier de données puisse fonctionner correctement.
+
+
+Suivez les étapes ci-dessous pour spécifier le rôle IAM lors du déploiement du courtier de données.
+
+
+
+== Installation du data broker
+
+Vous pouvez installer un courtier de données dans AWS lorsque vous créez une relation de synchronisation.
+
+.Étapes
+. Cliquez sur *Créer une nouvelle synchronisation*.
+. Sur la page *Define Sync Relationship*, choisissez une source et une cible et cliquez sur *Continuer*.
++
+Suivez les étapes jusqu'à ce que vous atteiez la page *Data Broker*.
+
+. Sur la page *Data Broker*, cliquez sur *Create Data Broker*, puis sélectionnez *Amazon Web Services*.
++
+Si vous avez déjà un courtier de données, vous devez cliquer sur le image:screenshot_plus_icon.gif["Une capture d'écran si l'icône plus"] icône en premier.
+
++
+image:screenshot_create_data_broker.gif["Capture d'écran de la page Data Broker qui vous permet de choisir entre AWS, Azure, GCP et un courtier en données sur site."]
+
+. Entrez un nom pour le courtier de données et cliquez sur *Continuer*.
+. Entrez une clé d'accès AWS pour que Cloud Sync crée le courtier en données dans AWS.
++
+Les touches ne sont pas enregistrées ou utilisées à d'autres fins.
+
++
+Si vous préférez ne pas fournir de touches d'accès, cliquez sur le lien en bas de la page pour utiliser un modèle CloudFormation. Lorsque vous utilisez cette option, vous n'avez pas besoin de fournir des identifiants, car vous vous connectez directement à AWS.
+
++
+[[cft]]la vidéo suivante montre comment lancer l'instance de courtier de données à l'aide d'un modèle CloudFormation :
+
++
+video::video_cloud_sync.mp4[width=848,height=480]
+. Si vous avez saisi une clé d'accès AWS, sélectionnez un emplacement pour l'instance, sélectionnez une paire de clés, choisissez d'activer ou non une adresse IP publique, puis sélectionnez un rôle IAM existant, ou laissez le champ vide afin que Cloud Sync crée le rôle pour vous.
++
+Si vous choisissez votre propre rôle IAM, ,vous devrez fournir les autorisations requises.
+
++
+image:screenshot_aws_data_broker.gif["Capture d'écran des informations dont vous avez besoin pour déployer un courtier de données dans AWS."]
+
+. Une fois le courtier de données disponible, cliquez sur *Continuer* dans Cloud Sync.
++
+L'image suivante montre une instance déployée avec succès dans AWS :
+
++
+image:screenshot_created_instance.gif["Cette capture d'écran montre une instance déployée avec succès. L'interface affiche des informations détaillées sur l'instance, y compris la mise en réseau AWS."]
+
+. Complétez les pages de l'assistant pour créer la nouvelle relation de synchronisation.
+
+
+Vous avez déployé un courtier de données dans AWS et créé une nouvelle relation de synchronisation. Vous pouvez utiliser ce data broker avec des relations de synchronisation supplémentaires.

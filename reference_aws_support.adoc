@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: reference_aws_support.html 
+keywords: aws, amazon, s3, support, regions, storage classes 
+summary: NetApp Cloud Tiering prend en charge plusieurs classes de stockage S3 ainsi que la plupart des régions. 
+---
+= Classes et régions de stockage S3 prises en charge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Tiering prend en charge plusieurs classes de stockage S3 ainsi que la plupart des régions.
+
+
+
+== Classes de stockage S3 prises en charge
+
+NetApp Cloud Tiering peut appliquer une règle de cycle de vie afin que les données soient transitions d'une classe de stockage _Standard_ vers une autre classe de stockage après 30 jours. Vous pouvez choisir parmi les classes de stockage suivantes :
+
+* Accès autonome et peu fréquent
+* Une zone IA
+* Intelligente
+
+
+Si vous choisissez Standard, les données restent dans cette classe de stockage.
+
+https://aws.amazon.com/s3/storage-classes/["Découvrez les classes de stockage S3"^].
+
+
+
+== Régions AWS prises en charge
+
+NetApp Cloud Tiering prend en charge plusieurs régions AWS :
+
+
+
+==== Asie Pacifique
+
+* Mumbai
+* Séoul
+* Singapour
+* Sydney
+* Tokyo
+
+
+
+
+==== Europe
+
+* Francfort
+* Irlande
+* Londres
+* Paris
+* Stockholm
+
+
+
+
+==== Amérique du Nord
+
+* Canada Central
+* GovCloud (USA-West) - disponible à partir d'ONTAP 9.3
+* US East (N. Virginie)
+* États-Unis Est (Ohio)
+* US West (N. Californie)
+* US West (Oregon)
+
+
+
+
+==== Amérique du Sud
+
+* São Paulo
+

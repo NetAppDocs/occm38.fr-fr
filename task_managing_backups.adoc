@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: task_managing_backups.html 
+keywords: restoring, restore, restore volumes, Backup to Cloud, cloud backup service, backup schedule, change schedule, change backup schedule, modify schedule, modify backup schedule, retention, backup retention, delete, delete backups, deleting, deleting backups, disable, disable backups, turn off backups, disable backup to cloud, turn off backup to cloud 
+summary: Gérez les sauvegardes pour Cloud Volumes ONTAP et les systèmes ONTAP sur site en modifiant la planification des sauvegardes, en restaurant des volumes, en supprimant les sauvegardes, etc. 
+---
+= Gestion des sauvegardes pour les systèmes Cloud Volumes ONTAP et ONTAP sur site
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Gérez les sauvegardes pour Cloud Volumes ONTAP et les systèmes ONTAP sur site en modifiant la planification des sauvegardes, en restaurant des volumes, en supprimant les sauvegardes, etc.
+
+
+
+== Modification de la planification et de la conservation des sauvegardes
+
+La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Vous pouvez passer à des sauvegardes hebdomadaires ou mensuelles et modifier le nombre de copies de sauvegarde à conserver. Vous pouvez également sélectionner l'une des stratégies définies par le système qui fournissent des sauvegardes planifiées pour 3 mois, 1 an et 7 ans.
+
+
+TIP: La modification de la règle de sauvegarde affecte uniquement les nouveaux volumes créés après que vous avez modifié la planification. Elle n'affecte pas la planification des volumes existants.
+
+.Étapes
+. Sélectionnez l'environnement de travail.
+. Cliquez sur image:screenshot_gallery_options.gif["Plus d'icône"] Et sélectionnez *Paramètres de sauvegarde*.
++
+image:screenshot_backup_settings_button.png["Capture d'écran affichant le bouton Paramètres de sauvegarde disponible après la sélection d'un environnement de travail."]
+
+. Dans la page _Backup Settings_, cliquez sur image:screenshot_horizontal_more_button.gif["Plus d'icône"] Pour l'environnement de travail et sélectionnez *Modifier la stratégie de sauvegarde*.
++
+image:screenshot_backup_modify_policy.png["Capture d'écran affichant le bouton Paramètres de sauvegarde disponible après la sélection d'un environnement de travail."]
+
+. Dans la page _Modify Backup Policy_, modifiez le planning et la rétention des sauvegardes, puis cliquez sur *Save*.
++
+image:screenshot_backup_modify_policy_page.png["Copie d'écran montrant les paramètres de sauvegarde dans le cloud où vous pouvez modifier la planification des sauvegardes et les paramètres de conservation des sauvegardes."]
+
+
+
+
+
+== Démarrage et arrêt des sauvegardes de volumes
+
+Vous pouvez arrêter la sauvegarde d'un volume si vous n'avez pas besoin de copies de sauvegarde de ce volume et si vous ne voulez pas payer pour le coût de stockage des sauvegardes. Vous pouvez également ajouter un nouveau volume à la liste des sauvegardes si ce n'est pas actuellement le cas.
+
+.Étapes
+. Sélectionnez l'environnement de travail.
+. Cliquez sur image:screenshot_gallery_options.gif["Plus d'icône"] Et sélectionnez *Paramètres de sauvegarde*.
++
+image:screenshot_backup_settings_button.png["Capture d'écran affichant le bouton Paramètres de sauvegarde disponible après la sélection d'un environnement de travail."]
+
+. Dans la page _Backup Settings_, cliquez sur image:screenshot_horizontal_more_button.gif["Plus d'icône"] Pour l'environnement de travail et sélectionnez *gérer les volumes*.
++
+image:screenshot_backup_manage_volumes.png["Capture d'écran présentant le bouton gérer les volumes de la page Paramètres de sauvegarde."]
+
+. Cochez la case des volumes que vous souhaitez démarrer la sauvegarde et décochez la case des volumes que vous souhaitez arrêter la sauvegarde.
++
+image:screenshot_backup_manage_volumes_page.png["La page gérer les volumes dans laquelle vous pouvez sélectionner ou désélectionner des volumes."]
+
+
+
+*Remarque :* lors de l'arrêt de la sauvegarde d'un volume, vous continuerez à être facturé par votre fournisseur de cloud pour les coûts de stockage objet pour la capacité que les sauvegardes utilisent, sauf si vous  backups,supprimez les sauvegardes.
+
+
+
+== Restauration d'un volume à partir d'une sauvegarde
+
+Lorsque vous restaurez les données à partir d'une sauvegarde, Cloud Manager crée un _nouveau_ volume en utilisant les données de la sauvegarde. Vous pouvez restaurer les données vers un volume dans le même environnement de travail ou vers un autre environnement de travail situé dans le même compte cloud que l'environnement de travail source. Comme la sauvegarde ne contient aucun instantané, le volume récemment restauré n'en contient pas non plus.
+
+
+TIP: Les sauvegardes créées à partir des systèmes ONTAP sur site ne peuvent être restaurées que sur des systèmes Cloud Volumes ONTAP qui utilisent le même fournisseur cloud que où résident la sauvegarde.
+
+.Étapes
+. Sélectionnez l'environnement de travail.
+. Cliquez sur image:screenshot_gallery_options.gif["Plus d'icône"] Et sélectionnez *Afficher les sauvegardes*.
++
+image:screenshot_view_backups_selection.png["Capture d'écran de la sélection du bouton Afficher les sauvegardes pour un environnement de travail."]
+
+. Sélectionnez la ligne du volume à restaurer et cliquez sur *Afficher la liste de sauvegarde*.
++
+image:screenshot_backup_to_s3_volume.gif["Capture d'écran de l'onglet sauvegarde et restauration affichant un volume contenant des sauvegardes."]
+
+. Recherchez la sauvegarde à restaurer et cliquez sur l'icône *Restaurer*.
++
+image:screenshot_backup_to_s3_restore_icon.gif["Capture d'écran de l'icône de restauration d'une sauvegarde après avoir sélectionné un volume."]
+
+. Remplissez la _Restore Backup to New volume_ page:
++
+.. Sélectionnez l'environnement de travail dans lequel vous souhaitez restaurer le volume.
+.. Entrez un nom pour le volume.
+.. Cliquez sur *Restaurer*.
++
+image:screenshot_backup_to_s3_restore_options.gif["Copie d'écran montrant les options de restauration : environnement de travail à restaurer, nom du volume et informations sur le volume."]
+
+
+
+
+
+Cloud Manager crée un nouveau volume en fonction de la sauvegarde que vous avez sélectionnée. C'est possible link:task_managing_storage.html#managing-existing-volumes["gestion de ce nouveau volume"^] selon les besoins.
+
+
+
+== Suppression de sauvegardes
+
+La sauvegarde dans le cloud vous permet de supprimer toutes les _sauvegardes d'un volume spécifique. Vous ne pouvez pas supprimer des _sauvegardes_ individuelles.
+
+Vous pouvez le faire si vous n'avez plus besoin des sauvegardes ou si vous avez supprimé le volume source et que vous souhaitez supprimer toutes les sauvegardes.
+
+
+IMPORTANT: Si vous prévoyez de supprimer un système Cloud Volumes ONTAP ou ONTAP sur site qui dispose de sauvegardes, vous devez supprimer les sauvegardes *avant* de supprimer le système. La sauvegarde dans le cloud ne supprime pas automatiquement les sauvegardes lorsque vous supprimez un système et l'interface utilisateur ne prend pas en charge la suppression des sauvegardes après la suppression du système.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Backup*.
+. Dans la liste des volumes, recherchez le volume et cliquez sur *Afficher la liste de sauvegarde*.
+. Cliquez sur image:screenshot_horizontal_more_button.gif["Plus d'icône"] Et sélectionnez *Supprimer toutes les sauvegardes*.
++
+image:screenshot_delete_all_backups.png["Capture d'écran de la sélection du bouton Supprimer toutes les sauvegardes pour supprimer toute la sauvegarde d'un volume."]
+
+. Dans la boîte de dialogue de confirmation, cliquez sur *Supprimer*.
+
+
+
+
+== Désactivation de la sauvegarde dans le cloud
+
+La désactivation de la sauvegarde dans le cloud pour un environnement de travail désactive les sauvegardes de chaque volume du système. Elle désactive également la restauration d'un volume. Les sauvegardes existantes ne seront pas supprimées.
+
+Notez que vous continuerez d'être facturé par votre fournisseur cloud pour les coûts de stockage objet correspondant à la capacité que vos sauvegardes utilisent, à moins que vous ne supprimiez les sauvegardes.
+
+.Étapes
+. Sélectionnez l'environnement de travail.
+. Cliquez sur image:screenshot_gallery_options.gif["Plus d'icône"] Et sélectionnez *Paramètres de sauvegarde*.
++
+image:screenshot_backup_settings_button.png["Capture d'écran affichant le bouton Paramètres de sauvegarde disponible après la sélection d'un environnement de travail."]
+
+. Dans la page _Backup Settings_, cliquez sur image:screenshot_horizontal_more_button.gif["Plus d'icône"] Pour l'environnement de travail et sélectionnez *Désactiver la sauvegarde dans le cloud*.
++
+image:screenshot_disable_backups.png["Capture d'écran du bouton Désactiver la sauvegarde pour un environnement de travail."]
+
+. Dans la boîte de dialogue de confirmation, cliquez sur *Désactiver*.
+

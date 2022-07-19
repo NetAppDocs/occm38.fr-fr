@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: concept_backup_to_cloud.html 
+keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, back up volumes, Backup to Cloud, restore volumes, billing, cost, on-premises ONTAP, onprem 
+summary: 'La sauvegarde dans le cloud est un service complémentaire pour les clusters Cloud Volumes ONTAP et ONTAP sur site qui offre des fonctionnalités de sauvegarde et de restauration pour la protection, ainsi que l"archivage à long terme de vos données cloud. Les sauvegardes sont stockées dans un magasin d"objets de votre compte cloud, indépendamment des copies Snapshot de volume utilisées pour la restauration à court terme ou le clonage.' 
+---
+= Découvrez la sauvegarde dans le cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+La sauvegarde dans le cloud est un service complémentaire pour les clusters Cloud Volumes ONTAP et ONTAP sur site qui offre des fonctionnalités de sauvegarde et de restauration pour la protection, ainsi que l'archivage à long terme de vos données cloud. Les sauvegardes sont stockées dans un magasin d'objets de votre compte cloud, indépendamment des copies Snapshot de volume utilisées pour la restauration à court terme ou le clonage.
+
+Sauvegarde dans le cloud est optimisée par https://cloud.netapp.com/cloud-backup-service["Cloud Backup Service"^].
+
+
+NOTE: Vous devez utiliser Cloud Manager pour toutes les opérations de sauvegarde et de restauration. Toute action réalisée directement auprès de ONTAP ou de votre fournisseur cloud ne prend pas en charge la configuration.
+
+
+
+== Caractéristiques
+
+* Sauvegardez des copies indépendantes de vos volumes de données dans un stockage objet économique dans le cloud.
+* Les données de sauvegarde sont sécurisées par chiffrement AES 256 bits au repos et TLS 1.2 HTTPS en transit.
+* Sauvegarde depuis le cloud, et depuis les systèmes ONTAP sur site vers le cloud.
+* Prise en charge de 1,019 sauvegardes maximum d'un seul volume.
+* Restauration des données à partir d'un point dans le temps spécifique
+* Restaurez les données vers un volume du système source ou vers un autre système.
+
+
+
+
+== Environnements de travail et fournisseurs de stockage objet pris en charge
+
+La sauvegarde dans le cloud est prise en charge avec plusieurs types d'environnements de travail :
+
+* Cloud Volumes ONTAP dans AWS
+* Cloud Volumes ONTAP dans Azure
+* Clusters ONTAP sur site
+
+
+
+
+== Le coût
+
+Deux options de tarification sont disponibles pour la sauvegarde dans le cloud : BYOL (Bring Your Own License) et le paiement à l'utilisation (PAYGO).
+
+BYOL, vous payez NetApp pour une utilisation du service pendant une période de temps, disons de 6 mois, ainsi qu'une quantité maximale de capacité de sauvegarde, d'environ 10 Go (avant fonctionnalités d'efficacité du stockage). Vous devrez alors payer votre fournisseur cloud pour les coûts de stockage objet. Vous recevrez un numéro de série indiqué dans la page des licences Cloud Manager pour activer le service. Lorsque l'une ou l'autre limite est atteinte, vous devez renouveler la licence. Voir link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Ajout et mise à jour de votre licence Backup BYOL"^]. La licence de sauvegarde BYOL s'applique à tous les systèmes Cloud Volumes ONTAP associés à votre link:concept_cloud_central_accounts.html["Compte Cloud Central"^].
+
+Facturation à l'utilisation de PAYGO, vous devrez payer votre fournisseur cloud pour le stockage objet et NetApp pour les coûts de licence de sauvegarde. Les coûts de licence dépendent de la capacité utilisée (avant l'efficacité du stockage) :
+
+* AWS : https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Rendez-vous sur l'offre Cloud Manager Marketplace pour obtenir des informations sur leurs prix"^].
+* Azure : https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Rendez-vous sur l'offre Cloud Manager Marketplace pour obtenir des informations sur leurs prix"^].
+
+
+
+
+=== Essai gratuit
+
+Un essai gratuit de 30 jours est disponible. Lorsque vous utilisez la version d'essai, vous êtes averti du nombre de jours d'essai gratuits restants. À la fin de votre essai gratuit, les sauvegardes cessent d'être créées. Vous devez vous abonner au service ou acheter une licence pour continuer à utiliser le service.
+
+La sauvegarde n'est pas supprimée lorsque le service est désactivé. Votre fournisseur cloud continuera de vous facturer les coûts de stockage objet pour la capacité de vos sauvegardes, à moins de supprimer les sauvegardes.
+
+
+
+== Fonctionnement de la sauvegarde dans le cloud
+
+Lorsque vous activez la sauvegarde dans le cloud sur un système ONTAP Cloud Volumes ONTAP ou sur site, le service effectue une sauvegarde complète de vos données. Les instantanés de volume ne sont pas inclus dans l'image de sauvegarde. Après la sauvegarde initiale, toutes les sauvegardes supplémentaires sont incrémentielles, ce qui signifie que seuls les blocs modifiés et les nouveaux blocs sont sauvegardés.
+
+
+
+=== L'emplacement des sauvegardes
+
+Les copies de sauvegarde sont stockées dans un compartiment S3 ou dans un conteneur Azure Blob créé par Cloud Manager dans votre compte cloud. Pour les systèmes Cloud Volumes ONTAP, le magasin d'objets est créé dans la même région où se trouve le système Cloud Volumes ONTAP. Pour les systèmes ONTAP sur site, vous identifiez la région lorsque vous activez le service.
+
+Il existe un magasin d'objets par système Cloud Volumes ONTAP ou ONTAP sur site. Cloud Manager nomme le magasin d'objets comme suit : netapp-Backup-_clusterUUID_
+
+Veillez à ne pas supprimer ce magasin d'objets.
+
+Remarques :
+
+* Dans AWS, Cloud Manager permet d'utiliser https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Fonctionnalité d'accès public aux blocs Amazon S3"^] Sur le compartiment S3.
+* Dans Azure, Cloud Manager utilise un groupe de ressources nouveau ou existant avec un compte de stockage pour le conteneur Blob.
+
+
+
+
+=== Classes de stockage S3 prises en charge
+
+Dans Amazon S3, les sauvegardes commencent dans la classe de stockage _Standard_ et la transition vers la classe de stockage _Standard-Infrequent Access_ après 30 jours.
+
+
+
+=== Tiers d'accès Azure Blob pris en charge
+
+Dans Azure, chaque sauvegarde est associée au niveau d'accès _Cold_.
+
+
+
+=== Les paramètres de sauvegarde sont disponibles dans tout le système
+
+Lorsque vous activez la sauvegarde dans le cloud, tous les volumes que vous identifiez sur le système sont sauvegardés dans le cloud.
+
+La planification et le nombre de sauvegardes à conserver sont définis au niveau du système. Les paramètres de sauvegarde affectent tous les volumes du système.
+
+
+
+=== L'horaire est quotidien, hebdomadaire, mensuel ou une combinaison
+
+Vous pouvez choisir des sauvegardes quotidiennes, hebdomadaires ou mensuelles de tous les volumes. Vous pouvez également sélectionner l'une des stratégies définies par le système qui assure les sauvegardes et la conservation pendant 3 mois, 1 an et 7 ans. Ces règles sont les suivantes :
+
+[cols="30,20,20,20,30"]
+|===
+| Nom de la règle 3+| Sauvegardes par intervalle... | Capacité Sauvegardes 
+
+
+|  | *Tous les jours* | *Hebdomadaire* | *Mensuel* |  
+
+
+| Netap3MonthsRetention | 30 | 13 | 3 | 46 
+
+
+| Fidélisation Netapp1YearRetention | 30 | 13 | 12 | 55 
+
+
+| Netapp7YearsRetention | 30 | 53 | 84 | 167 
+|===
+Lorsque vous avez atteint le nombre maximal de sauvegardes pour une catégorie ou un intervalle, les anciennes sauvegardes sont supprimées, ce qui vous permet d'avoir toujours les sauvegardes les plus récentes.
+
+Notez que la période de conservation pour les sauvegardes de volumes de protection des données est identique à celle définie dans la relation SnapMirror source. Vous pouvez le modifier si vous le souhaitez à l'aide de l'API.
+
+
+
+=== Les sauvegardes sont effectuées à minuit
+
+* Les sauvegardes quotidiennes commencent juste après minuit chaque jour.
+* Les sauvegardes hebdomadaires commencent juste après minuit le dimanche matin.
+* Les sauvegardes mensuelles commencent juste après minuit le premier de chaque mois.
+
+
+Pour le moment, vous ne pouvez pas planifier les opérations de sauvegarde à un moment spécifié par l'utilisateur.
+
+
+
+=== Les copies de sauvegarde sont associées à votre compte Cloud Central
+
+Les copies de sauvegarde sont associées à l' link:concept_cloud_central_accounts.html["Compte Cloud Central"^] Où réside Cloud Manager.
+
+Si plusieurs systèmes Cloud Manager se trouvent dans le même compte Cloud Central, chaque système Cloud Manager affiche la même liste de sauvegardes. Cela inclut les sauvegardes associées à Cloud Volumes ONTAP et aux instances ONTAP sur site à partir d'autres systèmes Cloud Manager.
+
+
+
+=== Considérations relatives aux licences BYOL
+
+Lorsque vous utilisez la licence Backup vers Cloud BYOL, Cloud Manager vous informe que les sauvegardes approchent de la limite de capacité ou près de la date d'expiration de la licence. Vous recevez les notifications suivantes :
+
+* lorsque les sauvegardes atteignent 80 % de la capacité sous licence, et lorsque vous en avez atteint la limite
+* 30 jours avant l'expiration d'une licence, et encore une fois à l'expiration de celle-ci
+
+
+Utilisez l'icône de chat située en bas à droite de l'interface Cloud Manager pour renouveler votre licence lorsque vous recevez ces notifications.
+
+Deux éléments peuvent se produire à l'expiration de votre licence :
+
+* Si le compte que vous utilisez pour vos systèmes ONTAP possède un compte Marketplace, le service de sauvegarde continue de s'exécuter, mais vous avez basculé vers un modèle de licence PAYGO. Vous êtes facturé par votre fournisseur cloud pour les coûts de stockage objet, et par NetApp pour les coûts de licence de sauvegarde, en fonction de la capacité utilisée par vos sauvegardes.
+* Si le compte que vous utilisez pour vos systèmes ONTAP ne dispose pas d'un compte Marketplace, le service de sauvegarde continue de fonctionner, mais vous continuerez à recevoir le message d'expiration.
+
+
+Une fois que vous renouvelez votre abonnement BYOL, Cloud Manager obtient automatiquement la nouvelle licence auprès de NetApp et l'installe. Si Cloud Manager ne peut pas accéder au fichier de licence via la connexion Internet sécurisée, vous pouvez obtenir le fichier vous-même et le télécharger manuellement dans Cloud Manager. Pour obtenir des instructions, reportez-vous à la section link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Ajout et mise à jour de votre licence Backup BYOL"^].
+
+Les systèmes qui ont basculé vers une licence PAYGO sont automatiquement renvoyés vers la licence BYOL. De plus, les systèmes qui étaient en cours d'exécution sans licence cessent de recevoir le message d'avertissement et seront facturés pour les sauvegardes qui se sont produites pendant l'expiration de la licence.
+
+
+
+== Volumes pris en charge
+
+La sauvegarde dans le cloud prend en charge les volumes en lecture/écriture et les volumes de protection des données (DP).
+
+Les volumes FlexGroup ne sont pas pris en charge actuellement.
+
+
+
+== Limites
+
+* Le stockage WORM (SnapLock) n'est pas pris en charge sur un système Cloud Volumes ONTAP ou sur site lorsque la sauvegarde vers le cloud est activée.
+* Restrictions liées à la sauvegarde dans le cloud pour les sauvegardes à partir de systèmes ONTAP sur site :
++
+** Le cluster sur site doit exécuter ONTAP 9.7P5 ou une version ultérieure.
+** Cloud Manager doit être déployé sur Azure. Les déploiements Cloud Manager sur site ne sont pas pris en charge.
+** L'emplacement de destination des sauvegardes n'est que le stockage objet sur Azure.
+** Les sauvegardes ne peuvent être restaurées que sur des systèmes Cloud Volumes ONTAP déployés sur Azure. Vous ne pouvez pas restaurer une sauvegarde vers un système ONTAP sur site ou vers un système Cloud Volumes ONTAP qui utilise un autre fournisseur cloud.
+
+
+* Lors de la sauvegarde de volumes de protection des données (DP), la règle définie pour la règle SnapMirror sur le volume source doit utiliser une étiquette qui correspond aux noms de stratégie de sauvegarde dans le cloud définis : *quotidien*, *hebdomadaire* ou *mensuel*. Dans le cas contraire, la sauvegarde échouera pour ce volume DP.
+* Dans Azure, si vous activez l'option sauvegarde dans le cloud lorsque Cloud Volumes ONTAP est déployé, Cloud Manager crée le groupe de ressources pour vous et vous ne pouvez pas le modifier. Si vous souhaitez choisir votre propre groupe de ressources lors de l'activation de la sauvegarde dans le cloud, *désactiver* la sauvegarde dans le cloud lors du déploiement de Cloud Volumes ONTAP, puis activer la sauvegarde dans le cloud et choisir le groupe de ressources dans la page Paramètres de sauvegarde dans le cloud.
+* Lorsque vous sauvegardez des volumes à partir de systèmes Cloud Volumes ONTAP, la sauvegarde des volumes que vous créez en dehors de Cloud Manager n'est pas automatique.
++
+Par exemple, si vous créez un volume depuis l'interface de ligne de commandes ONTAP, l'API ONTAP ou System Manager, le volume ne sera pas automatiquement sauvegardé.
+
++
+Si vous souhaitez sauvegarder ces volumes, désactivez sauvegarde dans le cloud, puis activez-les à nouveau.
+
+

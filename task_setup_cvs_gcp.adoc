@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: task_setup_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, create cloud volumes, discover cloud volumes service for gcp, cloud volumes service subscription, discover cloud volumes service subscription, discover region, allowed clients, create snapshots 
+summary: 'Créez et gérez des volumes et des snapshots à partir d"un environnement de travail Cloud Volumes Service pour Google Cloud dans Cloud Manager.' 
+---
+= Configuration de Cloud Volumes Service pour Google Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Créez et gérez des volumes et des snapshots à partir d'un environnement de travail Cloud Volumes Service pour Google Cloud dans Cloud Manager.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou passez à la section suivante pour obtenir plus d'informations.
+
+
+
+==== Activez l'API Cloud Volumes Service
+
+[role="quick-margin-para"]
+Depuis Google, activez l'API Cloud Volumes Service pour GCP afin que Cloud Manager puisse gérer l'abonnement et les volumes cloud.
+
+
+
+==== Créez un compte de service GCP et téléchargez les identifiants
+
+[role="quick-margin-para"]
+Depuis Google, créez un compte de service GCP et un rôle afin de permettre à Cloud Manager d'accéder à votre compte Cloud Volumes Service pour GCP.
+
+
+
+==== Créez un environnement de travail Cloud Volumes Service pour GCP
+
+[role="quick-margin-para"]
+Dans Cloud Manager, cliquez sur *Ajouter un environnement de travail* > *Google Cloud* > *Cloud Volumes Service*, puis donnez des détails sur le compte de service et le projet Google Cloud.
+
+
+
+== Activez l'API Cloud Volumes Service
+
+Dans Google Cloud Shell, exécutez la commande suivante pour activer l'API Cloud Volumes Service :
+
+`gcloud --project=<my-cvs-project> services enable cloudvolumesgcp-api.netapp.com`
+
+
+
+== Donnez un accès à Cloud Manager au compte Cloud Volumes Service pour GCP
+
+Pour que Cloud Manager puisse accéder à votre projet Google Cloud, vous devez effectuer les tâches suivantes :
+
+* Créez un nouveau compte de service
+* Ajoutez le nouveau membre du compte de service à votre projet et attribuez-lui des rôles (autorisations) spécifiques.
+* Créez et téléchargez une paire de clés pour le compte de service utilisé pour s'authentifier auprès de Google
+
+
+.Étapes
+. Dans Google Cloud Console, accédez à la page *Service Accounts*.
+. Cliquez sur *sélectionnez un projet*, choisissez votre projet et cliquez sur *Ouvrir*.
+. Cliquez sur *Créer un compte de service*, entrez le nom du compte de service (nom d'affichage convivial) et la description, puis cliquez sur *Créer*.
+. Dans la page _IAM_, cliquez sur *Ajouter* et remplissez les champs de la page _Ajouter des membres_ :
++
+.. Dans le champ nouveaux membres, saisissez l'ID de compte de service complet, par exemple user1-service-account-cvs@project1.iam.gserviceaccount.com.
+.. Ajouter ces rôles :
++
+*** _NetApp Cloud volumes Admin_
+*** _Compute Network Viewer_
+*** _Visualiseur de dossiers_
+
+
+.. Cliquez sur *Enregistrer*.
+
+
+. Dans la page _Service account details_, cliquez sur *Add key > Create New key*.
+. Sélectionnez *JSON* comme type de clé et cliquez sur *Create*.
++
+En cliquant sur *Créer*, votre nouvelle paire de clés publique/privée est générée et téléchargée sur votre système. Il sert de seule copie de la clé privée. Stockez ce fichier de façon sécurisée car il peut être utilisé pour s'authentifier en tant que compte de service.
+
+
+
+Pour obtenir des instructions détaillées, consultez les rubriques relatives à Google Cloud link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["Création et gestion des comptes de service"^], link:https://cloud.google.com/iam/docs/granting-changing-revoking-access["Octroi, modification et révocation de l'accès aux ressources"^], et link:https://cloud.google.com/iam/docs/creating-managing-service-account-keys["Création et gestion des clés de compte de service"^].
+
+
+
+== Créez un environnement de travail Cloud Volumes Service pour GCP
+
+Configuration d'un environnement de travail Cloud Volumes Service pour GCP dans Cloud Manager, pour que vous puissiez commencer à créer des volumes
+
+Que vous ayez déjà créé des volumes depuis Google Cloud Console ou que vous vous abonnez à Cloud Volumes Service pour GCP et que vous ne possédez pas encore de volumes, la première étape consiste à créer un environnement de travail pour les volumes basés sur votre abonnement GCP.
+
+Si des volumes cloud existent déjà pour cet abonnement, les volumes apparaîtront dans le nouvel environnement de travail. Si vous n'avez pas encore ajouté de volumes cloud pour l'abonnement GCP, cela se produit une fois que vous avez créé le nouvel environnement de travail.
+
+
+TIP: Si vous disposez d'abonnements et de volumes dans plusieurs projets GCP, vous devez effectuer cette tâche pour chaque projet.
+
+Vous devez disposer des informations suivantes lors de l'ajout d'un abonnement pour chaque projet :
+
+* Identifiants de compte de service (clé privée JSON que vous avez téléchargée)
+* Nom du projet
+
+
+.Étapes
+. Dans Cloud Manager, ajoutez un nouvel environnement de travail, sélectionnez l'emplacement *Google Cloud*, puis cliquez sur *Continuer*.
+. Sélectionnez *Cloud Volumes Service* et cliquez sur *Continuer*.
++
+image:screenshot_add_cvs_gcp_working_env.png["Capture d'écran de l'ajout d'un environnement de travail pour un abonnement Cloud Volumes Service pour GCP"]
+
+. Fournir des informations sur votre abonnement Cloud Volumes Service :
++
+.. Entrez le nom de l'environnement de travail que vous souhaitez utiliser.
+.. Copiez/collez la clé privée JSON que vous avez téléchargée au cours des étapes précédentes.
+.. Sélectionnez le nom de votre projet Google Cloud.
+.. Cliquez sur *Ajouter*.
++
+image:screenshot_add_cvs_gcp_credentials.png["Capture d'écran indiquant l'ajout d'identifiants pour un abonnement Cloud Volumes Service pour GCP."]
+
+
+
+
+
+Cloud Manager affiche votre environnement de travail Cloud Volumes Service pour Google Cloud.
+
+image:screenshot_cvs_gcp_cloud.png["Copie d'écran de l'environnement de travail Cloud Volumes Service pour Google Cloud."]
+
+Si des volumes cloud existent déjà pour cet abonnement, ils apparaissent dans le nouvel environnement de travail, comme indiqué dans la capture d'écran. Vous pouvez ajouter des volumes cloud supplémentaires à partir de Cloud Manager.
+
+Si aucun volume cloud n'existe pour cet abonnement, créez-les dès maintenant.
+
+link:task_manage_cvs_gcp.html["Démarrage de la création et de la gestion des volumes"].

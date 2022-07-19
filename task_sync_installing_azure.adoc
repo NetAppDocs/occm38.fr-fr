@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_azure.html 
+keywords: data broker, install, azure, networking, permissions, regions, install data broker in azure, install in azure, deploy in azure, deploy data broker in azure, networking requirements, port, ports, 443, port 443, ntp, network time protocol, azure data broker 
+summary: 'Lorsque vous créez une relation de synchronisation, choisissez l"option Azure Data Broker pour déployer le logiciel Data Broker sur une nouvelle machine virtuelle dans un VNet. Cloud Sync vous guide tout au long du processus d"installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l"installation.' 
+---
+= Installation du data broker dans Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous créez une relation de synchronisation, choisissez l'option Azure Data Broker pour déployer le logiciel Data Broker sur une nouvelle machine virtuelle dans un VNet. Cloud Sync vous guide tout au long du processus d'installation, mais les exigences et les étapes sont répétées sur cette page pour vous aider à vous préparer à l'installation.
+
+Vous avez également la possibilité d'installer le courtier de données sur un hôte Linux existant dans le cloud ou sur votre site. link:task_sync_installing_linux.html["En savoir plus >>"].
+
+
+
+== Régions Azure prises en charge
+
+Toutes les régions sont prises en charge à l'exception des régions China, US Gov et US DoD.
+
+
+
+== Configuration réseau requise
+
+* Le courtier de données a besoin d'une connexion Internet sortante pour pouvoir interroger le service Cloud Sync sur le port 443.
++
+Lorsque Cloud Sync déploie le courtier de données dans Azure, il crée un groupe de sécurité qui active la communication sortante requise.
+
++
+Si vous devez limiter la connectivité sortante, reportez-vous à la section link:reference_sync_networking.html["liste des noeuds finaux que le courtier de données contacte"].
+
+* NetApp recommande de configurer la source, la cible et le courtier de données pour qu'ils utilisent un service NTP (Network Time Protocol). La différence de temps entre les trois composants ne doit pas dépasser 5 minutes.
+
+
+
+
+== METHODE d'authentification
+
+Lorsque vous déployez le courtier de données, vous devrez choisir une méthode d'authentification : un mot de passe ou une paire de clés publiques-privées SSH.
+
+Pour obtenir de l'aide sur la création d'une paire de clés, reportez-vous à la section https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys["Documentation Azure : créez et utilisez une paire de clés publiques-privées SSH pour les machines virtuelles Linux dans Azure"^].
+
+
+
+== Installation du data broker
+
+Vous pouvez installer un courtier de données dans Azure lorsque vous créez une relation de synchronisation.
+
+.Étapes
+. Cliquez sur *Créer une nouvelle synchronisation*.
+. Sur la page *Define Sync Relationship*, choisissez une source et une cible et cliquez sur *Continuer*.
++
+Complétez les pages jusqu'à ce que vous atteiez la page *Data Broker*.
+
+. Sur la page *Data Broker*, cliquez sur *Create Data Broker*, puis sélectionnez *Microsoft Azure*.
++
+Si vous avez déjà un courtier de données, vous devez cliquer sur le image:screenshot_plus_icon.gif["Une capture d'écran si l'icône plus"] icône en premier.
+
++
+image:screenshot_create_data_broker.gif["Capture d'écran de la page Data Broker qui vous permet de choisir entre AWS, Azure, GCP et un courtier en données sur site."]
+
+. Entrez un nom pour le courtier de données et cliquez sur *Continuer*.
+. Si vous y êtes invité, connectez-vous à votre compte Microsoft. Si vous n'êtes pas invité, cliquez sur *connexion à Azure*.
++
+Ce formulaire est détenu et hébergé par Microsoft. Vos identifiants ne sont pas fournis à NetApp.
+
+. Choisissez un emplacement pour le courtier de données et entrez les informations de base sur la machine virtuelle.
++
+image:screenshot_azure_data_broker.gif["Capture d'écran de la page de déploiement Azure présentant les champs suivants : abonnement, région Azure, vnet, sous-réseau, nom de machine virtuelle, Nom d'utilisateur, méthode d'authentification et groupe de ressources."]
+
+. Cliquez sur *Continuer* et maintenez la page ouverte jusqu'à ce que le déploiement soit terminé.
++
+Ce processus peut prendre jusqu'à 7 minutes.
+
+. Dans Cloud Sync, cliquez sur *Continuer* une fois le courtier de données disponible.
+. Complétez les pages de l'assistant pour créer la nouvelle relation de synchronisation.
+
+
+Vous avez déployé un courtier en données dans Azure et créé une nouvelle relation de synchronisation. Vous pouvez utiliser ce data broker avec des relations de synchronisation supplémentaires.
+
+.Vous obtenez un message sur le besoin d'un consentement de l'administrateur ?
+****
+Si Microsoft vous informe que l'administrateur doit être approuvé, car Cloud Sync doit disposer d'une autorisation d'accès aux ressources de votre entreprise pour votre compte, vous disposez de deux options :
+
+. Demandez à votre administrateur AD de vous fournir l'autorisation suivante :
++
+Dans Azure, accédez à *Admin Centers > Azure AD > utilisateurs et groupes > User Settings* et activez *les utilisateurs peuvent autoriser les applications à accéder aux données de l'entreprise en leur nom*.
+
+. Demandez à votre administrateur AD de consentir en votre nom à *CloudSync-AzureDataBrokerCreator* à l'aide de l'URL suivante (il s'agit du point de terminaison du consentement de l'administrateur) :
++
+\https://login.microsoftonline.com/{FILL ICI VOTRE identifiant DE LOCATAIRE}/v2.0/adminConcey?client_ID=8ee4ca3a-bafa-4831-97cc-5a38923cab85&redirect_uri=https://cloudsync.netapp.com&scope=https://management.azure.com/user_impersonationhttps://graph.microsoft.com/User.Read
+
++
+Comme indiqué dans l'URL, notre URL d'application est \https://cloudsync.netapp.com et l'ID client de l'application est 8ee4ca3a-bafa-4831-97cc-5a38923cab85.
+
+
+
+****

@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_central_accounts.html 
+keywords: accounts, workspaces, Connector, users, cloud central, admin, Account Admin, Workspace Admin, account settings, workspaces, users, connector, service connector, user accounts, what are users, what is a workspace, users and workspaces 
+summary: 'Un compte Cloud Central fournit une colocation qui vous permet d"organiser les utilisateurs et les ressources dans des espaces de travail isolés à partir de Cloud Manager.' 
+---
+= Paramètres du compte : utilisateurs, espaces de travail, connecteurs et abonnements
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Un _Cloud Central account_ propose la colocation et vous permet d'organiser des utilisateurs et des ressources dans des espaces de travail isolés à partir de Cloud Manager.
+
+Par exemple, plusieurs utilisateurs peuvent déployer et gérer des systèmes Cloud Volumes ONTAP dans des environnements isolés appelés _espaces de travail_. Ces espaces de travail sont invisibles pour les autres utilisateurs, à moins qu'ils ne soient partagés.
+
+Lorsque vous accédez pour la première fois à Cloud Manager, vous êtes invité à sélectionner ou à créer un compte Cloud Central :
+
+image:screenshot_account_selection.gif["Capture d'écran de l'assistant d'installation de Cloud Manager qui vous invite à saisir le compte Cloud Central dans lequel vous souhaitez créer Cloud Manager."]
+
+Les administrateurs de comptes peuvent ensuite modifier les paramètres de ce compte en gérant les utilisateurs, les espaces de travail, les connecteurs et les abonnements :
+
+image:screenshot_account_settings.gif["Capture d'écran qui affiche le widget Paramètres du compte à partir duquel vous pouvez gérer les utilisateurs, les espaces de travail et les connecteurs."]
+
+Pour obtenir des instructions détaillées, reportez-vous à la section link:task_setting_up_cloud_central_accounts.html["Configuration du compte Cloud Central"].
+
+
+
+== Paramètres du compte
+
+Le widget Paramètres de compte dans Cloud Manager permet aux administrateurs de compte de gérer un compte Cloud Central. Si vous venez de créer votre compte, vous commencerez de zéro. Mais si vous avez déjà configuré un compte, vous verrez _All_ les utilisateurs, les espaces de travail, les connecteurs et les abonnements associés au compte.
+
+
+
+== Utilisateurs
+
+Les utilisateurs qui s'affichent dans les paramètres de compte sont les utilisateurs NetApp Cloud Central que vous associez à votre compte Cloud Central. L'association d'un utilisateur à un compte et d'un ou plusieurs espaces de travail dans ce compte permet à ces utilisateurs de créer et de gérer des environnements de travail dans Cloud Manager.
+
+Lorsque vous associez un utilisateur, vous lui attribuez un rôle :
+
+* _Account Admin_ : peut effectuer n'importe quelle action dans Cloud Manager.
+* _Workspace Admin_ : permet de créer et de gérer des ressources dans l'espace de travail affecté.
+* _Cloud Compliance Viewer_: Peut uniquement afficher les informations de conformité et générer des rapports pour les systèmes auxquels ils sont autorisés à accéder.
+
+
+
+
+== Espaces de travail
+
+Dans Cloud Manager, un espace de travail isole tout nombre de _environnements de travail_ des autres environnements de travail. Les administrateurs de l'espace de travail ne peuvent pas accéder aux environnements de travail dans un espace de travail à moins que l'administrateur du compte n'associe l'administrateur à cet espace de travail.
+
+Un environnement de travail représente un système de stockage :
+
+* Un système Cloud Volumes ONTAP à un seul nœud ou une paire HA
+* Un cluster ONTAP sur site dans votre réseau
+* Un cluster ONTAP dans une configuration de stockage privé NetApp
+
+
+
+
+== Connecteurs
+
+Un connecteur permet à Cloud Manager de gérer les ressources et les processus au sein de votre environnement de cloud public. Il s'exécute sur une instance de machine virtuelle que vous déployez dans votre fournisseur cloud ou sur un hôte sur site que vous avez configuré.
+
+Vous pouvez utiliser un connecteur avec plusieurs services de données cloud NetApp. Par exemple, si vous avez déjà un connecteur pour Cloud Manager, vous pouvez le sélectionner lors de la configuration du service Cloud Tiering.
+
+
+
+== Abonnements
+
+Le widget Paramètres du compte affiche les abonnements NetApp associés au compte sélectionné.
+
+Lorsque vous vous abonnez à Cloud Manager sur le marché d'un fournisseur cloud, vous êtes redirigé vers Cloud Central où vous devez enregistrer votre abonnement et l'associer à des comptes spécifiques.
+
+Après votre inscription, chaque abonnement est disponible dans le widget Paramètres du compte. Vous ne verrez que les abonnements associés au compte que vous consultez actuellement.
+
+Vous avez la possibilité de renommer un abonnement et de dissocier l'abonnement d'un ou plusieurs comptes.
+
+Par exemple, disons que vous avez deux comptes et que chacun est facturé par le biais d'abonnements distincts. Vous pouvez dissocier un abonnement de l'un des comptes afin que les utilisateurs de ce compte ne choisissent pas accidentellement l'abonnement incorrect lors de la création d'un environnement de travail Cloud Volume ONTAP.
+
+
+
+== Exemples
+
+Les exemples suivants décrivent comment configurer vos comptes.
+
+
+NOTE: Dans les deux exemples d'images ci-dessous, le connecteur et les systèmes Cloud Volumes ONTAP ne résident pas _dans_ le compte NetApp Cloud Central--ils s'exécutent dans un fournisseur cloud. Il s'agit d'une représentation conceptuelle de la relation entre chaque composant.
+
+
+
+=== Exemple 1
+
+L'exemple suivant montre un compte qui utilise deux espaces de travail pour créer des environnements isolés. Le premier espace de travail est pour un environnement de production et le second pour un environnement de développement.
+
+image:diagram_cloud_central_accounts_one.png["Un diagramme montre un compte Cloud Central contenant deux espaces de travail. Chaque espace de travail est associé au même connecteur et chacun a son propre espace de travail Admin."]
+
+
+
+=== Exemple 2
+
+Voici un autre exemple illustrant le niveau de colocation le plus élevé en utilisant deux comptes Cloud Central distincts. Par exemple, un fournisseur de services peut utiliser Cloud Manager dans un compte pour fournir des services à ses clients, tout en utilisant un autre compte pour la reprise après incident de l'une de ses business units.
+
+Notez que le compte 2 comprend deux connecteurs distincts. Cela peut arriver si vous disposez de systèmes dans des régions distinctes ou dans des fournisseurs cloud distincts.
+
+image:diagram_cloud_central_accounts_two.png["Un diagramme présentant deux comptes Cloud Central, chacun disposant de plusieurs espaces de travail et leurs administrateurs d'espace de travail associés."]

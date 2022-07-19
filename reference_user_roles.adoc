@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: reference_user_roles.html 
+keywords: user, users, roles, role, task, permission, permissions, tasks, admin, Account Admin, Workspace Admin, Cloud Compliance Viewer 
+summary: 'Les rôles Administrateur de compte, Administrateur d"espace de travail et Visionneuse de conformité cloud fournissent des autorisations spécifiques aux utilisateurs.' 
+---
+= Rôles
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Les rôles Administrateur de compte, Administrateur d'espace de travail et Visionneuse de conformité cloud fournissent des autorisations spécifiques aux utilisateurs.
+
+[cols="31,23,23,23"]
+|===
+| Tâche | Administrateur du compte | Administrateur de l'espace de travail | Visualiseur Cloud Compliance 
+
+
+| Gérer les environnements de travail | Oui. | Oui. | Non 
+
+
+| Activer les services dans les environnements de travail | Oui. | Oui. | Non 
+
+
+| Afficher l'état de la réplication des données | Oui. | Oui. | Non 
+
+
+| Afficher la chronologie | Oui. | Oui. | Non 
+
+
+| Basculer entre les espaces de travail | Oui. | Oui. | Oui. 
+
+
+| Afficher les résultats de l'analyse de conformité | Oui. | Oui. | Oui. 
+
+
+| Supprimer les environnements de travail | Oui. | Non | Non 
+
+
+| Connectez les clusters Kubernetes aux environnements de travail | Oui. | Non | Non 
+
+
+| Recevoir le rapport Cloud Volumes ONTAP | Oui. | Non | Non 
+
+
+| Créer des connecteurs | Oui. | Non | Non 
+
+
+| Gérez les comptes Cloud Central | Oui. | Non | Non 
+
+
+| Gérer les identifiants | Oui. | Non | Non 
+
+
+| Modifiez les paramètres de Cloud Manager | Oui. | Non | Non 
+
+
+| Afficher et gérer le tableau de bord du support | Oui. | Non | Non 
+
+
+| Supprimez les environnements de travail de Cloud Manager | Oui. | Non | Non 
+
+
+| Installez un certificat HTTPS | Oui. | Non | Non 
+|===
+.Liens connexes
+* link:task_setting_up_cloud_central_accounts.html["Configuration d'espaces de travail et d'utilisateurs sur le compte Cloud Central"^]
+* link:task_managing_cloud_central_accounts.html["Gestion des espaces de travail et des utilisateurs sur le compte Cloud Central"^]
+

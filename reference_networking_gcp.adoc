@@ -1,0 +1,498 @@
+---
+sidebar: sidebar 
+permalink: reference_networking_gcp.html 
+keywords: networking, network, requirements, connection, connections, subnet, vpn, internet, proxy, HTTP, private, proxy server, routing, firewall, autosupport, connection, jump host, outbound, ports, tiering, data tiering, bucket, private google access, set up data tiering, data tiering requirement, gcp networking, google networking, shared vpc, host project, service project 
+summary: Configurez votre réseau Google Cloud Platform de manière à ce que les systèmes Cloud Volumes ONTAP puissent fonctionner correctement. Cela inclut la mise en réseau pour le connecteur et le Cloud Volumes ONTAP. 
+---
+= Exigences de mise en réseau pour le déploiement et la gestion de Cloud Volumes ONTAP dans GCP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Configurez votre réseau Google Cloud Platform de manière à ce que les systèmes Cloud Volumes ONTAP puissent fonctionner correctement. Cela inclut la mise en réseau pour le connecteur et le Cloud Volumes ONTAP.
+
+
+
+== Conditions requises pour Cloud Volumes ONTAP
+
+Les exigences suivantes doivent être satisfaites dans GCP.
+
+Cloud privé virtuel:: Cloud Volumes ONTAP et le connecteur sont pris en charge dans un VPC partagé par Google Cloud et dans des VPC non partagés.
++
+--
+Un VPC partagé vous permet de configurer et de gérer de manière centralisée les réseaux virtuels dans plusieurs projets. Vous pouvez configurer des réseaux VPC partagés dans le projet _host_ et déployer les instances de machines virtuelles Connector et Cloud Volumes ONTAP dans un projet _service_. https://cloud.google.com/vpc/docs/shared-vpc["Documentation Google Cloud : présentation du VPC partagé"^].
+
+La seule exigence concernant l'utilisation d'un VPC partagé est de fournir le https://cloud.google.com/compute/docs/access/iam#compute.networkUser["Rôle utilisateur du réseau de calcul"^] Vers le compte de service Connector. Cloud Manager a besoin de ces autorisations pour interroger les pare-feu, le VPC et les sous-réseaux du projet hôte.
+
+--
+Accès Internet sortant pour Cloud Volumes ONTAP:: Cloud Volumes ONTAP requiert un accès Internet sortant pour envoyer des messages à NetApp AutoSupport, qui surveille de façon proactive l'état de votre stockage.
++
+--
+Les règles de routage et de pare-feu doivent autoriser le trafic HTTP/HTTPS vers les terminaux suivants pour que Cloud Volumes ONTAP puisse envoyer les messages AutoSupport :
+
+* \https://support.netapp.com/aods/asupmessage
+* \https://support.netapp.com/asupprod/post/1.0/postAsup
++
+link:task_setting_up_ontap_cloud.html["Découvrez comment configurer AutoSupport"].
+
+
+
+--
+Nombre d'adresses IP:: Cloud Manager attribue 5 adresses IP à Cloud Volumes ONTAP dans GCP.
++
+--
+Notez que Cloud Manager ne crée pas de LIF de gestion des SVM pour Cloud Volumes ONTAP dans GCP.
+
+
+TIP: Une LIF est une adresse IP associée à un port physique. Une LIF de gestion SVM est nécessaire pour les outils de gestion tels que SnapCenter.
+
+--
+Règles de pare-feu:: Inutile de créer des règles de pare-feu, car Cloud Manager le fait pour vous. Si vous devez vous en servir, reportez-vous aux règles de pare-feu répertoriées ci-dessous.
+Connexion de Cloud Volumes ONTAP à Google Cloud Storage pour le Tiering des données:: Pour transférer des données inactives vers un compartiment Google Cloud Storage, le sous-réseau dans lequel réside Cloud Volumes ONTAP doit être configuré pour un accès Google privé. Pour obtenir des instructions, reportez-vous à la section https://cloud.google.com/vpc/docs/configure-private-google-access["Documentation Google Cloud : configuration de Private Google Access"^].
++
+--
+Pour connaître les étapes supplémentaires requises pour la configuration du Tiering des données dans Cloud Manager, consultez la section link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].
+
+--
+Connexions aux systèmes ONTAP dans d'autres réseaux:: Pour répliquer les données entre un système Cloud Volumes ONTAP dans GCP et des systèmes ONTAP d'autres réseaux, vous devez disposer d'une connexion VPN entre le VPC et l'autre réseau, par exemple votre réseau d'entreprise.
++
+--
+Pour obtenir des instructions, reportez-vous à la section https://cloud.google.com/vpn/docs/concepts/overview["Documentation Google Cloud : présentation de Cloud VPN"^].
+
+--
+
+
+
+
+== Configuration requise pour le connecteur
+
+Configurez votre réseau afin que le connecteur puisse gérer les ressources et les processus au sein de votre environnement de cloud public. L'étape la plus importante consiste à garantir l'accès Internet sortant à différents terminaux.
+
+
+TIP: Si votre réseau utilise un serveur proxy pour toutes les communications vers Internet, vous pouvez spécifier le serveur proxy à partir de la page Paramètres. Reportez-vous à la section link:task_configuring_proxy.html["Configuration du connecteur pour utiliser un serveur proxy"].
+
+
+
+=== Connexion aux réseaux cibles
+
+Un connecteur nécessite une connexion réseau aux VPC et VNets dans lesquels vous souhaitez déployer Cloud Volumes ONTAP.
+
+Par exemple, si vous installez un connecteur sur le réseau de votre entreprise, vous devez configurer une connexion VPN sur le VPC ou le vnet dans lequel vous lancez Cloud Volumes ONTAP.
+
+
+
+=== Accès Internet sortant
+
+Le connecteur nécessite un accès Internet sortant pour gérer les ressources et les processus au sein de votre environnement de cloud public. Lors de la gestion des ressources dans GCP, un connecteur contacte les terminaux suivants :
+
+[cols="43,57"]
+|===
+| Terminaux | Objectif 
+
+
+| \https://www.googleapis.com | Permet au connecteur de contacter les API Google pour le déploiement et la gestion de Cloud Volumes ONTAP dans GCP. 
+
+
+| \https://api.services.cloud.netapp.com:443 | Demandes d'API à NetApp Cloud Central. 
+
+
+| \https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | Permet d'accéder aux images logicielles, aux manifestes et aux modèles. 
+
+
+| \https://repo.cloud.support.netapp.com | Permet de télécharger les dépendances de Cloud Manager. 
+
+
+| \http://repo.mysql.com/ | Utilisé pour télécharger MySQL. 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | Permet au connecteur d'accéder aux manifestes, aux modèles et aux images de mise à niveau Cloud Volumes ONTAP et de les télécharger. 
+
+
+| \https://cloudmanagerinfraprod.azurecr.io | Accédez aux images logicielles des composants de conteneur pour une infrastructure exécutant Docker et fournie une solution pour les intégrations des services avec Cloud Manager. 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | Permet à NetApp de diffuser des données à partir d'enregistrements d'audit. 
+
+
+| \https://cloudmanager.cloud.netapp.com | Communication avec le service Cloud Manager, notamment les comptes Cloud Central. 
+
+
+| \https://netapp-cloud-account.auth0.com | Communication avec NetApp Cloud Central pour une authentification centralisée des utilisateurs. 
+
+
+| \https://mysupport.netapp.com | Communication avec NetApp AutoSupport. 
+
+
+| \https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | Communication avec NetApp pour les licences système et l'inscription au support. 
+
+
+| \https://ipa-signer.cloudmanager.netapp.com | Génération des licences par Cloud Manager (par exemple, une licence FlexCache pour Cloud Volumes ONTAP) 
+
+
+| \https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | Nécessaire pour connecter des systèmes Cloud Volumes ONTAP avec un cluster Kubernetes. Les terminaux permettent l'installation de NetApp Trident. 
+
+
+ a| 
+Divers sites tiers, par exemple :
+
+* \https://repo1.maven.org/maven2
+* \https://oss.sonatype.org/content/repositories
+* \https://repo.typesafe.org
+
+
+Les emplacements tiers sont sujets à modification.
+| Lors des mises à niveau, Cloud Manager télécharge les derniers packages pour les dépendances tierces. 
+|===
+Bien que vous devriez effectuer presque toutes les tâches à partir de l'interface utilisateur SaaS, une interface utilisateur locale est toujours disponible sur le connecteur. La machine exécutant le navigateur Web doit disposer de connexions aux terminaux suivants :
+
+[cols="43,57"]
+|===
+| Terminaux | Objectif 
+
+
+| L'hôte du connecteur  a| 
+Vous devez entrer l'adresse IP de l'hôte depuis un navigateur Web pour charger la console Cloud Manager.
+
+En fonction de votre connectivité avec votre fournisseur de cloud, vous pouvez utiliser l'IP privée ou une adresse IP publique attribuée à l'hôte :
+
+* Une adresse IP privée fonctionne si vous disposez d'un VPN et d'un accès direct à votre réseau virtuel
+* Un IP public fonctionne dans tous les scénarios de mise en réseau
+
+
+Dans tous les cas, vous devez sécuriser l'accès au réseau en vous assurant que les règles du groupe de sécurité autorisent l'accès à partir des adresses IP ou des sous-réseaux autorisés uniquement.
+
+
+
+| \https://auth0.com \https://cdn.auth0.com \https://netapp-cloud-account.auth0.com \https://services.cloud.netapp.com | Votre navigateur Web se connecte à ces terminaux pour une authentification centralisée des utilisateurs via NetApp Cloud Central. 
+
+
+| \https://widget.intercom.io | Vous bénéficiez d'un chat en ligne pour discuter avec des experts du cloud NetApp. 
+|===
+
+
+== Règles de pare-feu pour Cloud Volumes ONTAP
+
+Cloud Manager crée des règles de pare-feu GCP qui incluent les règles entrantes et sortantes nécessaires au bon fonctionnement de Cloud Manager et d'Cloud Volumes ONTAP. Vous pouvez vous référer aux ports à des fins de test ou si vous préférez que votre utilise ses propres groupes de sécurité.
+
+Les règles de pare-feu de Cloud Volumes ONTAP requièrent des règles entrantes et sortantes.
+
+
+
+=== Règles entrantes
+
+La source des règles entrantes dans le groupe de sécurité prédéfini est 0.0.0.0/0.
+
+[cols="10,10,80"]
+|===
+| Protocole | Port | Objectif 
+
+
+| Tous les protocoles ICMP | Tout | Envoi d'une requête ping à l'instance 
+
+
+| HTTP | 80 | Accès HTTP à la console Web System Manager à l'aide de l'adresse IP du LIF de gestion de cluster 
+
+
+| HTTPS | 443 | Accès HTTPS à la console Web System Manager à l'aide de l'adresse IP du LIF de gestion de cluster 
+
+
+| SSH | 22 | Accès SSH à l'adresse IP du LIF de gestion de cluster ou d'un LIF de gestion de nœud 
+
+
+| TCP | 111 | Appel de procédure à distance pour NFS 
+
+
+| TCP | 139 | Session de service NetBIOS pour CIFS 
+
+
+| TCP | 161-162 | Protocole de gestion de réseau simple 
+
+
+| TCP | 445 | Microsoft SMB/CIFS sur TCP avec encadrement NetBIOS 
+
+
+| TCP | 658 | Montage NFS 
+
+
+| TCP | 749 | Kerberos 
+
+
+| TCP | 2049 | Démon du serveur NFS 
+
+
+| TCP | 3260 | Accès iSCSI via le LIF de données iSCSI 
+
+
+| TCP | 4045 | Démon de verrouillage NFS 
+
+
+| TCP | 4046 | Surveillance de l'état du réseau pour NFS 
+
+
+| TCP | 10000 | Sauvegarde avec NDMP 
+
+
+| TCP | 11104 | Gestion des sessions de communication intercluster pour SnapMirror 
+
+
+| TCP | 11105 | Transfert de données SnapMirror à l'aide de LIF intercluster 
+
+
+| UDP | 111 | Appel de procédure à distance pour NFS 
+
+
+| UDP | 161-162 | Protocole de gestion de réseau simple 
+
+
+| UDP | 658 | Montage NFS 
+
+
+| UDP | 2049 | Démon du serveur NFS 
+
+
+| UDP | 4045 | Démon de verrouillage NFS 
+
+
+| UDP | 4046 | Surveillance de l'état du réseau pour NFS 
+
+
+| UDP | 4049 | Protocole NFS rquotad 
+|===
+
+
+=== Règles de sortie
+
+Le groupe de sécurité prédéfini pour Cloud Volumes ONTAP ouvre tout le trafic sortant. Si cela est acceptable, suivez les règles de base de l'appel sortant. Si vous avez besoin de règles plus rigides, utilisez les règles de sortie avancées.
+
+
+
+==== Règles de base pour les appels sortants
+
+Le groupe de sécurité prédéfini pour Cloud Volumes ONTAP inclut les règles de sortie suivantes.
+
+[cols="20,20,60"]
+|===
+| Protocole | Port | Objectif 
+
+
+| Tous les protocoles ICMP | Tout | Tout le trafic sortant 
+
+
+| Tous les protocoles TCP | Tout | Tout le trafic sortant 
+
+
+| Tous les protocoles UDP | Tout | Tout le trafic sortant 
+|===
+
+
+==== Règles de sortie avancées
+
+Si vous avez besoin de règles rigides pour le trafic sortant, vous pouvez utiliser les informations suivantes pour ouvrir uniquement les ports requis pour la communication sortante par Cloud Volumes ONTAP.
+
+
+NOTE: La source est l'interface (adresse IP) du système Cloud Volumes ONTAP.
+
+[cols="10,10,6,20,20,34"]
+|===
+| Service | Protocole | Port | Source | Destination | Objectif 
+
+
+.18+| Active Directory | TCP | 88 | FRV de gestion des nœuds | Forêt Active Directory | Authentification Kerberos V. 
+
+
+| UDP | 137 | FRV de gestion des nœuds | Forêt Active Directory | Service de noms NetBIOS 
+
+
+| UDP | 138 | FRV de gestion des nœuds | Forêt Active Directory | Service de datagrammes NetBIOS 
+
+
+| TCP | 139 | FRV de gestion des nœuds | Forêt Active Directory | Session de service NetBIOS 
+
+
+| TCP ET UDP | 389 | FRV de gestion des nœuds | Forêt Active Directory | LDAP 
+
+
+| TCP | 445 | FRV de gestion des nœuds | Forêt Active Directory | Microsoft SMB/CIFS sur TCP avec encadrement NetBIOS 
+
+
+| TCP | 464 | FRV de gestion des nœuds | Forêt Active Directory | Modification et définition du mot de passe Kerberos V (SET_CHANGE) 
+
+
+| UDP | 464 | FRV de gestion des nœuds | Forêt Active Directory | Administration des clés Kerberos 
+
+
+| TCP | 749 | FRV de gestion des nœuds | Forêt Active Directory | Modification et définition du mot de passe Kerberos V (RPCSEC_GSS) 
+
+
+| TCP | 88 | LIF de données (NFS, CIFS, iSCSI) | Forêt Active Directory | Authentification Kerberos V. 
+
+
+| UDP | 137 | FRV de données (NFS, CIFS) | Forêt Active Directory | Service de noms NetBIOS 
+
+
+| UDP | 138 | FRV de données (NFS, CIFS) | Forêt Active Directory | Service de datagrammes NetBIOS 
+
+
+| TCP | 139 | FRV de données (NFS, CIFS) | Forêt Active Directory | Session de service NetBIOS 
+
+
+| TCP ET UDP | 389 | FRV de données (NFS, CIFS) | Forêt Active Directory | LDAP 
+
+
+| TCP | 445 | FRV de données (NFS, CIFS) | Forêt Active Directory | Microsoft SMB/CIFS sur TCP avec encadrement NetBIOS 
+
+
+| TCP | 464 | FRV de données (NFS, CIFS) | Forêt Active Directory | Modification et définition du mot de passe Kerberos V (SET_CHANGE) 
+
+
+| UDP | 464 | FRV de données (NFS, CIFS) | Forêt Active Directory | Administration des clés Kerberos 
+
+
+| TCP | 749 | FRV de données (NFS, CIFS) | Forêt Active Directory | Modification et définition du mot de passe Kerberos V (RPCSEC_GSS) 
+
+
+.3+| Cluster | Tout le trafic | Tout le trafic | Tous les LIF sur un nœud | Tous les LIF de l'autre nœud | Communications InterCluster (Cloud Volumes ONTAP HA uniquement) 
+
+
+| TCP | 3000 | FRV de gestion des nœuds | Ha médiateur | Appels ZAPI (Cloud Volumes ONTAP HA uniquement) 
+
+
+| ICMP | 1 | FRV de gestion des nœuds | Ha médiateur | Rester en vie (Cloud Volumes ONTAP HA uniquement) 
+
+
+| DHCP | UDP | 68 | FRV de gestion des nœuds | DHCP | Client DHCP pour la première configuration 
+
+
+| DHCPS | UDP | 67 | FRV de gestion des nœuds | DHCP | Serveur DHCP 
+
+
+| DNS | UDP | 53 | FRV de gestion des nœuds et FRV de données (NFS, CIFS) | DNS | DNS 
+
+
+| NDMP | TCP | 18600-18699 | FRV de gestion des nœuds | Serveurs de destination | Copie NDMP 
+
+
+| SMTP | TCP | 25 | FRV de gestion des nœuds | Serveur de messagerie | Les alertes SMTP peuvent être utilisées pour AutoSupport 
+
+
+.4+| SNMP | TCP | 161 | FRV de gestion des nœuds | Serveur de surveillance | Surveillance par des interruptions SNMP 
+
+
+| UDP | 161 | FRV de gestion des nœuds | Serveur de surveillance | Surveillance par des interruptions SNMP 
+
+
+| TCP | 162 | FRV de gestion des nœuds | Serveur de surveillance | Surveillance par des interruptions SNMP 
+
+
+| UDP | 162 | FRV de gestion des nœuds | Serveur de surveillance | Surveillance par des interruptions SNMP 
+
+
+.2+| SnapMirror | TCP | 11104 | FRV InterCluster | Baies de stockage inter-clusters ONTAP | Gestion des sessions de communication intercluster pour SnapMirror 
+
+
+| TCP | 11105 | FRV InterCluster | Baies de stockage inter-clusters ONTAP | Transfert de données SnapMirror 
+
+
+| Syslog | UDP | 514 | FRV de gestion des nœuds | Serveur Syslog | Messages de transfert syslog 
+|===
+
+
+== Règles de pare-feu pour le connecteur
+
+Les règles de pare-feu du connecteur exigent à la fois des règles entrantes et sortantes.
+
+
+
+=== Règles entrantes
+
+La source des règles entrantes dans les règles de pare-feu prédéfinies est 0.0.0.0/0.
+
+[cols="10,10,80"]
+|===
+| Protocole | Port | Objectif 
+
+
+| SSH | 22 | Fournit un accès SSH à l'hôte du connecteur 
+
+
+| HTTP | 80 | Fournit un accès HTTP à partir des navigateurs Web du client vers l'interface utilisateur locale 
+
+
+| HTTPS | 443 | Fournit un accès HTTPS à partir des navigateurs Web du client vers l'interface utilisateur locale 
+|===
+
+
+=== Règles de sortie
+
+Les règles de pare-feu prédéfinies pour le connecteur ouvrent tout le trafic sortant. Si cela est acceptable, suivez les règles de base de l'appel sortant. Si vous avez besoin de règles plus rigides, utilisez les règles de sortie avancées.
+
+
+
+==== Règles de base pour les appels sortants
+
+Les règles de pare-feu prédéfinies pour le connecteur comprennent les règles de trafic sortant suivantes.
+
+[cols="20,20,60"]
+|===
+| Protocole | Port | Objectif 
+
+
+| Tous les protocoles TCP | Tout | Tout le trafic sortant 
+
+
+| Tous les protocoles UDP | Tout | Tout le trafic sortant 
+|===
+
+
+==== Règles de sortie avancées
+
+Si vous avez besoin de règles rigides pour le trafic sortant, vous pouvez utiliser les informations suivantes pour ouvrir uniquement les ports requis pour la communication sortante par le connecteur.
+
+
+NOTE: L'adresse IP source est l'hôte du connecteur.
+
+[cols="5*"]
+|===
+| Service | Protocole | Port | Destination | Objectif 
+
+
+.9+| Active Directory | TCP | 88 | Forêt Active Directory | Authentification Kerberos V. 
+
+
+| TCP | 139 | Forêt Active Directory | Session de service NetBIOS 
+
+
+| TCP | 389 | Forêt Active Directory | LDAP 
+
+
+| TCP | 445 | Forêt Active Directory | Microsoft SMB/CIFS sur TCP avec encadrement NetBIOS 
+
+
+| TCP | 464 | Forêt Active Directory | Modification et définition du mot de passe Kerberos V (SET_CHANGE) 
+
+
+| TCP | 749 | Forêt Active Directory | Modification et définition du mot de passe de Kerberos V Active Directory (RPCSEC_GSS) 
+
+
+| UDP | 137 | Forêt Active Directory | Service de noms NetBIOS 
+
+
+| UDP | 138 | Forêt Active Directory | Service de datagrammes NetBIOS 
+
+
+| UDP | 464 | Forêt Active Directory | Administration des clés Kerberos 
+
+
+| Appels API et AutoSupport | HTTPS | 443 | LIF de gestion de cluster ONTAP et Internet sortant | Par des appels d'API à GCP et à ONTAP, et par l'envoi de messages AutoSupport à NetApp 
+
+
+| Appels API | TCP | 3000 | LIF de gestion de cluster ONTAP | Appels API vers ONTAP 
+
+
+| DNS | UDP | 53 | DNS | Utilisé pour la résolution DNS par Cloud Manager 
+|===

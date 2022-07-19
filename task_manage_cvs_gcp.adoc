@@ -1,0 +1,271 @@
+---
+sidebar: sidebar 
+permalink: task_manage_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, create cloud volumes, delete cloud volumes, discover region, service level, allowed clients, create snapshots 
+summary: 'Cloud Manager vous permet de créer des volumes cloud basés sur votre abonnement Cloud Volumes Service pour Google Cloud. Vous pouvez également modifier certains attributs d"un volume, obtenir les commandes de montage appropriées, créer des copies Snapshot et supprimer des volumes cloud.' 
+---
+= Création et gestion de volumes pour Cloud Volumes Service pour Google Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager vous permet de créer des volumes cloud basés sur votre link:https://console.cloud.google.com/marketplace/product/endpoints/cloudvolumesgcp-api.netapp.com?q=cloud%20volumes%20service["Cloud Volumes Service pour Google Cloud"^] abonnement. Vous pouvez également modifier certains attributs d'un volume, obtenir les commandes de montage appropriées, créer des copies Snapshot et supprimer des volumes cloud.
+
+
+
+== Création de volumes cloud
+
+Vous pouvez créer des volumes NFS ou SMB dans un compte Cloud Volumes Service pour Google Cloud existant ou nouveau. Les volumes cloud prennent actuellement en charge NFSv3 et NFSv4.1 pour les clients Linux et UNIX, et SMB 3.x pour les clients Windows.
+
+.Avant de commencer
+* Si vous souhaitez utiliser SMB dans GCP, vous devez avoir configuré DNS et Active Directory.
+* Lorsque vous prévoyez de créer un volume SMB, vous devez disposer d'un serveur Windows Active Directory disponible auquel vous pouvez vous connecter. Vous entrez ces informations lors de la création du volume. Assurez-vous également que l'utilisateur administrateur peut créer un compte machine dans le chemin d'unité organisationnelle spécifié.
+
+
+.Étapes
+. Sélectionnez l'environnement de travail et cliquez sur *Ajouter un nouveau volume*.
+. Sur la page Détails et emplacement, saisissez les détails du volume :
++
+.. Entrez un nom pour le volume.
+.. Spécifiez une taille dans la plage de 1 Tio (1024 Gio) à 100 Tio.
++
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/selecting-the-appropriate-service-level-and-allocated-capacity-for-netapp-cloud-volumes-service#allocated_capacity["En savoir plus sur la capacité allouée"^].
+
+.. Spécifier un niveau de service : standard, Premium ou Extreme.
++
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/selecting-the-appropriate-service-level-and-allocated-capacity-for-netapp-cloud-volumes-service#service_levels["En savoir plus sur les niveaux de service"^].
+
+.. Sélectionnez la région Google Cloud.
+.. Sélectionnez le réseau VPC à partir duquel le volume sera accessible. Notez que le VPC ne peut pas être modifié ou modifié une fois le volume créé.
+.. Cliquez sur *Continuer*.
++
+image:screenshot_cvs_gcp_vol_details_page.png["Capture d'écran de la page de détails du volume dans laquelle vous indiquez le nom, la taille et le niveau de service"]
+
+
+
+. Sur la page Protocol, sélectionnez NFS ou SMB, puis définissez les détails. Les entrées requises pour NFS et SMB sont répertoriées dans les sections ci-après.
+. Pour NFS :
++
+.. Dans le champ chemin du volume, indiquez le nom de l'exportation de volume que vous verrez lors du montage du volume.
+.. Sélectionnez NFS v3, NFS v4.1 ou les deux en fonction de vos exigences.
+.. Vous pouvez également créer une export-policy pour identifier les clients pouvant accéder au volume. Spécifiez :
++
+*** Clients autorisés à l'aide d'une adresse IP ou d'un routage inter-domaines sans classe (CIDR).
+*** Droits d'accès en lecture et écriture ou lecture seule.
+*** Protocole d'accès (ou protocoles si le volume autorise l'accès NFS v3 et NFS v4.1) utilisé pour les utilisateurs.
+*** Cliquez sur *+ Ajouter règle de stratégie d'exportation* si vous souhaitez définir des règles de stratégie d'exportation supplémentaires.
++
+L'image suivante montre la page Volume remplie pour le protocole NFS :
+
++
+image:screenshot_cvs_gcp_nfs_details.png["Copie d'écran affichant la page de volume remplie pour un volume NFS Cloud Volumes Service."]
+
+
+
+
+
+. Pour SMB :
++
+.. Dans le champ chemin du volume, indiquez le nom de l'exportation de volume que vous verrez lorsque vous montez le volume et cliquez sur *Continuer*.
+.. Si Active Directory a été configuré, la configuration s'affiche. S'il s'agit du premier volume en cours de configuration et qu'aucun Active Directory n'a été configuré, vous pouvez activer le chiffrement de session SMB dans la page d'installation de la connectivité SMB :
++
+[cols="25,75"]
+|===
+| Champ | Description 
+
+
+| Adresse IP principale DNS | Les adresses IP des serveurs DNS qui fournissent une résolution de nom pour le serveur SMB. Utilisez une virgule pour séparer les adresses IP lorsque vous faites référence à plusieurs serveurs, par exemple 172.31.25.223, 172.31.2.74. 
+
+
+| Domaine Active Directory à rejoindre | Le FQDN du domaine Active Directory (AD) que vous souhaitez que le serveur SMB rejoint. 
+
+
+| Nom NetBIOS du serveur SMB | Nom NetBIOS du serveur SMB qui sera créé. 
+
+
+| Informations d'identification autorisées à rejoindre le domaine | Nom et mot de passe d'un compte Windows disposant de privilèges suffisants pour ajouter des ordinateurs à l'unité d'organisation spécifiée dans le domaine AD. 
+
+
+| Unité organisationnelle | Unité organisationnelle au sein du domaine AD à associer au serveur SMB. La valeur par défaut est CN=Computers pour les connexions à votre propre serveur Windows Active Directory. 
+|===
++
+L'image suivante montre la page Volume remplie pour le protocole SMB :
+
++
+image:screenshot_cvs_smb_details.png["Copie d'écran affichant la page de volume remplie pour un volume Cloud Volumes Service SMB."]
+
+
+
+. Cliquez sur *Continuer*.
+. Si vous souhaitez créer le volume à partir d'un snapshot d'un volume existant, sélectionnez-le dans la liste déroulante Nom de snapshot. Sinon, cliquez simplement sur *Continuer*.
+. Sur la page règle Snapshot, vous pouvez activer Cloud Volumes Service pour créer des copies snapshot de vos volumes selon un planning. Pour ce faire, vous pouvez déplacer le sélecteur vers la droite ou modifier le volume ultérieurement pour définir la stratégie de snapshots.
++
+Voir link:task_manage_cloud_volumes_gcp_snapshots.html#create_or_modify_a_snapshot_policy["Création d'une règle Snapshot"^] pour plus d'informations sur la fonctionnalité de snapshot.
+
+. Cliquez sur *Ajouter un volume*.
+
+
+Le nouveau volume est ajouté à l'environnement de travail.
+
+Passez à link:task_manage_cvs_gcp.html#mount-the-cloud-volume["Montage du volume cloud"].
+
+
+
+== Montez les volumes cloud
+
+Accédez aux instructions de montage depuis Cloud Manager, afin de monter le volume sur un hôte.
+
+*Remarque :* Veuillez utiliser le protocole/dialecte mis en évidence pris en charge par votre client.
+
+.Étapes
+. Ouvrir l'environnement de travail.
+. Placez le pointeur de la souris sur le volume et cliquez sur *montez le volume*.
++
+Les volumes NFS et SMB affichent des instructions de montage pour ce protocole.
+
+. Placez le pointeur de la souris sur les commandes et copiez-les dans le presse-papiers pour faciliter ce processus. Ajoutez simplement le répertoire de destination/point de montage à la fin de la commande.
++
+*Exemple NFS:*
+
++
+image:screenshot_cvs_aws_nfs_mount.png["Instructions de montage pour les volumes NFS"]
+
++
+La taille d'E/S maximale définie par le `rsize` et `wsize` les options sont 1048576. cependant, la version 65536 est la valeur par défaut recommandée pour la plupart des cas d'utilisation.
+
++
+Notez que les clients Linux seront par défaut sur NFSv4.1 à moins que la version soit spécifiée avec `vers=<nfs_version>` option.
+
++
+*Exemple SMB:*
+
++
+image:screenshot_cvs_aws_smb_mount.png["Instructions de montage pour les volumes SMB"]
+
+. Mappez votre lecteur réseau en suivant les instructions de montage de votre instance.
++
+Après avoir terminé les étapes des instructions de montage, vous avez correctement monté le volume cloud sur votre instance GCP.
+
+
+
+
+
+== Gérer les volumes existants
+
+Vous pouvez gérer les volumes existants à mesure que vos besoins de stockage changent. Vous pouvez afficher, modifier, restaurer et supprimer des volumes.
+
+.Étapes
+. Ouvrir l'environnement de travail.
+. Placez le pointeur de la souris sur le volume.
++
+image:screenshot_cvs_gcp_volume_hover_menu.png["Capture d'écran du menu contextuel du volume qui permet d'effectuer des tâches de volume"]
+
+. Gérez vos volumes :
++
+[cols="30,70"]
+|===
+| Tâche | Action 
+
+
+| Afficher des informations sur un volume | Cliquez sur *Info*. 
+
+
+| Modification d'un volume (y compris la règle Snapshot)  a| 
+.. Cliquez sur *Modifier*.
+.. Modifiez les propriétés du volume, puis cliquez sur *mettre à jour*.
+
+
+
+
+| Procurez-vous la commande NFS ou SMB mount  a| 
+.. Cliquez sur *montez le volume*.
+.. Cliquez sur *Copier* pour copier la ou les commandes.
+
+
+
+
+| Créez une copie Snapshot à la demande  a| 
+.. Cliquez sur *Créer une copie snapshot*.
+.. Modifiez le nom, si nécessaire, puis cliquez sur *Créer*.
+
+
+
+
+| Remplacez le volume par le contenu d'une copie Snapshot  a| 
+.. Cliquez sur *revenir au snapshot*.
+.. Sélectionnez une copie Snapshot et cliquez sur *Restaurer*.
+
+
+
+
+| Supprimez une copie Snapshot  a| 
+.. Cliquez sur *Supprimer une copie snapshot*.
+.. Sélectionnez l'instantané et cliquez sur *Supprimer*.
+.. Cliquez à nouveau sur *Supprimer* lorsque vous êtes invité à confirmer.
+
+
+
+
+| Supprimer un volume  a| 
+.. Démonter le volume de tous les clients :
++
+*** Sur les clients Linux, utilisez `umount` commande.
+*** Sur les clients Windows, cliquez sur *déconnecter le lecteur réseau*.
+
+
+.. Sélectionnez un volume, puis cliquez sur *Supprimer*.
+.. Cliquez à nouveau sur *Supprimer* pour confirmer.
+
+
+|===
+
+
+
+
+== Supprimez Cloud Volumes Service de Cloud Manager
+
+Vous pouvez supprimer un abonnement Cloud Volumes Service pour Google Cloud et tous les volumes existants depuis Cloud Manager. Les volumes ne sont pas supprimés, mais ils sont simplement supprimés de l'interface Cloud Manager.
+
+.Étapes
+. Ouvrir l'environnement de travail.
+. Cliquez sur le bouton image:screenshot_gallery_options.gif[""] En haut de la page, cliquez sur *Supprimer Cloud Volumes Service*.
+. Dans la boîte de dialogue de confirmation, cliquez sur *Supprimer*.
+
+
+
+
+== Gérer la configuration d'Active Directory
+
+Si vous modifiez vos serveurs DNS ou votre domaine Active Directory, vous devez modifier le serveur SMB dans Cloud volumes Services afin qu'il puisse continuer à fournir du stockage aux clients.
+
+.Étapes
+. Ouvrir l'environnement de travail.
+. Cliquez sur le bouton image:screenshot_gallery_options.gif[""] En haut de la page, cliquez sur *gérer Active Directory*. Si aucun Active Directory n'est configuré, vous pouvez en ajouter un maintenant. Si l'un d'eux est configuré, vous pouvez modifier ou supprimer les paramètres à l'aide du image:screenshot_gallery_options.gif[""] bouton.
+. Spécifiez les paramètres du serveur SMB :
++
+[cols="25,75"]
+|===
+| Champ | Description 
+
+
+| Adresse IP principale DNS | Les adresses IP des serveurs DNS qui fournissent une résolution de nom pour le serveur SMB. Utilisez une virgule pour séparer les adresses IP lorsque vous faites référence à plusieurs serveurs, par exemple 172.31.25.223, 172.31.2.74. 
+
+
+| Domaine Active Directory à rejoindre | Le FQDN du domaine Active Directory (AD) que vous souhaitez que le serveur SMB rejoint. 
+
+
+| Nom NetBIOS du serveur SMB | Nom NetBIOS du serveur SMB qui sera créé. 
+
+
+| Informations d'identification autorisées à rejoindre le domaine | Nom et mot de passe d'un compte Windows disposant de privilèges suffisants pour ajouter des ordinateurs à l'unité d'organisation spécifiée dans le domaine AD. 
+
+
+| Unité organisationnelle | Unité organisationnelle au sein du domaine AD à associer au serveur SMB. La valeur par défaut est CN=Computers pour les connexions à votre propre serveur Windows Active Directory. 
+|===
+. Cliquez sur *Enregistrer* pour enregistrer vos paramètres.
+

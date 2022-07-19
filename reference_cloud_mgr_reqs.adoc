@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: reference_cloud_mgr_reqs.html 
+keywords: configurations, ec2, vm, ports, ram, operating system, os, host, requirement, requirements, hypervisor, disk, space, mysql, centos, rhel, red hat, cpu, disk space, 3306 
+summary: 'Le logiciel du connecteur doit être exécuté sur un hôte qui répond à des exigences spécifiques du système d"exploitation, de la RAM, des ports, etc.' 
+---
+= Exigences relatives à l'hôte de connecteur
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Le logiciel du connecteur doit être exécuté sur un hôte qui répond à des exigences spécifiques du système d'exploitation, de la RAM, des ports, etc.
+
+Un hôte dédié est requis:: Le connecteur n'est pas pris en charge sur un hôte partagé avec d'autres applications. L'hôte doit être un hôte dédié.
+CPU:: 4 cœurs ou 4 CPU virtuels
+RAM:: 14 GO
+Type d'instance AWS EC2:: Type d'instance qui répond aux exigences relatives au CPU et à la RAM indiquées ci-dessus. Nous recommandons une instance t3.XLarge d'utiliser ce type d'instance lorsque vous déployez le connecteur directement depuis Cloud Manager.
+Taille des machines virtuelles Azure:: Type d'instance qui répond aux exigences relatives au CPU et à la RAM indiquées ci-dessus. Nous recommandons la version DS3 v2 et d'utiliser cette taille de machine virtuelle lorsque vous déployez le connecteur directement depuis Cloud Manager.
+Type de machine GCP:: Type d'instance qui répond aux exigences relatives au CPU et à la RAM indiquées ci-dessus. Nous recommandons n1-standard-4 et d'utiliser ce type de machine lorsque vous déployez le connecteur directement depuis Cloud Manager.
+Systèmes d'exploitation pris en charge::
++
+--
+* CentOS 7.6
+* CentOS 7.7
+* Red Hat Enterprise Linux 7.6
+* Red Hat Enterprise Linux 7.7
++
+Le système Red Hat Enterprise Linux doit être enregistré avec Red Hat Subscription Management. S'il n'est pas enregistré, le système ne peut pas accéder aux référentiels pour mettre à jour les logiciels tiers requis pendant l'installation du connecteur.
+
++
+Le connecteur est pris en charge sur les versions en anglais de ces systèmes d'exploitation.
+
+
+
+--
+Hyperviseur:: Un hyperviseur bare Metal ou hébergé certifié pour exécuter CentOS ou Red Hat Enterprise Linuxhttps://access.redhat.com/certified-hypervisors["Solution Red Hat : quels hyperviseurs sont certifiés pour l'exécution de Red Hat Enterprise Linux ?"^]
+Espace disque dans /opt:: 100 Go d'espace doivent être disponibles
+Accès Internet sortant:: Un accès Internet sortant est nécessaire pour installer le connecteur et pour que le connecteur gère les ressources et les processus au sein de votre environnement de cloud public. Pour obtenir la liste des noeuds finaux, reportez-vous à la section link:reference_networking_cloud_manager.html["Exigences de mise en réseau pour le connecteur"].
+

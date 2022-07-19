@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+summary: 'Cloud Manager permet aux experts IT et aux architectes cloud de gérer de manière centralisée leur infrastructure multicloud hybride à l"aide des solutions cloud NetApp.' 
+---
+= Documentation sur Cloud Manager et Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Cloud Manager permet aux experts IT et aux architectes cloud de gérer de manière centralisée leur infrastructure multicloud hybride à l'aide des solutions cloud NetApp.
+
+
+
+== Découvrez les nouveautés
+
+* link:reference_key_changes.html["Modifications importantes apportées à Cloud Manager"]
+* link:reference_new_occm.html["Nouveautés de Cloud Manager"]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_new_97.html["Nouveautés de Cloud Volumes ONTAP"^]
+
+
+
+
+== Commencez
+
+* link:concept_overview.html["Le gestionnaire Cloud"]
+* link:concept_cloud_central_accounts.html["Paramètres du compte"]
+* link:task_getting_started_aws.html["Cloud Volumes ONTAP pour AWS"]
+* link:task_getting_started_azure.html["Cloud Volumes ONTAP pour Azure"]
+* link:task_getting_started_gcp.html["Cloud Volumes ONTAP pour Google Cloud"]
+* link:task_manage_anf.html["Azure NetApp Files"]
+* link:task_manage_cvs_aws.html["Cloud Volumes Service pour AWS"]
+* link:task_manage_cvs_gcp.html["Cloud Volumes Service pour Google Cloud"]
+* link:task_getting_started_compliance.html["Conformité cloud"]
+* link:task_gfc_getting_started.html["Cache global de fichiers"]
+* link:concept_backup_to_cloud.html["Sauvegarde dans le cloud"]
+* link:task_getting_started_monitoring.html["Cloud Insights"]
+
+
+
+
+== Automatisez avec les API
+
+* link:api.html["Guide du développeur API"^]
+* link:reference_infrastructure_as_code.html["Échantillons d'automatisation"]
+
+
+
+
+== Connectez-vous avec vos pairs, obtenez de l'aide et trouvez plus d'informations
+
+* https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS["Communauté NetApp : services de données cloud"^]
+* https://mysupport.netapp.com/GPS/ECMLS2588181.html["Prise en charge de NetApp Cloud Volumes ONTAP"^]
+* link:reference_additional_info.html["Où obtenir de l'aide et trouver plus d'informations"]
+

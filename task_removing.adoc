@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task_removing.html 
+keywords: working environments, removing, remove, rediscover 
+summary: 'L"administrateur des comptes peut supprimer un environnement de travail Cloud Volumes ONTAP pour le déplacer vers un autre système ou pour résoudre les problèmes de détection.' 
+---
+= Suppression des environnements de travail Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+L'administrateur des comptes peut supprimer un environnement de travail Cloud Volumes ONTAP pour le déplacer vers un autre système ou pour résoudre les problèmes de détection.
+
+La suppression d'un environnement de travail Cloud Volumes ONTAP le supprime de Cloud Manager. Il ne supprime pas le système Cloud Volumes ONTAP. Vous pourrez par la suite redécouvrir l'environnement de travail.
+
+La suppression d'un environnement de travail de Cloud Manager vous permet d'effectuer les opérations suivantes :
+
+* Redécouvrez-le dans un autre espace de travail
+* Redécouvrez-le à partir d'un autre système Cloud Manager
+* Redécouvrez-le si vous avez rencontré des problèmes lors de la découverte initiale
+
+
+.Étapes
+. Dans le coin supérieur droit de la console Cloud Manager, cliquez sur l'icône Paramètres, puis sélectionnez *Outils*.
++
+image:screenshot_settings_icon.gif["Copie d'écran affichant l'icône Paramètres en haut à droite de la console Cloud Manager."]
+
+. Dans la page Outils, cliquez sur *lancer*.
+. Sélectionnez l'environnement de travail Cloud Volumes ONTAP que vous souhaitez supprimer.
+. Sur la page Revue et approbation, cliquez sur *Go*.
+
+
+Cloud Manager supprime l'environnement de travail. Les utilisateurs peuvent à tout moment redécouvrir cet environnement de travail à partir de la page des environnements de travail.

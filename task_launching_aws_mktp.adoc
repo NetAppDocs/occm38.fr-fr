@@ -1,0 +1,80 @@
+---
+sidebar: sidebar 
+permalink: task_launching_aws_mktp.html 
+keywords: install connector, create connector, deploy connector, installation, installing, marketplace, aws, launch, launching, ec2 console, iam role 
+summary: 'Il est préférable de créer un connecteur directement depuis Cloud Manager, mais vous pouvez lancer un connecteur depuis AWS Marketplace, si vous ne souhaitez pas spécifier de clés d"accès AWS. Une fois que vous avez créé et configuré ce connecteur, Cloud Manager l"utilise automatiquement lors de la création de nouveaux environnements de travail.' 
+---
+= Création d'un connecteur à partir d'AWS Marketplace
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Il est préférable de créer un connecteur directement depuis Cloud Manager, mais vous pouvez lancer un connecteur depuis AWS Marketplace, si vous ne souhaitez pas spécifier de clés d'accès AWS. Une fois que vous avez créé et configuré ce connecteur, Cloud Manager l'utilise automatiquement lors de la création de nouveaux environnements de travail.
+
+.Étapes
+. Créer une règle IAM et un rôle pour l'instance EC2 :
++
+.. Téléchargez la politique IAM de Cloud Manager à partir de l'emplacement suivant :
++
+https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Manager : règles AWS, Azure et GCP"^]
+
+.. À partir de la console IAM, créez votre propre stratégie en copiant et en collant le texte de la stratégie IAM de Cloud Manager.
+.. Créez un rôle IAM avec le type de rôle Amazon EC2 et associez la stratégie que vous avez créée à l'étape précédente au rôle.
+
+
+. Maintenant, allez au https://aws.amazon.com/marketplace/pp/B018REK8QG["Page Cloud Manager sur AWS Marketplace"^] Pour déployer Cloud Manager à partir d'une ami.
++
+L'utilisateur IAM doit disposer d'autorisations AWS Marketplace pour vous abonner et se désabonner.
+
+. Sur la page Marketplace, cliquez sur *Continuer pour s'abonner*, puis cliquez sur *Continuer la configuration*.
++
+image:screenshot_subscribe_cm.gif["Une capture d'écran affiche les boutons Continuer à s'abonner et Continuer la configuration sur AWS Marketplace."]
+
+. Modifiez l'une des options par défaut et cliquez sur *Continuer pour lancer*.
+. Sous *choisir action*, sélectionnez *lancer via EC2*, puis cliquez sur *lancer*.
++
+Ces étapes expliquent comment lancer l'instance à partir de la console EC2, car la console vous permet d'associer un rôle IAM à l'instance Cloud Manager. Cela n'est pas possible en utilisant l'action *lancer à partir du site Web*.
+
+. Suivez les invites pour configurer et déployer l'instance :
++
+** *Choisissez le type d'instance* : selon la disponibilité de la région, choisissez l'un des types d'instance pris en charge (t3.XLarge est recommandé).
++
+link:reference_cloud_mgr_reqs.html["Vérifiez les conditions requises pour l'instance"].
+
+** *Configurer l'instance* : sélectionnez un VPC et un sous-réseau, choisissez le rôle IAM que vous avez créé à l'étape 1, activez la protection de terminaison (recommandée) et choisissez toutes les autres options de configuration qui répondent à vos exigences.
++
+image:screenshot_aws_iam_role.gif["Capture d'écran affichant les champs de la page configurer l'instance dans AWS. Le rôle IAM que vous devriez avoir créé à l'étape 1 est sélectionné."]
+
+** *Ajouter stockage* : conservez les options de stockage par défaut.
+** *Ajouter des balises* : saisissez des balises pour l'instance, si vous le souhaitez.
+** *Configurer le groupe de sécurité* : spécifiez les méthodes de connexion requises pour l'instance de connecteur : SSH, HTTP et HTTPS.
+** *Revue*: Passez en revue vos sélections et cliquez sur *lancer*.
++
+AWS lance le logiciel avec les paramètres spécifiés. L'instance de connecteur et le logiciel doivent s'exécuter dans environ cinq minutes.
+
+
+
+. Ouvrez un navigateur Web à partir d'un hôte connecté à l'instance Connector et saisissez l'URL suivante :
++
+http://_ipaddress_:80[]
+
+. Une fois connecté, configurez le connecteur :
++
+.. Spécifiez le compte Cloud Central à associer au connecteur.
++
+link:concept_cloud_central_accounts.html["Découvrez les comptes Cloud Central"].
+
+.. Entrez un nom pour le système.
++
+image:screenshot_set_up_cloud_manager.gif["Capture d'écran affichant l'écran de configuration du connecteur qui permet de sélectionner un compte Cloud Central et de nommer le système."]
+
+
+
+
+
+Le connecteur est maintenant installé et configuré avec votre compte Cloud Central. Cloud Manager utilisera automatiquement ce connecteur lors de la création de nouveaux environnements de travail. Mais si vous avez plus d'un connecteur, vous devrez le faire link:task_managing_connectors.html["basculer entre eux"].

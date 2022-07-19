@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: task_backup_from_onprem.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, on-prem, on-premises, back up volumes, Backup to Cloud, cloud backup service 
+summary: Procédez comme suit pour commencer à sauvegarder les données à partir de votre système ONTAP sur site vers un stockage objet à faible coût dans le cloud. 
+---
+= Sauvegarde des données à partir d'un système ONTAP sur site vers le cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Procédez comme suit pour commencer à sauvegarder les données à partir de votre système ONTAP sur site vers un stockage objet à faible coût dans le cloud.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.
+
+
+
+==== Vérifiez la prise en charge de votre configuration
+
+* Vous avez découvert le cluster sur site et l'avez ajouté à un environnement de travail dans Cloud Manager. Voir link:task_discovering_ontap.html["Découverte des clusters ONTAP"^] pour plus d'informations.
+* Vous exécutez ONTAP 9.7P5 ou version ultérieure sur le cluster.
+* Vous disposez d'un abonnement valide au fournisseur cloud pour l'espace de stockage où vos sauvegardes seront stockées.
+* Vous avez souscrit au https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Offre Cloud Manager Marketplace Backup"^], ou vous avez acheté link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["et activé"^] Licence BYOL pour la sauvegarde dans le cloud de NetApp.
+
+
+
+
+==== Activez la sauvegarde dans le cloud sur le système
+
+[role="quick-margin-para"]
+Sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde vers le cloud dans le panneau de droite, puis suivez l'assistant d'installation.
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton Backup to Cloud Activate, qui est disponible après la sélection d'un environnement de travail."]
+
+
+
+==== Sélectionnez le fournisseur de services clouds et entrez les informations relatives au fournisseur
+
+[role="quick-margin-para"]
+Sélectionnez le fournisseur, puis sélectionnez l'abonnement du fournisseur, la région et le groupe de ressources. Vous devez également spécifier l'IPspace dans le cluster ONTAP où les volumes résident.
+
+[role="quick-margin-para"]
+image:screenshot_backup_onprem_to_azure.png["Une copie d'écran présente les informations détaillées du fournisseur cloud lors de la sauvegarde de volumes d'un cluster sur site vers un Tier Azure Blob"]
+
+
+
+==== Définissez la stratégie de sauvegarde
+
+[role="quick-margin-para"]
+La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options.
+
+[role="quick-margin-para"]
+image:screenshot_backup_onprem_policy.png["Capture d'écran présentant les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez choisir la planification de sauvegarde et la période de conservation."]
+
+
+
+==== Sélectionnez les volumes à sauvegarder
+
+[role="quick-margin-para"]
+Identifiez les volumes à sauvegarder depuis le cluster.
+
+
+
+==== Restaurez vos données à la demande
+
+[role="quick-margin-para"]
+Dans la liste des sauvegardes, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données depuis la sauvegarde vers un nouveau volume d'un système Cloud Volumes ONTAP qui utilise le même fournisseur cloud.
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_restore_icon.gif["Capture d'écran de l'icône de restauration d'une sauvegarde après avoir sélectionné un volume."]
+
+
+
+== De formation
+
+Avant de commencer à sauvegarder des volumes sur le stockage Azure Blob, lisez les informations suivantes pour vous assurer que votre configuration est prise en charge.
+
+Versions de ONTAP prises en charge:: ONTAP 9.7P5 et version ultérieure.
+Configuration requise pour la mise en réseau des clusters:: Un LIF intercluster est nécessaire sur chaque nœud ONTAP qui héberge les volumes que vous souhaitez sauvegarder. La LIF doit être associée au _IPspace_ que ONTAP doit utiliser pour se connecter au stockage objet. Le SVM Admin doit résider sur l'IPspace. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["En savoir plus sur les IPspaces"^].
++
+--
+Lorsque vous configurez la sauvegarde dans le cloud, vous êtes invité à utiliser l'IPspace. Vous devez choisir l'IPspace auquel chaque LIF est associée. Il peut s'agir de l'IPspace par défaut ou d'un IPspace personnalisé que vous avez créé.
+
+--
+Régions Azure prises en charge:: Backup dans le cloud est pris en charge dans toutes les régions Azure https://cloud.netapp.com/cloud-volumes-global-regions["et des volumes cloud pris en charge"^].
+Conditions de licence:: Pour le modèle de licence PAYGO pour la sauvegarde dans le cloud, un abonnement à la solution https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Offre Azure Marketplace Cloud Manager Backup"^] Sont indispensables avant d'activer la sauvegarde vers le cloud. La facturation pour la sauvegarde dans le cloud se fait via cet abonnement.
++
+--
+Pour les licences BYOL pour la sauvegarde dans le cloud, vous avez besoin du numéro de série de NetApp qui vous permet d'utiliser le service pendant la durée et la capacité du contrat. Voir link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Ajout et mise à jour de votre licence Backup BYOL"^].
+
+Vous devez également disposer d'un abonnement Microsoft Azure pour l'espace de stockage où vos sauvegardes seront stockées.
+
+--
+
+
+
+
+== Activation de la sauvegarde dans le cloud
+
+Activation de la sauvegarde dans le cloud à tout moment directement depuis l'environnement de travail
+
+.Étapes
+. Sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite.
++
+image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton Backup to Cloud Activate, qui est disponible après la sélection d'un environnement de travail."]
+
+. Sélectionnez le fournisseur, puis entrez les informations sur le fournisseur :
++
+.. L'abonnement Azure utilisé pour stocker les sauvegardes.
+.. Région Azure.
+.. Le groupe de ressources - vous pouvez créer un nouveau groupe de ressources ou sélectionner et un groupe de ressources existant.
+.. L'IPspace dans le cluster ONTAP où les volumes à sauvegarder résident.
+.. Puis cliquez sur *Continuer*.
++
+image:screenshot_backup_onprem_to_azure.png["Une copie d'écran présente les informations détaillées du fournisseur cloud lors de la sauvegarde de volumes d'un cluster sur site vers un Tier Azure Blob"]
+
++
+Notez que vous ne pouvez pas modifier l'abonnement ou le groupe de ressources après le démarrage des services.
+
+
+
+. Dans la page _Define Policy_, sélectionnez le programme de sauvegarde et la valeur de conservation, puis cliquez sur *Continuer*.
++
+image:screenshot_backup_onprem_policy.png["Capture d'écran présentant les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez choisir la planification de sauvegarde et la période de conservation."]
+
++
+Voir link:concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination["liste des stratégies existantes"^].
+
+. Sélectionnez les volumes à sauvegarder et cliquez sur *Activer*.
++
+image:screenshot_backup_select_onprem_volumes.png["Capture d'écran de la sélection des volumes qui seront sauvegardés."]
+
+
+
+La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.
+
+link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].

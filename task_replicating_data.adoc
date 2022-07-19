@@ -1,0 +1,275 @@
+---
+sidebar: sidebar 
+permalink: task_replicating_data.html 
+keywords: ontap, cluster, discover, manage, cloud manager, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, break, resync, max transfer, maximum transfer rate, rate, transfer rate, reverse resync, status, replication status, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention 
+summary: 'Vous pouvez répliquer des données entre des environnements de travail Cloud Manager. Vous pouvez choisir une réplication unique pour le déplacement des données vers et depuis le cloud, ou encore un calendrier récurrent pour la reprise d"activité ou la conservation à long terme.' 
+---
+= Réplication des données entre les systèmes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Vous pouvez répliquer des données entre des environnements de travail en choisissant une réplication de données unique pour le transfert de données, ou un planning récurrent pour la reprise sur incident ou la conservation à long terme. Par exemple, vous pouvez configurer la réplication des données depuis un système ONTAP sur site vers Cloud Volumes ONTAP pour la reprise après incident.
+
+Cloud Manager simplifie la réplication des données entre les volumes sur des systèmes distincts à l'aide des technologies SnapMirror et SnapVault. Il vous suffit d'identifier le volume source et le volume de destination, puis de choisir une stratégie et un planning de réplication. Cloud Manager achète les disques requis, configure les relations, applique la stratégie de réplication, puis lance le transfert de base entre les volumes.
+
+
+NOTE: Le transfert de base inclut une copie complète des données source. Les transferts ultérieurs contiennent des copies différentielles des données source.
+
+Cloud Manager permet la réplication des données entre différents types d'environnements de travail :
+
+* D'un système Cloud Volumes ONTAP à un autre système Cloud Volumes ONTAP
+* Entre un système Cloud Volumes ONTAP et un cluster ONTAP sur site
+* D'un cluster ONTAP sur site vers un autre cluster ONTAP sur site
+
+
+
+
+== Exigences de réplication des données
+
+Avant de pouvoir répliquer des données, vous devez confirmer que des exigences spécifiques sont respectées pour les systèmes Cloud Volumes ONTAP et les clusters ONTAP.
+
+Exigences de version:: Vérifiez que les volumes source et de destination exécutent des versions ONTAP compatibles avant de répliquer les données. Pour plus d'informations, reportez-vous à la http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["Guide d'alimentation de la protection des données"^].
+Exigences spécifiques à Cloud Volumes ONTAP::
++
+--
+* Le groupe de sécurité de l'instance doit inclure les règles d'entrée et de sortie requises : plus précisément, les règles d'ICMP et les ports 11104 et 11105.
++
+Ces règles sont incluses dans le groupe de sécurité prédéfini.
+
+* Pour répliquer des données entre deux systèmes Cloud Volumes ONTAP dans différents sous-réseaux, les sous-réseaux doivent être routés ensemble (paramètre par défaut).
+* Pour répliquer des données entre un système Cloud Volumes ONTAP dans AWS et un système dans Azure, vous devez disposer d'une connexion VPN entre AWS VPC et Azure VNet.
+
+
+--
+Exigences spécifiques aux clusters ONTAP::
++
+--
+* Une licence SnapMirror active doit être installée.
+* Si le cluster se trouve sur votre site, vous devez disposer d'une connexion entre votre réseau d'entreprise et AWS ou Azure, qui est généralement une connexion VPN.
+* Les clusters ONTAP doivent répondre à des exigences supplémentaires en termes de sous-réseau, de port, de pare-feu et de cluster.
++
+Pour plus d'informations, reportez-vous au Cluster and SVM Peering Express Guide de votre version d'ONTAP.
+
+
+
+--
+
+
+
+
+== Configuration de la réplication des données entre les systèmes
+
+Vous pouvez répliquer des données entre les systèmes Cloud Volumes ONTAP et les clusters ONTAP en choisissant une réplication de données unique, qui peut vous aider à déplacer des données vers et depuis le cloud, ou un planning récurrent, qui peut vous aider à la reprise sur incident ou à la conservation à long terme.
+
+Cloud Manager prend en charge des configurations de protection des données simples, en panne et en cascade :
+
+* Dans une configuration simple, la réplication s'effectue du volume A au volume B.
+* Dans une configuration en panne, la réplication se produit du volume A vers plusieurs destinations.
+* Dans une configuration en cascade, la réplication s'effectue du volume A au volume B et du volume B au volume C.
+
+
+Vous pouvez configurer les configurations en cascade et en panne dans Cloud Manager en configurant plusieurs réplications de données entre les systèmes. Par exemple, en répliquant un volume du système A vers le système B, puis en répliquant le même volume du système B vers le système C.
+
+.Étapes
+. Sur la page Working Environments (Environnements de travail), sélectionnez l'environnement de travail qui contient le volume source, puis faites-le glisser vers l'environnement de travail vers lequel vous souhaitez répliquer le volume :
++
+image:screenshot_drag_and_drop.gif["Capture d'écran : affiche un environnement de travail placé au-dessus d'un autre environnement de travail pour démarrer le processus de réplication des données."]
+
+. Si les pages Configuration de la mise en valeur de la source et de la destination s'affichent, sélectionnez tous les LIF intercluster pour la relation d'homologues du cluster.
++
+Le réseau intercluster doit être configuré de sorte que les pairs de cluster disposent d'une connectivité « full-mesh » au niveau des paires, ce qui signifie que chaque paire de clusters d'une relation cluster peer-to-peer dispose d'une connectivité parmi l'ensemble de leurs LIFs intercluster.
+
++
+Ces pages s'affichent si un cluster ONTAP disposant de plusieurs LIF est la source ou la destination.
+
+. Sur la page Sélection du volume source, sélectionnez le volume que vous souhaitez répliquer.
+. Sur la page Nom du volume de destination et Tiering, spécifiez le nom du volume de destination, choisissez un type de disque sous-jacent, modifiez l'une des options avancées, puis cliquez sur *Continuer*.
++
+Si la destination est un cluster ONTAP, vous devez également spécifier le SVM de destination et l'agrégat.
+
+. Sur la page Taux de transfert maximal, spécifiez le débit maximal (en mégaoctets par seconde) auquel les données peuvent être transférées.
+. Sur la page Stratégie de réplication, choisissez l'une des stratégies par défaut ou cliquez sur *stratégies supplémentaires*, puis sélectionnez l'une des stratégies avancées.
++
+Pour obtenir de l'aide, voir link:task_replicating_data.html#choosing-a-replication-policy["Choix d'une stratégie de réplication"].
+
++
+Si vous choisissez une stratégie de sauvegarde personnalisée (SnapVault), les étiquettes associées à la stratégie doivent correspondre aux étiquettes des copies Snapshot sur le volume source. Pour plus d'informations, voir link:task_replicating_data.html#how-backup-policies-work["Fonctionnement des stratégies de sauvegarde"].
+
+. Sur la page Programmation, choisissez une copie unique ou un planning récurrent.
++
+Plusieurs plannings par défaut sont disponibles. Si vous souhaitez un autre planning, vous devez créer une nouvelle planification sur le cluster _destination_ à l'aide de System Manager.
+
+. Sur la page Revue, vérifiez vos sélections, puis cliquez sur *Go*.
+
+
+Cloud Manager démarre le processus de réplication des données. Vous pouvez afficher des informations détaillées sur la réplication dans la page Etat de la réplication.
+
+
+
+== Gestion des planifications et des relations de réplication des données
+
+Après avoir configuré la réplication des données entre deux systèmes, vous pouvez gérer le planning et la relation de réplication des données à partir de Cloud Manager.
+
+.Étapes
+. Sur la page environnements de travail, affichez l'état de réplication de tous les environnements de travail de l'espace de travail ou d'un environnement de travail spécifique :
++
+[cols="15,85"]
+|===
+| Option | Action 
+
+
+| Tous les environnements de travail de l'espace de travail  a| 
+En haut de Cloud Manager, cliquez sur *Replication*.
+
+
+
+| Un environnement de travail spécifique  a| 
+Ouvrez l'environnement de travail et cliquez sur *réplications*.
+
+|===
+. Vérifiez l'état des relations de réplication des données pour vérifier qu'elles sont en bon état.
++
+
+NOTE: Si l'état d'une relation est inactif et que l'état Miroir n'est pas initialisé, vous devez initialiser la relation à partir du système de destination pour que la réplication des données se produise selon le planning défini. Vous pouvez initialiser la relation à l'aide de System Manager ou de l'interface de ligne de commande (CLI). Ces états peuvent apparaître en cas de défaillance du système de destination, puis revenir en ligne.
+
+. Sélectionnez l'icône de menu située en regard du volume source, puis choisissez l'une des actions disponibles.
++
+image:screenshot_replication_managing.gif["Capture d'écran : affiche la liste des actions disponibles sur la page Etat de la réplication."]
+
++
+Le tableau suivant décrit les actions disponibles :
+
++
+[cols="15,85"]
+|===
+| Action | Description 
+
+
+| Pause | Rompt la relation entre les volumes source et de destination et active le volume de destination pour l'accès aux données. Cette option est généralement utilisée lorsque le volume source ne peut pas servir de données en raison d'événements tels que la corruption des données, la suppression accidentelle ou un état hors ligne. Pour plus d'informations sur la configuration d'un volume de destination pour l'accès aux données et la réactivation d'un volume source, reportez-vous au Guide ONTAP 9 Volume Disaster Recovery Express Guide. 
+
+
+| Resynchroniser  a| 
+Rétablit une relation interrompue entre les volumes et reprend la réplication des données selon le planning défini.
+
+
+IMPORTANT: Lorsque vous resynchronisez les volumes, le contenu du volume de destination est remplacé par le contenu du volume source.
+
+Pour effectuer une resynchronisation inverse, qui resynchronise les données du volume de destination vers le volume source, consultez la http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["Guide rapide de reprise après incident de volumes ONTAP 9"^].
+
+
+
+| Resynchronisation inverse | Inverse les rôles des volumes source et de destination. Le contenu du volume source d'origine est remplacé par le contenu du volume de destination. Ceci est utile lorsque vous souhaitez réactiver un volume source hors ligne. Toutes les données écrites sur le volume source d'origine entre la dernière réplication de données et l'heure à laquelle le volume source a été désactivé ne sont pas conservées. 
+
+
+| Modifier le planning | Vous permet de choisir un planning différent pour la réplication des données. 
+
+
+| Informations sur les règles | Affiche la stratégie de protection attribuée à la relation de réplication des données. 
+
+
+| Modifier le taux de transfert maximal | Permet de modifier le taux maximal (en kilo-octets par seconde) auquel les données peuvent être transférées. 
+
+
+| Mise à jour | Lance un transfert incrémentiel pour mettre à jour le volume de destination. 
+
+
+| Supprimer | Supprime la relation de protection des données entre les volumes source et de destination, ce qui signifie que la réplication des données n'a plus lieu entre les volumes. Cette action n'active pas le volume de destination pour l'accès aux données. Cette action supprime également la relation d'homologues de cluster et la relation d'homologues de la machine virtuelle de stockage (SVM), si aucune autre relation de protection des données n'existe entre les systèmes. 
+|===
+
+
+Après avoir sélectionné une action, Cloud Manager met à jour la relation ou le planning.
+
+
+
+== Choix d'une stratégie de réplication
+
+Vous aurez peut-être besoin d'aide pour choisir une règle de réplication lorsque vous configurez la réplication des données dans Cloud Manager. Une stratégie de réplication définit la manière dont le système de stockage réplique les données d'un volume source vers un volume de destination.
+
+
+
+=== Quelles sont les règles de réplication
+
+Le système d'exploitation ONTAP crée automatiquement des sauvegardes appelées copies Snapshot. Une copie Snapshot est une image en lecture seule d'un volume qui capture l'état du système de fichiers à un moment donné.
+
+Lorsque vous répliquez des données entre des systèmes, vous répliquez des copies Snapshot d'un volume source vers un volume de destination. Une stratégie de réplication spécifie les copies Snapshot à répliquer du volume source vers le volume de destination.
+
+
+TIP: Les règles de réplication sont également appelées « stratégies de protection_ car elles sont optimisées par les technologies SnapMirror et SnapVault, qui assurent la protection de la reprise après incident ainsi que la sauvegarde et la restauration disque à disque.
+
+L'image suivante montre la relation entre les copies Snapshot et les règles de réplication :
+
+image:diagram_replication_policies.png["Cette illustration montre les copies Snapshot sur un volume source et une stratégie de réplication qui spécifie la réplication de toutes les copies Snapshot ou de certaines copies Snapshot du volume source vers le volume de destination."]
+
+
+
+=== Types de règles de réplication
+
+Il existe trois types de règles de réplication :
+
+* Une règle _Mirror_ réplique les copies Snapshot nouvellement créées vers un volume de destination.
++
+Vous pouvez utiliser ces copies Snapshot pour protéger le volume source en vue de la reprise après incident ou de la réplication de données unique. Vous pouvez activer le volume de destination pour l'accès aux données à tout moment.
+
+* Une règle _Backup_ réplique des copies Snapshot spécifiques sur un volume de destination et les conserve généralement pendant une période plus longue que sur le volume source.
++
+Vous pouvez restaurer des données à partir de ces copies Snapshot lorsque les données sont corrompues ou perdues, et les conserver à des fins de conformité aux normes et à d'autres fins liées à la gouvernance.
+
+* Une politique _Mirror et Backup_ permet la reprise sur incident et la conservation à long terme.
++
+Chaque système inclut une stratégie de mise en miroir et de sauvegarde par défaut, qui fonctionne bien dans de nombreuses situations. Si vous avez besoin de règles personnalisées, vous pouvez créer vos propres règles à l'aide de System Manager.
+
+
+
+Les images suivantes montrent la différence entre les stratégies Miroir et Sauvegarde. Une stratégie Miroir reflète les copies Snapshot disponibles sur le volume source.
+
+image:diagram_replication_snapmirror.png["Cette illustration présente les copies Snapshot sur un volume source et un volume de destination Mirror qui assure la mise en miroir du volume source."]
+
+Une stratégie de sauvegarde conserve généralement les copies Snapshot plus longtemps qu'elles ne sont conservées sur le volume source :
+
+image:diagram_replication_snapvault.png["Cette illustration présente les copies Snapshot sur un volume source et un volume de destination de sauvegarde qui inclut davantage de copies Snapshot, car SnapVault conserve les copies Snapshot pour la conservation à long terme."]
+
+
+
+=== Fonctionnement des stratégies de sauvegarde
+
+Contrairement aux stratégies Mirror, les stratégies de sauvegarde (SnapVault) répliquent des copies Snapshot spécifiques vers un volume de destination. Il est important de comprendre le fonctionnement des stratégies de sauvegarde si vous souhaitez utiliser vos propres règles au lieu des règles par défaut.
+
+
+
+==== Comprendre la relation entre les étiquettes de copie Snapshot et les stratégies de sauvegarde
+
+Une stratégie Snapshot définit la façon dont le système crée des copies Snapshot de volumes. La stratégie indique quand créer les copies Snapshot, le nombre de copies à conserver et comment les étiqueter. Par exemple, un système peut créer une copie Snapshot tous les jours à 12 h 10, conserver les deux copies les plus récentes et les étiqueter " quotidiennement ".
+
+Une stratégie de sauvegarde inclut des règles qui spécifient les copies Snapshot à répliquer sur un volume de destination et le nombre de copies à conserver. Les étiquettes définies dans une stratégie de sauvegarde doivent correspondre à une ou plusieurs étiquettes définies dans une stratégie Snapshot. Dans le cas contraire, le système ne peut pas répliquer de copies Snapshot.
+
+Par exemple, une stratégie de sauvegarde qui inclut les étiquettes " quotidiennes " et " hebdomadaires " entraîne la réplication des copies Snapshot qui n'incluent que ces étiquettes. Aucune autre copie Snapshot n'est répliquée, comme illustré dans l'image suivante :
+
+image:diagram_replication_snapvault_policy.png["Cette illustration présente une règle Snapshot, un volume source, les copies Snapshot créées à partir de la règle Snapshot, puis la réplication de ces copies vers un volume de destination selon une règle de sauvegarde, qui spécifie la réplication des copies Snapshot avec les étiquettes « quotidiennes » et « hebdomadaires »."]
+
+
+
+==== Règles par défaut et règles personnalisées
+
+La stratégie Snapshot par défaut crée des copies Snapshot toutes les heures, quotidiennes et hebdomadaires, conservant six copies Snapshot toutes les heures, deux copies quotidiennes et deux copies Snapshot hebdomadaires.
+
+Vous pouvez facilement utiliser une stratégie de sauvegarde par défaut avec la stratégie Snapshot par défaut. Les règles de sauvegarde par défaut répliquent les copies Snapshot quotidiennes et hebdomadaires, en conservant sept copies Snapshot quotidiennes et 52 copies Snapshot hebdomadaires.
+
+Si vous créez des règles personnalisées, les étiquettes définies par ces règles doivent correspondre. Vous pouvez créer des règles personnalisées à l'aide de System Manager.
+
+
+
+== Réplication des données de NetApp HCI vers Cloud Volumes ONTAP
+
+Si vous essayez de répliquer des données de NetApp HCI vers Cloud Volumes ONTAP, vous pouvez le faire sur un système NetApp HCI exécutant le logiciel NetApp Element à l'aide de SnapMirror. Vous pouvez également répliquer les données sur des volumes créés sur un système ONTAP Select, qui s'exécute en tant qu'invité virtuel dans une solution NetApp HCI vers Cloud Volumes ONTAP.
+
+Pour plus d'informations, reportez-vous aux rapports techniques suivants :
+
+* https://www.netapp.com/us/media/tr-4641.pdf["Rapport technique 4641 : protection des données NetApp HCI"^]
+* https://www.netapp.com/us/media/tr-4651.pdf["Rapport technique 4651 : architecture et configuration de NetApp SolidFire SnapMirror"^]
+

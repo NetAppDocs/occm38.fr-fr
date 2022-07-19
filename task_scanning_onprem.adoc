@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_onprem.html 
+keywords: cloud compliance, on-prem, scan on prem data, scan on-prem data 
+summary: 'Vous pouvez analyser les données ONTAP sur site avec Cloud Compliance en répliquant les données sur site vers un environnement de travail Cloud Volumes ONTAP, puis en assurant la conformité. Il n"est pas possible de numériser les données directement à partir d"un environnement de travail ONTAP sur site.' 
+---
+= Une analyse des données ONTAP sur site avec Cloud Compliance à l'aide de SnapMirror
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Vous pouvez analyser les données ONTAP sur site avec Cloud Compliance en répliquant les données NFS ou CIFS sur site vers un environnement de travail Cloud Volumes ONTAP, puis en assurant la conformité. Il n'est pas possible de numériser les données directement à partir d'un environnement de travail ONTAP sur site.
+
+Vous devez avoir link:task_deploy_cloud_compliance.html["Déploiement d'une instance de Cloud Compliance dans Cloud Manager"^].
+
+.Étapes
+. Depuis Cloud Manager, créez une relation SnapMirror entre le cluster ONTAP sur site et Cloud Volumes ONTAP.
++
+.. https://docs.netapp.com/us-en/occm/task_discovering_ontap.html["Découvrez le cluster sur site dans Cloud Manager"^].
+.. https://docs.netapp.com/us-en/occm/task_replicating_data.html["Créez une réplication SnapMirror entre le cluster ONTAP sur site et Cloud Volumes ONTAP depuis Cloud Manager"^].
+
+
+. Pour les volumes DP créés à partir de volumes SMB source, depuis l'interface de ligne de commande ONTAP, configurez les volumes de destination SMB pour l'accès aux données. (Cette opération n'est pas requise pour les volumes NFS, car l'accès aux données est activé automatiquement via Cloud Compliance.)
++
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-371B7797-B5BE-4B19-BDE4-BBC938F109BF.html["Créer un partage SMB sur le volume de destination"^].
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-90FCFDB3-F60C-4685-9BBD-6D648F75701C.html["Appliquez les ACL appropriées sur le partage SMB au volume de destination"^].
+
+
+. Depuis Cloud Manager, activez Cloud Compliance dans l'environnement de travail Cloud Volumes ONTAP qui contient les données SnapMirror :
++
+.. Cliquez sur *environnements de travail*.
+.. Sélectionnez l'environnement de travail qui contient les données SnapMirror et cliquez sur *Activer la conformité*.
++
+link:task_getting_started_compliance.html["Cliquez ici pour obtenir de l'aide sur l'activation de Cloud Compliance sur un système Cloud Volumes ONTAP"^].
+
+.. Cliquez sur le bouton *Activer l'accès aux volumes DP* en haut de la page _Scan Configuration_.
+.. Activez chaque volume DP que vous souhaitez analyser ou utilisez le contrôle *Activer la conformité pour tous les volumes* pour activer tous les volumes, y compris tous les volumes DP.
+
+
+
+
+Voir link:task_getting_started_compliance.html#scanning-data-protection-volumes["Analyse des volumes de protection des données"^] Pour plus d'informations sur l'analyse des volumes DP.

@@ -1,0 +1,154 @@
+---
+sidebar: sidebar 
+permalink: task_adding_aws_accounts.html 
+keywords: permissions, aws, policy, iam, iam role, role, granting, policy, iam policy, iam user, access keys, arn, cloud provider accounts, aws, cloud provider profile, json, iam, credentials, adding credentials, add credentials 
+summary: 'Si vous souhaitez déployer Cloud Volumes ONTAP sur différents comptes AWS, vous devez fournir les autorisations requises à ces comptes, puis ajouter les informations à Cloud Manager. La manière dont vous fournissez les autorisations dépend de votre choix si vous souhaitez fournir Cloud Manager avec des clés AWS ou le NRA d"un rôle dans un compte de confiance.' 
+---
+= Gestion des identifiants AWS et des abonnements pour Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Lorsque vous créez un système Cloud Volumes ONTAP, vous devez sélectionner les identifiants AWS et l'abonnement à utiliser avec ce système. Si vous gérez plusieurs abonnements AWS, vous pouvez les attribuer à différentes informations d'identification AWS à partir de la page informations d'identification.
+
+Avant d'ajouter des identifiants AWS à Cloud Manager, vous devez fournir les autorisations requises pour ce compte. Les autorisations permettent à Cloud Manager de gérer les ressources et les processus de ce compte AWS. La manière dont vous fournissez les autorisations dépend de votre choix si vous souhaitez fournir Cloud Manager avec des clés AWS ou le NRA d'un rôle dans un compte de confiance.
+
+
+NOTE: Lorsque vous avez déployé un connecteur depuis Cloud Manager, Cloud Manager a automatiquement ajouté des identifiants AWS pour le compte dans lequel vous avez déployé le connecteur. Ce compte initial n'est pas ajouté si vous avez installé manuellement le logiciel Connector sur un système existant. link:concept_accounts_aws.html["En savoir plus sur les identifiants et les autorisations AWS"].
+
+*Choix*
+
+*  permissions by providing AWS keys
+*  permissions by assuming IAM roles in other accounts
+
+
+.Comment faire tourner mes identifiants AWS en toute sécurité ?
+****
+Cloud Manager vous permet de fournir des identifiants AWS de quelques façons : un rôle IAM associé à l'instance Connector, en assumant un rôle IAM dans un compte de confiance ou en fournissant des clés d'accès AWS. link:concept_accounts_aws.html["En savoir plus sur les identifiants et les autorisations AWS"].
+
+Avec les deux premières options, Cloud Manager utilise le service de token de sécurité AWS pour obtenir des identifiants temporaires qui pivotent en permanence. Ce processus est la meilleure pratique, il est automatique et sécurisé.
+
+Si vous fournissez les clés d'accès AWS à Cloud Manager, il est conseillé de les mettre à jour régulièrement dans Cloud Manager. Il s'agit d'un processus entièrement manuel.
+
+****
+
+
+== Octroi d'autorisations en fournissant des clés AWS
+
+Si vous souhaitez fournir Cloud Manager avec des clés AWS pour un utilisateur IAM, vous devez accorder les autorisations requises à cet utilisateur. La stratégie IAM de Cloud Manager définit les actions et les ressources AWS que Cloud Manager est autorisé à utiliser.
+
+.Étapes
+. Téléchargez la politique IAM de Cloud Manager à partir du https://mysupport.netapp.com/site/info/cloud-manager-policies["Page Cloud Manager Policies"^].
+. À partir de la console IAM, créez votre propre stratégie en copiant et en collant le texte de la stratégie IAM de Cloud Manager.
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["Documentation AWS : création de règles IAM"^]
+
+. Joignez la politique à un rôle IAM ou à un utilisateur IAM.
++
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html["Documentation AWS : création de rôles IAM"^]
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html["Documentation AWS : ajout et suppression de règles IAM"^]
+
+
+
+
+Le compte dispose désormais des autorisations requises.  AWS credentials to Cloud Manager,Vous pouvez désormais l'ajouter à Cloud Manager.
+
+
+
+== Octroi d'autorisations en assumant des rôles IAM dans d'autres comptes
+
+Vous pouvez définir une relation de confiance entre le compte AWS source dans lequel vous avez déployé l'instance Connector et d'autres comptes AWS en utilisant les rôles IAM. Vous pouvez ensuite fournir à Cloud Manager l'ARN des rôles IAM depuis les comptes de confiance.
+
+.Étapes
+. Accédez au compte cible sur lequel vous souhaitez déployer Cloud Volumes ONTAP et créez un rôle IAM en sélectionnant *un autre compte AWS*.
++
+Assurez-vous de faire ce qui suit :
+
++
+** Saisissez l'ID du compte sur lequel réside l'instance de connecteur.
+** Joignez la politique IAM de Cloud Manager, disponible à partir du https://mysupport.netapp.com/site/info/cloud-manager-policies["Page Cloud Manager Policies"^].
++
+image:screenshot_iam_create_role.gif["Capture d'écran affichant la page Créer un rôle dans la console IAM AWS. Sous Sélectionner le type d'entité approuvée, un autre compte AWS est sélectionné."]
+
+
+
+. Accédez au compte source où se trouve l'instance de connecteur et sélectionnez le rôle IAM associé à l'instance.
++
+.. Cliquez sur *attacher des stratégies*, puis sur *Créer une stratégie*.
+.. Créez une stratégie qui inclut l'action « sts:AssumeRole » et l'ARN du rôle que vous avez créé dans le compte cible.
++
+*Exemple*
+
++
+[source, json]
+----
+{
+ "Version": "2012-10-17",
+ "Statement": {
+   "Effect": "Allow",
+   "Action": "sts:AssumeRole",
+   "Resource": "arn:aws:iam::ACCOUNT-B-ID:role/ACCOUNT-B-ROLENAME"
+}
+}
+----
+
+
+
+
+Le compte dispose désormais des autorisations requises.  AWS credentials to Cloud Manager,Vous pouvez désormais l'ajouter à Cloud Manager.
+
+
+
+== Ajout d'identifiants AWS à Cloud Manager
+
+Une fois que vous avez passé un compte AWS avec les autorisations requises, vous pouvez ajouter les identifiants de ce compte à Cloud Manager. Vous pouvez ainsi lancer les systèmes Cloud Volumes ONTAP de ce compte.
+
+.Étapes
+. Dans le coin supérieur droit de la console Cloud Manager, cliquez sur l'icône Paramètres et sélectionnez *informations d'identification*.
++
+image:screenshot_settings_icon.gif["Copie d'écran affichant l'icône Paramètres en haut à droite de la console Cloud Manager."]
+
+. Cliquez sur *Ajouter des informations d'identification* et sélectionnez *AWS*.
+. Vous pouvez fournir des clés AWS ou l'ARN d'un rôle IAM approuvé.
+. Vérifiez que les exigences de la politique ont été respectées et cliquez sur *Continuer*.
+. Choisissez l'abonnement payant à l'utilisation que vous souhaitez associer aux informations d'identification ou cliquez sur *Ajouter un abonnement* si vous n'en avez pas encore.
++
+Pour créer un système Cloud Volumes ONTAP avec paiement à l'utilisation, vous devez associer des identifiants AWS à un abonnement à Cloud Volumes ONTAP à partir d'AWS Marketplace.
+
+. Cliquez sur *Ajouter*.
+
+
+Vous pouvez maintenant passer à un autre ensemble d'informations d'identification à partir de la page Détails et informations d'identification lors de la création d'un nouvel environnement de travail :
+
+image:screenshot_accounts_switch_aws.gif["Capture d'écran indiquant la sélection entre les comptes fournisseurs de services cloud après avoir cliqué sur changer de compte dans la page Détails etamp ; informations d'identification."]
+
+
+
+== Association d'un abonnement AWS aux identifiants
+
+Après avoir ajouté vos identifiants AWS à Cloud Manager, vous pouvez associer un abonnement AWS Marketplace à ces identifiants. Cet abonnement vous permet de créer un système Cloud Volumes ONTAP basé sur l'utilisation et d'utiliser d'autres services cloud NetApp.
+
+Deux scénarios peuvent vous être associés à un abonnement AWS Marketplace une fois que vous avez déjà ajouté les identifiants à Cloud Manager :
+
+* Vous n'avez pas associé un abonnement lors de l'ajout initial des identifiants à Cloud Manager.
+* Vous souhaitez remplacer un abonnement AWS Marketplace existant par un nouvel abonnement.
+
+
+Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
+
+.Étapes
+. Dans le coin supérieur droit de la console Cloud Manager, cliquez sur l'icône Paramètres et sélectionnez *informations d'identification*.
+. Passez le curseur de la souris sur un ensemble d'informations d'identification et cliquez sur le menu d'action.
+. Dans le menu, cliquez sur *associer abonnement*.
++
+image:screenshot_aws_add_subscription.gif["Capture d'écran de la page d'informations d'identification dans laquelle vous pouvez ajouter un abonnement aux identifiants AWS à partir du menu."]
+
+. Sélectionnez un abonnement dans la liste déroulante ou cliquez sur *Ajouter un abonnement* et suivez les étapes pour créer un nouvel abonnement.
++
+video::video_subscribing_aws.mp4[width=848,height=480]
+

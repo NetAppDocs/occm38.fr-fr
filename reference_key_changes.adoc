@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: reference_key_changes.html 
+keywords: 'what"s new, key changes, saas, accounts, workspaces, users, connectors, endpoints, urls, permissions, permission changes' 
+summary: 'Cette page présente les _importants_ changements apportés à Cloud Manager qui peuvent vous aider à utiliser le service lors de l"introduction de nouvelles améliorations. Vous devriez continuer à lire la nouvelle page de présentation pour en savoir plus sur toutes les nouvelles fonctions et améliorations.' 
+---
+= Modifications importantes apportées à Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cette page présente les changements importants apportés à Cloud Manager, qui peuvent vous aider à utiliser le service dès que nous y apportons de nouvelles améliorations. Vous devez continuer à lire le link:reference_new_occm.html["Quoi de neuf"] pour en savoir plus sur toutes les nouvelles fonctionnalités et améliorations.
+
+
+
+== Modifications du SaaS
+
+Nous avons introduit une expérience SaaS pour Cloud Manager. Cette nouvelle expérience facilite l'utilisation de Cloud Manager et nous permet de proposer des fonctionnalités supplémentaires pour gérer votre infrastructure de cloud hybride.
+
+* link:concept_saas.html["Transition de Cloud Manager vers SaaS"]
+* link:concept_overview.html["Découvrez le fonctionnement de Cloud Manager"]
+
+
+
+
+== Changement de type de machine
+
+Dans Cloud Manager, nous avons modifié l'instance minimale requise, la machine virtuelle et le type de machine en fonction des ressources appropriées pour les nouvelles fonctionnalités et les prochaines fonctionnalités :
+
+* AWS : instance de t3.XLarge
+* Azure: DS3 v2
+* GCP : N1-standard-4
+
+
+Lorsque vous mettez à niveau le type de machine, vous aurez accès à des fonctionnalités telles que Kubernetes, Global File cache, Monitoring, etc.
+
+Ces tailles par défaut sont le minimum pris en charge link:reference_cloud_mgr_reqs.html["En fonction des besoins en processeur et en RAM"].
+
+Cloud Manager vous invite à modifier le type de machine du connecteur.
+
+
+
+== Paramètres du compte
+
+Nous avons introduit les comptes Cloud Central pour fournir la colocation, vous aider à organiser les utilisateurs et les ressources dans des espaces de travail isolés, et pour gérer l'accès aux connecteurs et aux abonnements.
+
+* link:concept_cloud_central_accounts.html["En savoir plus sur les comptes Cloud Central : utilisateurs, espaces de travail, connecteurs et abonnements"]
+* link:task_setting_up_cloud_central_accounts.html["Découvrez comment utiliser votre compte"]
+* link:task_managing_cloud_central_accounts.html["Découvrez comment gérer votre compte après sa configuration"]
+
+
+
+
+== Nouvelles autorisations
+
+Cloud Manager nécessite parfois des autorisations supplémentaires sur les fournisseurs de cloud à mesure que nous introduirons de nouvelles fonctionnalités et améliorations. Cette section identifie les nouvelles autorisations qui sont maintenant requises.
+
+Vous trouverez la liste des autorisations les plus récentes sur le https://mysupport.netapp.com/site/info/cloud-manager-policies["Page des règles de Cloud Manager"^].
+
+
+
+=== AWS
+
+Depuis la version 3.8.1, vous devez disposer des autorisations suivantes pour utiliser Backup to Cloud avec Cloud Volumes ONTAP. link:task_backup_to_s3.html["En savoir plus >>"].
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+
+
+=== Azure
+
+* Pour éviter les échecs de déploiement d'Azure, vérifiez que votre stratégie Cloud Manager dans Azure inclut l'autorisation suivante :
++
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read"
+----
+* À partir de la version 3.8.7, l'autorisation suivante est requise pour chiffrer les disques gérés Azure sur des systèmes Cloud Volumes ONTAP à un seul nœud à l'aide de clés externes provenant d'un autre compte. link:reference_new_occm.html#cloud-volumes-ontap-enhancements["En savoir plus >>"].
++
+[source, json]
+----
+"Microsoft.Compute/diskEncryptionSets/read"
+----
+* Les autorisations suivantes sont requises pour activer le cache global de fichiers sur Cloud Volumes ONTAP. link:concept_gfc.html["En savoir plus >>"].
++
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read",
+"Microsoft.Insights/Metrics/Read",
+"Microsoft.Compute/virtualMachines/extensions/write",
+"Microsoft.Compute/virtualMachines/extensions/read",
+"Microsoft.Compute/virtualMachines/extensions/delete",
+"Microsoft.Compute/virtualMachines/delete",
+"Microsoft.Network/networkInterfaces/delete",
+"Microsoft.Network/networkSecurityGroups/delete",
+"Microsoft.Resources/deployments/delete",
+----
+
+
+
+
+=== GCP
+
+
+
+==== Nouvelles autorisations de gestion Kubernetes
+
+Depuis la version 3.8.8, le compte de service d'un connecteur nécessite les autorisations suivantes pour découvrir et gérer les clusters Kubernetes qui s'exécutent dans Google Kubernetes Engine (GKE) :
+
+[source, yaml]
+----
+- container.*
+----
+
+
+==== Nouvelles autorisations de Tiering des données
+
+Depuis la version 3.8, vous devez disposer des autorisations suivantes pour utiliser un compte de service pour le Tiering des données. link:reference_new_occm.html#data-tiering-enhancements-in-gcp["En savoir plus >>"].
+
+[source, yaml]
+----
+- storage.buckets.update
+- compute.instances.setServiceAccount
+- iam.serviceAccounts.getIamPolicy
+- iam.serviceAccounts.list
+----
+
+
+== Nouveaux terminaux
+
+Le connecteur nécessite un accès Internet sortant pour gérer les ressources et les processus au sein de votre environnement de cloud public. Cette section identifie les nouveaux terminaux qui sont maintenant requis.
+
+Vous pouvez trouver le link:reference_networking.html["liste complète des points de terminaison accessibles à partir de votre navigateur web ici"] et le link:reference_networking_cloud_manager.html#outbound-internet-access["Liste complète des noeuds finaux accessibles par le connecteur ici"].
+
+* Les utilisateurs doivent accéder à Cloud Manager à partir d'un navigateur Web en contactant le terminal suivant :
++
+\https://cloudmanager.netapp.com
+
+* Pour obtenir des images logicielles de composants de conteneur pour une infrastructure Docker, les connecteurs doivent accéder au terminal suivant :
++
+\https://cloudmanagerinfraprod.azurecr.io
+
++
+Assurez-vous que votre pare-feu autorise l'accès à ce noeud final à partir du connecteur.
+
+

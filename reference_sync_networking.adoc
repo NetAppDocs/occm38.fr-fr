@@ -1,0 +1,102 @@
+---
+sidebar: sidebar 
+permalink: reference_sync_networking.html 
+keywords: networking, 443, port, ports, port 443, connections, connectivity, path, paths, vpn 
+summary: La mise en réseau pour Cloud Sync inclut la connectivité entre le courtier de données et les emplacements source et cible, ainsi que la communication sortante du courtier de données vers Cloud Sync via le port 443. 
+---
+= Présentation de la mise en réseau pour Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+La mise en réseau pour Cloud Sync inclut la connectivité entre le courtier de données et les emplacements source et cible, ainsi qu'une connexion Internet sortante du courtier de données sur le port 443.
+
+
+
+== Emplacement du courtier en données
+
+Vous pouvez installer le courtier en données dans le cloud ou sur site.
+
+
+
+=== Data broker dans le cloud
+
+L'image suivante montre le courtier en données qui s'exécute dans le cloud, soit dans AWS, GCP ou Azure. La source et la cible peuvent être hébergées quel que soit le lieu, à condition que le courtier soit connecté. Par exemple, vous pouvez disposer d'une connexion VPN entre votre data center et votre fournisseur de cloud.
+
+
+NOTE: Lorsque Cloud Sync déploie le courtier de données dans AWS, Azure ou GCP, il crée un groupe de sécurité qui active la communication sortante requise.
+
+image:diagram_networking_cloud.png["Un diagramme qui présente le service Cloud Sync, le courtier en données exécuté dans le cloud et les connexions à la source et à la cible."]
+
+
+
+=== Data broker sur votre site
+
+L'image suivante montre le courtier de données qui s'exécute sur-prem, dans un data center. Là encore, la source et la cible peuvent être hébergées quel que soit le lieu, tant qu'il y a une connexion avec le courtier de données.
+
+image:diagram_networking_onprem.png["Un diagramme qui présente le service Cloud Sync, le courtier en données exécuté sur site, et les connexions à la source et à la cible."]
+
+
+
+== Configuration réseau requise
+
+* La source et la cible doivent disposer d'une connexion réseau au data broker.
++
+Par exemple, si un serveur NFS se trouve dans votre data center et que le data broker est dans AWS, vous avez besoin d'une connexion réseau (VPN ou Direct Connect) entre votre réseau et le VPC.
+
+* Le courtier de données a besoin d'une connexion Internet sortante pour pouvoir interroger le service Cloud Sync sur le port 443.
+* NetApp recommande de configurer la source, la cible et le courtier de données pour qu'ils utilisent un service NTP (Network Time Protocol). La différence de temps entre les trois composants ne doit pas dépasser 5 minutes.
+
+
+
+
+== Terminaux de mise en réseau
+
+Pour communiquer avec le service Cloud Sync et contacter quelques autres services et référentiels, le courtier de données NetApp a besoin d'un accès Internet sortant sur le port 443. Votre navigateur Web local nécessite également l'accès aux points de terminaison pour certaines actions. Si vous devez limiter la connectivité sortante, reportez-vous à la liste de terminaux suivante lors de la configuration de votre pare-feu pour le trafic sortant.
+
+
+
+=== Terminaux du courtier de données
+
+Le courtier de données contacte les terminaux suivants :
+
+[cols="38,62"]
+|===
+| Terminaux | Objectif 
+
+
+| Olcentgbl.trafficmanager.net:443 | Pour contacter un référentiel de mise à jour des packages CentOS pour l'hôte du data broker. Ce noeud final n'est contacté que si vous installez manuellement le courtier de données sur un hôte CentOS. 
+
+
+| Rpm.nodesource.com:443 registry.npmjs.org:443 nodejs.org:443 | Pour contacter des référentiels pour mettre à jour Node.js, npm et d'autres packages tiers utilisés dans le développement. 
+
+
+| Tgz.pm2.io:443 | Pour accéder à un référentiel de mise à jour de PM2, un package tiers utilisé pour surveiller Cloud Sync. 
+
+
+| Www.myrc.com/fr/ www.myrc.com/fr/ www.myrc.com/fr/ www.myrc.com/fr/ | Pour contacter les services AWS utilisés par Cloud Sync pour les opérations (mise en file d'attente de fichiers, enregistrement d'actions et mise à jour du data broker). 
+
+
+| s3._region_.amazonaws.com:443 par exemple : s3.us-east-2.amazonaws.com:443https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region["Consultez la documentation AWS pour obtenir la liste des terminaux S3"^] | Pour contacter Amazon S3 lorsqu'une relation de synchronisation inclut une rubrique S3. 
+
+
+| Cf.cloudsync.netapp.com:443 repo.cloudsync.netapp.com:443 | Pour contacter le service Cloud Sync. 
+
+
+| Support.netapp.com:443 | Pour contacter le support NetApp lors de l'utilisation d'une licence BYOL pour les relations de synchronisation. 
+
+
+| fedoraproject.org:443 | Pour installer 7z sur la machine virtuelle du courtier de données pendant l'installation et les mises à jour. 7z est nécessaire pour envoyer des messages AutoSupport au support technique NetApp. 
+|===
+
+
+=== Terminaux de navigateur Web
+
+Votre navigateur Web doit accéder au point final suivant pour télécharger les journaux à des fins de dépannage :
+
+logs.cloudsync.netapp.com:443

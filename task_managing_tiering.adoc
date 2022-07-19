@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: task_managing_tiering.html 
+keywords: discover, volumes, report, hot, cold, inactive, active, capacity, used capacity, savings, health, failed 
+summary: 'Maintenant que vous avez découvert et hiérarchisé les données depuis le premier cluster ONTAP, vous pouvez transférer des données à partir de volumes supplémentaires, découvrir d"autres clusters, etc.' 
+---
+= Gestion du Tiering des données à partir des clusters
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Maintenant que vous avez configuré le Tiering des données à partir de vos clusters ONTAP, vous pouvez procéder au Tiering des données à partir de volumes supplémentaires, modifier la règle de Tiering d'un volume, etc.
+
+
+
+== Tiering des données à partir de volumes supplémentaires
+
+Configurez un Tiering pour des volumes supplémentaires à tout moment, par exemple après la création d'un volume.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Tiering*.
+. Dans *Cluster Dashboard*, cliquez sur *Tier volumes* pour le cluster.
+. Cliquez sur le bouton correspondant à chaque volume image:screenshot_edit_icon.gif["Capture d'écran de l'icône d'édition qui apparaît à la fin de chaque ligne du tableau pour les volumes de Tiering"] Sélectionnez une stratégie de hiérarchisation, ajustez éventuellement les jours de refroidissement, puis cliquez sur *appliquer*.
++
+link:concept_cloud_tiering.html#volume-tiering-policies["En savoir plus sur les règles de Tiering des volumes"].
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["Capture d'écran présentant les volumes sélectionnés dans la page Sélectionner les volumes source."]
+
++
+
+TIP: Il n'est pas nécessaire de configurer le stockage objet, car il était déjà configuré lors de la configuration initiale du Tiering pour le cluster. ONTAP effectue le Tiering des données inactives de ces volumes vers le même magasin d'objets.
+
+. Lorsque vous avez terminé, cliquez sur *Fermer*.
+
+
+
+
+== Modification de la règle de hiérarchisation d'un volume
+
+La modification de la règle de Tiering pour un volume modifie la façon dont ONTAP transfère les données inactives vers le stockage objet. Au moment de modifier la règle, cette modification ne modifie que le comportement de Tiering suivant pour le volume.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Tiering*.
+. Dans *Cluster Dashboard*, cliquez sur *Tier volumes* pour le cluster.
+. Cliquez sur le bouton image:screenshot_edit_icon.gif["Capture d'écran de l'icône d'édition qui apparaît à la fin de chaque ligne du tableau pour les volumes de Tiering"] Sélectionnez une stratégie de hiérarchisation, ajustez éventuellement les jours de refroidissement, puis cliquez sur *appliquer*.
++
+link:concept_cloud_tiering.html#volume-tiering-policies["En savoir plus sur les règles de Tiering des volumes"].
+
+
+
+
+
+== Gestion des paramètres de Tiering sur les agrégats
+
+Chaque agrégat dispose de deux paramètres que vous pouvez ajuster : le seuil de remplissage de niveaux et si le reporting des données inactives est activé.
+
+Seuil de remplissage par niveaux:: Si le seuil est inférieur, le volume de données à stocker sur le Tier de performance avant le Tiering est réduit. Ce fonctionnement peut s'avérer utile pour les agrégats volumineux qui contiennent peu de données actives.
++
+--
+Si la valeur du seuil est supérieure, la quantité de données à stocker sur le Tier de performance avant le Tiering est supérieure. Cela peut être utile pour les solutions conçues pour le Tiering uniquement lorsque les agrégats bénéficient d'une capacité quasi maximale.
+
+--
+Reporting des données inactives:: Le reporting des données inactives (IDR) utilise une période de refroidissement de 31 jours pour déterminer quelles données sont considérées comme inactives. La quantité de données inactives dans le Tier dépend des règles de Tiering définies sur les volumes. Cette quantité peut être différente de la quantité de données inactives détectée par l'IDR sur une période de refroidissement de 31 jours.
++
+--
+
+TIP: Il est préférable de maintenir l'option IDR activée car elle permet d'identifier vos données inactives et vos opportunités d'économies. L'IDR doit rester activé si le Tiering des données était activé sur un agrégat.
+
+--
+
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Tiering*.
+. Dans la page *Cloud Tiering*, cliquez sur l'icône de menu d'un cluster et sélectionnez *Manage Aggregates*.
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_manage_aggregates.gif["Copie d'écran du tableau de bord du cluster affichant un cluster et le menu d'actions développé."]
+
+. Sur la page *gérer les agrégats*, cliquez sur le bouton image:screenshot_edit_icon.gif["Capture d'écran de l'icône d'édition qui apparaît à la fin de chaque ligne du tableau pour la gestion des agrégats"] icône d'un agrégat dans la table.
+. Modifiez le seuil de remplissage et choisissez d'activer ou de désactiver le rapport de données inactives.
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_edit_aggregate.gif["Capture d'écran affichant un curseur pour modifier le seuil de remplissage de niveaux et un bouton pour activer ou désactiver le reporting de données inactives."]
+
+. Cliquez sur *appliquer*.
+
+
+
+
+== Révision des informations de hiérarchisation pour un cluster
+
+Vous pouvez connaître la quantité de données stockées dans le Tier cloud et la quantité de données stockées sur les disques. Vous pouvez également voir la quantité de données actives et inactives sur les disques du cluster. NetApp Cloud Tiering fournit ces informations pour chaque cluster.
+
+.Étapes
+. En haut de Cloud Manager, cliquez sur *Tiering*.
+. Dans *Cluster Dashboard*, cliquez sur *plus d'info* pour un cluster.
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_more_info.gif["Une copie d'écran affiche le bouton plus d'infos, disponible sur le tableau de bord du cluster pour chaque cluster."]
+
+. Révision des détails du cluster.
++
+Voici un exemple :
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_cluster_info.gif["Une capture d'écran présente le rapport du cluster, qui présente la capacité totale utilisée, la capacité utilisée du cluster, les informations sur le cluster et les informations relatives au stockage objet."]
+
+
+
+
+
+== Corriger la santé opérationnelle
+
+Les défaillances peuvent survenir. Et le cas fois, Cloud Tiering affiche l'état d'intégrité opérationnelle « défaillante » sur le tableau de bord du cluster. L'état de santé reflète l'état du système ONTAP et de Cloud Manager.
+
+.Étapes
+. Identifiez tous les clusters dont l'état opérationnel est « en panne ».
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_tiering_health.gif["Capture d'écran indiquant l'état d'intégrité d'un Tiering échec pour un cluster."]
+
+. Placez le pointeur de la souris sur le image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_info_icon.gif["Capture d'écran de l'icône i indiquant la raison de l'échec"] pour voir la raison de l'échec.
+. Corriger le problème :
++
+.. Vérifiez que le cluster ONTAP est opérationnel et qu'il dispose d'une connexion entrante et sortante avec votre fournisseur de stockage objet.
+.. Vérifiez que Cloud Manager dispose de connexions sortantes avec le service Cloud Tiering, vers le magasin d'objets et vers les clusters ONTAP qu'il détecte.
+
+
+

@@ -1,0 +1,146 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_databases.html 
+keywords: cloud compliance, enable cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, databases, database schemas, Oracle, SAP HANA, SQL Server, MongoDB, PostgreSQL 
+summary: Suivez quelques étapes pour commencer à analyser vos schémas de base de données avec Cloud Compliance. 
+---
+= Analyse des schémas de base de données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Suivez quelques étapes pour commencer à analyser vos schémas de base de données avec Cloud Compliance.
+
+
+
+== Démarrage rapide
+
+Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.
+
+
+
+==== Vérifiez les prérequis de la base de données
+
+[role="quick-margin-para"]
+Assurez-vous que votre base de données est prise en charge et que vous disposez des informations nécessaires pour vous connecter à la base de données.
+
+
+
+==== Déployez l'instance Cloud Compliance
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["Déployez Cloud Compliance dans Cloud Manager"^] si aucune instance n'est déjà déployée.
+
+
+
+==== Ajoutez le serveur de base de données
+
+[role="quick-margin-para"]
+Ajoutez le serveur de base de données auquel vous souhaitez accéder.
+
+
+
+==== Sélectionnez les schémas
+
+[role="quick-margin-para"]
+Sélectionnez les schémas à numériser.
+
+
+
+== Vérification des prérequis
+
+Avant d'activer Cloud Compliance, lisez les conditions préalables suivantes pour vous assurer que la configuration est prise en charge.
+
+
+
+=== Bases de données prises en charge
+
+Cloud Compliance peut scanner des schémas à partir des bases de données suivantes :
+
+* MongoDB
+* Oracle
+* PostgreSQL
+* SAP HANA
+* Serveur SQL (MSSQL)
+
+
+
+IMPORTANT: La fonction de collecte de statistiques *doit être activée* dans la base de données.
+
+
+
+=== Configuration requise pour les bases de données
+
+Toutes les bases de données connecté à l'instance Cloud Compliance peuvent être analysées, quel que soit l'endroit où elles sont hébergées. Pour vous connecter à la base de données, il vous suffit de disposer des informations suivantes :
+
+* Adresse IP ou nom d'hôte
+* Port
+* Nom du service (uniquement pour l'accès aux bases de données Oracle)
+* Références permettant l'accès en lecture aux schémas
++
+Lorsque vous choisissez un nom d'utilisateur et un mot de passe, il est important de choisir un nom qui dispose des autorisations de lecture complètes pour tous les schémas et tables que vous souhaitez numériser. Nous vous recommandons de créer un utilisateur dédié pour le système Cloud Compliance avec toutes les autorisations requises.
+
+
+
+*Remarque :* pour MongoDB, un rôle d'administrateur en lecture seule est requis.
+
+
+
+== Ajout du serveur de base de données
+
+Vous devez avoir link:task_deploy_cloud_compliance.html["Déploiement d'une instance de Cloud Compliance dans Cloud Manager"^].
+
+Ajoutez le serveur de base de données où se trouvent les schémas.
+
+. Dans la page _Scan Configuration_, cliquez sur le bouton *Add DB Server*.
++
+image:screenshot_compliance_add_db_server_button.png["Capture d'écran de la page Configuration de la numérisation dans laquelle vous pouvez cliquer sur le bouton Ajouter un serveur de base de données."]
+
+. Entrez les informations requises pour identifier le serveur de base de données.
++
+.. Sélectionnez le type de base de données.
+.. Entrez le port et le nom d'hôte ou l'adresse IP pour vous connecter à la base de données.
+.. Pour les bases de données Oracle, entrez le nom du service.
+.. Entrez les identifiants pour que Cloud Compliance puisse accéder au serveur.
+.. Cliquez sur *Ajouter serveur DB*.
++
+image:screenshot_compliance_add_db_server_dialog.png["Capture d'écran de la page Ajouter un serveur de base de données pour identifier la base de données."]
+
+
+
+
+
+La base de données est ajoutée à la liste des répertoires de travail.
+
+
+
+== Activation et désactivation des analyses de conformité sur les schémas de base de données
+
+Vous pouvez arrêter ou démarrer la numérisation de schémas à tout moment.
+
+. Dans la page _Scan Configuration_, cliquez sur le bouton *Configuration* de la base de données à configurer.
++
+image:screenshot_compliance_db_server_config.png["Capture d'écran de la page Configuration de la numérisation dans laquelle vous pouvez sélectionner le bouton Configuration."]
+
+. Sélectionnez les schémas à numériser en déplaçant le curseur vers la droite.
++
+image:screenshot_compliance_select_schemas.png["Capture d'écran de la page Configuration de la numérisation dans laquelle vous pouvez choisir les schémas à numériser."]
+
+
+
+Cloud Compliance commence à analyser les schémas de base de données que vous avez activés. S’il y a des erreurs, elles apparaîtront dans la colonne État, ainsi que l’action requise pour corriger l’erreur.
+
+
+
+== Suppression d'une base de données de Cloud Manager
+
+Si vous ne souhaitez plus analyser une base de données, vous pouvez la supprimer de l'interface Cloud Manager et arrêter toutes les analyses.
+
+Dans la page _Scan Configuration_, cliquez sur le bouton image:screenshot_gallery_options.gif["Bouton plus"] Dans la ligne de la base de données, puis cliquez sur *Supprimer serveur DB*.
+
+image:screenshot_compliance_remove_db.png["Capture d'écran du bouton Supprimer le serveur de BD de la page Configuration de la numérisation."]

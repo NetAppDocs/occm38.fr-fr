@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: task_viewing_amazon_s3.html 
+keywords: s3 buckets, s3 storage, s3 working environment, amazon s3 buckets, amazon s3 working environment 
+summary: Une fois que vous avez installé un connecteur dans AWS, Cloud Manager détecte automatiquement les informations sur les compartiments Amazon S3 qui résident dans le compte AWS sur lequel il est installé. 
+---
+= Affichage des compartiments Amazon S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Une fois que vous avez installé un connecteur dans AWS, Cloud Manager détecte automatiquement les informations sur les compartiments Amazon S3 qui résident dans le compte AWS sur lequel il est installé.
+
+Vous pouvez afficher des informations détaillées sur vos compartiments S3, notamment la région, le niveau d'accès et la classe de stockage, et voir si le compartiment est utilisé avec Cloud Volumes ONTAP pour les sauvegardes ou le Tiering des données. Et vous pouvez scanner les compartiments S3 avec Cloud Compliance.
+
+.Étapes
+. link:task_creating_connectors_aws.html["Installer un connecteur"] Dans le compte AWS où vous souhaitez afficher vos compartiments Amazon S3.
++
+Vous devriez voir automatiquement un environnement de travail Amazon S3 peu après.
+
++
+image:screenshot_s3_we.gif["Copie d'écran d'un environnement de travail Amazon S3."]
+
+. Cliquez sur l'environnement de travail et sélectionnez une action dans le volet droit.
++
+image:screenshot_s3_actions.gif["Capture d'écran du volet actions après la sélection d'un environnement de travail Amazon S3. Le volet affiche des informations sur S3 : le nombre de compartiments et de régions. Le volet comporte également deux actions : activer la conformité et afficher les rubriques."]
+
+. Cliquez sur *Activer la conformité* pour rechercher les données personnelles et sensibles dans les compartiments S3.
++
+Pour plus de détails, voir link:task_scanning_s3.html["Mise en route de Cloud Compliance pour Amazon S3"].
+
+. Cliquez sur *View seaux* pour afficher des détails sur les compartiments S3 de votre compte AWS.
++
+image:screenshot_amazon_s3.gif["Une capture d'écran présente les détails d'un environnement de travail Amazon S3 : le nombre total de compartiments, le nombre total de régions, le nombre de compartiments avec services actifs, puis un tableau présentant des informations détaillées sur chaque compartiment S3."]
+
+

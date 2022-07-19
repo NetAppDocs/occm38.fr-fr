@@ -1,0 +1,126 @@
+---
+sidebar: sidebar 
+permalink: task_launching_azure_mktp.html 
+keywords: install, installation, installing, marketplace, azure, deploy, virtual machine, permissions, deploy connector in azure, install connector in azure 
+summary: 'Il est préférable de créer un connecteur directement depuis Cloud Manager, mais vous pouvez également lancer un connecteur depuis Azure Marketplace, si vous préférez. Une fois que vous avez créé et configuré ce connecteur, Cloud Manager l"utilise automatiquement lors de la création de nouveaux environnements de travail.' 
+---
+= Création d'un connecteur à partir d'Azure Marketplace
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Il est préférable de créer un connecteur directement depuis Cloud Manager, mais vous pouvez également lancer un connecteur depuis Azure Marketplace, si vous préférez. Une fois que vous avez créé et configuré ce connecteur, Cloud Manager l'utilise automatiquement lors de la création de nouveaux environnements de travail.
+
+
+
+== Création d'un connecteur dans Azure
+
+Déployez le connecteur dans Azure en utilisant l'image dans Azure Marketplace, puis connectez-vous au connecteur pour spécifier votre compte Cloud Central.
+
+.Étapes
+. https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.netapp-oncommand-cloud-manager["Accédez à la page Azure Marketplace pour Cloud Manager"^].
+. Cliquez sur *l'obtenir maintenant*, puis sur *Continuer*.
+. Sur le portail Azure, cliquez sur *Créer* et suivez les étapes de configuration de la machine virtuelle.
++
+Noter les éléments suivants lors de la configuration de la machine virtuelle :
+
++
+** Cloud Manager peut fonctionner de manière optimale avec des disques durs ou SSD.
+** Choisissez une taille de machine virtuelle qui répond aux exigences en matière de CPU et de RAM. Nous recommandons DS3 v2.
++
+link:reference_cloud_mgr_reqs.html["Vérifier les exigences relatives aux machines virtuelles"].
+
+** Pour le groupe de sécurité réseau, le connecteur nécessite des connexions entrantes via SSH, HTTP et HTTPS.
++
+link:reference_networking_cloud_manager.html#rules-for-the-connector-in-azure["En savoir plus sur les règles de groupe de sécurité pour le connecteur"].
+
+** Sous *Management*, activez *l’identité gérée attribuée par le système* pour le connecteur en sélectionnant *On*.
++
+Ce paramètre est important car une identité gérée permet à la machine virtuelle Connector de s'identifier à Azure Active Directory sans fournir d'informations d'identification. https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["En savoir plus sur les identités gérées pour les ressources Azure"^].
+
+
+
+. Dans la page *Revue + créer*, vérifiez vos sélections et cliquez sur *Créer* pour démarrer le déploiement.
++
+Azure déploie la machine virtuelle avec les paramètres spécifiés. Le logiciel de la machine virtuelle et du connecteur doit s'exécuter en cinq minutes environ.
+
+. Ouvrez un navigateur Web à partir d'un hôte connecté à la machine virtuelle Connector et entrez l'URL suivante :
++
+http://_ipaddress_:80[]
+
+. Une fois connecté, configurez le connecteur :
++
+.. Spécifiez le compte Cloud Central à associer au connecteur.
++
+link:concept_cloud_central_accounts.html["Découvrez les comptes Cloud Central"].
+
+.. Entrez un nom pour le système.
++
+image:screenshot_set_up_cloud_manager.gif["Capture d'écran de l'écran de configuration de Cloud Manager qui permet de sélectionner un compte Cloud Central et de nommer le système."]
+
+
+
+
+
+Le connecteur est maintenant installé et configuré. Vous devez accorder des autorisations Azure avant que les utilisateurs puissent déployer Cloud Volumes ONTAP dans Azure.
+
+
+
+== Octroi d'autorisations Azure
+
+Lorsque vous avez déployé le connecteur dans Azure, vous devez avoir activé un https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["identité gérée attribuée par le système"^]. Vous devez maintenant accorder les autorisations Azure requises en créant un rôle personnalisé, puis en attribuant le rôle à la machine virtuelle Connector pour un ou plusieurs abonnements.
+
+.Étapes
+. Créez un rôle personnalisé à l'aide de la stratégie Cloud Manager :
++
+.. Téléchargez le https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager Azure"^].
+.. Modifiez le fichier JSON en ajoutant des identifiants d'abonnement Azure à l'étendue assignable.
++
+Vous devez ajouter l'ID de chaque abonnement Azure à partir duquel les utilisateurs créeront des systèmes Cloud Volumes ONTAP.
+
++
+*Exemple*
+
++
+« Assigner les Scopes » : [ »/abonnements/d333af45-0d07-4154-943d-c25fbzzzzzzzzzzz », «/abonnements/54b91999-b3e6-4599-908e-416e0zzzzzzz », «/abonnements/8e474b-94b-4b-4b-4b-4b-4439-4b-4b-4b-4b-4b-4b-4b-4b-4b-4b-
+
+.. Utilisez le fichier JSON pour créer un rôle personnalisé dans Azure.
++
+L'exemple suivant montre comment créer un rôle personnalisé à l'aide de l'interface de ligne de commande Azure CLI 2.0 :
+
++
+`az role definition create --role-definition C:\Policy_for_cloud_Manager_Azure_3.8.7.json`
+
++
+Vous devez maintenant avoir un rôle personnalisé appelé opérateur Cloud Manager que vous pouvez attribuer à la machine virtuelle Connector.
+
+
+
+. Attribuez le rôle à la machine virtuelle Connector pour un ou plusieurs abonnements :
++
+.. Ouvrez le service *abonnements*, puis sélectionnez l'abonnement dans lequel vous souhaitez déployer des systèmes Cloud Volumes ONTAP.
+.. Cliquez sur *contrôle d'accès (IAM)*.
+.. Cliquez sur *Ajouter* > *Ajouter une affectation de rôle*, puis ajoutez les autorisations suivantes :
++
+*** Sélectionnez le rôle *opérateur* de Cloud Manager.
++
+
+NOTE: L'opérateur de Cloud Manager est le nom par défaut fourni dans https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager"]. Si vous avez choisi un autre nom pour le rôle, sélectionnez-le à la place.
+
+*** Attribuez l'accès à une *machine virtuelle*.
+*** Sélectionnez l'abonnement dans lequel la machine virtuelle du connecteur a été créée.
+*** Sélectionnez la machine virtuelle Connector.
+*** Cliquez sur *Enregistrer*.
+
+
+.. Si vous souhaitez déployer Cloud Volumes ONTAP à partir d'abonnements supplémentaires, passez à cet abonnement, puis répétez ces étapes.
+
+
+
+
+Le connecteur dispose désormais des autorisations nécessaires pour gérer les ressources et les processus au sein de votre environnement de cloud public. Cloud Manager utilisera automatiquement ce connecteur lors de la création de nouveaux environnements de travail. Mais si vous avez plus d'un connecteur, vous devrez le faire link:task_managing_connectors.html["basculer entre eux"].

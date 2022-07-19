@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_gcp_encryption.html 
+keywords: encryption, gcp, encryption key, permissions, customer-managed, gcpencryption 
+summary: 'Google Cloud Storage chiffre toujours vos données avant leur écriture sur le disque, mais vous pouvez utiliser les API Cloud Manager pour créer un système Cloud Volumes ONTAP qui utilise des clés de chiffrement gérées par le client. Il s"agit des clés que vous créez et gérez dans GCP à l"aide du service Cloud Key Management.' 
+---
+= Grâce à des clés de chiffrement gérées par le client avec Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Google Cloud Storage chiffre toujours vos données avant leur écriture sur le disque, mais vous pouvez utiliser les API Cloud Manager pour créer un système Cloud Volumes ONTAP qui utilise des clés de chiffrement _gérées par le client_. Il s'agit des clés que vous créez et gérez dans GCP à l'aide du service Cloud Key Management.
+
+.Étapes
+. Donnez au compte de service Connector l'autorisation d'utiliser la clé de cryptage.
++
+image:screenshot_gcp_key.gif[""]
+
+. Obtenir l'ID de la clé en invoquant la commande GET pour l'API /gcp/vsa/Metadata/gcp-Encryption-keys
+. Utilisez le paramètre "GcpEncryption" avec votre requête API lors de la création d'un environnement de travail.
++
+*Exemple*
+
++
+[source, json]
+----
+"gcpEncryptionParameters": {
+    "key": "projects/tlv-support/locations/us-east4/keyRings/Nikiskeys/cryptoKeys/generatedkey1"
+  }
+----
+
+
+Reportez-vous à la link:api.html#_creating_systems_in_gcp["Guide du développeur API"^] Pour plus d'informations sur l'utilisation du paramètre "GcpEncryption".

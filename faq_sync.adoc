@@ -1,0 +1,352 @@
+---
+sidebar: sidebar 
+permalink: faq_sync.html 
+keywords: community, forums, help, support, videos, faq, getting help, permissions, access control lists, acls, preserve, preserving, troubleshooting, support 
+summary: 'Vous pouvez obtenir de l"aide sur Cloud Sync et trouver de plus amples informations via diverses ressources, notamment des forums, des services de discussion en ligne et des vidéos.' 
+---
+= FAQ technique sur Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cette FAQ peut vous aider si vous cherchez simplement une réponse rapide à une question.
+
+
+
+== Pour commencer
+
+Les questions suivantes concernent le démarrage avec Cloud Sync.
+
+
+
+=== Comment fonctionne Cloud Sync ?
+
+Cloud Sync, qui utilise le logiciel de courtier de données NetApp, synchronise les données d'une source vers une cible (appelée « relation synchrone »).
+
+Le courtier de données contrôle les relations de synchronisation entre vos sources et vos cibles. Après avoir configuré une relation de synchronisation, Cloud Sync analyse votre système source et le décompose en plusieurs flux de réplication afin de les transmettre aux données cible sélectionnées.
+
+Après la copie initiale, le service synchronise toutes les données modifiées en fonction de la planification que vous avez définie.
+
+
+
+=== Comment fonctionne l'essai gratuit de 14 jours ?
+
+L'essai gratuit de 14 jours commence lorsque vous vous inscrivez au service Cloud Sync. Vous n'êtes pas sujet aux frais NetApp liés aux relations Cloud Sync que vous créez pendant 14 jours. Cependant, tous les frais de ressources pour tout courtier de données que vous déployez s'appliquent toujours.
+
+
+
+=== Combien coûte Cloud Sync ?
+
+Il existe deux types de coûts associés à l'utilisation de Cloud Sync : les frais de service et les frais de ressources.
+
+*Frais de service*
+
+Pour les tarifs à la demande, les frais de service Cloud Sync sont horaires, en fonction du nombre de relations de synchronisation que vous créez.
+
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["Consultez les tarifs à la carte dans AWS"^]
+* https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Voir les tarifs annuels dans AWS"^]
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["Voir les tarifs à Azure"^]
+
+
+Les licences Cloud Sync sont également disponibles auprès de votre représentant NetApp. Chaque licence permet 20 relations de synchronisation pendant 12 mois.
+
+link:concept_cloud_sync.html["En savoir plus sur les licences"].
+
+*Frais de ressources*
+
+Les frais de ressources sont liés aux coûts de calcul et de stockage pour l'exécution du courtier de données dans le cloud.
+
+
+
+=== Comment le service Cloud Sync est-il facturé ?
+
+Il existe deux façons de payer les relations de synchronisation après la fin de votre essai gratuit de 14 jours. La première option consiste à vous abonner à AWS ou Azure, ce qui vous permet de payer à votre gré ou de payer chaque année. La deuxième option consiste à acheter des licences directement auprès de NetApp.
+
+
+
+=== Puis-je utiliser Cloud Sync en dehors du cloud ?
+
+Oui, vous pouvez utiliser Cloud Sync dans une architecture non cloud. La source et la cible peuvent résider sur site et ainsi de suite, le courtier de données.
+
+Notez les points clés suivants sur l'utilisation de Cloud Sync en dehors du cloud :
+
+* Pour la synchronisation sur site, un compartiment privé Amazon S3 est disponible via NetApp StorageGRID.
+* Le courtier de données a besoin d'une connexion Internet pour communiquer avec le service Cloud Sync.
+* Si vous n'achetez pas de licence directement auprès de NetApp, vous devrez acquérir un compte AWS ou Azure pour la facturation du service PAYGO Cloud Sync.
+
+
+
+
+=== Comment accéder à Cloud Sync ?
+
+Cloud Sync est disponible depuis Cloud Manager dans l'onglet *Sync*.
+
+
+
+== Sources et cibles prises en charge
+
+Les questions suivantes concernent la source et les cibles prises en charge dans une relation de synchronisation.
+
+
+
+=== Quelles sources et cibles Cloud Sync prend-il en charge ?
+
+Cloud Sync prend en charge de nombreux types de relations de synchronisation. link:reference_sync_requirements.html["Afficher la liste complète"].
+
+
+
+=== Quelles sont les versions de NFS et SMB prises en charge par Cloud Sync ?
+
+Cloud Sync prend en charge NFS version 3 et ultérieure et SMB version 1 et ultérieure.
+
+link:reference_sync_requirements.html["En savoir plus sur les exigences de synchronisation"].
+
+
+
+=== Quand Amazon S3 est la cible, les données peuvent-elles être hiérarchisées vers une classe de stockage S3 spécifique ?
+
+Oui, vous pouvez choisir une classe de stockage S3 spécifique lorsque AWS S3 est la cible :
+
+* Standard (il s'agit de la classe par défaut)
+* Le Tiering intelligent
+* Accès autonome et peu fréquent
+* Un seul accès à Zone-Infrequent
+* Glacier
+* Archives profondes des Glaciers
+
+
+
+
+=== Qu'en est-il des niveaux de stockage pour le stockage Azure Blob ?
+
+Vous pouvez choisir un niveau de stockage spécifique à Azure Blob lorsqu'un conteneur Blob est la cible :
+
+* Stockage à chaud
+* Stockage cool
+
+
+
+
+== Mise en réseau
+
+Les questions suivantes concernent les exigences de mise en réseau pour Cloud Sync.
+
+
+
+=== Quelles sont les exigences de mise en réseau pour Cloud Sync ?
+
+L'environnement Cloud Sync requiert que le courtier de données soit connecté à la source et à la cible via le protocole sélectionné (NFS, SMB, EFS) ou l'API de stockage objet (Amazon S3, Azure Blob, IBM Cloud Object Storage).
+
+En outre, le courtier de données a besoin d'une connexion Internet sortante sur le port 443 pour pouvoir communiquer avec le service Cloud Sync et contacter quelques autres services et référentiels.
+
+Pour en savoir plus, link:reference_sync_networking.html["examiner les besoins en matière de mise en réseau"].
+
+
+
+=== Y a-t-il des limites de mise en réseau liées à la connectivité des courtiers de données ?
+
+Les courtiers de données ont besoin d'un accès Internet. Nous ne prenons pas en charge un serveur proxy lors du déploiement d'un courtier en données dans Azure ou dans Google Cloud Platform.
+
+
+
+== Synchronisation des données
+
+Les questions suivantes concernent le fonctionnement de la synchronisation des données.
+
+
+
+=== À quelle fréquence la synchronisation se produit-elle ?
+
+Le planning par défaut est défini pour la synchronisation quotidienne. Après la synchronisation initiale, vous pouvez :
+
+* Modifiez le programme de synchronisation en fonction du nombre de jours, d'heures ou de minutes souhaité
+* Désactivez le programme de synchronisation
+* Supprimer le programme de synchronisation (aucune donnée ne sera perdue ; seule la relation de synchronisation sera supprimée)
+
+
+
+
+=== Quel est le programme de synchronisation minimal ?
+
+Vous pouvez planifier une relation pour synchroniser les données aussi souvent que toutes les 1 minute.
+
+
+
+=== Le courtier de données essaie-t-il lorsqu'un fichier ne parvient pas à se synchroniser ? Ou est-ce que ce délai ?
+
+Le courtier de données n'expire pas lorsqu'un seul fichier ne parvient pas à être transféré. Au lieu de cela, le courtier de données essaie à nouveau 3 fois avant de sauter le fichier. La valeur de la nouvelle tentative est configurable dans les paramètres d'une relation de synchronisation.
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["Découvrez comment modifier les paramètres d'une relation de synchronisation"].
+
+
+
+=== Que se passe-t-il si j'ai un très grand jeu de données ?
+
+Si un seul répertoire contient 600,000 fichiers ou plus, mailto:ng-cloudsync-support@netapp.com[contactez-nous] afin que nous puissions vous aider à configurer le courtier de données pour gérer la charge utile. Il est possible que nous devions ajouter de la mémoire supplémentaire à la machine du courtier de données.
+
+
+
+== Sécurité
+
+Les questions suivantes ont trait à la sécurité.
+
+
+
+=== Cloud Sync est-il sécurisé ?
+
+Oui. Toute la connectivité réseau des services Cloud Sync est utilisée https://aws.amazon.com/sqs/["Service SQS (simple Queue) d'Amazon"^].
+
+Toutes les communications entre le data broker et Amazon S3, Azure Blob, Google Cloud Storage et IBM Cloud Object Storage sont effectuées via le protocole HTTPS.
+
+Si vous utilisez Cloud Sync avec des systèmes sur site (source ou destination), voici quelques options de connectivité recommandées :
+
+* Une connexion AWS Direct Connect, Azure ExpressRoute ou Google Cloud Interconnect, qui n'est pas routée par Internet (et ne peut communiquer qu'avec les réseaux cloud que vous spécifiez)
+* Une connexion VPN entre votre passerelle sur site et vos réseaux cloud
+* Pour un transfert de données plus sécurisé avec des compartiments S3, le stockage Azure Blob ou Google Cloud Storage, un terminal Amazon Private S3, des terminaux de service Azure Virtual Network ou Private Google Access peuvent être établis.
+
+
+L'une de ces méthodes établit une connexion sécurisée entre vos serveurs NAS sur site et un courtier de données Cloud Sync.
+
+
+
+=== Les données sont-elles chiffrées par Cloud Sync ?
+
+* Cloud Sync prend en charge le chiffrement des données en vol entre les serveurs NFS source et cible. link:task_sync_nfs_encryption.html["En savoir plus >>"].
+* Le chiffrement n'est pas pris en charge avec SMB.
+* Lorsqu'un compartiment Amazon S3 est la cible d'une relation synchrone, vous pouvez choisir d'activer le chiffrement des données à l'aide du chiffrement AWS KMS ou AES-256.
+
+
+
+
+== Autorisations
+
+Les questions suivantes concernent les autorisations de données.
+
+
+
+=== Les autorisations de données SMB sont-elles synchronisées vers l'emplacement cible ?
+
+Vous pouvez configurer Cloud Sync pour préserver les listes de contrôle d'accès (ACL) entre un partage SMB source et un partage SMB cible. Vous pouvez également copier manuellement les ACL vous-même. link:task_sync_copying_acls.html["Découvrez comment copier des listes de contrôle d'accès entre partages SMB"].
+
+
+
+=== Les autorisations de données NFS sont-elles synchronisées vers l'emplacement cible ?
+
+Cloud Sync copie automatiquement les autorisations NFS entre les serveurs NFS comme suit :
+
+* NFS version 3 : Cloud Sync copie les autorisations et le propriétaire du groupe d'utilisateurs.
+* NFS version 4 : Cloud Sync copie les ACL.
+
+
+
+
+== Performance
+
+Les questions suivantes concernent les performances de Cloud Sync.
+
+
+
+=== Que représente l'indicateur de progression d'une relation de synchronisation ?
+
+La relation de synchronisation indique le débit de l'adaptateur réseau du courtier de données. Si vous accélérez les performances de synchronisation en utilisant plusieurs courtiers de données, le débit est la somme de tout le trafic. Ce débit est actualisé toutes les 20 secondes.
+
+
+
+=== J'éprouve des problèmes de performance. Pouvons-nous limiter le nombre de transferts simultanés ?
+
+Le courtier de données peut synchroniser 4 fichiers à la fois. Si vous avez des fichiers de très grande taille (plusieurs To chacun), il peut prendre beaucoup de temps pour terminer le processus de transfert et les performances peuvent être affectées.
+
+Limiter le nombre de transferts simultanés peut vous aider. Mailto:ng-cloudsync-support@netapp.com[Contactez-nous pour obtenir de l'aide].
+
+
+
+=== Pourquoi les performances avec Azure NetApp Files sont-elles faibles ?
+
+Lorsque vous synchronisez les données depuis ou vers Azure NetApp Files, vous risquez de subir des défaillances et des problèmes de performances si le niveau de service des disques est Standard.
+
+Définissez le niveau de service sur Premium ou Ultra pour améliorer les performances de synchronisation.
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["En savoir plus sur le débit et les niveaux de service de Azure NetApp Files"^].
+
+
+
+=== Pourquoi est-ce que j'ai de faibles performances avec Cloud Volumes Service pour AWS ?
+
+Lorsque vous synchronisez des données vers ou à partir d'un volume cloud, vous risquez de rencontrer des problèmes de performances et de panne si le niveau de performance du volume cloud est Standard.
+
+Définissez le niveau de service sur Premium ou Extreme pour améliorer les performances de synchronisation.
+
+
+
+=== Combien de courtiers de données sont requis ?
+
+Lorsque vous créez une nouvelle relation, vous commencez par un seul courtier de données (sauf si vous avez sélectionné un courtier de données existant qui appartient à une relation de synchronisation accélérée). Dans de nombreux cas, un seul courtier de données peut répondre aux exigences de performance d'une relation de synchronisation. Si ce n'est pas le cas, l'ajout de courtiers de données supplémentaires permet d'accélérer la synchronisation. Mais vous devez d'abord vérifier d'autres facteurs qui peuvent avoir un impact sur les performances de synchronisation.
+
+Plusieurs facteurs peuvent avoir un impact sur les performances de transfert de données. Les performances globales de la synchronisation peuvent être affectées en raison de la bande passante du réseau, de la latence et de la topologie du réseau, ainsi que des spécifications des VM du courtier de données et des performances du système de stockage. Par exemple, un seul courtier de données dans une relation de synchronisation peut atteindre 100 Mo/s, tandis que le débit du disque sur la cible peut uniquement permettre 64 Mo/s. Par conséquent, le courtier en données essaie de copier les données, mais la cible ne peut pas répondre aux besoins de performances du courtier.
+
+Assurez-vous donc de vérifier les performances de votre réseau et le débit du disque sur la cible.
+
+Vous pouvez ensuite envisager d'accélérer les performances de synchronisation en ajoutant un courtier de données supplémentaire pour partager la charge de cette relation. link:task_sync_managing_relationships.html#accelerating-sync-performance["Découvrez comment accélérer les performances de synchronisation"].
+
+
+
+== Suppression de choses
+
+Les questions suivantes concernent la suppression des relations de synchronisation et des données des sources et des cibles.
+
+
+
+=== Que se passe-t-il si je supprime ma relation Cloud Sync ?
+
+La suppression d'une relation arrête toutes les synchronisations de données futures et met fin au paiement. Toutes les données synchronisées sur la cible restent en l'état.
+
+
+
+=== Que se passe-t-il si je supprime quelque chose de mon serveur source ? Est-il également supprimé de la cible ?
+
+Par défaut, si vous disposez d'une relation de synchronisation active, l'élément supprimé sur le serveur source n'est pas supprimé de la cible lors de la prochaine synchronisation. Il existe toutefois une option dans les paramètres de synchronisation pour chaque relation, dans laquelle vous pouvez définir que Cloud Sync supprimera les fichiers de l'emplacement cible s'ils ont été supprimés de la source.
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["Découvrez comment modifier les paramètres d'une relation de synchronisation"].
+
+
+
+=== Que se passe-t-il si je supprime quelque chose de ma cible ? Est-il supprimé de ma source ?
+
+Si un élément est supprimé de la cible, il ne sera pas supprimé de la source. La relation est unidirectionnelle, de la source à la cible. Au cours du cycle de synchronisation suivant, Cloud Sync compare la source à la cible, identifie que l'élément est manquant et Cloud Sync le copie à nouveau de la source à la cible.
+
+
+
+== Dépannage
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Cloud_Sync/Cloud_Sync_FAQ:_Support_and_Troubleshooting["Base de connaissances NetApp : FAQ Cloud Sync : support et dépannage"^]
+
+
+
+== Data broker plongez en profondeur
+
+La question suivante concerne le courtier de données.
+
+
+
+=== Pouvez-vous expliquer l'architecture du data broker ?
+
+Bien sûr. Voici les points les plus importants :
+
+* Le courtier de données est une application node.js exécutée sur un hôte Linux.
+* Cloud Sync déploie le courtier de données comme suit :
++
+** AWS : à partir d'un modèle AWS CloudFormation
+** Azure : d'Azure Resource Manager
+** Google : à partir de Google Cloud Deployment Manager
+** Si vous utilisez votre propre hôte Linux, vous devez installer manuellement le logiciel
+
+
+* Le logiciel Data Broker se met automatiquement à niveau vers la dernière version.
+* Le data broker utilise AWS SQS comme canal de communication fiable et sécurisé et pour le contrôle et la surveillance. Les LP fournissent également une couche de persistance.
+* Vous pouvez ajouter des courtiers de données supplémentaires à une relation pour augmenter la vitesse de transfert et augmenter la haute disponibilité. La résilience des services est assurée en cas de défaillance d'un courtier de données.
+

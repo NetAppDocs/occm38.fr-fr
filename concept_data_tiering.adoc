@@ -1,0 +1,161 @@
+---
+sidebar: sidebar 
+permalink: concept_data_tiering.html 
+keywords: storage tiering, tier, tiering, data tiering, s3, s3 tiering, capacity, performance, s3 endpoint, fabric pool, fabricpool, s3 bucket, requirement, vpc endpoint, policy, policies, tiering policies, auto, snapshot only, backup, none, cooling period, volume tiering policies, blob, standard, infrequent access, hot, cool, tiering level, storage tier, storage class 
+summary: Réduisez vos coûts de stockage en activant le Tiering automatisé des données inactives vers un stockage objet à faible coût. 
+---
+= Vue d'ensemble du hiérarchisation des données
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Réduisez vos coûts de stockage en permettant le Tiering automatisé des données inactives vers un stockage objet à faible coût. Les données actives conservent les disques SSD ou HDD haute performance, tandis que les données inactives sont envoyées vers un stockage objet à faible coût. Vous pouvez ainsi récupérer de l'espace sur votre stockage principal et réduire le stockage secondaire.
+
+image:diagram_data_tiering.png["Il s'agit d'une image conceptuelle qui affiche les données actives envoyées au stockage EBS et les données inactives vers le stockage S3."]
+
+Cloud Volumes ONTAP prend en charge le Tiering des données dans AWS, Azure et Google Cloud Platform. La hiérarchisation des données est optimisée par la technologie FabricPool.
+
+
+NOTE: Inutile d'installer une licence pour activer le Tiering des données (FabricPool).
+
+
+
+== Tiering des données dans AWS
+
+Lorsque vous activez le Tiering des données dans AWS, Cloud Volumes ONTAP utilise EBS comme Tier de performance pour les données actives et AWS S3 comme Tier de capacité pour les données inactives.
+
+Tier de performance:: Le niveau de performance peut être des disques SSD à usage général, des disques SSD IOPS provisionnés ou des disques durs optimisés pour le débit.
+Des disques SSD/HDD FAS:: Un système Cloud Volumes ONTAP transfère les données inactives vers un seul compartiment S3 à l'aide de la classe de stockage _Standard_. La norme est idéale pour les données fréquemment consultées stockées dans plusieurs zones de disponibilité.
++
+--
+
+NOTE: Cloud Manager crée un compartiment S3 unique pour chaque environnement de travail et le nomme ce compartiment unique « fabric-pool-_cluster »_. Un compartiment S3 différent n'est pas créé pour chaque volume.
+
+--
+Classes de stockage:: La classe de stockage par défaut pour les données hiérarchisées dans AWS est _Standard_. Si vous ne prévoyez pas d'accéder aux données inactives, vous pouvez réduire vos coûts de stockage en changeant la classe de stockage à l'une des catégories suivantes : _Intelligent Tiering_, _One-zone Infrequent Access_ ou _Standard-Infrequent Access_. Lorsque vous modifiez la classe de stockage, les données inactives commencent dans la classe de stockage Standard et sont transitions vers la classe de stockage que vous avez sélectionnée, si les données ne sont pas accessibles après 30 jours.
++
+--
+Les coûts d'accès sont plus élevés si vous accédez aux données. Prenez donc ces considérations avant de changer la classe de stockage. https://aws.amazon.com/s3/storage-classes["En savoir plus sur les classes de stockage Amazon S3"^].
+
+Vous pouvez sélectionner une classe de stockage lors de la création de l'environnement de travail et la modifier à tout moment après. Pour plus de détails sur la modification de la classe de stockage, voir link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].
+
+La classe de stockage du Tiering des données est étendue au système - elle n'est pas par volume.
+
+--
+
+
+
+
+== Tiering des données dans Azure
+
+Lorsque vous activez le Tiering des données dans Azure, Cloud Volumes ONTAP utilise des disques gérés Azure comme un Tier de performance pour les données actives et le stockage Azure Blob comme un Tier de capacité pour les données inactives.
+
+Tier de performance:: Le Tier de performance peut être soit des disques SSD, soit des disques durs.
+Des disques SSD/HDD FAS:: Un système Cloud Volumes ONTAP transfère les données inactives vers un seul conteneur Blob à l'aide du Tier de stockage Azure _hot_. Le Tier actif est idéal pour les données fréquemment utilisées.
++
+--
+
+NOTE: Cloud Manager crée un nouveau compte de stockage avec un container unique pour chaque environnement de travail Cloud Volumes ONTAP. Le nom du compte de stockage est aléatoire. Un container différent n'est pas créé pour chaque volume.
+
+--
+Les niveaux d'accès au stockage:: Le niveau d'accès au stockage par défaut pour les données hiérarchisées dans Azure est le _hot_ Tier. Si vous ne prévoyez pas d'accéder aux données inactives, vous pouvez réduire vos coûts de stockage en utilisant le niveau de stockage _cool_. Lorsque vous modifiez le niveau de stockage, les données inactives commencent dans le Tier de stockage à chaud et se transfère sur le Tier de stockage à froid, si les données ne sont pas accessibles au bout de 30 jours.
++
+--
+Les coûts d'accès sont plus élevés si vous accédez aux données, prenez donc ces considérations avant de changer le Tier de stockage. https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers["En savoir plus sur les tiers d'accès au stockage Azure Blob"^].
+
+Vous pouvez sélectionner un niveau de stockage lors de la création de l'environnement de travail et le modifier à tout moment après. Pour plus d'informations sur la modification du niveau de stockage, reportez-vous à la section link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].
+
+Le niveau d'accès au stockage pour le Tiering des données concerne l'ensemble du système - il ne s'agit pas de par volume.
+
+--
+
+
+
+
+== Tiering des données dans GCP
+
+Lorsque vous activez le Tiering des données dans GCP, Cloud Volumes ONTAP utilise des disques persistants comme Tier de performance pour les données actives et un compartiment Google Cloud Storage comme Tier de capacité pour les données inactives.
+
+Tier de performance:: Le Tier de performance peut être soit des disques SSD, soit des disques HDD (disques standard).
+Des disques SSD/HDD FAS:: Un système Cloud Volumes ONTAP transfère les données inactives vers un seul compartiment de stockage cloud Google à l'aide de la classe de stockage _régional_.
++
+--
+
+NOTE: Cloud Manager crée un compartiment unique pour chaque environnement de travail et lui attribue un identifiant unique « fabric-pool »-_cluster_. Un compartiment différent n'est pas créé pour chaque volume.
+
+--
+Classes de stockage:: La classe de stockage par défaut pour les données hiérarchisées est la classe _Standard Storage_. Si les données sont rarement utilisées, vous pouvez réduire vos coûts de stockage en utilisant _Nearline Storage_ ou _Coldline Storage_. Lorsque vous modifiez la classe de stockage, les données inactives commencent dans la classe de stockage standard et sont transitions vers la classe de stockage que vous avez sélectionnée, si les données ne sont pas accessibles après 30 jours.
++
+--
+Les coûts d'accès sont plus élevés si vous accédez aux données. Prenez donc ces considérations avant de changer la classe de stockage. https://cloud.google.com/storage/docs/storage-classes["En savoir plus sur les classes de stockage pour Google Cloud Storage"^].
+
+Vous pouvez sélectionner un niveau de stockage lors de la création de l'environnement de travail et le modifier à tout moment après. Pour plus de détails sur la modification de la classe de stockage, voir link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].
+
+La classe de stockage du Tiering des données est étendue au système - elle n'est pas par volume.
+
+--
+
+
+
+
+== Tiering des données et limites de capacité
+
+Si vous activez le Tiering des données, la limite de capacité d'un système reste la même. La limite est répartie entre le niveau de performance et le niveau de capacité.
+
+
+
+== Stratégies de hiérarchisation des volumes
+
+Pour activer la hiérarchisation des données, vous devez sélectionner une stratégie de hiérarchisation des volumes lorsque vous créez, modifiez ou répliquez un volume. Vous pouvez sélectionner une stratégie différente pour chaque volume.
+
+Certaines stratégies de hiérarchisation ont une période de refroidissement minimale associée, qui définit le temps pendant lequel les données utilisateur d'un volume doivent rester inactives pour que les données soient considérées comme "froides" et déplacées vers le niveau de capacité.
+
+Cloud Manager vous permet de choisir parmi les règles de Tiering des volumes suivantes lorsque vous créez ou modifiez un volume :
+
+Snapshot uniquement:: Après avoir atteint une capacité de 50 %, Cloud Volumes ONTAP met à niveau les données utilisateur à froid des copies Snapshot qui ne sont pas associées au système de fichiers actif au niveau de la capacité. La période de refroidissement est d'environ 2 jours.
++
+--
+En cas de lecture, les blocs de données à froid sur le niveau de capacité deviennent chauds et sont déplacés vers le niveau de performance.
+
+--
+Tout:: Toutes les données (sans les métadonnées) sont immédiatement marquées comme inactives et hiérarchisées vers le stockage objet dès que possible. Il n'est pas nécessaire d'attendre 48 heures que les nouveaux blocs d'un volume soient inactifs. Notez que les blocs situés dans le volume avant la définition de toutes les règles exigent 48 heures pour être froids.
++
+--
+Si les blocs de données inactives du Tier cloud sont lus, ceux-ci restent inactives et ne sont pas réécrits sur le Tier de performance. Cette règle est disponible à partir de ONTAP 9.6.
+
+--
+Auto:: Après avoir atteint une capacité de 50 %, Cloud Volumes ONTAP met à niveau des blocs de données à froid dans un volume vers un niveau de capacité. Les données à froid comprennent non seulement des copies Snapshot, mais aussi des données utilisateur à froid provenant du système de fichiers actif. La période de refroidissement est d'environ 31 jours.
++
+--
+Cette stratégie est prise en charge à partir de Cloud Volumes ONTAP 9.4.
+
+En cas de lecture aléatoire, les blocs de données à froid du niveau de capacité deviennent chauds et passent au niveau de performance. Si elles sont lues par des lectures séquentielles, telles que celles associées aux analyses d'index et d'antivirus, les blocs de données à froid restent froids et ne passent pas au niveau de performance.
+
+--
+Aucune:: Conserve les données d'un volume dans le niveau de performance, ce qui empêche leur déplacement vers le niveau de capacité.
+
+
+Lorsque vous répliquez un volume, vous pouvez choisir le Tiering des données dans le stockage objet. Si c'est le cas, Cloud Manager applique la règle *Backup* au volume de protection des données. Depuis Cloud Volumes ONTAP 9.6, la règle de hiérarchisation *All* remplace la règle de sauvegarde.
+
+
+
+=== La désactivation de Cloud Volumes ONTAP a des répercussions sur la période de refroidissement
+
+Les blocs de données sont refroidis par des analyses de refroidissement. Durant ce processus, la température des blocs pendant lesquels leur température de bloc n'a pas été utilisée est déplacée (refroidie) vers la valeur inférieure suivante. La durée de refroidissement par défaut dépend de la règle de Tiering du volume :
+
+* Auto : 31 jours
+* Snapshot uniquement : 2 jours
+
+
+Cloud Volumes ONTAP doit être en cours d'exécution pour que l'acquisition de refroidissement fonctionne. Si le Cloud Volumes ONTAP est désactivé, le refroidissement s'arrête également. Les temps de refroidissement peuvent ainsi être plus longs.
+
+
+
+== Configuration du tiering des données
+
+Pour obtenir des instructions et une liste des configurations prises en charge, reportez-vous à la section link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].

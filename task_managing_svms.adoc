@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: task_managing_svms.html 
+keywords: storage virtual machine, vserver, svm, storage vm, supported number, number supported 
+summary: Une VM de stockage est une machine virtuelle exécutée dans ONTAP, qui fournit des services de données et de stockage à vos clients. On peut le connaître comme un SVM ou un vserver. La solution Cloud Volumes ONTAP est configurée par défaut avec une seule machine virtuelle de stockage, mais certaines configurations prennent en charge des machines virtuelles de stockage supplémentaires. 
+---
+= Gestion des machines virtuelles de stockage
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Une VM de stockage est une machine virtuelle exécutée dans ONTAP, qui fournit des services de données et de stockage à vos clients. Vous pouvez le connaître comme _SVM_ ou _vserver_. La solution Cloud Volumes ONTAP est configurée par défaut avec une seule machine virtuelle de stockage, mais certaines configurations prennent en charge des machines virtuelles de stockage supplémentaires.
+
+
+
+== Nombre de machines virtuelles de stockage pris en charge
+
+Cloud Volumes ONTAP 9.7 prend en charge plusieurs machines virtuelles de stockage dans AWS avec certaines configurations et une licence d'extension. https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html#logical-storage-limits["Afficher le nombre de machines virtuelles de stockage prises en charge dans AWS"^]. Contactez l'équipe en charge de votre compte pour obtenir une licence d'extension SVM.
+
+Toutes les autres configurations Cloud Volumes ONTAP prennent en charge une VM de stockage servant aux données et une VM de stockage de destination utilisée pour la reprise après incident. Vous pouvez activer la machine virtuelle de stockage de destination pour l'accès aux données en cas de panne sur la machine virtuelle de stockage source.
+
+Une machine virtuelle de stockage s'étend sur l'ensemble du système Cloud Volumes ONTAP (paire haute disponibilité ou nœud unique).
+
+
+
+== Création de machines virtuelles de stockage supplémentaires
+
+Si votre configuration prend en charge, vous pouvez créer des VM de stockage supplémentaires à l'aide de link:task_connecting_to_otc.html["System Manager ou l'interface de ligne de commandes"].
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["Création d'un SVM pour l'accès SMB"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nfs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["Création d'un SVM pour l'accès NFS"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-0FCB46AA-DA18-417B-A9EF-B6A665DB77FC.html["Création d'un SVM pour l'accès iSCSI"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["Création d'un SVM de destination pour la reprise après incident"^]
+
+
+
+
+== Utilisation de plusieurs VM de stockage dans Cloud Manager
+
+Cloud Manager prend en charge toutes les machines virtuelles de stockage supplémentaires que vous créez à partir de System Manager ou de l'interface de ligne de commandes.
+
+Par exemple, l'image suivante montre comment choisir une VM de stockage lors de la création d'un volume.
+
+image:screenshot_create_volume_svm.gif["Une capture d'écran montre la possibilité de sélectionner la machine virtuelle de stockage dans laquelle vous souhaitez créer un volume."]
+
+L'image suivante montre comment choisir une VM de stockage lors de la réplication d'un volume sur un autre système.
+
+image:screenshot_replicate_volume_svm.gif["Une capture d'écran montre la possibilité de sélectionner la machine virtuelle de stockage dans laquelle vous souhaitez répliquer un volume."]
+
+
+
+== Gestion de la reprise après incident des machines virtuelles de stockage
+
+Cloud Manager ne prend pas en charge la configuration ou l'orchestration pour la reprise d'activité des machines virtuelles de stockage. Vous devez utiliser System Manager ou l'interface de ligne de commandes.
+
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["Guide de préparation rapide pour la reprise après incident du SVM"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839857["Guide de reprise après incident de SVM Express"^]
+
+
+
+
+== Modification du nom de la machine virtuelle de stockage
+
+Cloud Manager attribue automatiquement la VM de stockage créée pour Cloud Volumes ONTAP. Si vous avez des normes de nommage très strictes, vous pouvez modifier le nom de la machine virtuelle de stockage. Par exemple, vous pouvez indiquer le nom des machines virtuelles de stockage dans vos clusters ONTAP.
+
+Si vous avez créé des machines virtuelles de stockage supplémentaires pour Cloud Volumes ONTAP, vous ne pouvez pas les renommer à partir de Cloud Manager. Pour ce faire, vous devez utiliser System Manager ou l'interface de ligne de commandes directement dans Cloud Volumes ONTAP.
+
+.Étapes
+. Dans l'environnement de travail, cliquez sur l'icône de menu, puis sur *informations*.
+. Cliquez sur l'icône d'édition située à droite du nom de la VM de stockage.
++
+image:screenshot_svm.gif["Capture d'écran : affiche le champ Nom de la SVM et l'icône d'édition que vous devez cliquer pour modifier le nom de la SVM."]
+
+. Dans la boîte de dialogue Modifier le nom du SVM, modifiez le nom, puis cliquez sur *Enregistrer*.
+

@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: concept_gfc_enduser_training.html 
+keywords: global file cache, training 
+summary: 'Vous pouvez former vos utilisateurs aux meilleures pratiques d"accès aux fichiers partagés via Global File cache.' 
+---
+= Formation des utilisateurs finaux
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Vous pouvez former vos utilisateurs aux meilleures pratiques d'accès aux fichiers partagés via Global File cache.
+
+Il s'agit de la phase finale du déploiement de Global File cache, phase d'implémentation par l'utilisateur final.
+
+Afin de préparer et de rationaliser le processus d'intégration des utilisateurs finaux, utilisez le modèle d'e-mail ci-dessous qui vous aidera à former les utilisateurs finaux sur les moyens de travailler dans un environnement de « données centrales ». Cela aidera vos utilisateurs à tirer parti de tous les avantages de la solution Global File cache. Nous avons également publié une vidéo qui peut être partagée à "former" les utilisateurs si nécessaire.
+
+Personnaliser et transférer les ressources suivantes aux utilisateurs finaux pour les préparer au déploiement :
+
+* Vidéo de formation des utilisateurslink:https://www.youtube.com/watch?v=RYvhnTz4bEA["Vidéo de formation des utilisateurs finaux"^]
+* Modèle d'e-maillink:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Onboarding%20Email.emltpl["Modèle d'e-mail Mac (.emltpl)"]
++
+link:https://docs.netapp.com/us-en/occm/media/Global_File_Cache_Onboarding_Email.msg["Modèle de messagerie Windows (.msg)"]
+
+* Communications d'intégrationlink:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Customer%20Onboarding%20-%20Draft.docx["Document Word (.docx)"]
+
+
+Reportez-vous au chapitre 12 du link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["Guide de l'utilisateur NetApp Global File cache"^] pour du matériel supplémentaire.
