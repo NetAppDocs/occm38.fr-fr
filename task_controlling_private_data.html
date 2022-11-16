@@ -1,0 +1,4302 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head class="at-element-marker">
+  <title>La visibilité et le contrôle des données privées</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="La visibilité et le contrôle des données privées" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/fr-fr/occm38/task_controlling_private_data.html" />
+	<meta property="og:description" content="Prenez le contrôle de vos données privées en affichant les détails sur les données personnelles et les données personnelles sensibles de votre organisation. ..." />
+  <meta property="og:image" content="https://docs.netapp.com/fr-fr/occm38/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta http-equiv="nss-product" content="OnCommand Cloud Manager"/><meta name="description" content="Prenez le contrôle de vos données privées en affichant les détails sur les données personnelles et les données personnelles sensibles de votre organisation. ...">
+  <meta name="keywords" content=" personal files, personal data, sensitive personal files, sensitive personal data, health data, ethnic origin, political opinions, gdpr, email address, credit card, ip address, iban, national ID, identifier, sex, criminal, compliance, privacy"><!-- Icons -->
+  <link rel="icon" href="/fr-fr/occm38/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/fr-fr/occm38/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/fr-fr/occm38/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/fr-fr/occm38/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/fr-fr/occm38/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/fr-fr/occm38/js/na-search.js'></script><script src='/fr-fr/occm38/js/na-pagenav.js'></script><script src='/fr-fr/occm38/js/na-utility.js'></script>
+  <script src='/fr-fr/occm38/js/clouddocs.js'></script>
+  <script src='/fr-fr/occm38/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/fr-fr/occm38/js/toc.js'></script>
+  <script src='/fr-fr/occm38/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/fr-fr/occm38"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/fr-fr/occm38/js/custom-dropdown.js'></script>
+  <script src='/fr-fr/occm38/js/FileSaver.min.js'></script>
+  <script src='/fr-fr/occm38/js/jszip-utils.min.js'></script>
+  <script src='/fr-fr/occm38/js/jszip.min.js'></script>
+  <script src='/fr-fr/occm38/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/occm38/issues/new?body=Page%3A%20[La visibilité et le contrôle des données privées](https://docs.netapp.com/fr-fr/occm38/task_controlling_private_data.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/fr-fr/occm38/images/discuss-sm.svg" alt="" class="github-icon" />Demander de modifier un document</a><a target="_blank" href="https://github.com/NetAppDocs/occm38/blob/main/task_controlling_private_data.adoc" class="page-nav-contribute-link" role="button"><img src="/fr-fr/occm38/images/edit-sm.svg" alt="" class="github-icon" />Modifier sur GitHub</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/fr-fr/occm38/images/article-sm.svg" alt="" class="github-icon" />Guide des contributeurs</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">SUR CETTE PAGE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produits et solutions</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support et formation</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Communauté</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Témoignages clients</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/fr-fr/occm38/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/fr-fr/occm38/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/fr-fr/occm38/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/fr-fr/occm38/search.html"
+          data-type="widget" 
+          data-placeholder="Rechercher une documentation"
+          data-no-results-found="Aucun résultat n'a été trouvé pour {query}"
+          data-did-you-mean="Rechercher {suggestion}."
+          data-no-results-found-did-you-mean="Aucun résultat n’a été trouvé pour {query}. Voulez-vous dire {suggestion} ?"
+          data-results-found="{hitCount} résultats trouvés"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/occm38/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Français</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/fr-fr/occm38/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/fr-fr/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/occm38/task_controlling_private_data.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/fr-fr/occm38/images/collapse.png" alt="Réduire le panneau de navigation"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>PDFs disponibles<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/fr-fr/occm38/pdfs/fullsite-sidebar/Documentation_sur_Cloud_Manager_et_Cloud_Volumes_ONTAP.pdf" >
+          <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>PDF de ce site de documentation</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Notes_de_mise_à_jour.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Notes de mise à jour
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Le_gestionnaire_Cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Le gestionnaire Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_avec_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez avec Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurez_un_compte_Cloud_Central.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Configurez un compte Cloud Central
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurer_un_connecteur.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Configurer un connecteur
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Gérer Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Apprendre.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Apprendre
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Stockage.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Stockage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Paires_haute_disponibilité.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Paires haute disponibilité
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_dans_AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez dans AWS
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurez_votre_réseau.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Configurez votre réseau
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_à_Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez à Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Lancez_vous_dans_GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Lancez-vous dans GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Provisionner_et_gérer_le_stockage.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Provisionner et gérer le stockage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Contrôle_des_performances.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Contrôle des performances
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Administration.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Administration
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Provisionner_des_volumes_à_l_aide_d_un_service_de_fichiers.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Provisionner des volumes à l'aide d'un service de fichiers
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Azure_NetApp_Files.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Azure NetApp Files
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Cloud_Volumes_Service_pour_AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Cloud Volumes Service pour AWS
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Cloud_Volumes_Service_pour_GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Cloud Volumes Service pour GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_clusters_ONTAP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Gérer les clusters ONTAP
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Sauvegarder_dans_le_cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Sauvegarder dans le cloud
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Copiez_et_synchronisez_les_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Copiez et synchronisez les données
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Comment_installer_un_courtier_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Comment installer un courtier de données
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Tutoriels.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Tutoriels
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Améliorez_la_confidentialité_des_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Améliorez la confidentialité des données
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Activez_la_numérisation_sur_vos_sources_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Activez la numérisation sur vos sources de données
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Activez_le_partage_global_des_fichiers_en_temps_réel.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Activez le partage global des fichiers en temps réel
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Optimisation_des_coûts_du_cloud_computing.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Optimisation des coûts du cloud computing
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Basculez_les_données_vers_le_cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Basculez les données vers le cloud
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Administration_de_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Administration de Cloud Manager
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_connecteurs.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Gérer les connecteurs
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Autres_façons_de_créer_des_connecteurs.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Autres façons de créer des connecteurs
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_identifiants.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Gérer les identifiants
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            AWS
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            GCP
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/fr-fr/occm38/pdfs/sidebar/API_et_automatisation.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf.png" alt="" width="16" height="16"/>
+            API et automatisation
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/fr-fr/occm38/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Collection de documents PDF séparés<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation Cloud Manager"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/index.html">
+        Documentation Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Notes de mise à jour</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Le gestionnaire Cloud"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Le gestionnaire Cloud</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quoi de neuf"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_new_occm.html">
+        Quoi de neuf
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avec la transition vers le SaaS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_saas.html">
+        Avec la transition vers le SaaS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes connus"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_issues.html">
+        Problèmes connus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Limites connues"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_limitations.html">
+        Limites connues
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-volumes-ontap/">
+        Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Changements importants"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_key_changes.html">
+        Changements importants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez avec Cloud Manager"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez avec Cloud Manager</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Cloud Manager"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_overview.html">
+        Découvrez Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation du réseau"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_networking.html">
+        Présentation du réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Inscrivez-vous à Cloud Central"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_signing_up.html">
+        Inscrivez-vous à Cloud Central
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Connectez-vous à Cloud Manager"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_logging_in.html">
+        Connectez-vous à Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez un compte Cloud Central"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Configurez un compte Cloud Central</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez les comptes Cloud Central"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cloud_central_accounts.html">
+        Découvrez les comptes Cloud Central
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez un compte"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setting_up_cloud_central_accounts.html">
+        Configurez un compte
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer un connecteur"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Configurer un connecteur</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les connecteurs"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_connectors.html">
+        En savoir plus sur les connecteurs
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration réseau requise"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_networking_cloud_manager.html">
+        Configuration réseau requise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez un connecteur dans AWS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_creating_connectors_aws.html">
+        Créez un connecteur dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un connecteur dans Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_creating_connectors_azure.html">
+        Créer un connecteur dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un connecteur dans GCP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_creating_connectors_gcp.html">
+        Créer un connecteur dans GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Par où aller plus loin"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_whats_next.html">
+        Par où aller plus loin
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gérer Cloud Volumes ONTAP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Apprendre"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Apprendre</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_overview_cvo.html">
+        Présentation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Stockage"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Stockage</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Disques et agrégats"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_storage.html">
+        Disques et agrégats
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering des données"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_data_tiering.html">
+        Tiering des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion du stockage"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_storage_management.html">
+        Gestion du stockage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash cache"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_flash_cache.html">
+        Flash cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Stockage WORM"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_worm.html">
+        Stockage WORM
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires haute disponibilité"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Paires haute disponibilité</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires HA dans AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_ha.html">
+        Paires HA dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires HA dans Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_ha_azure.html">
+        Paires HA dans Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="L'évaluation"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_evaluating.html">
+        L'évaluation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Licences"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_licensing.html">
+        Licences
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sécurité"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_security.html">
+        Sécurité
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performance"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_performance.html">
+        Performance
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Configurations compatibles"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html">
+        Configurations compatibles
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Régions prises en charge"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://cloud.netapp.com/cloud-volumes-global-regions">
+        Régions prises en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration par défaut"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_default_configs.html">
+        Configuration par défaut
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez dans AWS"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez dans AWS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_aws.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_planning_your_config.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Configurez votre réseau</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration réseau requise"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_networking_aws.html">
+        Configuration réseau requise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration d'une passerelle de transit AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setting_up_transit_gateway.html">
+        Configuration d'une passerelle de transit AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Règles de groupe de sécurité pour AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_security_groups.html">
+        Règles de groupe de sécurité pour AWS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration du KMS AWS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setting_up_kms.html">
+        Configuration du KMS AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans AWS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deploying_otc_aws.html">
+        Lancez un système dans AWS
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Lancez-vous dans AWS C2S"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/occm/media/c2s.pdf">
+        Lancez-vous dans AWS C2S
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez à Azure"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez à Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_azure.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_planning_your_config_azure.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_networking_azure.html">
+        Configurez votre réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans Azure"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deploying_otc_azure.html">
+        Lancez un système dans Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez-vous dans GCP"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Lancez-vous dans GCP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_gcp.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_planning_your_config_gcp.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_networking_gcp.html">
+        Configurez votre réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilisez des clés de chiffrement gérées par le client"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setting_up_gcp_encryption.html">
+        Utilisez des clés de chiffrement gérées par le client
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans GCP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deploying_gcp.html">
+        Lancez un système dans GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionner et gérer le stockage"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Provisionner et gérer le stockage</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez des volumes, des agrégats et des LUN"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_provisioning_storage.html">
+        Créez des volumes, des agrégats et des LUN
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des volumes et des agrégats"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_storage.html">
+        Gestion des volumes et des agrégats
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Transférez les données inactives vers le stockage objet"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_tiering.html">
+        Transférez les données inactives vers le stockage objet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les machines virtuelles de stockage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_svms.html">
+        Gérer les machines virtuelles de stockage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilisez ONTAP comme stockage persistant"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_connecting_kubernetes.html">
+        Utilisez ONTAP comme stockage persistant
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Chiffrement des volumes avec le chiffrement NetApp"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_encrypting_volumes.html">
+        Chiffrement des volumes avec le chiffrement NetApp
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Réplication des données"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_replicating_data.html">
+        Réplication des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contrôle des performances"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Contrôle des performances</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez surveillance"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_monitoring.html">
+        Découvrez surveillance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_monitoring.html">
+        Commencez
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la protection par ransomware"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_protecting_ransomware.html">
+        Améliorez la protection par ransomware
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Enregistrez les systèmes avec paiement à l'utilisation"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_registering.html">
+        Enregistrez les systèmes avec paiement à l'utilisation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setting_up_ontap_cloud.html">
+        Configurer Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les licences BYOL"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_licenses.html">
+        Gérez les licences BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à jour le logiciel"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_updating_ontap_cloud.html">
+        Mettez à jour le logiciel
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Modifier les configurations système"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_modifying_ontap_cloud.html">
+        Modifier les configurations système
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Arrêter et démarrer les systèmes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_state.html">
+        Arrêter et démarrer les systèmes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contrôle des coûts AWS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_monitoring_costs.html">
+        Contrôle des coûts AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Connectez-vous à Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_connecting_to_otc.html">
+        Connectez-vous à Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajouter des systèmes existants"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_adding_ontap_cloud.html">
+        Ajouter des systèmes existants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supprimer des systèmes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deleting_working_env.html">
+        Supprimer des systèmes
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionner des volumes à l'aide d'un service de fichiers"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Provisionner des volumes à l'aide d'un service de fichiers</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure NetApp Files"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure NetApp Files</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Azure NetApp Files"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_azure_netapp_files.html">
+        Découvrez Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer Azure NetApp Files"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_anf.html">
+        Configurer Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création et gestion des volumes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_anf_volumes.html">
+        Création et gestion des volumes
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes Service pour AWS"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Cloud Volumes Service pour AWS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Volumes Service pour AWS"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cvs_aws.html">
+        En savoir plus sur Cloud Volumes Service pour AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement et gestion de Cloud volumes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_cvs_aws.html">
+        Déploiement et gestion de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des copies Snapshot de Cloud volumes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_cloud_volumes_snapshots.html">
+        Gestion des copies Snapshot de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les niveaux de service et la capacité allouée"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_cvs_service_levels_and_quotas.html">
+        Les niveaux de service et la capacité allouée
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paramètres des groupes de sécurité AWS pour les serveurs Windows AD"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_security_groups_windows_ad_servers.html">
+        Paramètres des groupes de sécurité AWS pour les serveurs Windows AD
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes Service pour GCP"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Cloud Volumes Service pour GCP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Volumes Service pour GCP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cvs_gcp.html">
+        En savoir plus sur Cloud Volumes Service pour GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration de Cloud Volumes Service pour GCP"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_setup_cvs_gcp.html">
+        Configuration de Cloud Volumes Service pour GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création et gestion de Cloud volumes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_cvs_gcp.html">
+        Création et gestion de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des copies Snapshot de Cloud volumes"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_manage_cloud_volumes_gcp_snapshots.html">
+        Gestion des copies Snapshot de Cloud volumes
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les clusters ONTAP"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gérer les clusters ONTAP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrir les clusters ONTAP"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_discovering_ontap.html">
+        Découvrir les clusters ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer des volumes ONTAP"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_provisioning_ontap.html">
+        Gérer des volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarder dans le cloud"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Sauvegarder dans le cloud</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez la sauvegarde dans le cloud"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_backup_to_cloud.html">
+        Découvrez la sauvegarde dans le cloud
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde dans Amazon S3"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_backup_to_s3.html">
+        Sauvegarde dans Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde dans le stockage Azure Blob"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_backup_to_azure.html">
+        Sauvegarde dans le stockage Azure Blob
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde à partir des systèmes ONTAP sur site"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_backup_from_onprem.html">
+        Sauvegarde à partir des systèmes ONTAP sur site
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les sauvegardes et restaurez les données"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_backups.html">
+        Gérez les sauvegardes et restaurez les données
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copiez et synchronisez les données"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Copiez et synchronisez les données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Sync"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cloud_sync.html">
+        En savoir plus sur Cloud Sync
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_quick_start.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Préparer la source et la cible"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_sync_requirements.html">
+        Préparer la source et la cible
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Préparation de la mise en réseau"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_sync_networking.html">
+        Préparation de la mise en réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Comment installer un courtier de données"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Comment installer un courtier de données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez dans AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_installing_aws.html">
+        Installez dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez-le dans Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_installing_azure.html">
+        Installez-le dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez-les dans GCP"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_installing_gcp.html">
+        Installez-les dans GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez sur un hôte Linux"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_installing_linux.html">
+        Installez sur un hôte Linux
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création d'une relation synchrone"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_creating_relationships.html">
+        Création d'une relation synchrone
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Payer pour les relations synchronisées"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_licensing.html">
+        Payer pour les relations synchronisées
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tutoriels"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Tutoriels</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copie des listes de contrôle d'accès entre les partages"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_copying_acls.html">
+        Copie des listes de contrôle d'accès entre les partages
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Chiffrez les données NFS à la volée"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_nfs_encryption.html">
+        Chiffrez les données NFS à la volée
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des relations synchronisées"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_sync_managing_relationships.html">
+        Gestion des relations synchronisées
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="API"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/api_sync.html">
+        API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/faq_sync.html">
+        FAQ
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la confidentialité des données"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Améliorez la confidentialité des données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Cloud Compliance"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cloud_compliance.html">
+        Découvrez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déployez Cloud Compliance"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deploy_cloud_compliance.html">
+        Déployez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activez la numérisation sur vos sources de données"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Activez la numérisation sur vos sources de données</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes ONTAP et Azure NetApp Files"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_compliance.html">
+        Cloud Volumes ONTAP et Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Compartiments Amazon S3"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_scanning_s3.html">
+        Compartiments Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Schémas de base de données"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_scanning_databases.html">
+        Schémas de base de données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les données ONTAP sur site"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_scanning_onprem.html">
+        Les données ONTAP sur site
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la visibilité et le contrôle des données"
+      data-li-level="2#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_controlling_private_data.html">
+        Améliorez la visibilité et le contrôle des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Générer des rapports"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_generating_compliance_reports.html">
+        Générer des rapports
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Répondre à un DSAR"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_responding_to_dsar.html">
+        Répondre à un DSAR
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Désactivez Cloud Compliance"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_compliance.html">
+        Désactivez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/faq_cloud_compliance.html">
+        FAQ
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activez le partage global des fichiers en temps réel"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Activez le partage global des fichiers en temps réel</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Global File cache"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_gfc.html">
+        En savoir plus sur Global File cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avant de commencer à déployer Global File cache"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_before_you_begin_to_deploy_gfc.html">
+        Avant de commencer à déployer Global File cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pour commencer"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_gfc_getting_started.html">
+        Pour commencer
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avant de commencer à déployer Global File cache Edge"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/download_gfc_resources.html">
+        Avant de commencer à déployer Global File cache Edge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement de Global File cache Edge"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_deploy_gfc_edge_instances.html">
+        Déploiement de Global File cache Edge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Formation des utilisateurs finaux"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_gfc_enduser_training.html">
+        Formation des utilisateurs finaux
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Informations supplémentaires"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_gfc_additional_information.html">
+        Informations supplémentaires
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Optimisation des coûts du cloud computing"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Optimisation des coûts du cloud computing</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez le service de calcul"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_compute.html">
+        Découvrez le service de calcul
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_getting_started_compute.html">
+        Commencez
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Basculez les données vers le cloud"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Basculez les données vers le cloud</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez NetApp Cloud Tiering"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_cloud_tiering.html">
+        Découvrez NetApp Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Commencez</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering des données vers Amazon S3"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_tiering_onprem_aws.html">
+        Tiering des données vers Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déplacez les données vers le stockage Azure Blob"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_tiering_onprem_azure.html">
+        Déplacez les données vers le stockage Azure Blob
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Transférez des données vers Google Cloud Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_tiering_onprem_gcp.html">
+        Transférez des données vers Google Cloud Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering de données vers StorageGRID"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_tiering_onprem_storagegrid.html">
+        Tiering de données vers StorageGRID
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration des licences"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_licensing_cloud_tiering.html">
+        Configuration des licences
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer le Tiering des données"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_tiering.html">
+        Gérer le Tiering des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/faq_cloud_tiering.html">
+        FAQ
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Classes et régions de stockage Amazon S3 prises en charge"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_aws_support.html">
+        Classes et régions de stockage Amazon S3 prises en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Régions et tiers d'accès Azure pris en charge"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_azure_support.html">
+        Régions et tiers d'accès Azure pris en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Classes et régions de stockage Google Cloud prises en charge"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_google_support.html">
+        Classes et régions de stockage Google Cloud prises en charge
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Afficher les compartiments Amazon S3"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_viewing_amazon_s3.html">
+        Afficher les compartiments Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration de Cloud Manager"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Administration de Cloud Manager</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Recherchez l'ID de votre système"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_finding_system_id.html">
+        Recherchez l'ID de votre système
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les connecteurs"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gérer les connecteurs</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les connecteurs existants"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_connectors.html">
+        Gérer les connecteurs existants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Autres façons de créer des connecteurs"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Autres façons de créer des connecteurs</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Exigences relatives à l'hôte de connecteur"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_cloud_mgr_reqs.html">
+        Exigences relatives à l'hôte de connecteur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez à partir d'AWS Marketplace"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_launching_aws_mktp.html">
+        Créez à partir d'AWS Marketplace
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création depuis Azure Marketplace"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_launching_azure_mktp.html">
+        Création depuis Azure Marketplace
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez manuellement le logiciel"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_installing_linux.html">
+        Installez manuellement le logiciel
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration par défaut"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_connector_default_config.html">
+        Configuration par défaut
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les identifiants"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Gérer les identifiants</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> AWS</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_accounts_aws.html">
+        En savoir plus sur les identifiants AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les identifiants AWS"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_adding_aws_accounts.html">
+        Gérez les identifiants AWS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_accounts_azure.html">
+        En savoir plus sur les identifiants Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les identifiants Azure"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_adding_azure_accounts.html">
+        Gérez les identifiants Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="GCP"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> GCP</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants GCP"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/concept_accounts_gcp.html">
+        En savoir plus sur les identifiants GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des identifiants GCP"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_adding_gcp_accounts.html">
+        Gestion des identifiants GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Informations d'identification du site du support NetApp"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_adding_nss_accounts.html">
+        Informations d'identification du site du support NetApp
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez votre compte"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_managing_cloud_central_accounts.html">
+        Gérez votre compte
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez un certificat HTTPS"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_installing_https_cert.html">
+        Installez un certificat HTTPS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supprimer les environnements de travail"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_removing.html">
+        Supprimer les environnements de travail
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer les paramètres proxy"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_configuring_proxy.html">
+        Configurer les paramètres proxy
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Remplacement des verrouillages CIFS dans Azure"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/task_overriding_cifs_locks.html">
+        Remplacement des verrouillages CIFS dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Référence</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rôles utilisateur"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_user_roles.html">
+        Rôles utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Autorisations"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_permissions.html">
+        Autorisations
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les pages AWS Marketplace"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_aws_marketplace.html">
+        Les pages AWS Marketplace
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="API et automatisation"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> API et automatisation</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Guide du développeur API"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/occm/api.html">
+        Guide du développeur API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatisez à l'aide des outils DevOps"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_infrastructure_as_code.html">
+        Automatisez à l'aide des outils DevOps
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Résoudre les problèmes"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services">
+        Résoudre les problèmes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Liens connexes"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_additional_info.html">
+        Liens connexes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versions antérieures"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_earlier_versions.html">
+        Versions antérieures
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mentions légales"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/fr-fr/occm38/reference_legal_notices.html">
+        Mentions légales
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/fr-fr/occm38/images/expand.png" alt="Développer le panneau de navigation"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/fr-fr/occm38/">Cloud&nbsp;Manager&nbsp;3.8</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      
+<div class="ie-notification">
+  <span class="ie-notification-highlight">Cette documentation concerne une version précédente de Cloud Manager.</span><br>
+  <span><a href="https://docs.netapp.com/fr-fr/occm/">Consultez les documents sur la dernière version.</a></span>
+</div>
+<div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/fr-fr/occm38/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> La version française est une traduction automatique. La version anglaise prévaut sur la française en cas de divergence. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">La visibilité et le contrôle des données privées</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-16 08:18:18 +0000">11/16/2022</time>
+    
+  
+
+<span>Contributeurs
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Prenez le contrôle de vos données privées en affichant les détails sur les données personnelles et les données personnelles sensibles de votre organisation. Vous pouvez également consulter les catégories et les types de fichiers que Cloud Compliance trouve dans vos données.</p>
+</div>
+<div class="paragraph">
+<p>Par défaut, le tableau de bord Cloud Compliance affiche les données de conformité pour tous les environnements en travail et toutes les bases de données.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_compliance_dashboard.png" alt="Capture d&#8217;écran du tableau de bord Cloud Compliance"></span></p>
+</div>
+<div class="paragraph">
+<p>Si vous ne souhaitez voir des données que pour certains environnements de travail,  data from specific working environments,sélectionnez ces environnements de travail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="données-personnelles">Données personnelles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance identifie automatiquement des mots, des chaînes et des motifs spécifiques (Regex) dans les données. Par exemple, les renseignements d&#8217;identification personnelle (RP), les numéros de carte de crédit, les numéros de sécurité sociale, les numéros de compte bancaire, etc.  of personal data,Voir la liste complète.</p>
+</div>
+<div class="paragraph">
+<p>Pour certains types de données personnelles, Cloud Compliance utilise <em>proximité validation</em> pour valider ses résultats. La validation se produit en recherchant un ou plusieurs mots clés prédéfinis à proximité des données personnelles trouvées. Par exemple, Cloud Compliance identifie un secteur public américain Numéro de sécurité sociale (SSN) comme numéro de sécurité sociale s&#8217;il y a un mot de proximité, par exemple, <em>SSN</em> ou <em>social Security</em>.  of personal data,La liste ci-dessous Indique quand Cloud Compliance utilise la validation de proximité.</p>
+</div>
+<div class="sect2">
+<h3 id="affichage-des-fichiers-contenant-des-données-personnelles">Affichage des fichiers contenant des données personnelles</h3>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>En haut de Cloud Manager, cliquez sur <strong>Cloud Compliance</strong> et cliquez sur l&#8217;onglet <strong>Dashboard</strong>.</p>
+</li>
+<li>
+<p>Pour examiner les détails de toutes les données personnelles, cliquez sur l&#8217;icône en regard du pourcentage de données personnelles.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_compliance_personal.gif" alt="Capture d&#8217;écran de sélection du pourcentage de données personnelles."></span></p>
+</div>
+</li>
+<li>
+<p>Pour examiner les détails d&#8217;un type spécifique de données personnelles, cliquez sur <strong>Afficher tout</strong>, puis cliquez sur l&#8217;icône <strong>étudier les résultats</strong> pour un type spécifique de données personnelles.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_personal_files.gif" alt="Capture d&#8217;écran de la boîte de dialogue fichiers personnels dans laquelle vous pouvez cliquer sur l&#8217;icône étudier les résultats en regard d&#8217;un type de données personnelles."></span></p>
+</div>
+</li>
+<li>
+<p>Examinez les données en recherchant, en triant, en développant les détails d&#8217;un fichier spécifique, en cliquant sur <strong>Informez Results</strong> pour afficher les informations masquées ou en téléchargeant la liste de fichiers.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_compliance_investigation_page.gif" alt="Une capture d&#8217;écran des informations détaillées après avoir cliqué sur étudier les résultats."></span></p>
+</div>
+</li>
+<li>
+<p>Vous pouvez également filtrer le contenu de la page d&#8217;enquête pour n&#8217;afficher que les résultats que vous souhaitez voir. Les onglets de niveau supérieur permettent d&#8217;afficher des données à partir de fichiers (données non structurées) ou de bases de données (données structurées).</p>
+<div class="paragraph">
+<p>Vous disposez ensuite de filtres pour l&#8217;environnement de travail, le référentiel de stockage, la catégorie, les données privées, le type de fichier, Dernière modification date, et si les autorisations d&#8217;accès de l&#8217;objet S3 sont ouvertes pour l&#8217;accès public.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_compliance_investigation_filtered.png" alt="Capture d&#8217;écran des filtres disponibles lors du raffinage des résultats dans la page d&#8217;enquête."></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="types-de-données-personnelles">Types de données personnelles</h3>
+<div class="paragraph">
+<p>Les données personnelles contenues dans les dossiers peuvent être des données personnelles générales ou des identificateurs nationaux. La troisième colonne indique si Cloud Compliance utilise ou non  data,validation de proximité pour valider ses résultats pour l&#8217;identificateur.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.7272%;">
+<col style="width: 56.8181%;">
+<col style="width: 20.4547%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Identificateur</th>
+<th class="tableblock halign-left valign-top">Validation de proximité ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Généralités</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adresse électronique</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro de carte de crédit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro IBAN (Numéro de compte bancaire international)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="31"><p class="tableblock">Identifiants nationaux</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carte d&#8217;identité belge (Numero National)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID brésilien (CPF)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID bulgare (UCN)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permis de conduire californien</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID croate (OIB)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chypre Numéro d&#8217;identification fiscale (TIC)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tchèque/slovaque ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID danois (RCP)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID néerlandais (BSN)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID estonien</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID finlandais (HETU)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscale (SPI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscale allemand (identifiant Steierliche)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pièce d&#8217;identité grecque</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscale hongrois</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Irish ID (PPS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID israélien</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscal italien</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carte d&#8217;identité lettone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carte d&#8217;identité lituanienne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Luxembourg ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifiant maltais</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID polonais (PESEL)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscale portugais (FNI)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID roumain (CNP)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID slovène (EMSO)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carte d&#8217;identité sud-africaine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro d&#8217;identification fiscale espagnol</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carte d&#8217;identité suédoise</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ROYAUME-UNI ID (NINO)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Numéro de sécurité sociale des États-Unis (SSN)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oui.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="données-personnelles-sensibles">Données personnelles sensibles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance identifie automatiquement les types particuliers de données sensibles, conformément aux réglementations en matière de confidentialité, notamment <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&amp;from=EN#d1e2051-1-1" target="_blank" rel="noopener">"Les articles 9 et 10 du RGPD"</a>. Par exemple, des renseignements concernant la santé d&#8217;une personne, son origine ethnique ou son orientation sexuelle.  of sensitive personal data,Voir la liste complète.</p>
+</div>
+<div class="paragraph">
+<p>Cloud Compliance exploite l&#8217;intelligence artificielle (IA), le traitement du langage naturel (NLP), le machine learning (ML) et l&#8217;informatique cognitive (CC) pour comprendre la signification du contenu balayé afin d&#8217;extraire les entités et de les catégoriser en conséquence.</p>
+</div>
+<div class="paragraph">
+<p>Par exemple, une catégorie de données sensibles du RGPD est l&#8217;origine ethnique. Du fait de ses capacités NLP, Cloud Compliance a la différence entre une phrase qui lit « George est mexicain » (en indiquant des données sensibles comme indiqué à l&#8217;article 9 du RGPD), et « George mange de la nourriture mexicaine ».</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Seul l&#8217;anglais est pris en charge lors de la recherche de données personnelles sensibles. La prise en charge d&#8217;autres langues sera ajoutée ultérieurement.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="affichage-des-fichiers-contenant-des-données-personnelles-sensibles">Affichage des fichiers contenant des données personnelles sensibles</h3>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>En haut de Cloud Manager, cliquez sur <strong>Cloud Compliance</strong>.</p>
+</li>
+<li>
+<p>Pour examiner les détails de toutes les données personnelles sensibles, cliquez sur l&#8217;icône en regard du pourcentage de données personnelles sensibles.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_compliance_sensitive_personal.gif" alt="Capture d&#8217;écran de sélection du pourcentage de données personnelles sensibles."></span></p>
+</div>
+</li>
+<li>
+<p>Pour examiner les détails d&#8217;un type spécifique de données personnelles sensibles, cliquez sur <strong>Afficher tout</strong>, puis cliquez sur l&#8217;icône <strong>enquêter sur les résultats</strong> pour un type spécifique de données personnelles sensibles.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_sensitive_personal_files.gif" alt="Capture d&#8217;écran de la boîte de dialogue fichiers personnels sensibles dans laquelle vous pouvez cliquer sur l&#8217;icône Résultats de l&#8217;enquête en regard d&#8217;un type de données personnelles."></span></p>
+</div>
+</li>
+<li>
+<p>Examinez les données en recherchant, en triant, en développant les détails d&#8217;un fichier spécifique, en cliquant sur <strong>Informez Results</strong> pour afficher les informations masquées ou en téléchargeant la liste de fichiers.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="types-de-données-personnelles-sensibles">Types de données personnelles sensibles</h3>
+<div class="paragraph">
+<p>Les données personnelles sensibles que Cloud Compliance peut trouver dans les fichiers sont les suivantes :</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Référence des procédures pénales</dt>
+<dd>
+<p>Données concernant les condamnations pénales et les infractions d&#8217;une personne physique.</p>
+</dd>
+<dt class="hdlist1">Référence ethnique</dt>
+<dd>
+<p>Données concernant l&#8217;origine raciale ou ethnique d&#8217;une personne physique.</p>
+</dd>
+<dt class="hdlist1">Référence santé</dt>
+<dd>
+<p>Données concernant la santé d&#8217;une personne physique.</p>
+</dd>
+<dt class="hdlist1">Codes médicaux ICD-9-cm</dt>
+<dd>
+<p>Codes utilisés dans l&#8217;industrie médicale et de la santé.</p>
+</dd>
+<dt class="hdlist1">Codes médicaux ICD-10-cm</dt>
+<dd>
+<p>Codes utilisés dans l&#8217;industrie médicale et de la santé.</p>
+</dd>
+<dt class="hdlist1">Références philosophiques</dt>
+<dd>
+<p>Données concernant les croyances philosophiques d&#8217;une personne naturelle.</p>
+</dd>
+<dt class="hdlist1">Croyances religieuses</dt>
+<dd>
+<p>Données concernant les croyances religieuses d&#8217;une personne naturelle.</p>
+</dd>
+<dt class="hdlist1">Référence de la vie sexuelle ou de l&#8217;orientation</dt>
+<dd>
+<p>Données concernant la vie sexuelle ou l’orientation sexuelle d’une personne physique.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="catégories">Catégories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance divise les données analysées et les divise en plusieurs types de catégories. Les catégories sont des rubriques basées sur l&#8217;analyse par IA du contenu et des métadonnées de chaque fichier.  of categories,Voir la liste des catégories.</p>
+</div>
+<div class="paragraph">
+<p>Les catégories peuvent vous aider à comprendre ce qui se passe avec vos données en vous montrant les types d&#8217;informations dont vous disposez. Par exemple, une catégorie comme les CV ou les contrats d&#8217;employés peut inclure des données sensibles. Lorsque vous étudiez les résultats, vous pouvez constater que les contrats d&#8217;employés sont stockés dans un emplacement non sécurisé. Vous pouvez ensuite corriger ce problème.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Seul l&#8217;anglais est pris en charge pour les catégories. La prise en charge d&#8217;autres langues sera ajoutée ultérieurement.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="affichage-des-fichiers-par-catégories">Affichage des fichiers par catégories</h3>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>En haut de Cloud Manager, cliquez sur <strong>Cloud Compliance</strong>.</p>
+</li>
+<li>
+<p>Cliquez sur l&#8217;icône <strong>Inquiétude Results</strong> pour l&#8217;une des 4 catégories les plus importantes directement à partir de l&#8217;écran principal, ou cliquez sur <strong>Afficher tout</strong>, puis cliquez sur l&#8217;icône de l&#8217;une des catégories.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_categories.gif" alt="Capture d&#8217;écran de la boîte de dialogue catégories dans laquelle vous pouvez cliquer sur l&#8217;icône Résultats de la recherche en regard d&#8217;une catégorie."></span></p>
+</div>
+</li>
+<li>
+<p>Examinez les données en recherchant, en triant, en développant les détails d&#8217;un fichier spécifique, en cliquant sur <strong>Informez Results</strong> pour afficher les informations masquées ou en téléchargeant la liste de fichiers.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="types-de-catégories">Types de catégories</h3>
+<div class="paragraph">
+<p>NetApp Cloud Compliance classe vos données comme suit :</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Finances</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Bilans</p>
+</li>
+<li>
+<p>Bons de commande</p>
+</li>
+<li>
+<p>Factures</p>
+</li>
+<li>
+<p>Rapports trimestriels</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">RH</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Vérifications des antécédents</p>
+</li>
+<li>
+<p>Plans de rémunération</p>
+</li>
+<li>
+<p>Contrats employés</p>
+</li>
+<li>
+<p>Évaluations des employés</p>
+</li>
+<li>
+<p>Santé</p>
+</li>
+<li>
+<p>Reprend</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Légal</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>NDAS</p>
+</li>
+<li>
+<p>Contrats fournisseur-client</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Marketing</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Campagnes</p>
+</li>
+<li>
+<p>Conférences</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Exploitation</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Rapports d&#8217;audit</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Ventes</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Commandes</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Administratifs</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>RFI</p>
+</li>
+<li>
+<p>RFP</p>
+</li>
+<li>
+<p>CAHIER DES CHARGES</p>
+</li>
+<li>
+<p>Formation</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Assistance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Plaintes et tickets</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Catégories de métadonnées</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Données applicatives</p>
+</li>
+<li>
+<p>Archiver les fichiers</p>
+</li>
+<li>
+<p>Audio</p>
+</li>
+<li>
+<p>Données d&#8217;applications d&#8217;entreprise</p>
+</li>
+<li>
+<p>Fichiers CAO</p>
+</li>
+<li>
+<p>Code</p>
+</li>
+<li>
+<p>Base de données et fichiers d&#8217;index</p>
+</li>
+<li>
+<p>Fichiers de conception</p>
+</li>
+<li>
+<p>Données d&#8217;application de messagerie</p>
+</li>
+<li>
+<p>Exécutables</p>
+</li>
+<li>
+<p>Données d&#8217;applications financières</p>
+</li>
+<li>
+<p>Données d&#8217;application de santé</p>
+</li>
+<li>
+<p>Images</p>
+</li>
+<li>
+<p>Journaux</p>
+</li>
+<li>
+<p>Documents divers</p>
+</li>
+<li>
+<p>Présentations diverses</p>
+</li>
+<li>
+<p>Feuilles de calcul diverses</p>
+</li>
+<li>
+<p>Vidéos</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="types-de-fichiers">Types de fichiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance réduit les données analysées et les divise par type de fichier. La vérification de vos types de fichiers peut vous aider à contrôler vos données sensibles car il se peut que certains types de fichiers ne soient pas stockés correctement.  of files,Voir la liste des types de fichiers.</p>
+</div>
+<div class="paragraph">
+<p>Par exemple, vous pouvez stocker des fichiers CAO qui contiennent des informations très sensibles sur votre organisation. S&#8217;ils ne sont pas sécurisés, vous pouvez prendre le contrôle des données sensibles en limitant les autorisations ou en déplaçant les fichiers vers un autre emplacement.</p>
+</div>
+<div class="sect2">
+<h3 id="affichage-des-types-de-fichiers">Affichage des types de fichiers</h3>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>En haut de Cloud Manager, cliquez sur <strong>Cloud Compliance</strong>.</p>
+</li>
+<li>
+<p>Cliquez sur l&#8217;icône <strong>étudier les résultats</strong> pour l&#8217;un des 4 types de fichiers les plus importants directement à partir de l&#8217;écran principal ou cliquez sur <strong>Afficher tout</strong>, puis cliquez sur l&#8217;icône correspondant à l&#8217;un des types de fichiers.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_file_types.gif" alt="Capture d&#8217;écran de la boîte de dialogue types de fichiers dans laquelle vous pouvez cliquer sur l&#8217;icône Résultats de la recherche en regard d&#8217;un type de fichier."></span></p>
+</div>
+</li>
+<li>
+<p>Examinez les données en recherchant, en triant, en développant les détails d&#8217;un fichier spécifique, en cliquant sur <strong>Informez Results</strong> pour afficher les informations masquées ou en téléchargeant la liste de fichiers.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="types-de-fichiers-2">Types de fichiers</h3>
+<div class="paragraph">
+<p>Cloud Compliance analyse les informations relatives aux catégories et aux métadonnées de tous les fichiers, et affiche tous les types de fichiers dans la section types de fichiers du tableau de bord.</p>
+</div>
+<div class="paragraph">
+<p>Mais lorsque Cloud Compliance détecte des informations à caractère personnel (PII) ou lorsqu&#8217;il effectue une recherche DSAR, seuls les formats de fichier suivants sont pris en charge : .PDF, .DOCX, .DOC, .PPTX, .XLS, .XLSX, .CSV, .TXT, .RTF ET .JSON.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="affichage-des-données-denvironnements-de-travail-spécifiques">Affichage des données d&#8217;environnements de travail spécifiques</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vous pouvez filtrer le contenu du tableau de bord Cloud Compliance pour consulter les données de conformité pour tous les environnements de travail et bases de données, ou pour des environnements de travail spécifiques uniquement.</p>
+</div>
+<div class="paragraph">
+<p>Lorsque vous filtrez le tableau de bord, Cloud Compliance évalue les données de conformité et les rapports aux environnements de travail que vous avez sélectionnés.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>Cliquez sur la liste déroulante du filtre, sélectionnez les environnements de travail pour lesquels vous souhaitez afficher les données, puis cliquez sur <strong>Afficher</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cloud_compliance_filter.gif" alt=""></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="exactitude-des-informations-trouvées">Exactitude des informations trouvées</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NetApp ne peut garantir une précision de 100 % des données personnelles et des données personnelles sensibles que Cloud Compliance identifie. Vous devez toujours valider les informations en examinant les données.</p>
+</div>
+<div class="paragraph">
+<p>Le tableau ci-dessous indique l&#8217;exactitude des informations fournies par Cloud Compliance à partir des résultats de nos tests. Nous la décomposent par <em>Precision</em> et <em>rappel</em>:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Précision</dt>
+<dd>
+<p>La probabilité que Cloud Compliance trouve a été identifiée correctement. Par exemple, un taux de précision de 90 % pour les données personnelles signifie que 9 fichiers sur 10 identifiés comme contenant des renseignements personnels, contiennent en fait des renseignements personnels. 1 fichier sur 10 serait un faux positif.</p>
+</dd>
+<dt class="hdlist1">Rappel</dt>
+<dd>
+<p>La probabilité que Cloud Compliance trouve ce qu&#8217;il faut. Par exemple, un taux de rappel de 70 % pour les données personnelles signifie que Cloud Compliance peut identifier 7 fichiers sur 10 qui contiennent réellement des données personnelles dans votre entreprise. Cloud Compliance manquerait 30 % des données et n&#8217;apparaîtra pas dans le tableau de bord.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Cloud Compliance est une version sous contrôle de disponibilité. Nous améliorons en permanence la précision de nos résultats. Ces améliorations seront automatiquement disponibles dans les prochaines versions de Cloud Compliance.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 38.4615%;">
+<col style="width: 30.7692%;">
+<col style="width: 30.7693%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Précision</th>
+<th class="tableblock halign-left valign-top">Rappel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Données personnelles - général</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90 à 95 %</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 à 80 %</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Données personnelles - identificateurs de pays</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 à 60 %</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">40 à 60 %</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Données personnelles sensibles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80 à 95 %</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 à 30 %</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Catégories</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90 à 97 %</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 à 80 %</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ce-qui-est-inclus-dans-chaque-rapport-de-liste-de-fichiers-fichier-csv">Ce qui est inclus dans chaque rapport de liste de fichiers (fichier CSV)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>À partir de chaque page Investigation, vous pouvez télécharger des listes de fichiers (au format CSV) qui incluent des détails sur les fichiers identifiés. S&#8217;il y a plus de 10,000 résultats, seuls les 10,000 meilleurs apparaissent dans la liste.</p>
+</div>
+<div class="paragraph">
+<p>Chaque liste de fichiers comprend les informations suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Nom du fichier</p>
+</li>
+<li>
+<p>Type d&#8217;emplacement</p>
+</li>
+<li>
+<p>Environnement de travail</p>
+</li>
+<li>
+<p>Référentiel de stockage</p>
+</li>
+<li>
+<p>Protocole</p>
+</li>
+<li>
+<p>Chemin des fichiers</p>
+</li>
+<li>
+<p>Type de fichier</p>
+</li>
+<li>
+<p>Catégorie</p>
+</li>
+<li>
+<p>Informations personnelles</p>
+</li>
+<li>
+<p>Informations personnelles sensibles</p>
+</li>
+<li>
+<p>Date de détection de suppression</p>
+<div class="paragraph">
+<p>Une date de détection de suppression identifie la date à laquelle le fichier a été supprimé ou déplacé. Cela vous permet d&#8217;identifier le moment où des fichiers sensibles ont été déplacés. Les fichiers supprimés ne font pas partie du nombre de fichiers qui s&#8217;affiche dans le tableau de bord ou sur la page Investigation. Les fichiers n&#8217;apparaissent que dans les rapports CSV.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Conditions générales</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Privacy Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie Policy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Paramètres de cookies</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Envoyer un avis à propos de cette page</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/fr-fr/occm38/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/fr-fr/occm38/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/fr-fr/occm38/js/prism.js'></script>
+      <script type="text/javascript" src='/fr-fr/occm38/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/fr-fr/occm38/js/www-ntap.js'></script>
+    <script src='/fr-fr/occm38/js/tabbed-blocks.js'></script>
+    <script src='/fr-fr/occm38/js/sidebar.js'></script>
+  </body></html>
