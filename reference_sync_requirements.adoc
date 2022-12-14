@@ -328,7 +328,7 @@ Vérifiez que votre source et vos cibles répondent aux exigences suivantes.
 
 
 
-=== Exigences relatives aux compartiments AWS S3
+=== [[s3]]exigences du compartiment AWS S3
 
 Assurez-vous que votre seau AWS S3 répond aux exigences suivantes.
 
@@ -375,7 +375,7 @@ image:screenshot_iam_role_arn.gif["Capture d'écran de la console AWS IAM affich
 
 
 
-=== Exigences de stockage Azure Blob
+=== [[blob]]exigences de stockage Azure Blob
 
 Assurez-vous que votre stockage Azure Blob répond aux exigences suivantes.
 

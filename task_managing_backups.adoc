@@ -63,7 +63,7 @@ image:screenshot_backup_manage_volumes_page.png["La page gérer les volumes dans
 
 
 
-*Remarque :* lors de l'arrêt de la sauvegarde d'un volume, vous continuerez à être facturé par votre fournisseur de cloud pour les coûts de stockage objet pour la capacité que les sauvegardes utilisent, sauf si vous  backups,supprimez les sauvegardes.
+*Remarque :* lors de l'arrêt de la sauvegarde d'un volume, vous continuerez à être facturé par votre fournisseur de cloud pour les coûts de stockage objet pour la capacité que les sauvegardes utilisent, sauf si vous <<Suppression de sauvegardes,supprimez les sauvegardes>>.
 
 
 
@@ -100,6 +100,7 @@ image:screenshot_backup_to_s3_restore_options.gif["Copie d'écran montrant les o
 
 
 
+.Résultat
 Cloud Manager crée un nouveau volume en fonction de la sauvegarde que vous avez sélectionnée. C'est possible link:task_managing_storage.html#managing-existing-volumes["gestion de ce nouveau volume"^] selon les besoins.
 
 

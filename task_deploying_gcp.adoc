@@ -16,7 +16,7 @@ summary: Vous pouvez lancer un système Cloud Volumes ONTAP à nœud unique dans
 [role="lead"]
 Vous pouvez lancer un système Cloud Volumes ONTAP à nœud unique dans GCP en créant un environnement de travail.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Vous devez avoir un link:task_creating_connectors_aws.html["Connecteur associé à votre espace de travail"].
 +
 
@@ -213,6 +213,7 @@ Pour plus d'informations, voir link:task_planning_your_config_gcp.html#choosing-
 
 
 
+.Résultat
 Cloud Manager déploie le système Cloud Volumes ONTAP. Vous pouvez suivre la progression dans la chronologie.
 
 Si vous rencontrez des problèmes lors du déploiement du système Cloud Volumes ONTAP, consultez le message d'échec. Vous pouvez également sélectionner l'environnement de travail et cliquer sur *recréer l'environnement*.

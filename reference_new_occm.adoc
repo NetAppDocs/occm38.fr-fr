@@ -54,11 +54,11 @@ Payez pour le Tiering des données d'un cluster ONTAP sur site vers le cloud, vi
 
 == Cloud Manager 3.8.9 (4 octobre 2020)
 
-*  Compliance enhancements
-*  Volumes Service for AWS enhancements
-*  Sync integration
-*  management enhancements
-*  for Government regions
+* <<Améliorations de Cloud Compliance>>
+* <<Améliorations de Cloud Volumes Service pour AWS>>
+* <<Intégration avec Cloud Sync>>
+* <<Améliorations de la gestion de compte>>
+* <<Changements pour les régions gouvernementales>>
 
 
 
@@ -162,12 +162,12 @@ link:concept_gfc.html["En savoir plus sur Global File cache"].
 
 == Cloud Manager 3.8.8 (9 septembre 2020)
 
-*  for Cloud Volumes Service for Google Cloud
-*  to Cloud now supports on-premises ONTAP clusters
-*  to Cloud enhancements
-*  Compliance enhancements
-*  navigation
-*  improvements
+* <<Prise en charge de Cloud Volumes Service pour Google Cloud>>
+* <<La sauvegarde dans le cloud prend désormais en charge les clusters ONTAP sur site>>
+* <<Améliorations de la sauvegarde dans le cloud>>
+* <<Améliorations de Cloud Compliance>>
+* <<Navigation mise à jour>>
+* <<Améliorations de l'administration>>
 
 
 
@@ -253,13 +253,13 @@ https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8
 
 == Cloud Manager 3.8.7 (3 août 2020)
 
-*  software-as-a-service experience
-*  Volumes ONTAP enhancements
-*  NetApp Files enhancements
-*  Volumes Service for AWS enhancements
-*  Compliance enhancements
-*  to Cloud enhancements
-*  for Global File Cache
+* <<Nouvelle expérience en tant que service>>
+* <<Améliorations de Cloud Volumes ONTAP>>
+* <<Améliorations de Azure NetApp Files>>
+* <<Améliorations de Cloud Volumes Service pour AWS>>
+* <<Améliorations de Cloud Compliance>>
+* <<Améliorations de la sauvegarde dans le cloud>>
+* <<Prise en charge de Global File cache>>
 
 
 
@@ -488,8 +488,8 @@ Assurez-vous que votre pare-feu autorise l'accès à ce terminal à partir de Cl
 
 == Cloud Manager 3.8.6 (6 juillet 2020)
 
-*  for iSCSI volumes
-*  for the All tiering policy
+* <<Prise en charge des volumes iSCSI>>
+* <<Prise en charge de l'ensemble des règles de Tiering>>
 
 
 
@@ -519,9 +519,9 @@ Découvrez Cloud Manager comme une expérience en tant que service. Cette nouvel
 
 == Cloud Manager 3.8.5 (31 mai 2020)
 
-*  subscription required in the Azure Marketplace
-*  to Cloud enhancements
-*  Compliance enhancements
+* <<Nouvel abonnement requis dans Azure Marketplace>>
+* <<Améliorations de la sauvegarde dans le cloud>>
+* <<Améliorations de Cloud Compliance>>
 
 
 
@@ -601,11 +601,11 @@ Vous pouvez désormais supprimer toutes les sauvegardes d'un volume spécifique 
 
 == Cloud Manager 3.8.3 (5 avril 2020)
 
-*  Tiering integration
-*  migration to Azure NetApp Files
-*  Compliance enhancements
-*  to S3 enhancements
-*  volumes using APIs
+* <<Intégration avec NetApp Cloud Tiering>>
+* <<Migration des données vers Azure NetApp Files>>
+* <<Améliorations de Cloud Compliance>>
+* <<Sauvegardez vers les améliorations S3>>
+* <<Volumes iSCSI avec API>>
 
 
 
@@ -683,10 +683,10 @@ Les API Cloud Manager vous permettent désormais de créer des volumes iSCSI. li
 
 == Cloud Manager 3.8.2 (1er mars 2020)
 
-*  S3 working environments
-*  Compliance enhancements
-*  version for volumes
-*  for Azure US Gov regions
+* <<Les environnements de travail Amazon S3>>
+* <<Améliorations de Cloud Compliance>>
+* <<Version NFS pour les volumes>>
+* <<Prise en charge des régions Azure Government>>
 
 
 
@@ -786,9 +786,9 @@ Nous avons introduit la prise en charge de nouvelles instances EC2 et une modifi
 
 == Cloud Manager 3.8.1 (2 février 2020)
 
-*  Compliance enhancements
-*  to accounts and subscriptions
-*  enhancements
+* <<Améliorations de Cloud Compliance>>
+* <<Améliorations apportées aux comptes et aux abonnements>>
+* <<Améliorations apportées au calendrier>>
 
 
 
@@ -869,8 +869,8 @@ image:screenshot_timeline.gif["Copie d'écran de la chronologie qui s'affiche da
 
 == Cloud Manager 3.8 (8 janvier 2020)
 
-*  enhancements in Azure
-*  tiering enhancements in GCP
+* <<Amélioration DE LA HAUTE DISPONIBILITÉ dans Azure>>
+* <<Améliorations du Tiering des données dans GCP>>
 
 
 

@@ -21,6 +21,7 @@ Si vous avez besoin d'une gestion avancée de Cloud Volumes ONTAP, vous pouvez l
 
 Vous devrez peut-être effectuer certaines tâches Cloud Volumes ONTAP à partir de System Manager, un outil de gestion basé sur un navigateur qui s'exécute sur le système Cloud Volumes ONTAP. Par exemple, vous devez utiliser System Manager pour créer des LUN.
 
+.Avant de commencer
 L'ordinateur à partir duquel vous accédez à Cloud Manager doit disposer d'une connexion réseau à Cloud Volumes ONTAP. Par exemple, vous devrez peut-être vous connecter à Cloud Manager à partir d'un hôte de saut dans AWS ou Azure.
 
 
@@ -36,6 +37,7 @@ System Manager se charge dans un nouvel onglet de navigateur.
 . Sur l'écran de connexion, saisissez *admin* dans le champ Nom d'utilisateur, saisissez le mot de passe que vous avez spécifié lors de la création de l'environnement de travail, puis cliquez sur *connexion*.
 
 
+.Résultat
 La console System Manager se charge. Vous pouvez désormais l'utiliser pour gérer Cloud Volumes ONTAP.
 
 
@@ -44,6 +46,7 @@ La console System Manager se charge. Vous pouvez désormais l'utiliser pour gér
 
 L'interface de ligne de commande Cloud Volumes ONTAP vous permet d'exécuter toutes les commandes administratives et constitue un bon choix pour les tâches avancées ou si vous êtes plus à l'aise avec l'interface de ligne de commande. Vous pouvez vous connecter à l'interface de ligne de commande à l'aide de Secure Shell (SSH).
 
+.Avant de commencer
 L'hôte à partir duquel vous utilisez SSH pour vous connecter à Cloud Volumes ONTAP doit disposer d'une connexion réseau à Cloud Volumes ONTAP. Par exemple, vous devrez peut-être utiliser SSH à partir d'un hôte de saut dans AWS ou Azure.
 
 

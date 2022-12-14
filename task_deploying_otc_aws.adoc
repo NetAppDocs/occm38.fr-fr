@@ -34,6 +34,7 @@ NOTE: Vous devez être un administrateur de compte pour créer un connecteur. Lo
 * Si vous souhaitez utiliser CIFS, vous devez avoir configuré DNS et Active Directory. Pour plus de détails, voir link:reference_networking_aws.html["Configuration réseau requise pour Cloud Volumes ONTAP dans AWS"].
 
 
+.Description de la tâche
 Immédiatement après la création de l'environnement de travail, Cloud Manager lance une instance de test dans le VPC spécifié pour vérifier la connectivité. En cas de réussite, Cloud Manager met immédiatement fin à l'instance, puis lance le déploiement du système Cloud Volumes ONTAP. Si Cloud Manager ne parvient pas à vérifier la connectivité, la création de l'environnement de travail échoue. L'instance de test est soit t2.nano (pour la location VPC par défaut), soit m3.medium (pour la location VPC dédiée).
 
 .Étapes
@@ -227,6 +228,7 @@ Pour plus d'informations, voir link:task_planning_your_config.html#choosing-a-vo
 
 
 
+.Résultat
 Cloud Manager lance l'instance Cloud Volumes ONTAP. Vous pouvez suivre la progression dans la chronologie.
 
 Si vous rencontrez des problèmes lors du lancement de l'instance Cloud Volumes ONTAP, consultez le message d'échec. Vous pouvez également sélectionner l'environnement de travail et cliquer sur Re-create environment.
@@ -259,8 +261,10 @@ NOTE: Vous devez être un administrateur de compte pour créer un connecteur. Lo
 * Si vous souhaitez utiliser CIFS, vous devez avoir configuré DNS et Active Directory. Pour plus de détails, voir link:reference_networking_aws.html["Configuration réseau requise pour Cloud Volumes ONTAP dans AWS"].
 
 
+.Restriction
 À l'heure actuelle, les paires haute disponibilité ne sont pas prises en charge avec les posts d'AWS.
 
+.Description de la tâche
 Immédiatement après la création de l'environnement de travail, Cloud Manager lance une instance de test dans le VPC spécifié pour vérifier la connectivité. En cas de réussite, Cloud Manager met immédiatement fin à l'instance, puis lance le déploiement du système Cloud Volumes ONTAP. Si Cloud Manager ne parvient pas à vérifier la connectivité, la création de l'environnement de travail échoue. L'instance de test est soit t2.nano (pour la location VPC par défaut), soit m3.medium (pour la location VPC dédiée).
 
 .Étapes
@@ -461,6 +465,7 @@ Pour plus d'informations, voir link:task_planning_your_config.html#choosing-a-vo
 
 
 
+.Résultat
 Cloud Manager lance la paire Cloud Volumes ONTAP HA. Vous pouvez suivre la progression dans la chronologie.
 
 Si vous rencontrez des problèmes lors du lancement de la paire HA, consultez le message d'échec. Vous pouvez également sélectionner l'environnement de travail et cliquer sur Re-create environment.

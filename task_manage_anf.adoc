@@ -24,21 +24,21 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Demander l'accès
+==== image:number1.png["Numéro 1"] Demander l'accès
 
 [role="quick-margin-para"]
 https://aka.ms/azurenetappfiles["Envoyez une demande en ligne"^] Pour avoir accès à Azure NetApp Files.
 
 
 
-==== Configurez une application Azure AD
+==== image:number2.png["Numéro 2"] Configurez une application Azure AD
 
 [role="quick-margin-para"]
 À partir d'Azure, accordez des autorisations à une application Azure AD, puis copiez l'ID d'application (client), l'ID de répertoire (locataire) et la valeur d'un secret client.
 
 
 
-==== Créer un environnement de travail Azure NetApp Files
+==== image:number3.png["Numéro 3"] Créer un environnement de travail Azure NetApp Files
 
 [role="quick-margin-para"]
 Dans Cloud Manager, cliquez sur *Ajouter un environnement de travail* > *Microsoft Azure* > *Azure NetApp Files*, puis donnez des détails sur l'application AD.
@@ -61,6 +61,7 @@ Cloud Manager doit disposer d'autorisations pour configurer et gérer Azure NetA
 
 Créez une application Azure Active Directory (AD) et une entité de service que Cloud Manager peut utiliser pour le contrôle d'accès basé sur des rôles.
 
+.Avant de commencer
 Vous devez disposer des droits d'accès dans Azure pour créer une application Active Directory et attribuer l'application à un rôle. Pour plus de détails, reportez-vous à https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Documentation Microsoft Azure : autorisations requises"^].
 
 .Étapes
@@ -102,6 +103,7 @@ image:screenshot_anf_client_secret.gif["Copie d'écran du portail Azure présent
 
 
 
+.Résultat
 Votre application AD est maintenant configurée et vous devez avoir copié l'ID de l'application (client), l'ID du répertoire (tenant) et la valeur du secret client. Ces informations doivent être saisies dans Cloud Manager lorsque vous ajoutez un environnement de travail Azure NetApp Files.
 
 
@@ -172,8 +174,10 @@ image:screenshot_anf_details.gif["Capture d'écran des champs requis pour créer
 . Cliquez sur *Ajouter*.
 
 
+.Résultat
 Vous devriez maintenant avoir un environnement de travail Azure NetApp Files.
 
 image:screenshot_anf_we.gif["Copie d'écran d'un environnement de travail Azure NetApp Files."]
 
+.Et la suite ?
 link:task_manage_anf_volumes.html["Démarrage de la création et de la gestion des volumes"].

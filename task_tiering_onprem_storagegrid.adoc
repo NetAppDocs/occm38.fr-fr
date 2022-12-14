@@ -24,11 +24,12 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Préparation au Tiering des données vers StorageGRID
+==== image:number1.png["Numéro 1"] Préparation au Tiering des données vers StorageGRID
 
 [role="quick-margin-para"]
 Il faut les éléments suivants :
 
+[role="quick-margin-list"]
 * Un système AFF ou FAS avec des agrégats 100 % SSD qui exécutent ONTAP 9.4 ou une version ultérieure et une connexion via un port spécifié par l'utilisateur vers StorageGRID.
 * StorageGRID 10.3 ou version ultérieure avec les clés d'accès AWS qui disposent d'autorisations S3.
 * Un connecteur installé sur votre site.
@@ -37,7 +38,7 @@ Il faut les éléments suivants :
 
 
 
-==== Configurer le Tiering
+==== image:number2.png["Numéro 2"] Configurer le Tiering
 
 [role="quick-margin-para"]
 Sélectionnez un environnement de travail sur site, cliquez sur *Setup Tiering* et suivez les invites pour hiérarchiser les données dans StorageGRID.
@@ -150,7 +151,7 @@ Assurez-vous que le connecteur dispose des connexions réseau requises.
 
 Une fois votre environnement prêt, commencez le Tiering des données inactives à partir du premier cluster.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * link:task_discovering_ontap.html["Un environnement de travail sur site"].
 * Clé d'accès AWS qui dispose des autorisations S3 requises.
 
@@ -186,6 +187,8 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.Résultat
 Vous avez configuré le Tiering des données depuis les volumes du cluster vers StorageGRID.
 
+.Et la suite ?
 Vous pouvez ajouter des clusters supplémentaires ou consulter des informations sur les données actives et inactives sur le cluster. Pour plus de détails, voir link:task_managing_tiering.html["Gestion du Tiering des données à partir des clusters"].

@@ -80,6 +80,7 @@ image:screenshot_connector_remove.gif["Capture d'écran du widget connecteur dan
 . Entrez le nom du connecteur à confirmer, puis cliquez sur Supprimer.
 
 
+.Résultat
 Cloud Manager élimine le connecteur de ses enregistrements.
 
 

@@ -47,6 +47,7 @@ TIP: Cloud Manager modifie aisément un nœud à la fois en lançant le basculem
 . Sélectionnez une instance ou un type de machine, cochez la case pour confirmer que vous comprenez les implications du changement, puis cliquez sur *OK*.
 
 
+.Résultat
 Cloud Volumes ONTAP redémarre avec la nouvelle configuration.
 
 
@@ -58,6 +59,7 @@ Une fois que vous avez lancé les systèmes Cloud Volumes ONTAP à la demande, v
 
 NOTE: Dans GCP, un seul type de machine est disponible pour chaque configuration avec paiement à l'utilisation. Vous ne pouvez pas choisir entre différents types de machine.
 
+.Description de la tâche
 Notez ce qui suit au sujet de la modification entre les licences de paiement à la demande :
 
 * L'opération redémarre Cloud Volumes ONTAP.
@@ -75,6 +77,7 @@ Pour les paires HA, le changement n'est pas perturbateur. Les paires HA continue
 . Sélectionnez un type de licence et un type d'instance ou de machine, cochez la case pour confirmer que vous comprenez les implications du changement, puis cliquez sur *OK*.
 
 
+.Résultat
 Cloud Volumes ONTAP redémarre avec la nouvelle licence, le type d'instance, le type de machine ou les deux.
 
 
@@ -154,6 +157,7 @@ Le nouveau mot de passe doit être différent de l'un des six derniers mots de p
 
 Par défaut, Cloud Volumes ONTAP est configuré pour utiliser 9 000 MTU (également appelés trames Jumbo) lorsque vous choisissez l'instance c4.4xlarge ou l'instance c4.8xlarge dans AWS. Vous pouvez modifier la MTU réseau à 1 500 octets si cela est plus approprié pour votre configuration réseau.
 
+.Description de la tâche
 Une unité de transmission réseau maximale (MTU) de 9 000 octets peut fournir le débit réseau maximal le plus élevé possible pour des configurations spécifiques.
 
 9 000 MTU sont un bon choix si les clients du même VPC communiquent avec le système Cloud Volumes ONTAP et que certains ou tous ces clients prennent également en charge 9 000 MTU. Si le trafic quitte le VPC, la fragmentation des paquets peut se produire, ce qui dégrade les performances.
@@ -178,4 +182,5 @@ Vous pouvez modifier les tables de routage AWS incluant des routes vers les adre
 . Modifiez la liste des tables de routage sélectionnées, puis cliquez sur *Enregistrer*.
 
 
+.Résultat
 Cloud Manager envoie une requête AWS pour modifier les tables de routage.

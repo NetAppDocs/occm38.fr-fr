@@ -40,6 +40,7 @@ image:screenshot_manage_account_settings.gif["Capture d'écran affichant l'optio
 . Entrez un nom pour l'espace de travail et cliquez sur *Ajouter*.
 
 
+.Une fois que vous avez terminé
 Si un administrateur d'espace de travail doit accéder à cet espace de travail, vous devez associer l'utilisateur. Vous devez également associer des connecteurs à l'espace de travail pour que les administrateurs de l'espace de travail puissent utiliser ces connecteurs.
 
 
@@ -69,6 +70,7 @@ image:screenshot_associate_user.gif["Capture d'écran qui montre comment associe
 . Cliquez sur *associer utilisateur*.
 
 
+.Résultat
 L'utilisateur doit recevoir un e-mail de la part de NetApp Cloud Central intitulé « Account Association ». Il contient les informations nécessaires pour accéder à Cloud Manager.
 
 
@@ -90,6 +92,7 @@ image:screenshot_associate_user_workspace.gif["Capture d'écran qui montre le me
 . Sélectionnez un ou plusieurs espaces de travail et cliquez sur *appliquer*.
 
 
+.Résultat
 L'utilisateur peut désormais accéder à ces espaces de travail à partir de Cloud Manager, tant que le connecteur était également associé aux espaces de travail.
 
 
@@ -112,6 +115,7 @@ image:screenshot_manage_account_settings.gif["Capture d'écran affichant l'optio
 . Sélectionnez un ou plusieurs espaces de travail et cliquez sur *appliquer*.
 
 
+.Résultat
 Les administrateurs d'espace de travail peuvent désormais utiliser ces connecteurs pour créer des systèmes Cloud Volumes ONTAP.
 
 

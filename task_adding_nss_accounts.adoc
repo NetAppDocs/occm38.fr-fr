@@ -19,6 +19,7 @@ Vous devez ajouter votre compte sur le site de support NetApp à Cloud Manager p
 Découvrez dans cette vidéo comment ajouter des comptes sur le site de support NetApp à Cloud Manager. Ou faites défiler vers le bas pour lire les étapes.
 
 video::V2fLTyztqYQ[youtube,width=848,height=480]
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes
@@ -42,6 +43,7 @@ image:screenshot_settings_icon.gif["Copie d'écran affichant l'icône Paramètre
 . Cliquez sur *Créer un compte.*
 
 
+.Et la suite ?
 Les utilisateurs peuvent désormais sélectionner le compte lors de la création de nouveaux systèmes Cloud Volumes ONTAP et lors de l'enregistrement de systèmes existants.
 
 * link:task_deploying_otc_aws.html["Lancement d'Cloud Volumes ONTAP dans AWS"]

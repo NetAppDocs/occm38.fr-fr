@@ -16,6 +16,7 @@ summary: 'L"administrateur du compte peut activer un paramètre dans Cloud Manag
 [role="lead"]
 L'administrateur du compte peut activer un paramètre dans Cloud Manager qui empêche les problèmes liés au basculement du stockage Cloud Volumes ONTAP lors des événements de maintenance Azure. Lorsque vous activez ce paramètre, Cloud Volumes ONTAP vetoes les verrous CIFS et réinitialise les sessions CIFS actives.
 
+.Description de la tâche
 Microsoft Azure planifie des événements de maintenance périodiques sur ses machines virtuelles. Lorsqu'un événement de maintenance se produit sur un nœud d'une paire haute disponibilité Cloud Volumes ONTAP, la paire haute disponibilité démarre le basculement du stockage. S'il existe des sessions CIFS actives au cours de cet événement de maintenance, les verrous sur les fichiers CIFS peuvent empêcher le basculement du stockage.
 
 Si vous activez ce paramètre, Cloud Volumes ONTAP veto aux verrous et réinitialise les sessions CIFS actives. Par conséquent, la paire haute disponibilité peut effectuer le basculement du stockage lors de ces opérations de maintenance.
@@ -23,6 +24,7 @@ Si vous activez ce paramètre, Cloud Volumes ONTAP veto aux verrous et réinitia
 
 IMPORTANT: Ce processus peut entraîner des perturbations pour les clients CIFS. Les données qui ne sont pas validées auprès des clients CIFS pourraient être perdues.
 
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes

@@ -67,6 +67,7 @@ Pour plus d'informations, reportez-vous au Cluster and SVM Peering Express Guide
 
 Vous pouvez répliquer des données entre les systèmes Cloud Volumes ONTAP et les clusters ONTAP en choisissant une réplication de données unique, qui peut vous aider à déplacer des données vers et depuis le cloud, ou un planning récurrent, qui peut vous aider à la reprise sur incident ou à la conservation à long terme.
 
+.Description de la tâche
 Cloud Manager prend en charge des configurations de protection des données simples, en panne et en cascade :
 
 * Dans une configuration simple, la réplication s'effectue du volume A au volume B.
@@ -108,6 +109,7 @@ Plusieurs plannings par défaut sont disponibles. Si vous souhaitez un autre pla
 . Sur la page Revue, vérifiez vos sélections, puis cliquez sur *Go*.
 
 
+.Résultat
 Cloud Manager démarre le processus de réplication des données. Vous pouvez afficher des informations détaillées sur la réplication dans la page Etat de la réplication.
 
 
@@ -183,6 +185,7 @@ Pour effectuer une resynchronisation inverse, qui resynchronise les données du 
 |===
 
 
+.Résultat
 Après avoir sélectionné une action, Cloud Manager met à jour la relation ou le planning.
 
 

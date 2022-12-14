@@ -32,35 +32,35 @@ Pour démarrer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Déployez Cloud Volumes ONTAP
+==== image:number1.png["Numéro 1"] Déployez Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 Déployez Cloud Volumes ONTAP dans Azure ou AWS et configurez les partages de fichiers SMB. Pour plus d'informations, voir link:task_deploying_otc_azure.html["Lancement d'Cloud Volumes ONTAP dans Azure"^] ou link:task_deploying_otc_aws.html["Lancement d'Cloud Volumes ONTAP dans AWS"^].
 
 
 
-==== Déployez le serveur Global File cache Management Server
+==== image:number2.png["Numéro 2"] Déployez le serveur Global File cache Management Server
 
 [role="quick-margin-para"]
 Déployer une instance du serveur de gestion globale du cache des fichiers dans le même environnement de travail que l'instance de Cloud Volumes ONTAP.
 
 
 
-==== Déployez Global File cache Core
+==== image:number3.png["Numéro 3"] Déployez Global File cache Core
 
 [role="quick-margin-para"]
 Déployez une ou plusieurs instances de Global File cache Core dans le même environnement de travail que l'instance de Cloud Volumes ONTAP et joignez-la à votre domaine Active Directory.
 
 
 
-==== Cache global des fichiers de licence
+==== image:number4.png["Numéro 4"] Cache global des fichiers de licence
 
 [role="quick-margin-para"]
 Configurez le service LMS (Global File cache License Management Server) sur une instance de base Global File cache. Pour activer votre abonnement, vous devez disposer de vos identifiants NSS ou d'un identifiant client fourni par NetApp.
 
 
 
-==== Déployez les instances Global File cache Edge
+==== image:number5.png["Numéro 5"] Déployez les instances Global File cache Edge
 
 [role="quick-margin-para"]
 Voir link:task_deploy_gfc_edge_instances.html["Déploiement des instances Global File cache Edge"^] Pour déployer les instances Global File cache Edge dans chaque emplacement distant. Cette étape n'a pas été effectuée avec Cloud Manager.
@@ -162,6 +162,7 @@ image:screenshot_gfc_license2.png["Capture d'écran de saisie d'un ID client LMS
 
 
 
+.Et la suite ?
 Si vous avez déterminé que vous devez déployer plusieurs cœurs de cache de fichiers globaux pour prendre en charge votre configuration, cliquez sur *Ajouter une instance principale* dans le tableau de bord et suivez l'assistant de déploiement.
 
 Une fois votre déploiement Core terminé, vous devez link:download_gfc_resources.html["Déployez les instances Global File cache Edge"^] dans chacun de vos bureaux distants.

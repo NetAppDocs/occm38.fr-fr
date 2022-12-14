@@ -80,6 +80,7 @@ Lorsque vous ajoutez le compte GCP pour le Tiering des données, vous devez entr
 
 Vous pouvez désormais ajouter cette clé à Cloud Manager.
 
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes
@@ -95,6 +96,7 @@ Les clés permettent à Cloud Manager de configurer un compartiment Cloud Storag
 . Vérifiez que les exigences de la stratégie ont été respectées, puis cliquez sur *Créer un compte*.
 
 
+.Et la suite ?
 Vous pouvez désormais activer le Tiering des données sur les volumes individuels d'un système Cloud Volumes ONTAP 9.6 lorsque vous les créez, les modifiez ou les répliquez. Pour plus de détails, voir link:task_tiering.html["Tiering des données inactives vers un stockage objet à faible coût"].
 
 Mais avant cela, assurez-vous que le sous-réseau dans lequel réside Cloud Volumes ONTAP est configuré pour un accès privé à Google. Pour obtenir des instructions, reportez-vous à la section https://cloud.google.com/vpc/docs/configure-private-google-access["Documentation Google Cloud : configuration de Private Google Access"^].

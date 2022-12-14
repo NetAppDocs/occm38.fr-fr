@@ -20,15 +20,15 @@ Par défaut, le tableau de bord Cloud Compliance affiche les données de conform
 
 image:screenshot_compliance_dashboard.png["Capture d'écran du tableau de bord Cloud Compliance"]
 
-Si vous ne souhaitez voir des données que pour certains environnements de travail,  data from specific working environments,sélectionnez ces environnements de travail.
+Si vous ne souhaitez voir des données que pour certains environnements de travail, <<Affichage des données d'environnements de travail spécifiques,sélectionnez ces environnements de travail>>.
 
 
 
 == Données personnelles
 
-Cloud Compliance identifie automatiquement des mots, des chaînes et des motifs spécifiques (Regex) dans les données. Par exemple, les renseignements d'identification personnelle (RP), les numéros de carte de crédit, les numéros de sécurité sociale, les numéros de compte bancaire, etc.  of personal data,Voir la liste complète.
+Cloud Compliance identifie automatiquement des mots, des chaînes et des motifs spécifiques (Regex) dans les données. Par exemple, les renseignements d'identification personnelle (RP), les numéros de carte de crédit, les numéros de sécurité sociale, les numéros de compte bancaire, etc. <<Types de données personnelles,Voir la liste complète>>.
 
-Pour certains types de données personnelles, Cloud Compliance utilise _proximité validation_ pour valider ses résultats. La validation se produit en recherchant un ou plusieurs mots clés prédéfinis à proximité des données personnelles trouvées. Par exemple, Cloud Compliance identifie un secteur public américain Numéro de sécurité sociale (SSN) comme numéro de sécurité sociale s'il y a un mot de proximité, par exemple, _SSN_ ou _social Security_.  of personal data,La liste ci-dessous Indique quand Cloud Compliance utilise la validation de proximité.
+Pour certains types de données personnelles, Cloud Compliance utilise _proximité validation_ pour valider ses résultats. La validation se produit en recherchant un ou plusieurs mots clés prédéfinis à proximité des données personnelles trouvées. Par exemple, Cloud Compliance identifie un secteur public américain Numéro de sécurité sociale (SSN) comme numéro de sécurité sociale s'il y a un mot de proximité, par exemple, _SSN_ ou _social Security_. <<Types de données personnelles,La liste ci-dessous>> Indique quand Cloud Compliance utilise la validation de proximité.
 
 
 
@@ -61,7 +61,7 @@ image:screenshot_compliance_investigation_filtered.png["Capture d'écran des fil
 
 === Types de données personnelles
 
-Les données personnelles contenues dans les dossiers peuvent être des données personnelles générales ou des identificateurs nationaux. La troisième colonne indique si Cloud Compliance utilise ou non  data,validation de proximité pour valider ses résultats pour l'identificateur.
+Les données personnelles contenues dans les dossiers peuvent être des données personnelles générales ou des identificateurs nationaux. La troisième colonne indique si Cloud Compliance utilise ou non <<Données personnelles,validation de proximité>> pour valider ses résultats pour l'identificateur.
 
 [cols="20,50,18"]
 |===
@@ -173,7 +173,7 @@ Les données personnelles contenues dans les dossiers peuvent être des données
 
 == Données personnelles sensibles
 
-Cloud Compliance identifie automatiquement les types particuliers de données sensibles, conformément aux réglementations en matière de confidentialité, notamment https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["Les articles 9 et 10 du RGPD"^]. Par exemple, des renseignements concernant la santé d'une personne, son origine ethnique ou son orientation sexuelle.  of sensitive personal data,Voir la liste complète.
+Cloud Compliance identifie automatiquement les types particuliers de données sensibles, conformément aux réglementations en matière de confidentialité, notamment https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["Les articles 9 et 10 du RGPD"^]. Par exemple, des renseignements concernant la santé d'une personne, son origine ethnique ou son orientation sexuelle. <<Types de données personnelles sensibles,Voir la liste complète>>.
 
 Cloud Compliance exploite l'intelligence artificielle (IA), le traitement du langage naturel (NLP), le machine learning (ML) et l'informatique cognitive (CC) pour comprendre la signification du contenu balayé afin d'extraire les entités et de les catégoriser en conséquence.
 
@@ -219,7 +219,7 @@ Référence de la vie sexuelle ou de l'orientation:: Données concernant la vie 
 
 == Catégories
 
-Cloud Compliance divise les données analysées et les divise en plusieurs types de catégories. Les catégories sont des rubriques basées sur l'analyse par IA du contenu et des métadonnées de chaque fichier.  of categories,Voir la liste des catégories.
+Cloud Compliance divise les données analysées et les divise en plusieurs types de catégories. Les catégories sont des rubriques basées sur l'analyse par IA du contenu et des métadonnées de chaque fichier. <<Types de catégories,Voir la liste des catégories>>.
 
 Les catégories peuvent vous aider à comprendre ce qui se passe avec vos données en vous montrant les types d'informations dont vous disposez. Par exemple, une catégorie comme les CV ou les contrats d'employés peut inclure des données sensibles. Lorsque vous étudiez les résultats, vous pouvez constater que les contrats d'employés sont stockés dans un emplacement non sécurisé. Vous pouvez ensuite corriger ce problème.
 
@@ -344,7 +344,7 @@ Catégories de métadonnées::
 
 == Types de fichiers
 
-Cloud Compliance réduit les données analysées et les divise par type de fichier. La vérification de vos types de fichiers peut vous aider à contrôler vos données sensibles car il se peut que certains types de fichiers ne soient pas stockés correctement.  of files,Voir la liste des types de fichiers.
+Cloud Compliance réduit les données analysées et les divise par type de fichier. La vérification de vos types de fichiers peut vous aider à contrôler vos données sensibles car il se peut que certains types de fichiers ne soient pas stockés correctement. <<Types de fichiers,Voir la liste des types de fichiers>>.
 
 Par exemple, vous pouvez stocker des fichiers CAO qui contiennent des informations très sensibles sur votre organisation. S'ils ne sont pas sécurisés, vous pouvez prendre le contrôle des données sensibles en limitant les autorisations ou en déplaçant les fichiers vers un autre emplacement.
 

@@ -24,29 +24,30 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Vérifiez la prise en charge de votre configuration
+==== image:number1.png["Numéro 1"] Vérifiez la prise en charge de votre configuration
 
 [role="quick-margin-para"]
 Vous devez avoir installé Cloud Manager 3.8.4 ou une version ultérieure dans AWS et Cloud Volumes ONTAP dans AWS. Vous devez également être un nouveau client Cloud Insights.
 
 
 
-==== Activez la surveillance sur votre système nouveau ou existant
+==== image:number2.png["Numéro 2"] Activez la surveillance sur votre système nouveau ou existant
 
+[role="quick-margin-list"]
 * Nouveaux environnements de travail : assurez-vous de maintenir l'option surveillance activée lorsque vous créez l'environnement de travail (activé par défaut).
 * Environnements de travail existants : sélectionnez un environnement de travail et cliquez sur *Démarrer la surveillance*.
 
 
 
 
-==== Afficher les données de performances
+==== image:number3.png["Numéro 3"] Afficher les données de performances
 
 [role="quick-margin-para"]
 Cliquez sur *Monitoring* et affichez les données de performances de vos volumes.
 
 
 
-==== Abonnez-vous à Cloud Insights
+==== image:number4.png["Numéro 4"] Abonnez-vous à Cloud Insights
 
 [role="quick-margin-para"]
 Abonnez-vous avant la fin de votre essai gratuit de 30 jours pour continuer à consulter les données de performances dans Cloud Manager et Cloud Insights. https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["Découvrez comment vous inscrire"^].
@@ -165,6 +166,7 @@ image:screenshot_cloud_insights.gif["Capture d'écran affichant le lien Cloud In
 
 
 
+.Résultat
 Cloud Insights s'ouvre dans un nouvel onglet du navigateur. Si vous avez besoin d'aide, reportez-vous au https://docs.netapp.com/us-en/cloudinsights["Documentation Cloud Insights"^].
 
 

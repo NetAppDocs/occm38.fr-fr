@@ -119,8 +119,10 @@ NOTE: Cloud Manager déplace le volume vers un agrégat existant qui utilise le 
 
 Gérez vous-même les agrégats en ajoutant des disques, en affichant les informations sur les agrégats et en les supprimant.
 
+.Avant de commencer
 Si vous souhaitez supprimer un agrégat, vous devez d'abord supprimer les volumes de l'agrégat.
 
+.Description de la tâche
 Si un agrégat manque d'espace, vous pouvez déplacer des volumes vers un autre agrégat à l'aide d'OnCommand System Manager.
 
 .Étapes
@@ -196,6 +198,7 @@ Si vous modifiez vos serveurs DNS ou votre domaine Active Directory, vous devez 
 . Cliquez sur *Enregistrer*.
 
 
+.Résultat
 Cloud Volumes ONTAP met à jour le serveur CIFS avec les modifications.
 
 
@@ -223,11 +226,11 @@ Pour obtenir des instructions, reportez-vous au http://docs.netapp.com/ontap-9/t
 Cloud Manager peut afficher un message Action requise indiquant que le déplacement d'un volume est nécessaire pour éviter les problèmes de capacité, mais qu'il ne peut pas fournir de recommandations pour corriger le problème. Dans ce cas, vous devez identifier comment corriger le problème, puis déplacer un ou plusieurs volumes.
 
 .Étapes
-.  how to correct capacity issues,Identifier la manière de corriger le problème.
+. <<Identifier comment corriger les problèmes de capacité,Identifier la manière de corriger le problème>>.
 . En fonction de votre analyse, déplacez les volumes pour éviter les problèmes de capacité :
 +
-**  volumes to another system to avoid capacity issues,Déplacement des volumes vers un autre système.
-**  volumes to another aggregate to avoid capacity issues,Déplacement des volumes vers un autre agrégat du même système.
+** <<Déplacement des volumes vers un autre système pour éviter les problèmes de capacité,Déplacement des volumes vers un autre système>>.
+** <<Déplacement des volumes vers un autre agrégat pour éviter les problèmes de capacité,Déplacement des volumes vers un autre agrégat du même système>>.
 
 
 
@@ -282,6 +285,7 @@ Pour plus de détails, voir link:task_managing_storage.html#moving-volumes-to-an
 
 Vous pouvez déplacer un ou plusieurs volumes vers un autre système Cloud Volumes ONTAP pour éviter les problèmes de capacité. Vous devrez peut-être le faire si le système a atteint sa limite de disque.
 
+.Description de la tâche
 Vous pouvez suivre les étapes de cette tâche pour corriger le message Action requise suivant :
 
  Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
@@ -311,6 +315,7 @@ Pour plus de détails, voir link:task_managing_storage.html#managing-existing-vo
 
 Vous pouvez déplacer un ou plusieurs volumes vers un autre agrégat pour éviter les problèmes de capacité.
 
+.Description de la tâche
 Vous pouvez suivre les étapes de cette tâche pour corriger le message Action requise suivant :
 
  Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.

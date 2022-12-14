@@ -28,7 +28,7 @@ Lors de la conception de votre déploiement Global File cache, vous devez déter
 * Conception distribuée Fibre Channel Core Load (mise en veille à froid)
 
 
-Voir  guidelines Pour comprendre le nombre maximal d'instances Edge et le nombre total d'utilisateurs que chaque configuration peut prendre en charge :
+Voir <<Instructions de dimensionnement>> Pour comprendre le nombre maximal d'instances Edge et le nombre total d'utilisateurs que chaque configuration peut prendre en charge :
 
 Consultez votre ingénieur solutions Global File cache pour connaître les meilleures options de déploiement pour votre entreprise.
 

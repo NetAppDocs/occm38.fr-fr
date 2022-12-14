@@ -24,21 +24,21 @@ Pour commencer rapidement, suivez ces étapes ou passez à la section suivante p
 
 
 
-==== Activez l'API Cloud Volumes Service
+==== image:number1.png["Numéro 1"] Activez l'API Cloud Volumes Service
 
 [role="quick-margin-para"]
 Depuis Google, activez l'API Cloud Volumes Service pour GCP afin que Cloud Manager puisse gérer l'abonnement et les volumes cloud.
 
 
 
-==== Créez un compte de service GCP et téléchargez les identifiants
+==== image:number2.png["Numéro 2"] Créez un compte de service GCP et téléchargez les identifiants
 
 [role="quick-margin-para"]
 Depuis Google, créez un compte de service GCP et un rôle afin de permettre à Cloud Manager d'accéder à votre compte Cloud Volumes Service pour GCP.
 
 
 
-==== Créez un environnement de travail Cloud Volumes Service pour GCP
+==== image:number3.png["Numéro 3"] Créez un environnement de travail Cloud Volumes Service pour GCP
 
 [role="quick-margin-para"]
 Dans Cloud Manager, cliquez sur *Ajouter un environnement de travail* > *Google Cloud* > *Cloud Volumes Service*, puis donnez des détails sur le compte de service et le projet Google Cloud.
@@ -101,6 +101,7 @@ Si des volumes cloud existent déjà pour cet abonnement, les volumes apparaîtr
 
 TIP: Si vous disposez d'abonnements et de volumes dans plusieurs projets GCP, vous devez effectuer cette tâche pour chaque projet.
 
+.Avant de commencer
 Vous devez disposer des informations suivantes lors de l'ajout d'un abonnement pour chaque projet :
 
 * Identifiants de compte de service (clé privée JSON que vous avez téléchargée)
@@ -126,6 +127,7 @@ image:screenshot_add_cvs_gcp_credentials.png["Capture d'écran indiquant l'ajout
 
 
 
+.Résultat
 Cloud Manager affiche votre environnement de travail Cloud Volumes Service pour Google Cloud.
 
 image:screenshot_cvs_gcp_cloud.png["Copie d'écran de l'environnement de travail Cloud Volumes Service pour Google Cloud."]
@@ -134,4 +136,5 @@ Si des volumes cloud existent déjà pour cet abonnement, ils apparaissent dans 
 
 Si aucun volume cloud n'existe pour cet abonnement, créez-les dès maintenant.
 
+.Et la suite ?
 link:task_manage_cvs_gcp.html["Démarrage de la création et de la gestion des volumes"].

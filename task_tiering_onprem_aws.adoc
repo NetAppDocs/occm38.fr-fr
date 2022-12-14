@@ -24,31 +24,33 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Préparation au Tiering des données vers Amazon S3
+==== image:number1.png["Numéro 1"] Préparation au Tiering des données vers Amazon S3
 
 [role="quick-margin-para"]
 Il faut les éléments suivants :
 
+[role="quick-margin-list"]
 * Un système AFF ou FAS doté d'agrégats 100 % SSD qui exécutent ONTAP 9.2 ou une version ultérieure et qui bénéficie d'une connexion HTTPS vers Amazon S3.
-* Un compte AWS doté d'une clé d'accès et  Amazon S3,les autorisations requises Le cluster ONTAP peut ainsi transférer les données inactives dans et depuis S3.
+* Un compte AWS doté d'une clé d'accès et <<Préparation d'Amazon S3,les autorisations requises>> Le cluster ONTAP peut ainsi transférer les données inactives dans et depuis S3.
 * Un connecteur installé sur un VPC AWS ou sur votre site.
 * Mise en réseau pour le connecteur qui permet d'établir une connexion HTTPS sortante avec le cluster ONTAP, vers le stockage S3 et vers le service Cloud Tiering.
 
 
 
 
-==== Configurer le Tiering
+==== image:number2.png["Numéro 2"] Configurer le Tiering
 
 [role="quick-margin-para"]
 Dans Cloud Manager, sélectionnez un environnement de travail sur site, cliquez sur *Setup Tiering* et suivez les invites pour hiérarchiser les données vers Amazon S3.
 
 
 
-==== Configuration des licences
+==== image:number3.png["numéro 3"] Configuration des licences
 
 [role="quick-margin-para"]
 Après la fin de votre essai gratuit, payez pour Cloud Tiering par l'intermédiaire d'un abonnement avec paiement à l'utilisation, d'une licence de Tiering ONTAP ou d'une combinaison des deux :
 
+[role="quick-margin-list"]
 * Pour vous abonner à AWS Marketplace, cliquez sur *Tiering > licences*, cliquez sur *Subscribe*, puis suivez les invites.
 * Pour payer à l'aide d'une licence à plusieurs niveaux, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[contactez-nous si vous avez besoin d'en acheter une], puis link:task_licensing_cloud_tiering.html["Ajoutez-le à votre cluster à partir de NetApp Cloud Tiering"].
 
@@ -175,7 +177,7 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
 Une fois votre environnement AWS prêt, commencez le Tiering des données inactives à partir du premier cluster.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * link:task_discovering_ontap.html["Un environnement de travail sur site"].
 * Clé d'accès AWS pour un utilisateur IAM qui dispose des autorisations S3 requises.
 
@@ -223,8 +225,10 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.Résultat
 Vous avez configuré le Tiering des données à partir des volumes du cluster vers le stockage objet S3.
 
+.Et la suite ?
 link:task_licensing_cloud_tiering.html["Pensez à vous abonner au service NetApp Cloud Tiering"].
 
 Vous pouvez également ajouter des clusters ou consulter des informations sur les données actives et inactives sur le cluster. Pour plus de détails, voir link:task_managing_tiering.html["Gestion du Tiering des données à partir des clusters"].

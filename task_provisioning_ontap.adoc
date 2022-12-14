@@ -21,8 +21,10 @@ Une fois que vous avez découvert votre cluster ONTAP depuis Cloud Manager, vous
 
 Cloud Manager vous permet de provisionner des volumes NFS, CIFS et iSCSI sur les clusters ONTAP.
 
+.Avant de commencer
 Les protocoles de données doivent être définis sur le cluster, à l'aide de System Manager ou de l'interface de ligne de commandes.
 
+.Description de la tâche
 Vous pouvez créer des volumes sur des agrégats existants. Vous ne pouvez pas créer de nouveaux agrégats depuis Cloud Manager.
 
 .Étapes

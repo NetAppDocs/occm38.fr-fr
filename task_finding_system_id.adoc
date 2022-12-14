@@ -16,6 +16,7 @@ summary: 'Pour vous aider à vous lancer, votre représentant NetApp peut vous d
 [role="lead"]
 Pour vous aider à vous lancer, votre représentant NetApp peut vous demander votre identifiant de système Cloud Manager. L'ID est généralement utilisé à des fins de licence et de dépannage.
 
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes

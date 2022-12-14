@@ -16,6 +16,7 @@ summary: 'Il est préférable de supprimer les systèmes Cloud Volumes ONTAP de 
 [role="lead"]
 Il est préférable de supprimer les systèmes Cloud Volumes ONTAP de Cloud Manager, plutôt que de la console de votre fournisseur cloud. Par exemple, si vous mettez fin à une instance Cloud Volumes ONTAP sous licence depuis AWS, vous ne pouvez pas utiliser la clé de licence pour une autre instance. Vous devez supprimer l'environnement de travail de Cloud Manager pour libérer la licence.
 
+.Description de la tâche
 Lorsque vous supprimez un environnement de travail, Cloud Manager met fin aux instances, supprime les disques et les snapshots.
 
 

@@ -25,11 +25,13 @@ IMPORTANT: Tous les disques et agrégats doivent être créés et supprimés dir
 
 Si vous avez besoin de plus de stockage après le lancement d'un système Cloud Volumes ONTAP, vous pouvez créer de nouveaux volumes FlexVol pour NFS, CIFS ou iSCSI à partir de Cloud Manager.
 
-Lorsque vous créez un volume iSCSI, Cloud Manager crée automatiquement une LUN pour vous. Nous avons simplifié la gestion en créant un seul LUN par volume, donc aucune gestion n'est nécessaire. Une fois le volume créé,  a LUN to a host,Utilisez l'IQN pour vous connecter à la LUN à partir de vos hôtes.
+.Description de la tâche
+Lorsque vous créez un volume iSCSI, Cloud Manager crée automatiquement une LUN pour vous. Nous avons simplifié la gestion en créant un seul LUN par volume, donc aucune gestion n'est nécessaire. Une fois le volume créé, <<Connexion d'une LUN à un hôte,Utilisez l'IQN pour vous connecter à la LUN à partir de vos hôtes>>.
 
 
 NOTE: Vous pouvez créer des LUN supplémentaires depuis System Manager ou l'interface de ligne de commandes.
 
+.Avant de commencer
 Si vous souhaitez utiliser CIFS dans AWS, vous devez avoir configuré DNS et Active Directory. Pour plus de détails, voir link:reference_networking_aws.html["Configuration réseau requise pour Cloud Volumes ONTAP pour AWS"].
 
 .Étapes
@@ -125,8 +127,10 @@ Pour obtenir de l'aide, reportez-vous aux documents suivants :
 . Cliquez sur *Go*.
 
 
+.Résultat
 Cloud Volumes ONTAP en assure la gestion.
 
+.Une fois que vous avez terminé
 Si vous avez provisionné un partage CIFS, donnez aux utilisateurs ou aux groupes des autorisations sur les fichiers et les dossiers et vérifiez que ces utilisateurs peuvent accéder au partage et créer un fichier.
 
 Si vous souhaitez appliquer des quotas aux volumes, vous devez utiliser System Manager ou l'interface de ligne de commande. Les quotas vous permettent de restreindre ou de suivre l'espace disque et le nombre de fichiers utilisés par un utilisateur, un groupe ou un qtree.
@@ -146,6 +150,7 @@ Par défaut, Cloud Manager crée des volumes sur le premier nœud d'une configur
 . Entrez les détails du nouveau volume, puis cliquez sur *Créer*.
 
 
+.Une fois que vous avez terminé
 Vous pouvez créer des volumes supplémentaires sur cet agrégat si nécessaire.
 
 

@@ -101,8 +101,10 @@ image:screenshot_set_up_cloud_manager.gif["Capture d'écran qui montre l'écran 
 
 
 
+.Résultat
 Le connecteur est maintenant installé et configuré avec votre compte Cloud Central. Cloud Manager utilisera automatiquement ce connecteur lors de la création de nouveaux environnements de travail.
 
+.Une fois que vous avez terminé
 Configurez des autorisations pour que Cloud Manager puisse gérer les ressources et les processus dans votre environnement de cloud public :
 
 * AWS : link:task_adding_aws_accounts.html["Configurez un compte AWS, puis ajoutez-le à Cloud Manager"].

@@ -257,7 +257,7 @@ La relation de synchronisation indique le débit de l'adaptateur réseau du cour
 
 
 
-=== J'éprouve des problèmes de performance. Pouvons-nous limiter le nombre de transferts simultanés ?
+=== J'ai des problèmes de performances. Pouvons-nous limiter le nombre de transferts simultanés ?
 
 Le courtier de données peut synchroniser 4 fichiers à la fois. Si vous avez des fichiers de très grande taille (plusieurs To chacun), il peut prendre beaucoup de temps pour terminer le processus de transfert et les performances peuvent être affectées.
 

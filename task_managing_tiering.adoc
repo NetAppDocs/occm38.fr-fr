@@ -41,7 +41,7 @@ TIP: Il n'est pas nécessaire de configurer le stockage objet, car il était dé
 
 
 
-== Modification de la règle de hiérarchisation d'un volume
+== Modification de la règle de Tiering d'un volume
 
 La modification de la règle de Tiering pour un volume modifie la façon dont ONTAP transfère les données inactives vers le stockage objet. Au moment de modifier la règle, cette modification ne modifie que le comportement de Tiering suivant pour le volume.
 

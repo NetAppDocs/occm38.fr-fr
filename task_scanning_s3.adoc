@@ -24,28 +24,28 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Configurez les exigences S3 dans votre environnement cloud
+==== image:number1.png["Numéro 1"] Configurez les exigences S3 dans votre environnement cloud
 
 [role="quick-margin-para"]
-Assurez-vous que votre environnement cloud répond aux exigences de Cloud Compliance, y compris la préparation d'un rôle IAM et la configuration de la connectivité Cloud Compliance vers S3.  S3 prerequisites,Voir la liste complète.
+Assurez-vous que votre environnement cloud répond aux exigences de Cloud Compliance, y compris la préparation d'un rôle IAM et la configuration de la connectivité Cloud Compliance vers S3. <<Vérification des prérequis S3,Voir la liste complète>>.
 
 
 
-==== Déployez l'instance Cloud Compliance
+==== image:number2.png["Numéro 2"] Déployez l'instance Cloud Compliance
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["Déployez Cloud Compliance dans Cloud Manager"^] si aucune instance n'est déjà déployée.
 
 
 
-==== Activez la conformité sur votre environnement de travail S3
+==== image:number3.png["Numéro 3"] Activez la conformité sur votre environnement de travail S3
 
 [role="quick-margin-para"]
 Sélectionnez l'environnement de travail Amazon S3, cliquez sur *Activer la conformité* et sélectionnez un rôle IAM qui inclut les autorisations requises.
 
 
 
-==== Sélectionnez les compartiments à numériser
+==== image:number4.png["Numéro 4"] Sélectionnez les compartiments à numériser
 
 [role="quick-margin-para"]
 Sélectionnez les compartiments que vous souhaitez analyser et Cloud Compliance commence à les analyser.
@@ -129,7 +129,7 @@ image:screenshot_s3_we.gif["Copie d'écran d'une icône d'environnement de trava
 +
 image:screenshot_s3_enable_compliance.gif["Capture d'écran de l'activation du service Cloud Compliance à partir du panneau Services"]
 
-. Lorsque vous y êtes invité, attribuez un rôle IAM à l'instance Cloud Compliance qui possède  specific to S3,les autorisations requises.
+. Lorsque vous y êtes invité, attribuez un rôle IAM à l'instance Cloud Compliance qui possède <<Requirements specific to S3,les autorisations requises>>.
 +
 image:screenshot_s3_compliance_iam_role.gif["Capture d'écran de l'entrée du rôle IAM AWS pour Cloud Compliance"]
 
@@ -139,6 +139,7 @@ image:screenshot_s3_compliance_iam_role.gif["Capture d'écran de l'entrée du r�
 
 TIP: Vous pouvez également activer les analyses de conformité pour un environnement de travail à partir de la page Configuration de la numérisation en cliquant sur le bouton image:screenshot_gallery_options.gif[""] Et en sélectionnant *Activer la conformité*.
 
+.Résultat
 Cloud Manager attribue le rôle IAM à l'instance.
 
 
@@ -149,7 +150,7 @@ Une fois que Cloud Manager active Cloud Compliance sur Amazon S3, l'étape suiva
 
 Lorsque Cloud Manager s'exécute sur le compte AWS possédant les compartiments S3 que vous souhaitez analyser, il détecte ces compartiments et les affiche dans un environnement de travail Amazon S3.
 
-Cloud Compliance l'est également  buckets from additional AWS accounts,Analysez les compartiments S3 qui se trouvent dans différents comptes AWS.
+Cloud Compliance l'est également <<Analyse des compartiments à partir de comptes AWS supplémentaires,Analysez les compartiments S3 qui se trouvent dans différents comptes AWS>>.
 
 .Étapes
 . Sélectionnez l'environnement de travail Amazon S3.
@@ -163,6 +164,7 @@ image:screenshot_s3_select_buckets.gif["Capture d'écran de la sélection des co
 
 
 
+.Résultat
 Cloud Compliance commence l'analyse des compartiments S3 activés. En cas d'erreur, elles apparaîtront dans la colonne État, ainsi que l'action requise pour corriger l'erreur.
 
 
@@ -246,4 +248,5 @@ image:screenshot_activate_and_select_buckets.png[""]
 . Cliquez sur *Activer la conformité et sélectionnez les rubriques* et sélectionnez les rubriques que vous souhaitez numériser.
 
 
+.Résultat
 Cloud Compliance commence l'analyse des nouveaux compartiments S3 activés.

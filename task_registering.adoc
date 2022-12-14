@@ -29,4 +29,5 @@ image:screenshot_menu_registration.gif["Capture d'écran : affiche l'option d'en
 . Sélectionnez un compte sur le site de support NetApp et cliquez sur *Register*.
 
 
+.Résultat
 Cloud Manager enregistre le système avec NetApp.

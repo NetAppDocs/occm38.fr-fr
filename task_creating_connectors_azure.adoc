@@ -80,6 +80,7 @@ NOTE: Azure SetupAsService est le nom par défaut fourni dans https://mysupport.
 
 
 
+.Résultat
 L'utilisateur Azure dispose désormais des autorisations nécessaires pour déployer le connecteur à partir de Cloud Manager.
 
 
@@ -88,7 +89,7 @@ L'utilisateur Azure dispose désormais des autorisations nécessaires pour dépl
 
 Cloud Manager vous permet de créer un connecteur dans Azure directement à partir de son interface utilisateur.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Le https://mysupport.netapp.com/site/info/cloud-manager-policies["autorisations requises"^] Pour votre compte Azure.
 * Un abonnement Azure.
 * Un vnet et un sous-réseau dans votre région Azure de votre choix.
@@ -134,4 +135,5 @@ La machine virtuelle doit être prête en 7 minutes environ. Vous devez rester s
 
 
 
+.Une fois que vous avez terminé
 Vous devez associer un connecteur aux espaces de travail pour que les administrateurs d'espace de travail puissent utiliser ces connecteurs pour créer des systèmes Cloud Volumes ONTAP. Si vous ne disposez que d'administrateurs de compte, il n'est pas nécessaire d'associer le connecteur aux espaces de travail. Ils peuvent accéder par défaut à tous les espaces de travail dans Cloud Manager. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["En savoir plus >>"].

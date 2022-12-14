@@ -16,6 +16,7 @@ summary: Vous pouvez découvrir et ajouter des systèmes Cloud Volumes ONTAP exi
 [role="lead"]
 Vous pouvez découvrir et ajouter des systèmes Cloud Volumes ONTAP existants à Cloud Manager. Cette opération peut être possible si vous avez déployé un nouveau système Cloud Manager.
 
+.Avant de commencer
 Vous devez connaître le mot de passe du compte d'administrateur Cloud Volumes ONTAP.
 
 .Étapes
@@ -30,4 +31,5 @@ image:screenshot_discover.gif["Copie d'écran montrant un lien permettant de dé
 . Sur la page informations d'identification, entrez le mot de passe de l'utilisateur administrateur Cloud Volumes ONTAP, puis cliquez sur *Go*.
 
 
+.Résultat
 Cloud Manager ajoute les instances Cloud Volumes ONTAP à l'espace de travail.

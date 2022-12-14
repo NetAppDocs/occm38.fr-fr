@@ -27,16 +27,17 @@ NOTE: Lorsque vous déployez un connecteur depuis Cloud Manager, Cloud Manager a
 
 Cloud Manager a besoin d'autorisations pour effectuer des actions dans Azure. Vous pouvez accorder les autorisations requises à un compte Azure en créant et en configurant une entité de sécurité de service dans Azure Active Directory et en obtenant les informations d'identification Azure requises par Cloud Manager.
 
+.Description de la tâche
 L'image suivante illustre comment Cloud Manager obtient les autorisations nécessaires pour effectuer des opérations dans Azure. Un objet principal de service, lié à un ou plusieurs abonnements Azure, représente Cloud Manager dans Azure Active Directory et est affecté à un rôle personnalisé qui permet les autorisations requises.
 
 image:diagram_azure_authentication.png["Image conceptuelle montrant que Cloud Manager obtient l'authentification et l'autorisation d'Azure Active Directory avant de pouvoir passer un appel API. Dans Active Directory, le rôle de l'opérateur Cloud Manager définit les autorisations. Il est lié à un ou plusieurs abonnements Azure et à un objet principal de service qui représente l'application Cloud Manager."]
 
 .Étapes
-.  an Azure Active Directory application,Créez une application Azure Active Directory.
-.  the application to a role,Attribuez l'application à un rôle.
-.  Windows Azure Service Management API permissions,Ajoutez des autorisations d'API de gestion de service Windows Azure.
-.  the application ID and directory ID,Obtenir l'ID de l'application et l'ID du répertoire.
-.  a client secret,Créez un secret client.
+. <<Création d'une application Azure Active Directory,Créez une application Azure Active Directory>>.
+. <<Affectation de l'application à un rôle,Attribuez l'application à un rôle>>.
+. <<Ajout d'autorisations d'API de gestion des services Windows Azure,Ajoutez des autorisations d'API de gestion de service Windows Azure>>.
+. <<Obtention de l'ID d'application et de l'ID de répertoire,Obtenir l'ID de l'application et l'ID du répertoire>>.
+. <<Création d'un secret client,Créez un secret client>>.
 
 
 
@@ -45,6 +46,7 @@ image:diagram_azure_authentication.png["Image conceptuelle montrant que Cloud Ma
 
 Créez une application Azure Active Directory (AD) et une entité de service que Cloud Manager peut utiliser pour le contrôle d'accès basé sur des rôles.
 
+.Avant de commencer
 Vous devez disposer des droits d'accès dans Azure pour créer une application Active Directory et attribuer l'application à un rôle. Pour plus de détails, reportez-vous à https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Documentation Microsoft Azure : autorisations requises"^].
 
 .Étapes
@@ -64,6 +66,7 @@ image:screenshot_azure_ad.gif["Affiche le service Active Directory dans Microsof
 . Cliquez sur *Enregistrer*.
 
 
+.Résultat
 Vous avez créé l'application AD et le principal de service.
 
 
@@ -179,6 +182,7 @@ image:screenshot_azure_client_secret.gif["Copie d'écran du portail Azure prése
 
 
 
+.Résultat
 Votre principal de service est maintenant configuré et vous devez avoir copié l'ID de l'application (client), l'ID du répertoire (tenant) et la valeur du secret client. Vous devez saisir ces informations dans Cloud Manager lorsque vous ajoutez un compte Azure.
 
 
@@ -187,6 +191,7 @@ Votre principal de service est maintenant configuré et vous devez avoir copié 
 
 Une fois que vous avez autorisé à fournir un compte Azure, vous pouvez ajouter les identifiants de ce compte à Cloud Manager. Vous pouvez ainsi lancer les systèmes Cloud Volumes ONTAP de ce compte.
 
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes
@@ -197,9 +202,9 @@ image:screenshot_settings_icon.gif["Copie d'écran affichant l'icône Paramètre
 . Cliquez sur *Ajouter des informations d'identification* et sélectionnez *Microsoft Azure*.
 . Entrez des informations sur l'entité de sécurité du service Azure Active Directory qui accorde les autorisations requises :
 +
-** ID de l'application (client) : voir  the application ID and directory ID.
-** ID de répertoire (locataire) : voir  the application ID and directory ID.
-** Secret client : voir  a client secret.
+** ID de l'application (client) : voir <<Obtention de l'ID d'application et de l'ID de répertoire>>.
+** ID de répertoire (locataire) : voir <<Obtention de l'ID d'application et de l'ID de répertoire>>.
+** Secret client : voir <<Création d'un secret client>>.
 
 
 . Vérifiez que les exigences de la stratégie ont été respectées, puis cliquez sur *Continuer*.
@@ -210,6 +215,7 @@ Pour créer un système Cloud Volumes ONTAP basé sur l'utilisation, vous devez 
 . Cliquez sur *Ajouter*.
 
 
+.Résultat
 Vous pouvez maintenant passer à différents ensembles d'informations d'identification à partir de la page Détails et informations d'identification link:task_deploying_otc_azure.html["lors de la création d'un nouvel environnement de travail"]:
 
 image:screenshot_accounts_switch_azure.gif["Capture d'écran indiquant la sélection entre les informations d'identification après avoir cliqué sur Modifier les informations d'identification dans la page Détails  informations d'identification."]
@@ -226,6 +232,7 @@ Deux scénarios peuvent s'avérer nécessaires pour associer un abonnement Azure
 * Vous souhaitez remplacer un abonnement Azure Marketplace existant par un nouvel abonnement.
 
 
+.Ce dont vous avez besoin
 Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. link:concept_connectors.html#how-to-create-a-connector["Découvrez comment"].
 
 .Étapes
@@ -249,6 +256,7 @@ video::video_subscribing_azure.mp4[width=848,height=480]
 
 Cloud Manager vous permet de choisir les identifiants Azure et l'abonnement Azure dans lesquels vous souhaitez déployer Cloud Volumes ONTAP. Vous ne pouvez pas sélectionner un autre abonnement Azure pour le profil d'identité gérée à moins d'associer le https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["identité gérée"^] avec ces abonnements.
 
+.Description de la tâche
 Une identité gérée est link:concept_accounts_azure.html["Compte Azure initial"] Lorsque vous déployez un connecteur depuis Cloud Manager. Une fois que vous avez déployé Connector, Cloud Manager a créé le rôle de l'opérateur Cloud Manager et l'a attribué à la machine virtuelle du connecteur.
 
 .Étapes
@@ -274,6 +282,7 @@ NOTE: L'opérateur de Cloud Manager est le nom par défaut fourni dans https://m
 . Répétez ces étapes pour les abonnements supplémentaires.
 
 
+.Résultat
 Lorsque vous créez un nouvel environnement de travail, vous devriez désormais pouvoir sélectionner plusieurs abonnements Azure pour le profil d'identité géré.
 
 image:screenshot_accounts_switch_azure_subscription.gif["Capture d'écran indiquant la possibilité de sélectionner plusieurs abonnements Azure lors de la sélection d'un compte Microsoft Azure Provider."]

@@ -116,7 +116,7 @@ image:diagram_cloud_tiering.png["Image d'architecture montrant le service NetApp
 . Pour configurer le Tiering, vous fournissant des informations détaillées sur le stockage objet, notamment le compartiment/conteneur et la classe de stockage ou le Tier d'accès.
 . Cloud Manager configure ONTAP pour qu'il utilise le fournisseur de stockage objet et détecte la quantité de données actives et inactives sur le cluster.
 . Vous choisissez les volumes à Tier et la règle de Tiering à appliquer à ces volumes.
-. ONTAP commence le Tiering des données inactives dans le magasin d'objets, dès que les données ont atteint les seuils à considérer comme inactives (voir la  tiering policies).
+. ONTAP commence le Tiering des données inactives dans le magasin d'objets, dès que les données ont atteint les seuils à considérer comme inactives (voir la <<Stratégies de hiérarchisation des volumes>>).
 
 
 

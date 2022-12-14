@@ -24,8 +24,9 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Vérifiez la prise en charge de votre configuration
+==== image:number1.png["Numéro 1"] Vérifiez la prise en charge de votre configuration
 
+[role="quick-margin-list"]
 * Vous exécutez Cloud Volumes ONTAP 9.7 ou une version ultérieure dans Azure.
 * Vous disposez d'un abonnement valide au fournisseur cloud pour l'espace de stockage où vos sauvegardes seront stockées.
 * Vous avez souscrit au https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Offre Cloud Manager Marketplace Backup"^], ou vous avez acheté link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["et activé"^] Licence BYOL pour la sauvegarde dans le cloud de NetApp.
@@ -33,8 +34,9 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant
+==== image:number2.png["Numéro 2"] Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant
 
+[role="quick-margin-list"]
 * Nouveaux systèmes : la sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
 * Systèmes existants : sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite, puis suivez l'assistant d'installation.
 +
@@ -44,7 +46,7 @@ image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton B
 
 
 
-==== Entrez les détails du fournisseur
+==== image:number3.png["Numéro 3"] Entrez les détails du fournisseur
 
 [role="quick-margin-para"]
 Sélectionnez l'abonnement du fournisseur et choisissez si vous souhaitez créer un nouveau groupe de ressources ou utiliser un groupe de ressources existant.
@@ -54,7 +56,7 @@ image:screenshot_backup_provider_settings_azure.png["Une copie d'écran présent
 
 
 
-==== Définissez la stratégie de sauvegarde
+==== image:number4.png["Numéro 4"] Définissez la stratégie de sauvegarde
 
 [role="quick-margin-para"]
 La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options.
@@ -64,14 +66,14 @@ image:screenshot_backup_onprem_policy.png["Une capture d'écran montre les param
 
 
 
-==== Sélectionnez les volumes à sauvegarder
+==== image:number5.png["Numéro 5"] Sélectionnez les volumes à sauvegarder
 
 [role="quick-margin-para"]
 Identifiez les volumes à sauvegarder dans la page Sélectionner les volumes.
 
 
 
-==== Restaurez vos données à la demande
+==== image:number6.png["Numéro 6"] Restaurez vos données à la demande
 
 [role="quick-margin-para"]
 Dans la liste de sauvegarde, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données de la sauvegarde vers un nouveau volume.
@@ -104,7 +106,7 @@ Vous devez également disposer d'un abonnement Microsoft Azure pour l'espace de 
 La sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
 
 
-NOTE: Si vous souhaitez choisir le nom du groupe de ressources, *disable* sauvegarde dans le cloud lors du déploiement de Cloud Volumes ONTAP. Suivez les étapes de la section ,activation de la sauvegarde dans le cloud sur un système en place Pour activer la sauvegarde dans le cloud et choisir le groupe de ressources.
+NOTE: Si vous souhaitez choisir le nom du groupe de ressources, *disable* sauvegarde dans le cloud lors du déploiement de Cloud Volumes ONTAP. Suivez les étapes de la section <<enabling-backup-to-cloud-on-an-existing-system,activation de la sauvegarde dans le cloud sur un système en place>> Pour activer la sauvegarde dans le cloud et choisir le groupe de ressources.
 
 .Étapes
 . Cliquez sur *Créer Cloud Volumes ONTAP*.
@@ -117,8 +119,10 @@ image:screenshot_backup_to_azure.gif["L'option sauvegarde dans le cloud est illu
 . Complétez les pages de l'assistant pour déployer le système.
 
 
+.Résultat
 La sauvegarde dans le cloud est activée sur le système. Elle sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes.
 
+.Et la suite ?
 link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].
 
 
@@ -158,6 +162,8 @@ image:screenshot_backup_select_volumes.png["Capture d'écran de la sélection de
 
 
 
+.Résultat
 La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.
 
+.Et la suite ?
 link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].

@@ -22,6 +22,7 @@ Vous pouvez arrêter et lancer Cloud Volumes ONTAP depuis Cloud Manager pour gé
 
 Vous pouvez arrêter Cloud Volumes ONTAP à des intervalles réguliers afin de réduire les coûts de calcul. Au lieu de le faire manuellement, vous pouvez configurer Cloud Manager de sorte qu'il s'arrête automatiquement, puis redémarre les systèmes à des moments spécifiques.
 
+.Description de la tâche
 Lorsque vous planifiez un arrêt automatique de votre système Cloud Volumes ONTAP, Cloud Manager reporte l'arrêt du système si un transfert de données actif est en cours. Cloud Manager arrête le système une fois le transfert terminé.
 
 Cette tâche planifie les arrêts automatiques des deux nœuds d'une paire haute disponibilité.
@@ -49,6 +50,7 @@ image:screenshot_shutdown.gif["Capture d'écran : affiche un programme d'arrêt 
 . Cliquez sur *Enregistrer*.
 
 
+.Résultat
 Cloud Manager enregistre la planification. L'icône de l'horloge change pour indiquer qu'un programme est défini : image:screenshot_shutdown_icon_scheduled.gif["Capture d'écran : affiche l'icône d'arrêt automatique après qu'un programme a été défini."]
 
 
@@ -57,6 +59,7 @@ Cloud Manager enregistre la planification. L'icône de l'horloge change pour ind
 
 L'arrêt de Cloud Volumes ONTAP vous permet d'économiser de l'espace de calcul et de créer des snapshots des disques racines et de démarrage, ce qui peut être utile pour la résolution des problèmes.
 
+.Description de la tâche
 Lorsque vous arrêtez une paire HA, Cloud Manager arrête les deux nœuds.
 
 .Étapes

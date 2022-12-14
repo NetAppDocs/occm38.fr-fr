@@ -27,4 +27,5 @@ image:screenshot_cloud_central_signup.gif["Capture d'écran du formulaire d'insc
 . Cliquez sur le lien dans l'e-mail pour vérifier votre adresse e-mail.
 
 
+.Résultat
 Vous disposez désormais d'un utilisateur Cloud Central actif.

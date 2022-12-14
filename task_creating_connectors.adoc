@@ -29,7 +29,7 @@ TIP: Lorsque vous créez votre premier environnement de travail Cloud Volumes ON
 
 Avec Cloud Manager, vous pouvez créer un connecteur dans AWS directement depuis son interface utilisateur. Vous avez également la possibilité de link:task_launching_aws_mktp.html["Créez le connecteur à partir d'AWS Marketplace"], ou link:task_installing_linux.html["téléchargez le logiciel et installez-le sur votre propre hôte"].
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Une clé d'accès AWS et une clé secrète pour un utilisateur IAM qui dispose de la https://mysupport.netapp.com/site/info/cloud-manager-policies["autorisations requises"^].
 * Un VPC, un sous-réseau et un keyair dans votre région AWS de votre choix.
 
@@ -72,7 +72,7 @@ L'instance doit être prête dans environ 7 minutes. Vous devez rester sur la pa
 
 Cloud Manager vous permet de créer un connecteur dans Azure directement à partir de son interface utilisateur. Vous avez également la possibilité de link:task_launching_azure_mktp.html["Créez le connecteur à partir d'Azure Marketplace"], ou à link:task_installing_linux.html["téléchargez le logiciel et installez-le sur votre propre hôte"].
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Le https://mysupport.netapp.com/site/info/cloud-manager-policies["autorisations requises"^] Pour votre compte Azure.
 * Un abonnement Azure.
 * Un vnet et un sous-réseau dans votre région Azure de votre choix.
@@ -120,7 +120,7 @@ La machine virtuelle doit être prête en 7 minutes environ. Vous devez rester s
 
 Avec Cloud Manager, vous pouvez créer un connecteur dans GCP directement à partir de son interface utilisateur. Vous avez également la possibilité de link:task_installing_linux.html["téléchargez le logiciel et installez-le sur votre propre hôte"].
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Le https://mysupport.netapp.com/site/info/cloud-manager-policies["autorisations requises"^] Pour votre compte Google Cloud.
 * Un projet Google Cloud.
 * Compte de service disposant des autorisations requises pour créer et gérer Cloud Volumes ONTAP.

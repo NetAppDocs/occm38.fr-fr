@@ -130,4 +130,5 @@ Le processus d'installation s'exécute.
 . Une fois l'installation terminée, redémarrez le serveur lorsque vous y êtes invité.
 
 
+.Et la suite ?
 Pour plus d'informations sur la configuration avancée de Global File cache Edge, reportez-vous au link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["Guide de l'utilisateur NetApp Global File cache"^].

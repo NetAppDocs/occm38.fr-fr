@@ -52,7 +52,7 @@ Cloud Compliance peut analyser les données à partir de plusieurs types de sour
 +
 link:task_deploy_cloud_compliance.html#subscribing-to-the-cloud-compliance-service["Découvrez comment vous inscrire"^].
 
-* L'installation de Cloud Compliance nécessite le déploiement d'une instance cloud, ce qui entraîne des frais supplémentaires du fournisseur cloud sur lequel elle est déployée. Voir la  Cloud Compliance instance,type d'instance déployé pour chaque fournisseur cloud
+* L'installation de Cloud Compliance nécessite le déploiement d'une instance cloud, ce qui entraîne des frais supplémentaires du fournisseur cloud sur lequel elle est déployée. Voir la <<Instance Cloud Compliance,type d'instance déployé pour chaque fournisseur cloud>>
 * Cloud Compliance requiert que vous ayez déployé un connecteur. Dans la plupart des cas, vous disposez déjà d'un connecteur en raison des autres services et stockages que vous utilisez dans Cloud Manager. L'instance de connecteur entraîne des frais supplémentaires du fournisseur cloud sur lequel elle est déployée. Voir la link:reference_cloud_mgr_reqs.html["type d'instance déployé pour chaque fournisseur cloud"^].
 
 

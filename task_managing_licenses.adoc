@@ -62,6 +62,7 @@ image:screenshot_system_license.gif["Capture d'écran d'une licence système Clo
 . Cliquez sur *Ajouter une licence*.
 
 
+.Résultat
 Cloud Manager installe le nouveau fichier de licence sur le système Cloud Volumes ONTAP.
 
 
@@ -83,6 +84,7 @@ image:screenshot_system_license.gif["Capture d'écran d'une licence système Clo
 . Cliquez sur *mettre à jour la licence*.
 
 
+.Résultat
 Cloud Manager met à jour la licence sur le système Cloud Volumes ONTAP.
 
 
@@ -112,4 +114,5 @@ image:screenshot_backup_byol_license_add.png["Capture d'écran affichant la page
 
 
 
+.Résultat
 Cloud Manager ajoute ou met à jour la licence pour que votre service Backup vers Cloud soit actif.

@@ -24,8 +24,9 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Vérifiez la prise en charge de votre configuration
+==== image:number1.png["Numéro 1"] Vérifiez la prise en charge de votre configuration
 
+[role="quick-margin-list"]
 * Vous exécutez Cloud Volumes ONTAP 9.6 ou une version ultérieure dans AWS.
 * Vous avez souscrit au https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Offre Cloud Manager Marketplace Backup"^], ou vous avez acheté link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["et activé"^] Licence BYOL pour la sauvegarde dans le cloud de NetApp.
 * Le rôle IAM qui fournit des autorisations Cloud Manager inclut les autorisations S3 à partir de la dernière version https://mysupport.netapp.com/site/info/cloud-manager-policies["Politique de Cloud Manager"^].
@@ -33,8 +34,9 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant
+==== image:number2.png["Numéro 2"] Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant
 
+[role="quick-margin-list"]
 * Nouveaux systèmes : la sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.
 * Systèmes existants : sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite, puis suivez l'assistant d'installation.
 +
@@ -44,7 +46,7 @@ image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton B
 
 
 
-==== Définissez la stratégie de sauvegarde
+==== image:number3.png["Numéro 3"] Définissez la stratégie de sauvegarde
 
 [role="quick-margin-para"]
 La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options. Vous pouvez également modifier le nombre de copies de sauvegarde à conserver.
@@ -54,14 +56,14 @@ image:screenshot_backup_settings.png["Capture d'écran présentant les paramètr
 
 
 
-==== Sélectionnez les volumes à sauvegarder
+==== image:number4.png["Numéro 4"] Sélectionnez les volumes à sauvegarder
 
 [role="quick-margin-para"]
 Identifiez les volumes à sauvegarder dans la page Sélectionner les volumes.
 
 
 
-==== Restaurez vos données à la demande
+==== image:number5.png["Numéro 5"] Restaurez vos données à la demande
 
 [role="quick-margin-para"]
 Dans la liste de sauvegarde, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données de la sauvegarde vers un nouveau volume.
@@ -137,8 +139,10 @@ image:screenshot_backup_to_s3.gif["L'option sauvegarde dans le cloud est illustr
 . Complétez les pages de l'assistant pour déployer le système.
 
 
+.Résultat
 La sauvegarde dans le cloud est activée sur le système. Elle sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes.
 
+.Et la suite ?
 link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].
 
 
@@ -165,6 +169,8 @@ image:screenshot_backup_select_volumes.png["Capture d'écran de la sélection de
 
 
 
+.Résultat
 La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.
 
+.Et la suite ?
 link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].

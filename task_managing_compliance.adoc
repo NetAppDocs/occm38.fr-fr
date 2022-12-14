@@ -22,6 +22,7 @@ Si nécessaire, vous pouvez empêcher Cloud Compliance de scanner un ou plusieur
 
 Lorsque vous désactivez les analyses, Cloud Compliance ne analyse plus les données du système et supprime les informations de conformité indexées de l'instance Cloud Compliance (les données de l'environnement de travail ou de la base de données elle-même ne sont pas supprimées).
 
+.Étapes
 Dans la page _Scan Configuration_, cliquez sur le bouton image:screenshot_gallery_options.gif["Bouton plus"] Dans la ligne de l'environnement de travail, puis cliquez sur *Désactiver la conformité*.
 
 image:screenshot_deactivate_compliance_scan.png["Capture d'écran de l'icône d'action dans laquelle vous pouvez sélectionner Désactiver l'acquisition. Cette option est disponible après avoir sélectionné un environnement de travail à partir de la page environnements de travail."]

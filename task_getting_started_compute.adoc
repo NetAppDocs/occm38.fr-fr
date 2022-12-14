@@ -41,6 +41,7 @@ image:screenshot_compute_add_account.gif["Capture d'écran affichant chaque cham
 
 
 
+.Résultat
 Cloud Analyzer commence à traiter les données de votre compte AWS. Si vous avez plusieurs comptes, Cloud Analyzer commence par des capacités en lecture seule pour tous les comptes liés sous le compte payeur principal. Si vous souhaitez obtenir plus d'informations sur les économies potentielles pour ces comptes, vous devrez également les connecter. Vous trouverez plus de détails sur ce processus dans la section ci-dessous.
 
 

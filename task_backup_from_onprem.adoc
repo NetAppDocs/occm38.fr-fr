@@ -24,8 +24,9 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Vérifiez la prise en charge de votre configuration
+==== image:number1.png["Numéro 1"] Vérifiez la prise en charge de votre configuration
 
+[role="quick-margin-list"]
 * Vous avez découvert le cluster sur site et l'avez ajouté à un environnement de travail dans Cloud Manager. Voir link:task_discovering_ontap.html["Découverte des clusters ONTAP"^] pour plus d'informations.
 * Vous exécutez ONTAP 9.7P5 ou version ultérieure sur le cluster.
 * Vous disposez d'un abonnement valide au fournisseur cloud pour l'espace de stockage où vos sauvegardes seront stockées.
@@ -34,7 +35,7 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Activez la sauvegarde dans le cloud sur le système
+==== image:number2.png["Numéro 2"] Activez la sauvegarde dans le cloud sur le système
 
 [role="quick-margin-para"]
 Sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde vers le cloud dans le panneau de droite, puis suivez l'assistant d'installation.
@@ -44,7 +45,7 @@ image:screenshot_backup_to_s3_icon.gif["Une capture d'écran affiche le bouton B
 
 
 
-==== Sélectionnez le fournisseur de services clouds et entrez les informations relatives au fournisseur
+==== image:number3.png["Numéro 3"] Sélectionnez le fournisseur de services clouds et entrez les informations relatives au fournisseur
 
 [role="quick-margin-para"]
 Sélectionnez le fournisseur, puis sélectionnez l'abonnement du fournisseur, la région et le groupe de ressources. Vous devez également spécifier l'IPspace dans le cluster ONTAP où les volumes résident.
@@ -54,7 +55,7 @@ image:screenshot_backup_onprem_to_azure.png["Une copie d'écran présente les in
 
 
 
-==== Définissez la stratégie de sauvegarde
+==== image:number4.png["Numéro 4"] Définissez la stratégie de sauvegarde
 
 [role="quick-margin-para"]
 La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options.
@@ -64,14 +65,14 @@ image:screenshot_backup_onprem_policy.png["Capture d'écran présentant les para
 
 
 
-==== Sélectionnez les volumes à sauvegarder
+==== image:number5.png["Numéro 5"] Sélectionnez les volumes à sauvegarder
 
 [role="quick-margin-para"]
 Identifiez les volumes à sauvegarder depuis le cluster.
 
 
 
-==== Restaurez vos données à la demande
+==== image:number6.png["Numéro 6"] Restaurez vos données à la demande
 
 [role="quick-margin-para"]
 Dans la liste des sauvegardes, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données depuis la sauvegarde vers un nouveau volume d'un système Cloud Volumes ONTAP qui utilise le même fournisseur cloud.
@@ -142,6 +143,8 @@ image:screenshot_backup_select_onprem_volumes.png["Capture d'écran de la sélec
 
 
 
+.Résultat
 La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.
 
+.Et la suite ?
 link:task_managing_backups.html["Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"^].

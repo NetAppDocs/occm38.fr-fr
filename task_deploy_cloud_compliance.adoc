@@ -24,28 +24,28 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Créer un connecteur
+==== image:number1.png["Numéro 1"] Créer un connecteur
 
 [role="quick-margin-para"]
 Si vous n'avez pas encore de connecteur, créez-en un dans Azure ou AWS. Voir link:task_creating_connectors_aws.html["Création d'un connecteur dans AWS"] ou link:task_creating_connectors_azure.html["Création d'un connecteur dans Azure"].
 
 
 
-==== Passer en revue les prérequis
+==== image:number2.png["Numéro 2"] Passer en revue les prérequis
 
 [role="quick-margin-para"]
-Assurez-vous que votre environnement cloud peut répondre aux conditions préalables, dont 16 vCPU pour l'instance Cloud Compliance, l'accès Internet sortant pour l'instance, la connectivité entre le connecteur et Cloud Compliance sur le port 80, etc.  prerequisites,Voir la liste complète.
+Assurez-vous que votre environnement cloud peut répondre aux conditions préalables, dont 16 vCPU pour l'instance Cloud Compliance, l'accès Internet sortant pour l'instance, la connectivité entre le connecteur et Cloud Compliance sur le port 80, etc. <<Vérification des prérequis,Voir la liste complète>>.
 
 
 
-==== Déployez Cloud Compliance
+==== image:number3.png["Numéro 3"] Déployez Cloud Compliance
 
 [role="quick-margin-para"]
 Lancez l'assistant d'installation pour déployer l'instance Cloud Compliance dans Cloud Manager.
 
 
 
-==== Abonnez-vous au service Cloud Compliance
+==== image:number4.png["Numéro 4"] Abonnez-vous au service Cloud Compliance
 
 [role="quick-margin-para"]
 Les 1 premiers To de données analysés par Cloud Compliance dans Cloud Manager sont gratuits. Un abonnement à AWS ou Azure Marketplace est nécessaire pour poursuivre l'analyse des données après ce point.
@@ -145,8 +145,10 @@ image:screenshot_cloud_compliance_wizard_start.png["Capture d'écran de l'assist
 . Lorsque l'instance est déployée, cliquez sur *Continuer la configuration* pour accéder à la page _Scan Configuration_.
 
 
+.Résultat
 Cloud Manager déploie l'instance Cloud Compliance dans votre fournisseur cloud.
 
+.Et la suite
 Dans la page Configuration de la numérisation, vous pouvez sélectionner les environnements de travail, les volumes et les compartiments que vous souhaitez rechercher pour la conformité. Vous pouvez également vous connecter à un serveur de base de données afin de scanner des schémas de base de données spécifiques. Activez Cloud Compliance sur l'une de ces sources de données.
 
 
@@ -159,8 +161,9 @@ Vous pouvez vous abonner à tout moment et vous ne serez facturé que lorsque la
 
 image:screenshot_compliance_subscribe.png["Une capture d'écran indiquant la quantité de données analysées et le bouton s'abonner pour s'abonner au service."]
 
-*Remarque :* si vous êtes invité par Cloud Compliance à vous abonner, mais que vous disposez déjà d'un abonnement Azure, vous utilisez probablement l'ancien abonnement *Cloud Manager* et vous devez passer au nouvel abonnement *NetApp Cloud Manager*. Voir to the new Cloud Manager plan in Azure,Modification du nouveau plan NetApp Cloud Manager dans Azure pour plus d'informations.
+*Remarque :* si vous êtes invité par Cloud Compliance à vous abonner, mais que vous disposez déjà d'un abonnement Azure, vous utilisez probablement l'ancien abonnement *Cloud Manager* et vous devez passer au nouvel abonnement *NetApp Cloud Manager*. Voir<<Modification du nouveau plan Cloud Manager dans Azure,Modification du nouveau plan NetApp Cloud Manager dans Azure>> pour plus d'informations.
 
+.Étapes
 Ces étapes doivent être effectuées par un utilisateur qui a le rôle _Account Admin_.
 
 . Dans le coin supérieur droit de la console Cloud Manager, cliquez sur l'icône Paramètres et sélectionnez *informations d'identification*.
@@ -206,6 +209,7 @@ Suivez ces étapes et sélectionnez le nouvel abonnement *NetApp Cloud Manager*,
 
 NOTE: Si votre abonnement existant a été délivré avec une offre privée spéciale, vous devez contacter NetApp afin de pouvoir émettre une nouvelle offre privée spéciale avec conformité incluse.
 
+.Étapes
 Ces étapes sont similaires à l'ajout d'un nouvel abonnement comme décrit ci-dessus, mais varient en quelques endroits.
 
 . Dans le coin supérieur droit de la console Cloud Manager, cliquez sur l'icône Paramètres et sélectionnez *informations d'identification*.

@@ -143,7 +143,7 @@ Les étapes suivantes fournissent des détails sur chaque option d'installation 
 `curl <URI> -o data_broker_installer.sh -x <proxy_username>:<proxy_password>@<proxy_host>:<proxy_port>`
 
 +
-URI:: Cloud Sync affiche l'URI du fichier d'installation sur la page d'instructions, qui se charge lorsque vous suivez les invites de déploiement du courtier de données sur site. Cet URI ne se répète pas ici car le lien est généré de manière dynamique et ne peut être utilisé qu'une seule fois.  the data broker,Procédez comme suit pour obtenir l'URI de Cloud Sync.
+URI:: Cloud Sync affiche l'URI du fichier d'installation sur la page d'instructions, qui se charge lorsque vous suivez les invites de déploiement du courtier de données sur site. Cet URI ne se répète pas ici car le lien est généré de manière dynamique et ne peut être utilisé qu'une seule fois. <<Installation du data broker,Procédez comme suit pour obtenir l'URI de Cloud Sync>>.
 
 
 
@@ -173,8 +173,8 @@ chmod +x data_broker_installer.sh
 ./data_broker_installer.sh -a <aws_access_key> -s <aws_secret_key> -g <absolute_path_to_the_json_file> -h <proxy_host> -p <proxy_port> -u <proxy_username> -w <proxy_password>`
 
 +
-Clés AWS:: Il s'agit des clés que vous devriez avoir préparées pour l'utilisateur  access to AWS,voici la procédure à suivre. Les clés AWS sont stockées sur le courtier en données, qui s'exécute sur votre réseau sur site ou dans le cloud. NetApp n'utilise pas les clés en dehors du courtier en données.
-Fichier JSON:: Il s'agit du fichier JSON qui contient une clé de compte de service que vous devez avoir préparée  access to Google Cloud,voici la procédure à suivre.
+Clés AWS:: Il s'agit des clés que vous devriez avoir préparées pour l'utilisateur <<Activation de l'accès à AWS,voici la procédure à suivre>>. Les clés AWS sont stockées sur le courtier en données, qui s'exécute sur votre réseau sur site ou dans le cloud. NetApp n'utilise pas les clés en dehors du courtier en données.
+Fichier JSON:: Il s'agit du fichier JSON qui contient une clé de compte de service que vous devez avoir préparée <<Activation de l'accès à Google Cloud,voici la procédure à suivre>>.
 
 
 

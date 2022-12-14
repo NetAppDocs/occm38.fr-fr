@@ -16,7 +16,7 @@ summary: 'Cloud Compliance fournit des rapports qui vous aideront à mieux compr
 [role="lead"]
 Cloud Compliance fournit des rapports qui vous aideront à mieux comprendre l'état du programme de confidentialité des données de votre entreprise.
 
-Par défaut, le tableau de bord Cloud Compliance affiche les données de conformité pour tous les environnements en travail et toutes les bases de données. Si vous souhaitez afficher des rapports contenant des données pour certains environnements de travail uniquement,  the working environments for reports,sélectionnez ces environnements de travail.
+Par défaut, le tableau de bord Cloud Compliance affiche les données de conformité pour tous les environnements en travail et toutes les bases de données. Si vous souhaitez afficher des rapports contenant des données pour certains environnements de travail uniquement, <<Sélection des environnements de travail pour les rapports,sélectionnez ces environnements de travail>>.
 
 
 NOTE: NetApp ne peut garantir une précision de 100 % des données personnelles et des données personnelles sensibles que Cloud Compliance identifie. Vous devez toujours valider les informations en examinant les données.
@@ -27,7 +27,7 @@ NOTE: NetApp ne peut garantir une précision de 100 % des données personnelles 
 
 Le rapport d’évaluation des risques pour la protection de la vie privée fournit une vue d’ensemble de l’état des risques pour la confidentialité de votre organisation, conformément aux réglementations en matière de confidentialité, telles que le Règlement sur la protection de la vie privée et l’ACFPC. Le rapport contient les informations suivantes :
 
-Statut de conformité:: A  score,indice de gravité et la distribution des données, qu'elles soient non sensibles, personnelles ou sensibles.
+Statut de conformité:: A <<Indice de gravité,indice de gravité>> et la distribution des données, qu'elles soient non sensibles, personnelles ou sensibles.
 Présentation de l'évaluation:: Une ventilation des types de données personnelles ainsi que des catégories de données.
 Sujets de données dans cette évaluation:: Nombre de personnes, par lieu, pour lesquelles des identificateurs nationaux ont été trouvés.
 
@@ -46,6 +46,7 @@ image:screenshot_privacy_risk_assessment.gif["Une capture d'écran de l'onglet c
 
 
 
+.Résultat
 Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
 
 
@@ -125,6 +126,7 @@ image:screenshot_pci_dss.gif["Une capture d'écran de l'onglet conformité de Cl
 
 
 
+.Résultat
 Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
 
 
@@ -163,6 +165,7 @@ image:screenshot_hipaa.gif["Capture d'écran de l'onglet conformité dans Cloud 
 
 
 
+.Résultat
 Cloud Compliance génère un rapport PDF que vous pouvez consulter et envoyer à d'autres groupes si nécessaire.
 
 

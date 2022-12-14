@@ -29,28 +29,28 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Passer en revue les prérequis
+==== image:number1.png["Numéro 1"] Passer en revue les prérequis
 
 [role="quick-margin-para"]
-Assurez-vous que votre environnement peut répondre aux prérequis, qui inclut la connectivité entre les clusters Kubernetes et Cloud Volumes ONTAP, la connectivité entre les clusters Kubernetes et un connecteur, une version minimale de Kubernetes de 1.14, au moins un nœud worker dans un cluster et plus.  prerequisites,Voir la liste complète.
+Assurez-vous que votre environnement peut répondre aux prérequis, qui inclut la connectivité entre les clusters Kubernetes et Cloud Volumes ONTAP, la connectivité entre les clusters Kubernetes et un connecteur, une version minimale de Kubernetes de 1.14, au moins un nœud worker dans un cluster et plus. <<Vérification des prérequis,Voir la liste complète>>.
 
 
 
-==== Ajoutez vos clusters Kubernetes à Cloud Manager
+==== image:number2.png["Numéro 2"] Ajoutez vos clusters Kubernetes à Cloud Manager
 
 [role="quick-margin-para"]
 Dans Cloud Manager, cliquez sur *Kubernetes* et découvrez les clusters directement depuis le service géré de votre fournisseur cloud ou importez un cluster en fournissant un fichier kubeconfig.
 
 
 
-==== Connectez vos clusters à Cloud Volumes ONTAP
+==== image:number3.png["Numéro 3"] Connectez vos clusters à Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 Après avoir ajouté un cluster Kubernetes, cliquez sur *connexion à l'environnement de travail* pour connecter le cluster à un ou plusieurs systèmes Cloud Volumes ONTAP.
 
 
 
-==== Commencez le provisionnement des volumes persistants
+==== image:number4.png["Numéro 4"] Commencez le provisionnement des volumes persistants
 
 [role="quick-margin-para"]
 Demandez et gérez les volumes persistants à l'aide d'interfaces et de constructions Kubernetes natives. Cloud Manager crée des classes de stockage NFS et iSCSI que vous pouvez utiliser pour le provisionnement de volumes persistants.
@@ -174,6 +174,7 @@ Une fois le fichier téléchargé, Cloud Manager vérifie la connexion au cluste
 
 
 
+.Résultat
 Cloud Manager ajoute le cluster Kubernetes. Vous pouvez désormais connecter le cluster à Cloud Volumes ONTAP.
 
 
@@ -200,6 +201,7 @@ image:screenshot_kubernetes_confirm.gif["Capture d'écran de la page confirmer d
 . Cliquez sur *Ajouter un environnement de travail*.
 
 
+.Résultat
 Cloud Manager connecte l'environnement de travail au cluster, qui peut prendre jusqu'à 15 minutes.
 
 
@@ -252,6 +254,7 @@ Si vous avez ajouté votre cluster à Cloud Manager en important le fichier kube
 . Lorsque vous y êtes invité par l'intermédiaire de votre navigateur Web, sélectionnez le fichier mis à jour kubeconfig et cliquez sur *Ouvrir*.
 
 
+.Résultat
 Cloud Manager met à jour des informations concernant le cluster Kubernetes d'après le dernier fichier kubeconfig.
 
 
@@ -270,6 +273,7 @@ image:screenshot_kubernetes_disconnect.gif["Capture d'écran de la table environ
 . Cliquez sur *déconnecter*.
 
 
+.Résultat
 Cloud Manager déconnecte le cluster du système Cloud Volumes ONTAP.
 
 

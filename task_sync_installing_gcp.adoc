@@ -102,4 +102,5 @@ Le déploiement de l'instance dure environ 5 à 10 minutes. Vous pouvez contrôl
 . Complétez les pages de l'assistant pour créer la nouvelle relation de synchronisation.
 
 
+.Résultat
 Vous avez déployé un courtier en données dans GCP et avez créé une nouvelle relation de synchronisation. Vous pouvez utiliser ce data broker avec des relations de synchronisation supplémentaires.

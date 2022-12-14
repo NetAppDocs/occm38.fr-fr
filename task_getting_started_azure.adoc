@@ -18,7 +18,7 @@ Découvrez Cloud Volumes ONTAP pour Azure en quelques étapes.
 
 
 
-==== Créer un connecteur
+==== image:number1.png["Numéro 1"] Créer un connecteur
 
 [role="quick-margin-para"]
 Si vous n'avez pas de link:concept_connectors.html["Connecteur"] Cependant, un administrateur de compte doit en créer un. link:task_creating_connectors_azure.html["Découvrez comment créer un connecteur dans Azure"].
@@ -28,15 +28,16 @@ Lorsque vous créez votre premier environnement de travail Cloud Volumes ONTAP, 
 
 
 
-==== Planification de la configuration
+==== image:number2.png["Numéro 2"] Planification de la configuration
 
 [role="quick-margin-para"]
 Cloud Manager propose des packages préconfigurés qui répondent aux exigences de vos workloads, ou vous pouvez créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez. link:task_planning_your_config_azure.html["En savoir plus >>"].
 
 
 
-==== Configurez votre réseau
+==== image:number3.png["Numéro 3"] Configurez votre réseau
 
+[role="quick-margin-list"]
 . Assurez-vous que votre VNet et vos sous-réseaux prennent en charge la connectivité entre le connecteur et Cloud Volumes ONTAP.
 . Activez l'accès Internet sortant à partir du réseau vnet cible de sorte que le connecteur et Cloud Volumes ONTAP puissent contacter plusieurs noeuds finaux.
 +
@@ -49,7 +50,7 @@ link:reference_networking_azure.html["En savoir plus sur les exigences de mise e
 
 
 
-==== Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager
+==== image:number4.png["Numéro 4"] Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager
 
 [role="quick-margin-para"]
 Cliquez sur *Ajouter un environnement de travail*, sélectionnez le type de système que vous souhaitez déployer et suivez les étapes de l'assistant. link:task_deploying_otc_azure.html["Lisez les instructions détaillées"].

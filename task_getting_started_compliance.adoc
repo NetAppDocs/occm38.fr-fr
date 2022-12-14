@@ -24,25 +24,26 @@ Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux secti
 
 
 
-==== Déployez l'instance Cloud Compliance
+==== image:number1.png["Numéro 1"] Déployez l'instance Cloud Compliance
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["Déployez Cloud Compliance dans Cloud Manager"^] si aucune instance n'est déjà déployée.
 
 
 
-==== Intégrez Cloud Compliance dans vos environnements de travail
+==== image:number2.png["Numéro 2"] Intégrez Cloud Compliance dans vos environnements de travail
 
 [role="quick-margin-para"]
 Cliquez sur *Cloud Compliance*, sélectionnez l'onglet *Configuration* et activez les analyses de conformité pour des environnements de travail spécifiques.
 
 
 
-==== Vérifiez l'accès aux volumes
+==== image:number3.png["Numéro 3"] Vérifiez l'accès aux volumes
 
 [role="quick-margin-para"]
 Lorsque Cloud Compliance est activé, assurez-vous que le service informatique peut accéder aux volumes.
 
+[role="quick-margin-list"]
 * L'instance Cloud Compliance doit disposer d'une connexion réseau à chaque sous-réseau Cloud Volumes ONTAP ou sous-réseau Azure NetApp Files.
 * Les groupes de sécurité pour Cloud Volumes ONTAP doivent autoriser les connexions entrantes depuis l'instance Cloud Compliance.
 * Les règles d'exportation de volumes NFS doivent autoriser l'accès à partir de l'instance Cloud Compliance.
@@ -54,7 +55,7 @@ Cliquez sur *Cloud Compliance* > *Scan Configuration* > *Edit CIFS Credentials* 
 
 
 
-==== Configurez les volumes à analyser
+==== image:number4.png["Numéro 4"] Configurez les volumes à analyser
 
 [role="quick-margin-para"]
 Sélectionnez les volumes que vous souhaitez analyser et Cloud Compliance commence à les analyser.
@@ -79,8 +80,9 @@ Pour analyser uniquement certains volumes dans un environnement de travail, cliq
 
 
 
-Voir  and disabling compliance scans on volumes,Activation et désactivation des analyses de conformité sur les volumes pour plus d'informations.
+Voir <<Activation et désactivation des analyses de conformité sur les volumes,Activation et désactivation des analyses de conformité sur les volumes>> pour plus d'informations.
 
+.Résultat
 Cloud Compliance commence l'analyse des données sur chaque environnement de travail. Les résultats seront disponibles dans le tableau de bord de conformité dès que Cloud Compliance termine les analyses initiales. Le temps nécessaire dépend de la quantité de données--il peut être de quelques minutes ou heures.
 
 
@@ -165,6 +167,7 @@ Initialement, la liste de volumes Cloud Compliance identifie ces volumes comme _
 
 image:screenshot_cloud_compliance_dp_volumes.png["Capture d'écran montrant le bouton Activer l'accès aux volumes DP que vous pouvez sélectionner pour analyser les volumes de protection des données."]
 
+.Étapes
 Pour analyser ces volumes de protection des données :
 
 . Cliquez sur le bouton *Activer l'accès aux volumes DP* en haut de la page.

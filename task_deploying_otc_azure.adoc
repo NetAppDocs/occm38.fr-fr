@@ -27,6 +27,7 @@ NOTE: Vous devez être un administrateur de compte pour créer un connecteur. Lo
 * Pour déployer un système BYOL, vous devez disposer du numéro de série à 20 chiffres (clé de licence) pour chaque nœud.
 
 
+.Description de la tâche
 Lorsque Cloud Manager crée un système Cloud Volumes ONTAP dans Azure, il crée plusieurs objets Azure, comme un groupe de ressources, des interfaces réseau et des comptes de stockage. Vous pouvez consulter un résumé des ressources à la fin de l'assistant.
 
 [WARNING]
@@ -210,6 +211,7 @@ Pour plus d'informations, voir link:task_planning_your_config_azure.html#choosin
 
 
 
+.Résultat
 Cloud Manager déploie le système Cloud Volumes ONTAP. Vous pouvez suivre la progression dans la chronologie.
 
 Si vous rencontrez des problèmes lors du déploiement du système Cloud Volumes ONTAP, consultez le message d'échec. Vous pouvez également sélectionner l'environnement de travail et cliquer sur *recréer l'environnement*.

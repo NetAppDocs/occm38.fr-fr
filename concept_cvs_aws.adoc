@@ -57,28 +57,28 @@ Pour commencer rapidement, suivez ces étapes ou passez à la section suivante p
 
 
 
-==== Vérifiez la prise en charge de votre configuration
+==== image:number1.png["Numéro 1"] Vérifiez la prise en charge de votre configuration
 
 [role="quick-margin-para"]
 Vous avez configuré AWS pour Cloud Volumes Service et vous devez vous être abonné à l'un de ces https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["Offres NetApp Cloud Volumes Service sur AWS Marketplace"^].
 
 
 
-==== Ajoutez votre abonnement Cloud Volumes Service pour AWS
+==== image:number2.png["Numéro 2"] Ajoutez votre abonnement Cloud Volumes Service pour AWS
 
 [role="quick-margin-para"]
 Vous devez créer un environnement de travail pour les volumes basés sur votre abonnement Cloud Volumes Service pour AWS.
 
 
 
-==== Créer des volumes cloud
+==== image:number3.png["Numéro 3"] Créer des volumes cloud
 
 [role="quick-margin-para"]
 Les volumes Cloud qui existent déjà pour cet abonnement apparaissent dans le nouvel environnement de travail. Sinon, vous créez de nouveaux volumes à partir de Cloud Manager.
 
 
 
-==== Montez un volume cloud
+==== image:number4.png["Numéro 4"] Montez un volume cloud
 
 [role="quick-margin-para"]
 Montez de nouveaux volumes cloud sur votre instance AWS pour que les utilisateurs puissent commencer à utiliser le stockage.

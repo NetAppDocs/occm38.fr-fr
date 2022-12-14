@@ -82,6 +82,7 @@ Ce processus peut prendre jusqu'à 7 minutes.
 . Complétez les pages de l'assistant pour créer la nouvelle relation de synchronisation.
 
 
+.Résultat
 Vous avez déployé un courtier en données dans Azure et créé une nouvelle relation de synchronisation. Vous pouvez utiliser ce data broker avec des relations de synchronisation supplémentaires.
 
 .Vous obtenez un message sur le besoin d'un consentement de l'administrateur ?

@@ -18,7 +18,7 @@ Découvrez Cloud Volumes ONTAP pour AWS en quelques étapes.
 
 
 
-==== Créer un connecteur
+==== image:number1.png["Numéro 1"] Créer un connecteur
 
 [role="quick-margin-para"]
 Si vous n'avez pas de link:concept_connectors.html["Connecteur"] Cependant, un administrateur de compte doit en créer un. link:task_creating_connectors_aws.html["Découvrez comment créer un connecteur dans AWS"].
@@ -28,15 +28,16 @@ Lorsque vous créez votre premier environnement de travail Cloud Volumes ONTAP, 
 
 
 
-==== Planification de la configuration
+==== image:number2.png["Numéro 2"] Planification de la configuration
 
 [role="quick-margin-para"]
 Cloud Manager propose des packages préconfigurés qui répondent aux exigences de vos workloads, ou vous pouvez créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez. link:task_planning_your_config.html["En savoir plus >>"].
 
 
 
-==== Configurez votre réseau
+==== image:number3.png["Numéro 3"] Configurez votre réseau
 
+[role="quick-margin-list"]
 . Vérifiez que votre VPC et vos sous-réseaux prennent en charge la connectivité entre le connecteur et Cloud Volumes ONTAP.
 . Activez l'accès Internet sortant à partir du VPC cible de sorte que le connecteur et le Cloud Volumes ONTAP puissent contacter plusieurs terminaux.
 +
@@ -53,14 +54,14 @@ link:reference_networking_aws.html["En savoir plus sur les exigences de mise en 
 
 
 
-==== Configuration du KMS AWS
+==== image:number4.png["Numéro 4"] Configuration du KMS AWS
 
 [role="quick-margin-para"]
 Si vous souhaitez utiliser le chiffrement Amazon avec Cloud Volumes ONTAP, vous devez vous assurer qu'une clé principale client (CMK) active existe. Vous devez également modifier la stratégie de clé pour chaque CMK en ajoutant le rôle IAM qui fournit des autorisations au connecteur en tant qu'utilisateur _key_. link:task_setting_up_kms.html["En savoir plus >>"].
 
 
 
-==== Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager
+==== image:number5.png["Numéro 5"] Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager
 
 [role="quick-margin-para"]
 Cliquez sur *Ajouter un environnement de travail*, sélectionnez le type de système que vous souhaitez déployer et suivez les étapes de l'assistant. link:task_deploying_otc_aws.html["Lisez les instructions détaillées"].

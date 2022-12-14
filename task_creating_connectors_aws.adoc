@@ -38,6 +38,7 @@ https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Mana
 . Associez la règle que vous avez créée à l'étape précédente à l'utilisateur IAM qui crée le connecteur à partir de Cloud Manager.
 
 
+.Résultat
 L'utilisateur AWS dispose désormais des autorisations nécessaires pour créer le connecteur à partir de Cloud Manager. Vous devez spécifier les clés d'accès AWS pour cet utilisateur lorsque vous y êtes invité par Cloud Manager.
 
 
@@ -46,7 +47,7 @@ L'utilisateur AWS dispose désormais des autorisations nécessaires pour créer 
 
 Avec Cloud Manager, vous pouvez créer un connecteur dans AWS directement depuis son interface utilisateur.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Une clé d'accès AWS et une clé secrète pour un utilisateur IAM qui dispose de la https://mysupport.netapp.com/site/info/cloud-manager-policies["autorisations requises"^].
 * Un VPC, un sous-réseau et un keyair dans votre région AWS de votre choix.
 
@@ -83,4 +84,5 @@ L'instance doit être prête dans environ 7 minutes. Vous devez rester sur la pa
 
 
 
+.Une fois que vous avez terminé
 Vous devez associer un connecteur aux espaces de travail pour que les administrateurs d'espace de travail puissent utiliser ces connecteurs pour créer des systèmes Cloud Volumes ONTAP. Si vous ne disposez que d'administrateurs de compte, il n'est pas nécessaire d'associer le connecteur aux espaces de travail. Ils peuvent accéder par défaut à tous les espaces de travail dans Cloud Manager. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["En savoir plus >>"].

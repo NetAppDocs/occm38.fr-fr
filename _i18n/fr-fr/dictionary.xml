@@ -8,17 +8,12 @@
   <block id="81b4cc67e8f60e41997293efceba160b" category="paragraph">Regarder <block ref="182ef5a05e7c682b0210b8852ec20646" category="inline-link-macro-rx"></block> pour voir les étapes du début à la fin.</block>
   <block id="06ad314b340900d226b1196e1fe289e9" category="section-title">Démarrage rapide</block>
   <block id="990f23665d21283cae7ae6a6366d2e03" category="paragraph">Pour démarrer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir des informations détaillées :</block>
-  <block id="6382283fd45b13b5c983745731fec990" category="section-title">Déployez Cloud Volumes ONTAP</block>
   <block id="7ca1af679f0ba86814f2ad58a578cb7c" category="inline-link-macro">Lancement d'Cloud Volumes ONTAP dans Azure</block>
   <block id="6602afb860a6cca23c3b75bf601365eb" category="inline-link-macro">Lancement d'Cloud Volumes ONTAP dans AWS</block>
   <block id="68a259a2f899389b305545678d80e0ea" category="paragraph">Déployez Cloud Volumes ONTAP dans Azure ou AWS et configurez les partages de fichiers SMB. Pour plus d'informations, voir <block ref="832a60a506926eaf40d71cc932044a5c" category="inline-link-macro-rx"></block> ou <block ref="532bd026da9bcfd63efcb038941245ef" category="inline-link-macro-rx"></block>.</block>
-  <block id="406f62aa251fe088702d090da0faf7a1" category="section-title">Déployez le serveur Global File cache Management Server</block>
   <block id="0877004cfc484438f5a264dde3bb7914" category="paragraph">Déployer une instance du serveur de gestion globale du cache des fichiers dans le même environnement de travail que l'instance de Cloud Volumes ONTAP.</block>
-  <block id="d9b762ee5151400d1727e25846f5bedb" category="section-title">Déployez Global File cache Core</block>
   <block id="0e7c4b1d0864abab13fd8a086a179f5b" category="paragraph">Déployez une ou plusieurs instances de Global File cache Core dans le même environnement de travail que l'instance de Cloud Volumes ONTAP et joignez-la à votre domaine Active Directory.</block>
-  <block id="80d8c12664fdf01751e882f7cd7d4f5f" category="section-title">Cache global des fichiers de licence</block>
   <block id="76ae4e1d88f70d49cbfb4c3ed7d5a033" category="paragraph">Configurez le service LMS (Global File cache License Management Server) sur une instance de base Global File cache. Pour activer votre abonnement, vous devez disposer de vos identifiants NSS ou d'un identifiant client fourni par NetApp.</block>
-  <block id="87122bbb40136e36662081a0db5c63fd" category="section-title">Déployez les instances Global File cache Edge</block>
   <block id="175d4a7fba1f2c02d227a7916d20ff9d" category="inline-link-macro">Déploiement des instances Global File cache Edge</block>
   <block id="fd9151016bdd942df929d46c957077f0" category="paragraph">Voir <block ref="507bdf5d9b69207409e6515279753df9" category="inline-link-macro-rx"></block> Pour déployer les instances Global File cache Edge dans chaque emplacement distant. Cette étape n'a pas été effectuée avec Cloud Manager.</block>
   <block id="7be40d2cd621549d68e8fff4ffead179" category="section-title">Déployez Cloud Volumes ONTAP comme plateforme de stockage</block>
@@ -254,10 +249,8 @@
   <block id="377e9dd6f0e456095c564bc19936e969" category="paragraph">Passez à <block ref="74ef9fcb87c7244ad6e6be8ce63457a6" category="inline-link-macro-rx"></block>.</block>
   <block id="fbaae2c51a88c361540d75265f1ae460" category="summary">La mise en route du service Cloud Sync comprend quelques étapes.</block>
   <block id="7552e2b54a17a33019d48e352cbe77a4" category="doc">Démarrage rapide de Cloud Sync</block>
-  <block id="ea20f7d50c69fd6c3c01c329f9319239" category="section-title">Préparez votre source et votre cible</block>
   <block id="d59048f21fd887ad520398ce677be586" category="inline-link-macro">En savoir plus &gt;&gt;</block>
   <block id="f143dbcd4f35e1f63b6b7e9657115198" category="paragraph">Vérifiez que la source et la cible sont prises en charge et configurées. L'exigence la plus importante est de vérifier la connectivité entre le courtier de données et les emplacements source et cible. <block ref="f6f1e8e1ed286c7a006df4ad07baf80b" category="inline-link-macro-rx"></block>.</block>
-  <block id="3825d25fbdd8bfa73bea9dccd3b52c26" category="section-title">Préparez un emplacement pour le data broker NetApp</block>
   <block id="bd8631de46e31a195212435f5704f717" category="inline-link-macro">Afficher la liste des noeuds finaux</block>
   <block id="d2b08b942a3b789a9edc8d104f02038a" category="paragraph">Le logiciel de courtier de données NetApp synchronise les données d'une source vers une cible (appelée « relation synchrone »). Vous pouvez exécuter le data broker dans AWS, Azure, Google Cloud Platform ou sur votre site. Le courtier de données a besoin d'une connexion Internet sortante sur le port 443 pour pouvoir communiquer avec le service Cloud Sync et contacter quelques autres services et référentiels. <block ref="6beb9a833803160fe513f3a341969acd" category="inline-link-macro-rx"></block>.</block>
   <block id="6a640d6007996215b3ac26284458adbe" category="paragraph">Cloud Sync vous guide tout au long du processus d'installation lorsque vous créez une relation de synchronisation, à quel point vous pouvez déployer le data broker dans le cloud ou télécharger un script d'installation pour votre propre hôte Linux.</block>
@@ -269,10 +262,8 @@
   <block id="44d143678407f8298b9fc9f94ec67014" category="list-text"><block ref="44d143678407f8298b9fc9f94ec67014" category="inline-link-macro-rx"></block></block>
   <block id="50dc73861ebb76e68387af6e286227e2" category="inline-link-macro">Vérifiez l'installation de l'hôte Linux</block>
   <block id="048443266fbe761e6f35d13ace1c95ac" category="list-text"><block ref="048443266fbe761e6f35d13ace1c95ac" category="inline-link-macro-rx"></block></block>
-  <block id="fd95beb937f9d641ec539cf4878ef48d" category="section-title">Créez votre première relation de synchronisation</block>
   <block id="315474a8ef79b74899073fc979f12da4" category="inline-link">Le gestionnaire Cloud</block>
   <block id="210dd2b798a973801744b2b280c5beb1" category="paragraph">Connectez-vous à<block ref="be757cbeb024c9da5b8b367da3bb80a9" category="inline-link-rx"></block>, Cliquez sur *Sync*, puis faites glisser et déposez vos sélections pour la source et la cible. Suivez les invites pour terminer la configuration. <block ref="c56a9e8c0d1e6cf66a040ca3b581e64c" category="inline-link-macro-rx"></block>.</block>
-  <block id="4502c9acaffeed98eaa8ad35ff290bd7" category="section-title">Payez vos relations de synchronisation après la fin de votre essai gratuit</block>
   <block id="e5821905c970aab72824bfe3f9f493d7" category="paragraph">Abonnez-vous à AWS ou Azure pour payer à votre gré ou pour payer chaque année. Ou achetez des licences directement auprès de NetApp. Il vous suffit d'aller à la page Paramètres de licence de Cloud Sync pour la configurer. <block ref="cf22383872a2f13a42a2e3b7746abe03" category="inline-link-macro-rx"></block>.</block>
   <block id="ca8a25db161d8a3427cbb43953d75761" category="summary">NetApp Cloud Tiering est un service géré par NetApp qui réduit les coûts du stockage sur site grâce au Tiering automatique des données inactives vers un stockage objet dans le cloud. Vous pouvez ainsi étendre votre data Center au cloud public sans modifier la couche applicative.</block>
   <block id="36afa058c74d288178950c27927bdb38" category="doc">Découvrez NetApp Cloud Tiering</block>
@@ -686,7 +677,6 @@
   <block id="f42018585678d0f64d5ae903665dc02b" category="paragraph">Mais avant cela, assurez-vous que le sous-réseau dans lequel réside Cloud Volumes ONTAP est configuré pour un accès privé à Google. Pour obtenir des instructions, reportez-vous à la section<block ref="46bdb5a1fb51df5eb32e2147ea91e6d8" category="inline-link-rx"></block>.</block>
   <block id="47a9dec41b05cb9452bf85a6b7a24260" category="summary">Découvrez Cloud Volumes ONTAP pour AWS en quelques étapes.</block>
   <block id="2d951aeb8e37abb43416705103a35132" category="doc">Mise en route avec Cloud Volumes ONTAP pour AWS</block>
-  <block id="94ee7072c2750da1997438a715efb7d4" category="section-title">Créer un connecteur</block>
   <block id="edf21d7ecb364e8210ddd3dfaeca6fbf" category="inline-link-macro">Connecteur</block>
   <block id="74d2f2a8ee613c321072e364f7ed33b2" category="inline-link-macro">Découvrez comment créer un connecteur dans AWS</block>
   <block id="7c607ccc0623bd4bc6b7e0a5ac36d23d" category="paragraph">Si vous n'avez pas de <block ref="c0bf8175d97aacb91d0f31ca60cf878a" category="inline-link-macro-rx"></block> Cependant, un administrateur de compte doit en créer un. <block ref="b4c430e57791846cd41c8539a482bd57" category="inline-link-macro-rx"></block>.</block>
@@ -704,7 +694,6 @@
   <block id="846347133980d606f183e58912992253" category="paragraph"><block ref="2a3e6de0b451b4797281c2bf6b8f5dea" category="inline-link-macro-rx"></block>.</block>
   <block id="0178b985155f8038a3bb894fe24ece79" category="section-title">Configuration du KMS AWS</block>
   <block id="243c149914015466c10354f22626eb86" category="paragraph">Si vous souhaitez utiliser le chiffrement Amazon avec Cloud Volumes ONTAP, vous devez vous assurer qu'une clé principale client (CMK) active existe. Vous devez également modifier la stratégie de clé pour chaque CMK en ajoutant le rôle IAM qui fournit des autorisations au connecteur en tant qu'utilisateur _key_. <block ref="9cf840c225072ed80cf89ae63365096a" category="inline-link-macro-rx"></block>.</block>
-  <block id="161814f2b49992da7596b7b7fc9f77ae" category="section-title">Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager</block>
   <block id="7e78cd436b6c8706972ddd93ac6ab72e" category="inline-link-macro">Lisez les instructions détaillées</block>
   <block id="fe345ee3d17ba20a25a688457f6e2a8e" category="paragraph">Cliquez sur *Ajouter un environnement de travail*, sélectionnez le type de système que vous souhaitez déployer et suivez les étapes de l'assistant. <block ref="a751d1534eb2c0186b25496e6ca1ff3d" category="inline-link-macro-rx"></block>.</block>
   <block id="f6bd0d7447ff66cc6b859603a88fbde9" category="list-title">Liens connexes</block>
@@ -749,7 +738,6 @@
   <block id="d892fbfdeab12d748e1695348f4f5200" category="list-text">Un accès Internet sortant est nécessaire pour installer le connecteur et pour que le connecteur gère les ressources et les processus au sein de votre environnement de cloud public. Pour obtenir la liste des noeuds finaux, reportez-vous à la section <block ref="6843ebdaada56652cdcaecd6101643ce" category="inline-link-macro-rx"></block>.</block>
   <block id="36c3a2947091078a94e6fda78dee8606" category="summary">Cloud Manager permet aux experts IT et aux architectes cloud de gérer de manière centralisée leur infrastructure multicloud hybride à l'aide des solutions cloud NetApp.</block>
   <block id="684c574c7f4f96c8a8169a7ac2bda18e" category="doc">Documentation sur Cloud Manager et Cloud Volumes ONTAP</block>
-  <block id="1fde0727b387439572ade83eecff4f68" category="section-title">Découvrez les nouveautés</block>
   <block id="15c2536b2644fa1c79a006f610bea10a" category="inline-link-macro">Modifications importantes apportées à Cloud Manager</block>
   <block id="674992420d1621f658d033fe6c1cb4fa" category="list-text"><block ref="674992420d1621f658d033fe6c1cb4fa" category="inline-link-macro-rx"></block></block>
   <block id="dcc605ce865f82b52df30a38895a0a28" category="inline-link-macro">Nouveautés de Cloud Manager</block>
@@ -798,7 +786,6 @@
   <block id="c41bec28a27c5fd23d2f1cff69d7c0e5" category="inline-link-macro">Créez le connecteur à partir d'AWS Marketplace</block>
   <block id="12d154e96ea07eeb54a28022d8488170" category="inline-link-macro">téléchargez le logiciel et installez-le sur votre propre hôte</block>
   <block id="eca70e93ee18367f7ae09ed47f9b099e" category="paragraph">Avec Cloud Manager, vous pouvez créer un connecteur dans AWS directement depuis son interface utilisateur. Vous avez également la possibilité de <block ref="fe9076ecc1b2642d0fbb2a7b96074339" category="inline-link-macro-rx"></block>, ou <block ref="66a10ea6ad2e5c9bab6bcd2bf789a40b" category="inline-link-macro-rx"></block>.</block>
-  <block id="a711863513c11f3a6d86294acc7be0ba" category="list-title">Ce dont vous avez besoin, 8217;ll</block>
   <block id="21c199e82e474a9a5607a2b9ccb8e66f" category="inline-link">autorisations requises</block>
   <block id="bd76e6e4e18e9fc3af923fc3437df23d" category="list-text">Une clé d'accès AWS et une clé secrète pour un utilisateur IAM qui dispose de la<block ref="a18b1518901620e43c44c260945ff7cb" category="inline-link-rx"></block>.</block>
   <block id="696168c9b9e3d6be0b4ff452721f4186" category="list-text">Un VPC, un sous-réseau et un keyair dans votre région AWS de votre choix.</block>
@@ -907,28 +894,22 @@
   <block id="07c2ea1cc6b7f654f42d3f074f3c13f4" category="summary">Réalisez quelques étapes pour commencer à sauvegarder des données de Cloud Volumes ONTAP vers le stockage Azure Blob.</block>
   <block id="a2339cfda7d84d9a5669a786d1bfae4a" category="doc">Sauvegarde des données dans le stockage Azure Blob</block>
   <block id="2433628c53fed80ea9d352a1bcd9ce45" category="paragraph">Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.</block>
-  <block id="b70f6a951e89b0cf19d78de39f9fd2ce" category="section-title">Vérifiez la prise en charge de votre configuration</block>
   <block id="a9dc386f711cf9e3429428a37297513b" category="list-text">Vous exécutez Cloud Volumes ONTAP 9.7 ou une version ultérieure dans Azure.</block>
   <block id="fc054407571c2d4dfcfbb5057d24c238" category="list-text">Vous disposez d'un abonnement valide au fournisseur cloud pour l'espace de stockage où vos sauvegardes seront stockées.</block>
   <block id="e44764e5848db6ece6d5d4bce23a85b7" category="inline-link-macro">et activé</block>
   <block id="d8041f5f7cbb5dd5c2cd0da050735190" category="inline-link">Offre Cloud Manager Marketplace Backup</block>
   <block id="7caa7d84d6547188e47ffcb0be6f2373" category="list-text">Vous avez souscrit au<block ref="98d4a0895eea9c88efbf5ab4a5fd7d0d" category="inline-link-rx"></block>, ou vous avez acheté <block ref="c942a36ea33b164eca0107356f810d5d" category="inline-link-macro-rx"></block> Licence BYOL pour la sauvegarde dans le cloud de NetApp.</block>
-  <block id="21141a322ad2040a54d2c2957607307b" category="section-title">Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant</block>
   <block id="67ad4c40f95c49285697342cebd0af58" category="list-text">Nouveaux systèmes : la sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.</block>
   <block id="ef39f67c43eadad86d27163809a329fc" category="list-text">Systèmes existants : sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde dans le cloud dans le panneau de droite, puis suivez l'assistant d'installation.</block>
   <block id="c7ecc14f8fa26e1d6657e9a01121e29f" category="inline-image-macro">Une capture d'écran affiche le bouton Backup to Cloud Activate, qui est disponible après la sélection d'un environnement de travail.</block>
   <block id="556ce68392a2e140efc2991cd6ddccb1" category="paragraph"><block ref="556ce68392a2e140efc2991cd6ddccb1" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fa355815803dc5765178ceb1a5091ac0" category="section-title">Entrez les détails du fournisseur</block>
   <block id="35c50ff2b0fba9cbb66e1c842e12a18b" category="paragraph">Sélectionnez l'abonnement du fournisseur et choisissez si vous souhaitez créer un nouveau groupe de ressources ou utiliser un groupe de ressources existant.</block>
   <block id="b3687d4bedfe2e9ab363a8d2ef4b5fdc" category="inline-image-macro">Une copie d'écran présente les informations détaillées du fournisseur cloud lors de la sauvegarde de volumes d'un cluster sur site vers un Tier Azure Blob</block>
   <block id="fa0d193d29fc897ab8a709518824c7a6" category="paragraph"><block ref="fa0d193d29fc897ab8a709518824c7a6" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="8c7aea6416cccda4e0738853d382a1a2" category="section-title">Définissez la stratégie de sauvegarde</block>
   <block id="5d18ed69da47d4e04504b49903b39651" category="paragraph">La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options.</block>
   <block id="b4f3e4fd8965718a9b0fdc725d353fdd" category="inline-image-macro">Une capture d'écran montre les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez activer ou désactiver la fonctionnalité, puis choisir la conservation de votre sauvegarde.</block>
   <block id="809fab9725736c8c10eeae3c9a8f1692" category="paragraph"><block ref="809fab9725736c8c10eeae3c9a8f1692" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="cf91ffe6a0830c1180e10ae661bd5c8f" category="section-title">Sélectionnez les volumes à sauvegarder</block>
   <block id="5cde40f10c1d60503db5310912101a08" category="paragraph">Identifiez les volumes à sauvegarder dans la page Sélectionner les volumes.</block>
-  <block id="813dc01dbd6a87212ea12478d22b116a" category="section-title">Restaurez vos données à la demande</block>
   <block id="fa9c85c73a4cedafbdb19abab91af3de" category="paragraph">Dans la liste de sauvegarde, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données de la sauvegarde vers un nouveau volume.</block>
   <block id="e73b6f86fed29437a1aff0fcd7855fdd" category="inline-image-macro">Capture d'écran de l'icône de restauration d'une sauvegarde après avoir sélectionné un volume.</block>
   <block id="64ba49ffeb3c11e2c16eee272880a790" category="paragraph"><block ref="64ba49ffeb3c11e2c16eee272880a790" category="inline-image-macro-rx" type="image"></block></block>
@@ -980,11 +961,9 @@
   <block id="211751cb447d335f31ff23a277ab83a3" category="inline-link-macro">Création d'un connecteur dans AWS</block>
   <block id="b51a9186f236269e0e1206fe364d56ee" category="inline-link-macro">Création d'un connecteur dans Azure</block>
   <block id="a6ec169424c876a3beafbf48ef478e20" category="paragraph">Si vous n'avez pas encore de connecteur, créez-en un dans Azure ou AWS. Voir <block ref="ebbb74ad45f7f249f717d2bdfaffc41f" category="inline-link-macro-rx"></block> ou <block ref="a403263a6ad418baf07244cc239ebdf2" category="inline-link-macro-rx"></block>.</block>
-  <block id="5de07b40dee2a8b07f30a0fd66bd33fa" category="section-title">Passer en revue les prérequis</block>
   <block id="259ae55ab8dda4624f19d41ec0f1fb11" category="inline-xref">Voir la liste complète</block>
   <block id="c200489a33ca47a799d7f09bc8d22aa4" category="paragraph">Assurez-vous que votre environnement cloud peut répondre aux conditions préalables, dont 16 vCPU pour l'instance Cloud Compliance, l'accès Internet sortant pour l'instance, la connectivité entre le connecteur et Cloud Compliance sur le port 80, etc. <block ref="b4daa5ef39b091baf7fa2ac3acaf6a75" category="inline-xref-macro-rx"></block>.</block>
   <block id="4a1f512b650a2696f3108087546bc9a2" category="paragraph">Lancez l'assistant d'installation pour déployer l'instance Cloud Compliance dans Cloud Manager.</block>
-  <block id="d563ee05b8dfe14ffc988a80f0520984" category="section-title">Abonnez-vous au service Cloud Compliance</block>
   <block id="001e2613757158acc9ab68d34ce92c4c" category="paragraph">Les 1 premiers To de données analysés par Cloud Compliance dans Cloud Manager sont gratuits. Un abonnement à AWS ou Azure Marketplace est nécessaire pour poursuivre l'analyse des données après ce point.</block>
   <block id="fac538f9dd8e319a064b204550937d1a" category="section-title">Création d'un connecteur</block>
   <block id="0dcd3a9f547bb6d7aade262e1f3e6add" category="inline-link-macro">Les fonctionnalités de Cloud Manager nécessitent un connecteur</block>
@@ -1179,13 +1158,10 @@
   <block id="38a9b05676fb89e391483759bf502908" category="inline-link-macro">Vue d'ensemble du hiérarchisation des données</block>
   <block id="f4487922db30b6b199d60571e92576f1" category="paragraph">Vous pouvez réduire les coûts de stockage pour Cloud Volumes ONTAP en combinant un Tier de performance SSD ou HDD pour les données actives avec un Tier de capacité de stockage objet pour les données inactives. Pour une vue d'ensemble de haut niveau, voir <block ref="c724ee9f84bb0e8fa565112910275d83" category="inline-link-macro-rx"></block>.</block>
   <block id="386a88fbab9b8c50cfcb5d0bba67b30f" category="paragraph">Pour configurer le tiering des données, il vous suffit d'effectuer les opérations suivantes :</block>
-  <block id="86ad5905cc5b5dcbf6a3ff485ec8d229" category="section-title">Choisissez une configuration prise en charge</block>
   <block id="ba918ba698486ee8a89a9f897fe04f16" category="paragraph">La plupart des configurations sont prises en charge. Si votre système Cloud Volumes ONTAP Standard, Premium ou BYOL exécute la version la plus récente, il est préférable de passer à la version précédente. <block ref="0b0938edb8c7beded03783521b9fb004" category="inline-link-macro-rx"></block>.</block>
-  <block id="06d3481607558231341deee573470e0b" category="section-title">Assurez la connectivité entre le Cloud Volumes ONTAP et le stockage objet</block>
   <block id="dfa5ec33cd56c8ec3ba7043cbe7164b5" category="list-text">Pour AWS, vous avez besoin d'un terminal VPC vers S3. <block ref="8bf18368a4d50e7d264c6ce0821cc35b" category="inline-xref-macro-rx"></block>.</block>
   <block id="551809d438dbf4c69bd03236f59465cb" category="list-text">Pour Azure, vous n'aurez rien à faire tant que Cloud Manager dispose des autorisations requises. <block ref="b95ed179d0a0b66246f2db10d9eda033" category="inline-xref-macro-rx"></block>.</block>
   <block id="b14188d12bf71a82c40e0277be844f22" category="list-text">Pour GCP, vous devez configurer le sous-réseau pour Private Google Access et configurer un compte de service. <block ref="ae7c1d949803baa5d291fbd909b9d2e1" category="inline-xref-macro-rx"></block>.</block>
-  <block id="1eabdf61d5d5290de86aa1ce83194c03" category="section-title">Choisissez une règle de Tiering lors de la création, de la modification ou de la réplication d'un volume</block>
   <block id="1a9e931f53a32cc1b5ceeebef21b8880" category="paragraph">Cloud Manager vous invite à choisir une règle de Tiering lors de la création, de la modification ou de la réplication d'un volume.</block>
   <block id="aee34f99cc65679272b711e8a3804b3b" category="inline-link-macro">Hiérarchisation des données sur les volumes en lecture-écriture</block>
   <block id="3161de5db0fdecb5c470d6a56eb5afee" category="list-text"><block ref="3161de5db0fdecb5c470d6a56eb5afee" category="inline-link-macro-rx"></block></block>
@@ -1303,7 +1279,6 @@
   <block id="53cf3c056570348be98fa2dc2bea3446" category="paragraph">Pour commencer rapidement, suivez ces étapes ou passez à la section suivante pour obtenir plus d'informations.</block>
   <block id="c0d5abaa52a2adc8b50cf6748143a972" category="section-title">Activez l'API Cloud Volumes Service</block>
   <block id="51854a19c4259f68487a6142b24a127b" category="paragraph">Depuis Google, activez l'API Cloud Volumes Service pour GCP afin que Cloud Manager puisse gérer l'abonnement et les volumes cloud.</block>
-  <block id="941f4f6727d625e704ae685f2dee59f4" category="section-title">Créez un compte de service GCP et téléchargez les identifiants</block>
   <block id="5cbc65380785f69030370a41f6765916" category="paragraph">Depuis Google, créez un compte de service GCP et un rôle afin de permettre à Cloud Manager d'accéder à votre compte Cloud Volumes Service pour GCP.</block>
   <block id="f4bbf329a370fd1140750ec443f5389d" category="section-title">Créez un environnement de travail Cloud Volumes Service pour GCP</block>
   <block id="dd50973260de02b147ef0408f27d7b00" category="paragraph">Dans Cloud Manager, cliquez sur *Ajouter un environnement de travail* &gt; *Google Cloud* &gt; *Cloud Volumes Service*, puis donnez des détails sur le compte de service et le projet Google Cloud.</block>
@@ -1357,13 +1332,11 @@
   <block id="593e6f28e28b9ec4b88fdea5fc951e62" category="paragraph"><block ref="672887af1473f79be97bb8e2d1edeb96" category="inline-link-macro-rx"></block>.</block>
   <block id="b6122ca66d45c4dd150f5506ae4e690e" category="summary">Libérez de l'espace sur vos clusters ONTAP sur site grâce au Tiering des données vers Google Cloud Storage. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.</block>
   <block id="be0b62dd35badd1c098da00c97d5157d" category="doc">Tiering des données depuis des clusters ONTAP sur site vers Google Cloud Storage</block>
-  <block id="049f952b8e6cf7689afa066f1a9ea7ed" category="section-title">Préparez-vous au Tiering des données vers Google Cloud Storage</block>
   <block id="4c6a9048ac276eb9391ebe2abd8e0c0d" category="paragraph">Il faut les éléments suivants :</block>
   <block id="8f2cf469fa541e24cda5b515b8a77670" category="list-text">Un système AFF ou FAS doté d'agrégats 100 % SSD qui exécutent ONTAP 9.6 ou une version ultérieure et qui bénéficie d'une connexion HTTPS vers Google Cloud Storage.</block>
   <block id="2deaed2300671ee7d90104d75a9f9c41" category="list-text">Un compte de service avec le rôle d'administrateur du stockage et les clés d'accès au stockage prédéfinis.</block>
   <block id="e020f6db5f627706b6bc9c4d66d7c52f" category="list-text">Connecteur installé dans un VPC Google Cloud Platform.</block>
   <block id="01c6106eee9f2585bce4736ffc82f921" category="list-text">Mise en réseau pour le connecteur qui permet une connexion HTTPS sortante vers le cluster ONTAP du data Center, vers Google Cloud Storage et vers le service Cloud Tiering.</block>
-  <block id="9a5f1dcfa03032ee140f73e2673dd4ad" category="section-title">Configurer le Tiering</block>
   <block id="09ea182ec53d591f63fdf78f1f7a84ae" category="paragraph">Dans Cloud Manager, sélectionnez un environnement de travail sur site, cliquez sur *Setup Tiering* et suivez les invites pour transférer les données vers Google Cloud Storage.</block>
   <block id="e907b41f5f3d7332bee5a43fbbf78a08" category="section-title">Configuration des licences</block>
   <block id="ab2e64321f63b7ea8e6f487c9c08aa1f" category="paragraph">Après la fin de votre essai gratuit, payez pour Cloud Tiering par l'intermédiaire d'un abonnement avec paiement à l'utilisation, d'une licence de Tiering ONTAP ou d'une combinaison des deux :</block>
@@ -1510,9 +1483,7 @@
   <block id="5771fdfd9f843a750efdbb13e9276704" category="paragraph">Vous avez configuré AWS pour Cloud Volumes Service et vous devez vous être abonné à l'un de ces<block ref="b4e3d74af85b05fca693589abeec4d57" category="inline-link-rx"></block>.</block>
   <block id="b25b082dfd6039e04b4f5fd22b71aa52" category="section-title">Ajoutez votre abonnement Cloud Volumes Service pour AWS</block>
   <block id="2884a4df3fcc2ab401c11924d9c37a56" category="paragraph">Vous devez créer un environnement de travail pour les volumes basés sur votre abonnement Cloud Volumes Service pour AWS.</block>
-  <block id="a1f56b5f789fb3d6a8912a9e44ce80c0" category="section-title">Créer des volumes cloud</block>
   <block id="e531c745388dcb9070304217129aba70" category="paragraph">Les volumes Cloud qui existent déjà pour cet abonnement apparaissent dans le nouvel environnement de travail. Sinon, vous créez de nouveaux volumes à partir de Cloud Manager.</block>
-  <block id="a9d788be36d21df25c24362c907e546a" category="section-title">Montez un volume cloud</block>
   <block id="3def1478f4fe2be6d30bdb324c05d4a4" category="paragraph">Montez de nouveaux volumes cloud sur votre instance AWS pour que les utilisateurs puissent commencer à utiliser le stockage.</block>
   <block id="20c404f3ca0633629eee9b1b4ccd6737" category="section-title">Obtenir de l'aide</block>
   <block id="17bcf93007944955856f301d4559f3f8" category="paragraph">Utilisez la discussion de chat Cloud Manager pour toute question générale sur les services.</block>
@@ -1663,7 +1634,6 @@
   <block id="8298547bbbd227879ca27d72eedeb07a" category="list-text">Passez le curseur sur le volume et sélectionnez *Monter le volume*.</block>
   <block id="14f7ba4cf15060bd06652c615c66c92e" category="paragraph"><block ref="14f7ba4cf15060bd06652c615c66c92e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="38aa5b57f82843fe74bb954a343bf4e0" category="list-text">Suivez les instructions de montage du volume.</block>
-  <block id="93bed5a9ef977c118d1838ee3b9ad3dd" category="section-title">Modification de la taille et des balises d'un volume</block>
   <block id="8cbb6213062bff0f8ae5d9232049a4ae" category="paragraph">Après avoir créé un volume, vous pouvez modifier sa taille et ses balises à tout moment.</block>
   <block id="8acb095feb0a7824e13dd4cff484b450" category="list-text">Placez le pointeur de la souris sur le volume et sélectionnez *Modifier*.</block>
   <block id="c94fd6f55752bbd9d6ff1d91b90b2493" category="list-text">Modifiez la taille et les étiquettes si nécessaire.</block>
@@ -2233,7 +2203,6 @@
   <block id="2b29c5739ec4158573c66d2124e2c7e9" category="list-text">Zurich</block>
   <block id="337d77a3955619de9a544f1026a547bf" category="summary">Libérez de l'espace sur vos clusters ONTAP sur site grâce au Tiering des données vers Amazon S3. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.</block>
   <block id="eebeeaff2ab28fb4166c53926ad0d0cb" category="doc">Tiering des données depuis des clusters ONTAP sur site vers Amazon S3</block>
-  <block id="3b7749dd39ee760804c668772e669bbe" category="section-title">Préparation au Tiering des données vers Amazon S3</block>
   <block id="d85305653518282e5b530ccef866e6e8" category="list-text">Un système AFF ou FAS doté d'agrégats 100 % SSD qui exécutent ONTAP 9.2 ou une version ultérieure et qui bénéficie d'une connexion HTTPS vers Amazon S3.</block>
   <block id="a6100ac4fa5cb7bbb1c49e95165b96b2" category="inline-xref">les autorisations requises</block>
   <block id="88874fce87dd9edf63db978923d2d604" category="list-text">Un compte AWS doté d'une clé d'accès et <block ref="c2b6a8c656d0c1ec20241b37b67a788f" category="inline-xref-macro-rx"></block> Le cluster ONTAP peut ainsi transférer les données inactives dans et depuis S3.</block>
@@ -2354,12 +2323,9 @@
   <block id="08cee80fd0e81397fdfb41830109f5c3" category="paragraph"><block ref="288bdc681f8d9442c8be913d1419c5c8" category="inline-link-macro-rx"></block>.</block>
   <block id="0f38e94111b0a99c65034e5b5ced0468" category="summary">Créez un environnement de travail Azure NetApp Files dans Cloud Manager pour créer et gérer les comptes NetApp, les pools de capacité, les volumes et les copies Snapshot.</block>
   <block id="269d61ef3d753fded2f13b5270f8abc6" category="doc">Configuration de Azure NetApp Files</block>
-  <block id="5f6b33406fc95573e988fe8daabf4cb4" category="section-title">Demander l'accès</block>
   <block id="49b6b023bfe8fe3809444ab0e4497bf2" category="inline-link">Envoyez une demande en ligne</block>
   <block id="1caa8ec9d5d4510ddcd593ec35fdc1cc" category="paragraph"><block ref="a88de637f412a55aeae4f759550b1584" category="inline-link-rx"></block> Pour avoir accès à Azure NetApp Files.</block>
-  <block id="9f6195430155a4712fbd4733de1876ca" category="section-title">Configurez une application Azure AD</block>
   <block id="5ef8b3581bd08eb7bd7df9da47cee4d9" category="paragraph">À partir d'Azure, accordez des autorisations à une application Azure AD, puis copiez l'ID d'application (client), l'ID de répertoire (locataire) et la valeur d'un secret client.</block>
-  <block id="c5c12e22be965b4ae0e9fc5e1618bdbe" category="section-title">Créer un environnement de travail Azure NetApp Files</block>
   <block id="2ce12157a5c44e5f94e50d438ab296af" category="paragraph">Dans Cloud Manager, cliquez sur *Ajouter un environnement de travail* &gt; *Microsoft Azure* &gt; *Azure NetApp Files*, puis donnez des détails sur l'application AD.</block>
   <block id="e3aa2722b812f0aa7a19ceb76f107e90" category="section-title">Demande d'accès</block>
   <block id="bd797c387b743ce2a482b731a0134c98" category="inline-link">envoi d'une demande en ligne</block>
@@ -2436,19 +2402,15 @@
   <block id="64641b49197c5612464b74e30b52791b" category="summary">Procédez en quelques étapes pour commencer à utiliser Cloud Compliance pour Azure NetApp Files ou Cloud Volumes ONTAP dans AWS ou Azure.</block>
   <block id="f70bfb39126c31965fa3b9e676fa2baa" category="doc">Mise en route de Cloud Compliance pour Cloud Volumes ONTAP et Azure NetApp Files</block>
   <block id="d02a38f2893ab97ea331478720eb7f7e" category="paragraph">Découvrez comment utiliser Cloud Compliance pour Cloud Volumes ONTAP ou Azure NetApp Files en quelques étapes.</block>
-  <block id="20868b225962de2036ef9d5bc2678295" category="section-title">Déployez l'instance Cloud Compliance</block>
   <block id="d20957b20cd100706f96215595e04a0e" category="inline-link-macro">Déployez Cloud Compliance dans Cloud Manager</block>
   <block id="9fcf5dbe9e6e262a016db06b59ec063e" category="paragraph"><block ref="fe08894adea8140c6d78c094e4fdf668" category="inline-link-macro-rx"></block> si aucune instance n'est déjà déployée.</block>
-  <block id="4d6fbfc1238abdfcbb45f1a08058ff2f" category="section-title">Intégrez Cloud Compliance dans vos environnements de travail</block>
   <block id="7c4cd17fe03266da8794f081c6b061da" category="paragraph">Cliquez sur *Cloud Compliance*, sélectionnez l'onglet *Configuration* et activez les analyses de conformité pour des environnements de travail spécifiques.</block>
-  <block id="40733d51554cd03755a3c45936e9ba72" category="section-title">Vérifiez l'accès aux volumes</block>
   <block id="cb69f1cc4d6db8aa9d9848f2243024a2" category="paragraph">Lorsque Cloud Compliance est activé, assurez-vous que le service informatique peut accéder aux volumes.</block>
   <block id="e3fc305a932d3d2abd174bac9b42732d" category="list-text">L'instance Cloud Compliance doit disposer d'une connexion réseau à chaque sous-réseau Cloud Volumes ONTAP ou sous-réseau Azure NetApp Files.</block>
   <block id="7c7226e9a80bf0a4032888ef63440547" category="list-text">Les groupes de sécurité pour Cloud Volumes ONTAP doivent autoriser les connexions entrantes depuis l'instance Cloud Compliance.</block>
   <block id="34be4e847de3dc44a23f3545d879c123" category="list-text">Les règles d'exportation de volumes NFS doivent autoriser l'accès à partir de l'instance Cloud Compliance.</block>
   <block id="b1c46e2accf63f430648a32bfa04dfe5" category="list-text">Pour analyser les volumes CIFS, Cloud Compliance a besoin d'identifiants Active Directory.</block>
   <block id="f437c4bbc48bf53c1c5228d68edf507d" category="paragraph">Cliquez sur *Cloud Compliance* &gt; *Scan Configuration* &gt; *Edit CIFS Credentials* et indiquez les informations d'identification. Ces identifiants peuvent être en lecture seule, mais fournir des informations d'identification administrateur garantit que Cloud Compliance peut lire les données qui requièrent des autorisations élevées.</block>
-  <block id="b27f23d88cbeb8bf2a0d9c5fdd02bb11" category="section-title">Configurez les volumes à analyser</block>
   <block id="bd6a0b4fe58c55d7e22a01cfd8c474a6" category="paragraph">Sélectionnez les volumes que vous souhaitez analyser et Cloud Compliance commence à les analyser.</block>
   <block id="a2ee3d69ca5431c2c6eae01551523699" category="section-title">Activation de la conformité cloud dans vos environnements de travail</block>
   <block id="cf4cb9aed3c0c0747130cf6cf29c6ce3" category="list-text">En haut de Cloud Manager, cliquez sur *Cloud Compliance*, puis sélectionnez l'onglet *Configuration*.</block>
@@ -2736,7 +2698,6 @@
   <block id="61bf906af45af325c7dfcb3a82074169" category="paragraph">Par exemple, si un serveur NFS se trouve dans votre data center et que le data broker est dans AWS, vous avez besoin d'une connexion réseau (VPN ou Direct Connect) entre votre réseau et le VPC.</block>
   <block id="39bb21e67daf5fcfbc9e0955f8a7891a" category="section-title">Exigences source et cible</block>
   <block id="f549fa5a7b8a70265d3f6f6fc5ae1943" category="paragraph">Vérifiez que votre source et vos cibles répondent aux exigences suivantes.</block>
-  <block id="9cfdc815b5ee8427850a411b9e071aa5" category="section-title">Exigences relatives aux compartiments AWS S3</block>
   <block id="776b1b85621fb63162558ee8334e89d2" category="paragraph">Assurez-vous que votre seau AWS S3 répond aux exigences suivantes.</block>
   <block id="1bd06867721151f8850b5c1bed8ed410" category="section-title">Emplacements des courtiers de données pris en charge pour AWS S3</block>
   <block id="8b10287f56fdcb032a0d3824c6e3f4d2" category="paragraph">Les relations de synchronisation qui incluent le stockage S3 nécessitent un data broker déployé dans AWS ou sur votre site. Dans les deux cas, Cloud Sync vous invite à associer le courtier de données à un compte AWS lors de l'installation.</block>
@@ -2757,7 +2718,6 @@
   <block id="e12f2cb93ea8b0df53b39ccf052346cd" category="paragraph">Vous pouvez trouver le nom ARN du rôle en accédant à la console EC2, en sélectionnant l'instance du courtier de données et en cliquant sur le rôle IAM dans l'onglet Description. La page Résumé de la console IAM qui contient le numéro de référence du rôle doit apparaître.</block>
   <block id="27b29b1148f0a8d10712b93a6b2f07c0" category="inline-image-macro">Capture d'écran de la console AWS IAM affichant un numéro d'identification de rôle.</block>
   <block id="5413d4eaee8e3ec886af67b45688f61a" category="paragraph"><block ref="5413d4eaee8e3ec886af67b45688f61a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="35db9398dd8bb61e970e384239370f98" category="section-title">Exigences de stockage Azure Blob</block>
   <block id="7e2fc8b47c3caa089d5e9782e7d982d2" category="paragraph">Assurez-vous que votre stockage Azure Blob répond aux exigences suivantes.</block>
   <block id="47a68bd0994db3020f105c7c17c88fc6" category="section-title">Emplacements des courtiers de données pris en charge pour Azure Blob</block>
   <block id="d99926e63a4ae2a389096fce59c51d2a" category="paragraph">Le courtier de données peut résider dans n'importe quel emplacement lorsqu'une relation de synchronisation inclut le stockage Blob d'Azure.</block>
@@ -2952,11 +2912,8 @@
   <block id="4272c70c15d6dbaad262853f7847bead" category="paragraph">Trident est un projet open source entièrement pris en charge et géré par NetApp. Trident s'intègre de manière native avec Kubernetes et son framework de volumes persistants pour provisionner et gérer de manière transparente les volumes des systèmes qui exécutent toutes les combinaisons de plateformes de stockage NetApp.<block ref="8f1593831c6eb1f5af4cabdfeaa8b8ff" category="inline-link-rx"></block>.</block>
   <block id="21acf0236d5d1edafd3b71b711bde1e6" category="admonition">La fonctionnalité Kubernetes n'est pas prise en charge avec les clusters ONTAP sur site. Elle est prise en charge avec Cloud Volumes ONTAP uniquement.</block>
   <block id="862dc153087687c59f8f0e5557334a93" category="paragraph">Assurez-vous que votre environnement peut répondre aux prérequis, qui inclut la connectivité entre les clusters Kubernetes et Cloud Volumes ONTAP, la connectivité entre les clusters Kubernetes et un connecteur, une version minimale de Kubernetes de 1.14, au moins un nœud worker dans un cluster et plus. <block ref="b4daa5ef39b091baf7fa2ac3acaf6a75" category="inline-xref-macro-rx"></block>.</block>
-  <block id="f91c9e4115b16af2cd2ce338b54a61bc" category="section-title">Ajoutez vos clusters Kubernetes à Cloud Manager</block>
   <block id="078cfadf948fabde9d843c0725281900" category="paragraph">Dans Cloud Manager, cliquez sur *Kubernetes* et découvrez les clusters directement depuis le service géré de votre fournisseur cloud ou importez un cluster en fournissant un fichier kubeconfig.</block>
-  <block id="a05f5ad82e28c9eb27573925fc851dc3" category="section-title">Connectez vos clusters à Cloud Volumes ONTAP</block>
   <block id="ed10e82b70c8870cbc66e299150d450b" category="paragraph">Après avoir ajouté un cluster Kubernetes, cliquez sur *connexion à l'environnement de travail* pour connecter le cluster à un ou plusieurs systèmes Cloud Volumes ONTAP.</block>
-  <block id="3131838ab26e8cd5c452aaac1467f3b4" category="section-title">Commencez le provisionnement des volumes persistants</block>
   <block id="c5ea1d5f2f35adec1d872ec686a8c040" category="paragraph">Demandez et gérez les volumes persistants à l'aide d'interfaces et de constructions Kubernetes natives. Cloud Manager crée des classes de stockage NFS et iSCSI que vous pouvez utiliser pour le provisionnement de volumes persistants.</block>
   <block id="02cc5fd16c59479a0130566a88ade673" category="inline-link">En savoir plus sur le provisionnement de votre premier volume avec Trident pour Kubernetes</block>
   <block id="b74e632fe213e6a2cd41d58fc6a3f9f4" category="paragraph"><block ref="d2c3102c16ee7ee6f7e5a01248fa7b5b" category="inline-link-rx"></block>.</block>
@@ -3260,12 +3217,9 @@
   <block id="e64a5fa09317d9145adf970bf6d4d2c0" category="summary">Suivez quelques étapes pour contrôler les performances d'Cloud Volumes ONTAP.</block>
   <block id="ccaec1ec24b1c04fa3bf1d6e8b9aeb76" category="doc">Contrôle d'Cloud Volumes ONTAP dans AWS</block>
   <block id="69a63f79de6b6cfe74003e252355c5e7" category="paragraph">Vous devez avoir installé Cloud Manager 3.8.4 ou une version ultérieure dans AWS et Cloud Volumes ONTAP dans AWS. Vous devez également être un nouveau client Cloud Insights.</block>
-  <block id="dc5d04044d27e0192aacefbd185d4f35" category="section-title">Activez la surveillance sur votre système nouveau ou existant</block>
   <block id="81cf96b7a3a7a2208f9d0015459ae5bb" category="list-text">Nouveaux environnements de travail : assurez-vous de maintenir l'option surveillance activée lorsque vous créez l'environnement de travail (activé par défaut).</block>
   <block id="7177e20d9e879af87a3791ebd8267cd4" category="list-text">Environnements de travail existants : sélectionnez un environnement de travail et cliquez sur *Démarrer la surveillance*.</block>
-  <block id="fc78fae55edd9650c6455e58681d3aae" category="section-title">Afficher les données de performances</block>
   <block id="e9505bfa1fdf9d5b80a391f1e2afc220" category="paragraph">Cliquez sur *Monitoring* et affichez les données de performances de vos volumes.</block>
-  <block id="163980d29cf36a56560287c1eeccee06" category="section-title">Abonnez-vous à Cloud Insights</block>
   <block id="141ee03e23ebf4bc45b048006d102207" category="inline-link">Découvrez comment vous inscrire</block>
   <block id="efc0f6b4c0cfb4f34dc9d7959a182ab8" category="paragraph">Abonnez-vous avant la fin de votre essai gratuit de 30 jours pour continuer à consulter les données de performances dans Cloud Manager et Cloud Insights.<block ref="d10ae9a3e7f2768fab70c99eb20e74f8" category="inline-link-rx"></block>.</block>
   <block id="4b09bdd4ca435f6a4b77b142f9481573" category="paragraph">Lisez les informations suivantes pour vous assurer que votre configuration est prise en charge.</block>
@@ -3578,7 +3532,6 @@
   <block id="857d38f6bd6b3bbb110e6060d997e168" category="paragraph">Lorsque Cloud Sync déploie le courtier de données dans AWS, il crée un groupe de sécurité qui active la communication sortante requise. Notez que vous pouvez configurer le courtier de données pour qu'il utilise un serveur proxy pendant le processus d'installation.</block>
   <block id="572539efea3b8fc37d4d9f01097ce1b1" category="section-title">Autorisations requises pour déployer le courtier de données dans AWS</block>
   <block id="e07a5562f4316c82f42f0cceadb85346" category="paragraph">Le compte utilisateur AWS que vous utilisez pour déployer le courtier de données doit disposer des autorisations incluses dans<block ref="7a75c423e60de35145dc973b82d7b871" category="inline-link-rx"></block>.</block>
-  <block id="9b99759f27fdd4623c9ea015c92207fd" category="section-title">Exigences relatives à l'utilisation de votre propre rôle IAM avec le courtier de données AWS</block>
   <block id="da5c81a4026a6c0e492776683df14992" category="paragraph">Lorsque Cloud Sync déploie le data broker, il crée un rôle IAM pour l'instance du data broker. Si vous le souhaitez, vous pouvez déployer le data broker à l'aide de votre propre rôle IAM. Vous pouvez utiliser cette option si votre entreprise dispose de règles de sécurité strictes.</block>
   <block id="b8e7ab2062cb997e59199b1b7597c950" category="paragraph">Le rôle IAM doit répondre aux exigences suivantes :</block>
   <block id="187f2d3a34ab7f9d7fce1966c39206fe" category="list-text">Le service EC2 doit être autorisé à assumer le rôle IAM en tant qu'entité de confiance.</block>
@@ -3630,13 +3583,11 @@
   <block id="d5691877c4a004fa032b8055ba5e26a2" category="paragraph">Cloud Manager propose des packages préconfigurés qui répondent aux exigences de vos workloads, ou vous pouvez créer votre propre configuration. Dans ce dernier cas, il est important de connaître les options dont vous disposez. <block ref="5b7a67218ff7406353a9e3f07153eeca" category="inline-link-macro-rx"></block>.</block>
   <block id="b2348a11f357c3478ffbcf0aab0b00ab" category="paragraph">Cette étape est importante car le connecteur ne peut pas gérer Cloud Volumes ONTAP sans accès Internet sortant. Si vous devez limiter la connectivité sortante, reportez-vous à la liste des noeuds finaux pour <block ref="35fe9d5e499257a6c44e06c4316bf36f" category="inline-link-macro-rx"></block>.</block>
   <block id="f5f464565133d38cee4612464168ff9d" category="paragraph"><block ref="e5981a2578175836e4b7ae06337a00cd" category="inline-link-macro-rx"></block>.</block>
-  <block id="b2640d276819894e87137588e21cb75b" category="section-title">Configuration de GCP pour le Tiering des données</block>
   <block id="56396a2ffd04b4ec56fea522b8f0838c" category="paragraph">Deux exigences doivent être remplies pour transférer les données inactives de Cloud Volumes ONTAP vers un stockage objet à faible coût (un compartiment Google Cloud Storage) :</block>
   <block id="d6add8b6d1573dc2b0d456edec6d82cd" category="inline-link">Configurez le sous-réseau Cloud Volumes ONTAP pour un accès privé à Google</block>
   <block id="d2907cc9adcfbea41e4dd52371c016a4" category="list-text"><block ref="2435466b99ebb077da49570ea0f39e4b" category="inline-link-rx"></block>.</block>
   <block id="f4a9258a0b51d2399a5714f123e39f16" category="inline-link">Configurez un compte de service pour le Tiering des données</block>
   <block id="a1d6b350ecfec8d6a24ec8e4b5ab3ec2" category="list-text"><block ref="16720e08a6d3e42327589ad3aad38326" category="inline-link-rx"></block>:</block>
-  <block id="3824876226172edfe0f17e8022b60fda" category="section-title">Activez les API Google Cloud</block>
   <block id="37f0d0c26633509f71da353ca5443b0a" category="paragraph"><block ref="dc5737502524148f78bf03ba18318700" category="inline-link-rx"></block>. Ces API sont nécessaires pour déployer le connecteur et Cloud Volumes ONTAP.</block>
   <block id="1afd61581cf1afe50fef90d063f155b8" category="paragraph">Cliquez sur *Ajouter un environnement de travail*, sélectionnez le type de système que vous souhaitez déployer et suivez les étapes de l'assistant. <block ref="1b40bea1e12c0192aebbe538fb714bf2" category="inline-link-macro-rx"></block>.</block>
   <block id="c2a5af8e2b761b6b2cf9a02c3f6296ce" category="list-text"><block ref="c2a5af8e2b761b6b2cf9a02c3f6296ce" category="inline-link-macro-rx"></block></block>
@@ -4067,7 +4018,6 @@
   <block id="be5b9196af1aaf35b4c37010db0b83b3" category="paragraph"><block ref="5c62373201416362de8292e16990a23c" category="inline-link-macro-rx"></block>.</block>
   <block id="d04dfaa744331ac37502cd7e1da7e4cb" category="sidebar-title">Que dois-je payer immédiatement après 8217 la fin de mon essai gratuit ?</block>
   <block id="06396044ae8f00acb30bd57de4d6bf59" category="paragraph">Vous ne pourrez pas créer de relations supplémentaires. Les relations existantes ne sont pas supprimées, mais vous ne pouvez pas y apporter de modifications tant que vous n'êtes pas abonné ou que vous n'avez pas saisi de licence.</block>
-  <block id="6f3effbced02bf6278e3a16bc56601b0" category="section-title">Abonnement à AWS</block>
   <block id="7f1e5fcf21192da891eea1c1f4f6e6f0" category="paragraph">AWS vous permet de payer à votre gré ou de payer chaque année.</block>
   <block id="f06e94914580a228484d54783ffeb2bb" category="list-title">Les étapes à payer en tant que vous-même</block>
   <block id="f4e86f9d0f6800384c773bd03834297d" category="list-text">Cliquez sur *Sync &gt; licences*.</block>
@@ -4080,7 +4030,6 @@
   <block id="b84483eacee20411f642e9b32a1532d3" category="list-text"><block ref="9a55e6c904391172078e71a0186ef751" category="inline-link-rx"></block>.</block>
   <block id="6ce481dcdc8134b6b4c81db0911f0267" category="list-text">Cliquez sur *Continuer pour s'inscrire*.</block>
   <block id="1ee9033888539de2e81ddb29d255c405" category="list-text">Sélectionnez vos options de contrat et cliquez sur *Créer contrat*.</block>
-  <block id="52f71b65e8b2575ecbdcd630dd568078" category="section-title">S'abonner à Azure</block>
   <block id="5b708f827f75588e652438e8d2977fb4" category="paragraph">Azure vous permet de payer à votre gré ou de payer chaque année.</block>
   <block id="251910634a1b47d0359b6171382f3f9a" category="paragraph">Un compte utilisateur Azure disposant des autorisations Contributeur ou Propriétaire dans l'abonnement correspondant.</block>
   <block id="2164db8f01d0c0a0dc250abc3b9556f5" category="list-text">Sélectionnez *Azure*.</block>
@@ -4088,7 +4037,6 @@
   <block id="981e7253aa8df6872dfd3d544c12ef23" category="paragraph">Sélectionnez *mensuel* pour payer par heure, ou *annuel* pour payer une année avant.</block>
   <block id="23a902dd0c4b97b70f0c79f7c46ed483" category="list-text">Une fois le déploiement terminé, cliquez sur le nom de la ressource SaaS dans le menu contextuel de notification.</block>
   <block id="04175f98fb77c715f35a84f3004d8ed5" category="list-text">Cliquez sur *configurer le compte* pour revenir à Cloud Sync.</block>
-  <block id="01cc9c7cd06e97ce20ebea964dc79244" category="section-title">Achat de licences auprès de NetApp et ajout de ces licences à Cloud Sync</block>
   <block id="6dabde8f330be16cbc68c6ed11cd0dcb" category="paragraph">Pour payer vos relations de synchronisation, vous devez acheter une ou plusieurs licences et les ajouter au service Cloud Sync.</block>
   <block id="0f5161c9e18f97b653442fef34de1024" category="list-text">Achetez une licence par mailto:ng-cloudsync-contact@netapp.com?subject=Cloud%20Sync%20Service%20-%20BYOL%20License%20Purchase%20Request[contacter NetApp].</block>
   <block id="47073df9c54bc93012bf8231b4da55fe" category="list-text">Dans Cloud Manager, cliquez sur *Sync &gt; licences*.</block>
@@ -4409,7 +4357,6 @@
   <block id="e00fd8a69d0aa8766ae786df172832dd" category="paragraph">Comme indiqué dans l'URL, notre URL d'application est \https://cloudsync.netapp.com et l'ID client de l'application est 8ee4ca3a-bafa-4831-97cc-5a38923cab85.</block>
   <block id="2079bc33153a98975920a0db7f19f315" category="summary">Certaines configurations Cloud Volumes ONTAP dans AWS et Azure incluent le stockage NVMe local, qui utilise Cloud Volumes ONTAP comme Flash cache pour de meilleures performances.</block>
   <block id="f1826d507ec43590779916360d0985cf" category="paragraph">Certaines configurations Cloud Volumes ONTAP dans AWS et Azure incluent le stockage NVMe local, qui utilise Cloud Volumes ONTAP comme _Flash cache_ pour de meilleures performances.</block>
-  <block id="e0c8b3ee252e2f32575e8c863dbc2dd2" category="section-title">Qu'est-ce que Flash cache ?</block>
   <block id="3a36e6b466e0265c25d241c486f64e02" category="paragraph">Flash cache accélère l'accès aux données grâce à la mise en cache intelligente en temps réel des données utilisateur et des métadonnées NetApp lues récemment. Elle est efficace pour les charges de travail exigeant une capacité de lecture aléatoire maximale, dont les bases de données, la messagerie et les services de fichiers.</block>
   <block id="6cfcb94c758c3cb2f0daca06a93d0312" category="section-title">Instances prises en charge dans AWS</block>
   <block id="cb9e3f8f6cb940e28841b92208cae9c3" category="paragraph">Sélectionnez l'un des types d'instances EC2 suivants avec un système Cloud Volumes ONTAP Premium ou BYOL existant :</block>
@@ -4667,7 +4614,6 @@
   <block id="22414d0d0453cad56ad23381bf2640df" category="list-text">Cliquez sur le bouton correspondant à chaque volume <block ref="8a7b4d9eeceba80332a45bd9abdd9ed5" category="inline-image-macro-rx" type="image"></block> Sélectionnez une stratégie de hiérarchisation, ajustez éventuellement les jours de refroidissement, puis cliquez sur *appliquer*.</block>
   <block id="495bc0e676e5d8cea46f01a061d72f09" category="admonition">Il n'est pas nécessaire de configurer le stockage objet, car il était déjà configuré lors de la configuration initiale du Tiering pour le cluster. ONTAP effectue le Tiering des données inactives de ces volumes vers le même magasin d'objets.</block>
   <block id="b00f226fba029156e204faa0a32e13da" category="list-text">Lorsque vous avez terminé, cliquez sur *Fermer*.</block>
-  <block id="6e4c88586fed564c2a533a5be0ddcf91" category="section-title">Modification de la règle de hiérarchisation d'un volume</block>
   <block id="ce5f253a7ab4076c754ecee500408697" category="paragraph">La modification de la règle de Tiering pour un volume modifie la façon dont ONTAP transfère les données inactives vers le stockage objet. Au moment de modifier la règle, cette modification ne modifie que le comportement de Tiering suivant pour le volume.</block>
   <block id="94c1e378d2c595d604fab0fc844d14b8" category="list-text">Cliquez sur le bouton <block ref="8a7b4d9eeceba80332a45bd9abdd9ed5" category="inline-image-macro-rx" type="image"></block> Sélectionnez une stratégie de hiérarchisation, ajustez éventuellement les jours de refroidissement, puis cliquez sur *appliquer*.</block>
   <block id="176eb530d68328d73cd752bcf53ad2be" category="section-title">Gestion des paramètres de Tiering sur les agrégats</block>
@@ -5257,11 +5203,8 @@
   <block id="7323c95986e1d39c2cd9db2d73aada05" category="paragraph">Cloud Manager enregistre le système avec NetApp.</block>
   <block id="836aeee2007aac18c035dd91372a749d" category="summary">Suivez quelques étapes pour commencer à analyser vos schémas de base de données avec Cloud Compliance.</block>
   <block id="ce41a706cd7d768f91deb7b6d30a53a6" category="doc">Analyse des schémas de base de données</block>
-  <block id="643748e16cea45dc6b50bd34b156599e" category="section-title">Vérifiez les prérequis de la base de données</block>
   <block id="6ba6f62eaa922e3764dfb0e34527892f" category="paragraph">Assurez-vous que votre base de données est prise en charge et que vous disposez des informations nécessaires pour vous connecter à la base de données.</block>
-  <block id="117276e96b89d072e0a833596332ef29" category="section-title">Ajoutez le serveur de base de données</block>
   <block id="18145622150e1a809831297a4332c742" category="paragraph">Ajoutez le serveur de base de données auquel vous souhaitez accéder.</block>
-  <block id="a12cdf39bf2e9ffec8531b7773ae748d" category="section-title">Sélectionnez les schémas</block>
   <block id="5a810676627d546e80218e706059b849" category="paragraph">Sélectionnez les schémas à numériser.</block>
   <block id="858dab6028691ee21ab79719c188f31c" category="paragraph">Avant d'activer Cloud Compliance, lisez les conditions préalables suivantes pour vous assurer que la configuration est prise en charge.</block>
   <block id="1416008fc37354356eb0ecd95dfddc96" category="section-title">Bases de données prises en charge</block>
@@ -5749,7 +5692,6 @@
   <block id="34ce3026df692e929a475f255c259e12" category="cell">- compute.instances.setServiceAccount - iam.serviceAccounts.getIamPolicy - iam.serviceAccounts.list</block>
   <block id="0e6cd912fcc55d354754239bbb3b910e" category="cell">Pour définir un compte de service sur l'instance Cloud Volumes ONTAP. Ce compte de service fournit des autorisations de Tiering des données vers un compartiment Google Cloud Storage.</block>
   <block id="3dbeb1f4be4a6bfc83af63e943633f2c" category="summary">Libérez de l'espace sur vos clusters ONTAP sur site grâce au Tiering des données vers le stockage Azure Blob. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.</block>
-  <block id="957364b59094743bfdbab75c269bbe14" category="section-title">Préparez le Tiering des données vers le stockage Azure Blob</block>
   <block id="09c3a47298cb1b2183702dd8bab5673a" category="list-text">Un système AFF ou FAS doté d'agrégats 100 % SSD qui exécutent ONTAP 9.4 ou version ultérieure et qui dispose d'une connexion HTTPS vers le stockage Azure Blob.</block>
   <block id="971990a0128297e61982fb657642391e" category="list-text">Un connecteur installé dans un Azure VNet.</block>
   <block id="a81db118acfbd6a1141871c99120b570" category="list-text">Mise en réseau d'un connecteur qui permet une connexion HTTPS sortante vers le cluster ONTAP du data Center, vers le stockage Azure Blob et vers le service NetApp Cloud Tiering.</block>
@@ -6124,7 +6066,6 @@
   <block id="4f6582928260ec95d5382830f415104b" category="section-title">Versions NFS prises en charge</block>
   <block id="30fe527571ab3736d66f7bc649438aab" category="list-text">Pour les serveurs NFS, le chiffrement des données à la volée est pris en charge avec les versions 3, 4.0, 4.1 et 4.2 de NFS.</block>
   <block id="e58f770a9e62d5d72c5f922745500d31" category="list-text">Pour Azure NetApp Files, le chiffrement des données à la volée est pris en charge avec les versions 3 et 4.1 de NFS.</block>
-  <block id="5dd0043a7a3026397ee9f077316f20ec" category="section-title">Ce dont vous aurez besoin pour commencer</block>
   <block id="361bdd51b5ace70652d40497007eff5d" category="paragraph">Assurez-vous d'avoir les éléments suivants :</block>
   <block id="174c6b9a002fb36254a3e4a0f2937473" category="inline-link-macro">exigences source et cible</block>
   <block id="fa9cb864928bd5610ae849ad0340a933" category="list-text">Deux serveurs NFS qui sont équipés <block ref="f046c01b012d351b8011cc50a30a4534" category="inline-link-macro-rx"></block> Ou Azure NetApp Files dans deux sous-réseaux ou régions.</block>
@@ -6268,11 +6209,8 @@
   <block id="5c8f140d140067c2425ea00d27f023f7" category="list-text">Dans la boîte de dialogue Modifier le nom du SVM, modifiez le nom, puis cliquez sur *Enregistrer*.</block>
   <block id="7093690eb19793c1f2d3b8debc16191d" category="summary">Cloud Compliance peut analyser vos compartiments Amazon S3 pour identifier les données personnelles et sensibles qui résident dans le stockage objet S3. Cloud Compliance peut analyser n'importe quel compartiment du compte, quel que soit son origine pour une solution NetApp.</block>
   <block id="91e06e9a9ef97681b798e2e5e007ba97" category="paragraph">Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir de plus amples informations.</block>
-  <block id="4e15cc0de53e4cc5b4b6be1bee6ff91e" category="section-title">Configurez les exigences S3 dans votre environnement cloud</block>
   <block id="35906e1717c463c928eabc55bf99a87e" category="paragraph">Assurez-vous que votre environnement cloud répond aux exigences de Cloud Compliance, y compris la préparation d'un rôle IAM et la configuration de la connectivité Cloud Compliance vers S3. <block ref="3183643dfde9368e67ddf4561a2d0e52" category="inline-xref-macro-rx"></block>.</block>
-  <block id="6a37db457059d4175170168e250fc5d5" category="section-title">Activez la conformité sur votre environnement de travail S3</block>
   <block id="5bc7a12136c721946cb4d5a297752b0c" category="paragraph">Sélectionnez l'environnement de travail Amazon S3, cliquez sur *Activer la conformité* et sélectionnez un rôle IAM qui inclut les autorisations requises.</block>
-  <block id="09162861892ebffb9d1ff29eb7a64066" category="section-title">Sélectionnez les compartiments à numériser</block>
   <block id="345547811becbe9f20242ffdb6da631b" category="paragraph">Sélectionnez les compartiments que vous souhaitez analyser et Cloud Compliance commence à les analyser.</block>
   <block id="70288fd34cd20f5ab81e3765cff993f7" category="section-title">Vérification des prérequis S3</block>
   <block id="4e1dce91c337b5a8e7c199fe4f5f642e" category="paragraph">Les exigences suivantes sont spécifiques à l'analyse des compartiments S3.</block>
@@ -6382,7 +6320,6 @@
   <block id="bb2736f3c3db9ab842e20bc45c391086" category="paragraph"><block ref="bb2736f3c3db9ab842e20bc45c391086" category="inline-image-macro-rx" type="image"></block></block>
   <block id="660c0d7e8d09e7b02561111fad36eba2" category="list-text">Dans la boîte de dialogue de confirmation, cliquez sur *Désactiver*.</block>
   <block id="097ccfbc39e7fb1f5073ac423983cad1" category="summary">Libérez de l'espace sur vos clusters ONTAP sur site grâce au Tiering des données vers StorageGRID. Le Tiering des données est optimisé par le service NetApp Cloud Tiering.</block>
-  <block id="24c40467d64d6258e4b21601d2694195" category="section-title">Préparation au Tiering des données vers StorageGRID</block>
   <block id="0c455fd03a923d322dc7b39d2a7892db" category="list-text">Un système AFF ou FAS avec des agrégats 100 % SSD qui exécutent ONTAP 9.4 ou une version ultérieure et une connexion via un port spécifié par l'utilisateur vers StorageGRID.</block>
   <block id="5fce56af1e1158cc023bf250fa9ab688" category="list-text">StorageGRID 10.3 ou version ultérieure avec les clés d'accès AWS qui disposent d'autorisations S3.</block>
   <block id="576fdb5dd15e14e6977927216a394612" category="list-text">Un connecteur installé sur votre site.</block>
@@ -6571,7 +6508,6 @@
   <block id="d1ac9671b7bcf06bf5d1080fe70853b0" category="paragraph">Les questions suivantes concernent les performances de Cloud Sync.</block>
   <block id="678b59fd02ed47602217c203bce0f237" category="section-title">Que représente l'indicateur de progression d'une relation de synchronisation ?</block>
   <block id="792670d867962b1447fd0fc6a9a3969e" category="paragraph">La relation de synchronisation indique le débit de l'adaptateur réseau du courtier de données. Si vous accélérez les performances de synchronisation en utilisant plusieurs courtiers de données, le débit est la somme de tout le trafic. Ce débit est actualisé toutes les 20 secondes.</block>
-  <block id="d2e5af98d120641c3665f862d5107d9e" category="section-title">J'éprouve des problèmes de performance. Pouvons-nous limiter le nombre de transferts simultanés ?</block>
   <block id="a776e72f8845cd90953586e05ee36f50" category="paragraph">Le courtier de données peut synchroniser 4 fichiers à la fois. Si vous avez des fichiers de très grande taille (plusieurs To chacun), il peut prendre beaucoup de temps pour terminer le processus de transfert et les performances peuvent être affectées.</block>
   <block id="753322bfc209704e3ab17c5cfe5d42d0" category="paragraph">Limiter le nombre de transferts simultanés peut vous aider. Mailto:ng-cloudsync-support@netapp.com[Contactez-nous pour obtenir de l'aide].</block>
   <block id="161df7898613d68dd3106bed369ab957" category="section-title">Pourquoi les performances avec Azure NetApp Files sont-elles faibles ?</block>
@@ -6658,7 +6594,6 @@
   <block id="9e704e76a760053c0baca32c96d9c6a3" category="list-text">Cliquez sur *connecteur*.</block>
   <block id="33e248648a845f8d6e538dfb02e4620f" category="list-text">Cliquez sur *gérer les espaces de travail* pour le connecteur que vous souhaitez associer.</block>
   <block id="211c1a963db0ec4433679bba9d1a1973" category="paragraph">Les administrateurs d'espace de travail peuvent désormais utiliser ces connecteurs pour créer des systèmes Cloud Volumes ONTAP.</block>
-  <block id="3f297ef15cde0668e93b35f2752fd4fd" category="section-title">Et la suite ?</block>
   <block id="d299a01ec99cf98082c28b6218d90b06" category="paragraph">Maintenant que vous avez configuré votre compte, vous pouvez le gérer à tout moment en supprimant des utilisateurs, en gérant des espaces de travail, des connecteurs et des abonnements. <block ref="0db15a5a390b8cb62ea5abfd884f0980" category="inline-link-macro-rx"></block>.</block>
   <block id="6942685feef54ab46cbce7f1e6514c53" category="summary">Avant de se connecter à Cloud Manager, vous devez vous assurer que leur navigateur Web peut accéder à des terminaux spécifiques. Ensuite, vous devez vérifier les exigences de mise en réseau pour le type spécifique d'environnement de travail que vous créez et pour tous les services que vous activez.</block>
   <block id="7b895b198aba9634ffec5e0ec9a3aff4" category="doc">Présentation du réseau</block>
@@ -7270,9 +7205,7 @@
   <block id="e845620e391b62ad3163cdb0e100a862" category="inline-link-macro">Découverte des clusters ONTAP</block>
   <block id="6f6a5a1139d8932914706890fc98d832" category="list-text">Vous avez découvert le cluster sur site et l'avez ajouté à un environnement de travail dans Cloud Manager. Voir <block ref="06e4d8f0b3ee668a3847b90d3a3a58a0" category="inline-link-macro-rx"></block> pour plus d'informations.</block>
   <block id="bb52c786e9272a71b9868576e595093b" category="list-text">Vous exécutez ONTAP 9.7P5 ou version ultérieure sur le cluster.</block>
-  <block id="d215bc4594bc6d7d5d9f0650ad866cc9" category="section-title">Activez la sauvegarde dans le cloud sur le système</block>
   <block id="387fa05ceb8a9c93b8e3c53dcf20c55f" category="paragraph">Sélectionnez l'environnement de travail et cliquez sur *Activer* en regard du service sauvegarde vers le cloud dans le panneau de droite, puis suivez l'assistant d'installation.</block>
-  <block id="d1ae916754af40a1752ffa49097de18d" category="section-title">Sélectionnez le fournisseur de services clouds et entrez les informations relatives au fournisseur</block>
   <block id="120aa059e2b93f0841b70c7976b0544b" category="paragraph">Sélectionnez le fournisseur, puis sélectionnez l'abonnement du fournisseur, la région et le groupe de ressources. Vous devez également spécifier l'IPspace dans le cluster ONTAP où les volumes résident.</block>
   <block id="2c5e573e396419ad3626bb25942af86c" category="paragraph"><block ref="2c5e573e396419ad3626bb25942af86c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6a6f01cb73a44097eab7942c341b9682" category="inline-image-macro">Capture d'écran présentant les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez choisir la planification de sauvegarde et la période de conservation.</block>
@@ -7372,7 +7305,6 @@
   <block id="b73f462d1b9e7ff90a325153c831927c" category="paragraph">La dissociation permet d'interdire l'accès aux ressources d'un compte Cloud Central.</block>
   <block id="6bd6a4807d0f305654a405a52bb8f189" category="list-text">Cliquez sur *Disassocier utilisateur* et cliquez sur *Disassocier* pour confirmer.</block>
   <block id="bc4502cc703c46a62bd856724adfc66e" category="paragraph">L'utilisateur ne peut plus accéder aux ressources de ce compte Cloud Central.</block>
-  <block id="c467a2567dd5be7e777708d1616b892d" category="section-title">Gestion des espaces de travail d'un Workspace Admin</block>
   <block id="8ecff25aa4ee2497099b60f83bd4dde7" category="paragraph">Vous pouvez associer et dissocier les administrateurs d'espace de travail avec des espaces de travail à tout moment. L'association de l'utilisateur lui permet de créer et d'afficher les environnements de travail dans cet espace de travail.</block>
   <block id="9c3fb861370470582b50839e482bd5f9" category="list-text">Sélectionnez les espaces de travail à associer à l'utilisateur et cliquez sur *appliquer*.</block>
   <block id="73974df54012eaea2a5f0b72e278983b" category="section-title">Gestion des espaces de travail</block>
@@ -7381,7 +7313,6 @@
   <block id="e6b782b96ee9fd72a275037e1f900b6f" category="list-text">Cliquez sur *Ajouter un nouvel espace de travail* pour créer un nouvel espace de travail.</block>
   <block id="9606b9dd050f482ce022efaf9f3754c9" category="list-text">Cliquez sur *Renommer* pour renommer l'espace de travail.</block>
   <block id="ca4a2e09f147267af54ea5fd1d962c6a" category="list-text">Cliquez sur *Supprimer* pour supprimer l'espace de travail.</block>
-  <block id="3bf33688db3de262b29d7aef6461deb2" category="section-title">Gestion des espaces de travail d'un connecteur</block>
   <block id="5b7f3201b874f913a16c68dec709654f" category="paragraph">Vous devez associer le connecteur aux espaces de travail pour que les administrateurs d'espace de travail puissent accéder à ces espaces de travail à partir de Cloud Manager.</block>
   <block id="cda68882da0fbacdfcd7b3b52e15c47f" category="list-text">Sélectionnez les espaces de travail à associer au connecteur et cliquez sur *appliquer*.</block>
   <block id="95a0841b9a7d083d0e92b10bbb2d9538" category="section-title">Gestion des abonnements</block>
@@ -8109,4 +8040,107 @@
   <block id="20bcee4b46f64e2ca105ae61831c7509" category="sidebar">Automatisez à l'aide des outils DevOps</block>
   <block id="7a4e5e5bc542eae2d10e3506f839f2ae" category="sidebar">Résoudre les problèmes</block>
   <block id="93168a8084b3e838d2932c4734bd234e" category="sidebar">Versions antérieures</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">Résultat</block>
+  <block id="d59db7846bd10b6d60d21543df9faa9e" category="paragraph-title">Ce dont vous avez besoin</block>
+  <block id="6e5bc02812454d72aa1b3361bc2f6c73" category="inline-image-macro">Numéro 1</block>
+  <block id="514cd509787cbab4e205428f74144f7f" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> Préparation au Tiering des données vers Amazon S3</block>
+  <block id="3db14b7ee6183c9d58f1e9d5e8e63efd" category="inline-image-macro">Numéro 2</block>
+  <block id="86c142513d3fc5f40a5b0c2e354e838f" category="section-title"><block ref="8a21168e601d45e544969f8d2c358917" category="inline-image-macro-rx" type="image"></block> Configurer le Tiering</block>
+  <block id="9f3ebc84fe13f3200262a9c4b7c9807d" category="inline-image-macro">numéro 3</block>
+  <block id="61e07c226edc407cd9b5485effaf8e40" category="section-title"><block ref="436aa95806ef0877809848921c187b08" category="inline-image-macro-rx" type="image"></block> Configuration des licences</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">Et la suite ?</block>
+  <block id="25bb6ac7ff79f9f75a38e828d5757ada" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> Préparation au Tiering des données vers StorageGRID</block>
+  <block id="9b1146da7e8885b360bcba1784bf6d6c" category="inline-image-macro">Numéro 1</block>
+  <block id="be4475d44b787a12f755fdcce268c239" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Vérifiez la prise en charge de votre configuration</block>
+  <block id="6518735ebbb492ee2f8f5dfee52f3842" category="inline-image-macro">Numéro 2</block>
+  <block id="b2e8ab94b9a77185fe6b6dd83c9f59e6" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant</block>
+  <block id="a4c574c9c96d1cf8d9986e0d17dbe38b" category="inline-image-macro">Numéro 3</block>
+  <block id="1bae9231315ec1091e557ac65da409f3" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Entrez les détails du fournisseur</block>
+  <block id="fa8bdf405671f556729a131b30bab6af" category="inline-image-macro">Numéro 4</block>
+  <block id="a452de92a372d575a0b668ed846fc145" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Définissez la stratégie de sauvegarde</block>
+  <block id="6a604e45dcab200406f10c70d639255a" category="inline-image-macro">Numéro 5</block>
+  <block id="e6b70b7531f0a4e4a8b69d3956a0c77f" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> Sélectionnez les volumes à sauvegarder</block>
+  <block id="e8655d81e5341b6de5242894893cfd0f" category="inline-image-macro">Numéro 6</block>
+  <block id="805be66fd8cf052ebd8de5a5bd9e91c4" category="section-title"><block ref="37140c340d57bff74ec463795f4bc377" category="inline-image-macro-rx" type="image"></block> Restaurez vos données à la demande</block>
+  <block id="e98185375ffb2411ffabfc328cd245e7" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> Préparez le Tiering des données vers le stockage Azure Blob</block>
+  <block id="27bf0058af50fd43e46419d6324f0b88" category="inline-image-macro">nombre2</block>
+  <block id="ce8a231bcbb32541c63e621cb121e157" category="section-title"><block ref="11146b70998fa0133f04749eadcadd53" category="inline-image-macro-rx" type="image"></block> Configurer le Tiering</block>
+  <block id="bbdb28e0c385a29cad4cd3acd0870ca5" category="section-title">Modification de la règle de Tiering d'un volume</block>
+  <block id="65d2a493f808659b28f7334ecc9fe29e" category="section-title">[[s3]]exigences du compartiment AWS S3</block>
+  <block id="8c398ecad8f5257d018a9dbbc98e011b" category="section-title">[[blob]]exigences de stockage Azure Blob</block>
+  <block id="5ab5c7141794d5f693f0b5374fcd61c3" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> Préparez-vous au Tiering des données vers Google Cloud Storage</block>
+  <block id="48afbf061ebdaadeb58dc858b69a1052" category="section-title"><block ref="dc5de6e35d5028cc4c0b89b89e621258" category="inline-image-macro-rx" type="image"></block> Préparez votre source et votre cible</block>
+  <block id="377ca8c885c8d8b7612dbf6ce0ea5d6f" category="section-title"><block ref="8a21168e601d45e544969f8d2c358917" category="inline-image-macro-rx" type="image"></block> Préparez un emplacement pour le data broker NetApp</block>
+  <block id="24d418de7deb7231eeb443678b0f0441" category="inline-image-macro">Numéro 3</block>
+  <block id="f0207b569fe3cbfd5eccfb2828e3f2b7" category="section-title"><block ref="9527607e7742b1b2d282b03d60bed8ef" category="inline-image-macro-rx" type="image"></block> Créez votre première relation de synchronisation</block>
+  <block id="6b47d8ab70c3ef6cbc8e75d29b5e2d7e" category="inline-image-macro">Nombre4</block>
+  <block id="ac5a639d5962a25a6971d30167e47c47" category="section-title"><block ref="eaa50516809be1dcaf0dabd3af981bdd" category="inline-image-macro-rx" type="image"></block> Payez vos relations de synchronisation après la fin de votre essai gratuit</block>
+  <block id="d92025d25d4a2d6a7fd1c8dd346c3a78" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Déployez l'instance Cloud Compliance</block>
+  <block id="2a308ec65e0691e08ca910409399e926" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Intégrez Cloud Compliance dans vos environnements de travail</block>
+  <block id="673be64cc34cfe0793aff320631eec30" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Vérifiez l'accès aux volumes</block>
+  <block id="e95134d22ea5aa15300ed7e15b493afc" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Configurez les volumes à analyser</block>
+  <block id="f3d9abb903127694db460aa9c7f4d7be" category="paragraph-title">Restriction</block>
+  <block id="9bbb347fbd183c9b759619011e925584" category="section-title">[[iam]]pour utiliser votre propre rôle IAM avec le courtier de données AWS</block>
+  <block id="70097ec71ef99a0b821b421778c3dc89" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Activez la surveillance sur votre système nouveau ou existant</block>
+  <block id="c13c14c9d94d99ddb8afb5df2017596d" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Afficher les données de performances</block>
+  <block id="6fe3b577f9152959d54f0a18687fc614" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Abonnez-vous à Cloud Insights</block>
+  <block id="732388e21e523aa0634e9409e24bb44b" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Activez l'API Cloud Volumes Service</block>
+  <block id="cbe36d012a95f25988e66e11ab902592" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Créez un compte de service GCP et téléchargez les identifiants</block>
+  <block id="1364a0c04b3bd8a020e2233da181d34c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Créez un environnement de travail Cloud Volumes Service pour GCP</block>
+  <block id="a4210618117a87f8b7ed7fa4c4b786f5" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Vérifiez les prérequis de la base de données</block>
+  <block id="19845d6514c37d5561b2df3fb3c42709" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Déployez l'instance Cloud Compliance</block>
+  <block id="03e40e51de10c4fcfe185e3596c9fea9" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Ajoutez le serveur de base de données</block>
+  <block id="62285cab7437c64e66969323f9b382a0" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Sélectionnez les schémas</block>
+  <block id="bde31567c14a78b82abddb195adfcef4" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Configurez les exigences S3 dans votre environnement cloud</block>
+  <block id="251dfafdaab0977444cc7db6f14d9a0c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Activez la conformité sur votre environnement de travail S3</block>
+  <block id="9ace5ce0bac1f885633c4a6d9237ba85" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Sélectionnez les compartiments à numériser</block>
+  <block id="5a08d7ee13e3d460c0abdc003e96de15" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Passer en revue les prérequis</block>
+  <block id="06c9972a6973c3e844fd619e6820ca60" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Ajoutez vos clusters Kubernetes à Cloud Manager</block>
+  <block id="7babb23bf41fb0be57d79d41976f67a6" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Connectez vos clusters à Cloud Volumes ONTAP</block>
+  <block id="a2a98c975ba9db610320c9f064248420" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Commencez le provisionnement des volumes persistants</block>
+  <block id="492e5546e60705134bff8d7f80511a8d" category="section-title">Découvrez les nouveautés</block>
+  <block id="675d38d552c49bbf67606b2c5f1d5bed" category="section-title">Qu'est-ce que Flash cache ?</block>
+  <block id="f436b6f8e34b590da0473e8f6c14ebb6" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Demander l'accès</block>
+  <block id="7bb2f3bb3a53cdbde6126e8ec560df26" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Configurez une application Azure AD</block>
+  <block id="8777339718fab90f3d89354d635602fc" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Créer un environnement de travail Azure NetApp Files</block>
+  <block id="ed14d70dad7ae627497350bc4e3868e5" category="section-title">[[aws]]abonnement d'AWS</block>
+  <block id="b6a5a78c3221a73b92bf2f602e64a9cc" category="section-title">[[Azure]]abonnement d'Azure</block>
+  <block id="4faa53699bc5575d520ebbbdbdcb3676" category="section-title">[[licences]]achat de licences de NetApp et leur ajout à Cloud Sync</block>
+  <block id="49cb6dd519b346b8bd8a1d8215f8d5ba" category="section-title">Ce dont vous avez besoin pour commencer</block>
+  <block id="ec2b9d242528edf315221ad2dddfe05f" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Activez la sauvegarde dans le cloud sur le système</block>
+  <block id="f35b3fb817bc1b6969d1e5fae485e458" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Sélectionnez le fournisseur de services clouds et entrez les informations relatives au fournisseur</block>
+  <block id="f265f2d996a2653c64b12be4162dbcb9" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Ajoutez votre abonnement Cloud Volumes Service pour AWS</block>
+  <block id="324722d35dd7c88dc18af8dca459144c" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Créer des volumes cloud</block>
+  <block id="1098389531128dd1630a8691017ecab2" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Montez un volume cloud</block>
+  <block id="73d52017c88a2fcffc5b2dcbb683d5e4" category="section-title">J'ai des problèmes de performances. Pouvons-nous limiter le nombre de transferts simultanés ?</block>
+  <block id="5e096b7a2c33e654f884053c567f3013" category="paragraph-title">Comment cela fonctionne</block>
+  <block id="2d024ab58a4f3aca200433e71bfbfb7d" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Définissez la stratégie de sauvegarde</block>
+  <block id="b1f04f72c0946a167d3665d8c8028079" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Sélectionnez les volumes à sauvegarder</block>
+  <block id="f54cfe8dccf99911b96d287f796ff8e6" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> Restaurez vos données à la demande</block>
+  <block id="ada4f28c1d7a2b6deafbea15522101b4" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Choisissez une configuration prise en charge</block>
+  <block id="bf30ec6e5b418236529d5fb8a008f7a1" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Assurez la connectivité entre le Cloud Volumes ONTAP et le stockage objet</block>
+  <block id="4f171aaed4814825b1b6cd26e8bca8be" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Choisissez une règle de Tiering lors de la création, de la modification ou de la réplication d'un volume</block>
+  <block id="396f48c649e3ff633d50433913feb87b" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Créer un connecteur</block>
+  <block id="6aa6125970a0e976d1144591cce6cb48" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Planification de la configuration</block>
+  <block id="eba81c0c0c62849b9a8e16bb40a9e522" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Configurez votre réseau</block>
+  <block id="a249a27f98b564b1b8bb2e87ae36533a" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Configuration du KMS AWS</block>
+  <block id="67467aa7bd51d7bbe961339db94944ba" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager</block>
+  <block id="fc6a1c4bfdea701c7028d4b2604689fb" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager</block>
+  <block id="6917f8aa30f339e0174c243dc60ca829" category="section-title"><block ref="dfda45ebcbf64ca08d06a80353e9cf6f" category="inline-image-macro-rx" type="image"></block> Déployez Cloud Volumes ONTAP</block>
+  <block id="13cebc5d87c25a25fa19353a7dfbd762" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Déployez le serveur Global File cache Management Server</block>
+  <block id="ec11d0059bc2ac9fc8c2e43cab362ce6" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Déployez Global File cache Core</block>
+  <block id="dfc5eca62d14e5b7ffb6abcaed7c1e2f" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Cache global des fichiers de licence</block>
+  <block id="2767a73fa1d8353756d1ff7499837b1c" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> Déployez les instances Global File cache Edge</block>
+  <block id="d7fc8658f9e7754760fee0f4a1678e61" category="paragraph-title">Et la suite ?</block>
+  <block id="9fddc3cde8f0b14e27df208452fe2b43" category="section-title"><block ref="b496ee93dbdd8d3b796a1af3fe777064" category="inline-image-macro-rx" type="image"></block> Passer en revue les prérequis</block>
+  <block id="df01c72ffc9521af557ac32cfdb66fd9" category="section-title"><block ref="f99fa24d03c6ef96c556af7cdf23810f" category="inline-image-macro-rx" type="image"></block> Déployez Cloud Compliance</block>
+  <block id="9f5dd2f1cbabb0474ed015ae31acf7e4" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Abonnez-vous au service Cloud Compliance</block>
+  <block id="ad5480f838ed67e92fecf7af3cef120d" category="paragraph-title">Et la suite</block>
+  <block id="049e8331ee41fb67d481185a274aa752" category="section-title">Modification de la taille et des balises d'un volume</block>
+  <block id="e66cf0363da426ff5fc40b5dff923ee7" category="paragraph-title">Et la suite ?</block>
+  <block id="06c8c2436f0f1ff2acfef84c2fe6d052" category="section-title"><block ref="d0f5cff2b8e0ecc91e360a74276cf2dd" category="inline-image-macro-rx" type="image"></block> Configuration de GCP pour le Tiering des données</block>
+  <block id="919a82e3f18e6877f4c7eb99f2965a6c" category="section-title"><block ref="c8b82927684b7195fa645497b5fcc719" category="inline-image-macro-rx" type="image"></block> Activez les API Google Cloud</block>
+  <block id="8793b102a57051bc0a69b6370c03bf9c" category="section-title"><block ref="37140c340d57bff74ec463795f4bc377" category="inline-image-macro-rx" type="image"></block> Lancez Cloud Volumes ONTAP à l'aide de Cloud Manager</block>
+  <block id="5ccc745272c52ce1868d5bcf2b07705a" category="section-title">Gestion des espaces de travail d'un administrateur d'espace de travail</block>
+  <block id="1cf32fb78afaf111cd4c8421dc8592a6" category="section-title">Gestion des espaces de travail d'un connecteur</block>
 </blocks>

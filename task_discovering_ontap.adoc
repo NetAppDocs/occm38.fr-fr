@@ -15,7 +15,7 @@ summary: 'Cloud Manager peut découvrir les clusters ONTAP dans votre environnem
 
 Cloud Manager peut découvrir les clusters ONTAP dans votre environnement sur site, dans une configuration de stockage privé NetApp et dans IBM Cloud. Il vous permet de ONTAP provisionner le stockage, de répliquer les données, de sauvegarder et de déplacer les données inactives dans le cloud à partir d'un cluster sur site.
 
-.Ce dont vous avez besoin, 8217;ll
+.Ce dont vous avez besoin
 * Connecteur installé dans un fournisseur cloud ou sur site.
 +
 Si vous voulez transférer les données inactives vers le cloud, consultez les conditions du connecteur en fonction de l'emplacement où vous prévoyez d'effectuer le Tiering des données inactives.
@@ -56,4 +56,5 @@ image:screenshot_discover_ontap.gif["Copie d'écran montrant un exemple de page 
 . Sur la page Détails, entrez un nom et une description pour l'environnement de travail, puis cliquez sur *Go*.
 
 
+.Résultat
 Cloud Manager détecte le cluster. Vous pouvez désormais créer des volumes, répliquer les données depuis et vers le cluster, configurer le Tiering des données dans le cloud, sauvegarder des volumes dans le cloud et lancer System Manager pour exécuter des tâches avancées.

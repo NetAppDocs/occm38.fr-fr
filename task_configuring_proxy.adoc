@@ -41,4 +41,5 @@ NOTE: Cloud Manager ne prend pas en charge les mots de passe comprenant le carac
 
 
 
+.Résultat
 Après avoir spécifié le serveur proxy, les nouveaux systèmes Cloud Volumes ONTAP sont automatiquement configurés pour utiliser le serveur proxy lors de l'envoi de messages AutoSupport. Si vous n'avez pas spécifié le serveur proxy avant que les utilisateurs créent des systèmes Cloud Volumes ONTAP, ils doivent utiliser le Gestionnaire système pour définir manuellement le serveur proxy dans les options AutoSupport de chaque système.

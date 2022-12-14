@@ -116,4 +116,5 @@ Le volume est créé dans l'environnement de travail.
 
 
 
+.Une fois que vous avez terminé
 Passez à link:task_manage_cvs_gcp.html#mount-cloud-volumes["Montage du volume cloud"^].
