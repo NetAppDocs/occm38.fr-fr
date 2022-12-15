@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:18:18 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:16:52 +0000">12/14/2022</time>
     
   
 
@@ -3418,7 +3418,7 @@
 <p><span class="image"><img src="./media/screenshot_cot_upgrade.gif" alt="Capture d&#8217;écran : affiche la notification Nouvelle version disponible qui s&#8217;affiche sur la page Environnements de travail après avoir sélectionné un environnement de travail."></span></p>
 </div>
 <div class="paragraph">
-<p>Vous pouvez lancer le processus de mise à niveau à partir de cette notification, qui automatise le processus en obtenant l&#8217;image logicielle à partir d&#8217;un compartiment S3, en installant l&#8217;image, puis en redémarrant le système. Pour plus de détails, voir  Cloud Volumes ONTAP from Cloud Manager notifications.</p>
+<p>Vous pouvez lancer le processus de mise à niveau à partir de cette notification, qui automatise le processus en obtenant l&#8217;image logicielle à partir d&#8217;un compartiment S3, en installant l&#8217;image, puis en redémarrant le système. Pour plus de détails, voir <a href="Mise à niveau d&.html#8217;Cloud Volumes ONTAP à partir des notifications Cloud Manager">Mise à niveau d&.html</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3445,7 +3445,7 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <p>Cette option est utile si Cloud Manager ne peut pas accéder à la rubrique S3 pour mettre à niveau le logiciel, si un correctif vous a été fourni, ou si vous souhaitez rétrograder le logiciel vers une version spécifique.</p>
 </div>
 <div class="paragraph">
-<p>Pour plus de détails, voir  or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server.</p>
+<p>Pour plus de détails, voir <a href="Mise à niveau ou mise à niveau vers une version antérieure de Cloud Volumes ONTAP à l&.html#8217;aide d&#8217;un serveur HTTP ou FTP">Mise à niveau ou mise à niveau vers une version antérieure de Cloud Volumes ONTAP à l&.html</a>.</p>
 </div>
 </li>
 <li>
@@ -3454,7 +3454,7 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <p>Vous pouvez utiliser cette option pour revenir à la version précédente en faisant de l&#8217;image logicielle alternative l&#8217;image par défaut. Cette option n&#8217;est pas disponible pour les paires HA.</p>
 </div>
 <div class="paragraph">
-<p>Pour plus de détails, voir  Cloud Volumes ONTAP by using a local image.</p>
+<p>Pour plus de détails, voir <a href="Déclassement de Cloud Volumes ONTAP à l&.html#8217;aide d&#8217;une image locale">Déclassement de Cloud Volumes ONTAP à l&.html</a>.</p>
 </div>
 </li>
 </ul>
@@ -3471,19 +3471,19 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <div class="ulist">
 <ul>
 <li>
-<p>for downtime</p>
+<p><a href="Planifier des temps d&.html#8217;indisponibilité">Planifier des temps d&.html</a></p>
 </li>
 <li>
-<p>version requirements</p>
+<p><a href="#révision-des-exigences-de-version">Révision des exigences de version</a></p>
 </li>
 <li>
-<p>that automatic giveback is still enabled</p>
+<p><a href="#vérifier-que-le-rétablissement-automatique-est-toujours-activé">Vérifier que le rétablissement automatique est toujours activé</a></p>
 </li>
 <li>
-<p>SnapMirror transfers</p>
+<p><a href="#suspension-des-transferts-snapmirror">Suspension des transferts SnapMirror</a></p>
 </li>
 <li>
-<p>that aggregates are online</p>
+<p><a href="#vérifier-que-les-agrégats-sont-en-ligne">Vérifier que les agrégats sont en ligne</a></p>
 </li>
 </ul>
 </div>
@@ -3520,6 +3520,7 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <p>Si un système Cloud Volumes ONTAP a des relations SnapMirror actives, il est préférable de suspendre les transferts avant de mettre à jour le logiciel Cloud Volumes ONTAP. La suspension des transferts empêche les défaillances de SnapMirror. Vous devez suspendre les transferts depuis le système de destination.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Ces étapes décrivent l&#8217;utilisation de System Manager pour la version 9.3 et ultérieure.</p>
 </div>
 <div class="olist arabic">
@@ -3543,6 +3544,7 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <p>Les agrégats pour Cloud Volumes ONTAP doivent être en ligne avant de mettre à jour le logiciel. Les agrégats doivent être en ligne dans la plupart des configurations, mais si ce n&#8217;est pas le cas, vous devez les mettre en ligne.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Ces étapes décrivent l&#8217;utilisation de System Manager pour la version 9.3 et ultérieure.</p>
 </div>
 <div class="olist arabic">
@@ -3585,6 +3587,7 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 <p>Cloud Manager vous avertit lorsqu&#8217;une nouvelle version d&#8217;Cloud Volumes ONTAP est disponible. Cliquez sur la notification pour lancer le processus de mise à niveau.</p>
 </div>
 <div class="paragraph">
+<div class="title">Avant de commencer</div>
 <p>Les opérations de Cloud Manager telles que la création de volumes ou d&#8217;agrégats ne doivent pas être en cours pour le système Cloud Volumes ONTAP.</p>
 </div>
 <div class="olist arabic">
@@ -3617,9 +3620,11 @@ Pour les systèmes HA dans AWS, Cloud Manager peut mettre à niveau le médiateu
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Manager démarre la mise à niveau logicielle. Vous pouvez effectuer des actions sur l&#8217;environnement de travail une fois la mise à jour logicielle terminée.</p>
 </div>
 <div class="paragraph">
+<div class="title">Une fois que vous avez terminé</div>
 <p>Si vous avez suspendu les transferts SnapMirror, utilisez System Manager pour reprendre les transferts.</p>
 </div>
 </div>
@@ -3672,9 +3677,11 @@ Le groupe de sécurité Cloud Volumes ONTAP prédéfini autorise les connexions 
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Manager démarre la mise à jour logicielle. Vous pouvez effectuer des actions sur l&#8217;environnement de travail une fois la mise à jour logicielle terminée.</p>
 </div>
 <div class="paragraph">
+<div class="title">Une fois que vous avez terminé</div>
 <p>Si vous avez suspendu les transferts SnapMirror, utilisez System Manager pour reprendre les transferts.</p>
 </div>
 </div>
@@ -3689,6 +3696,7 @@ Le groupe de sécurité Cloud Volumes ONTAP prédéfini autorise les connexions 
 <p>Chaque système Cloud Volumes ONTAP peut contenir deux images logicielles : l&#8217;image en cours d&#8217;exécution et une autre image que vous pouvez démarrer. Cloud Manager peut modifier l&#8217;image alternative comme image par défaut. Vous pouvez utiliser cette option pour revenir à la version précédente de Cloud Volumes ONTAP, si vous rencontrez des problèmes avec l&#8217;image actuelle.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Ce processus de mise à niveau vers une version antérieure est uniquement disponible pour les systèmes Cloud Volumes ONTAP. Il n&#8217;est pas disponible pour les paires HA.</p>
 </div>
 <div class="olist arabic">
@@ -3706,9 +3714,11 @@ Le groupe de sécurité Cloud Volumes ONTAP prédéfini autorise les connexions 
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Manager démarre la mise à jour logicielle. Vous pouvez effectuer des actions sur l&#8217;environnement de travail une fois la mise à jour logicielle terminée.</p>
 </div>
 <div class="paragraph">
+<div class="title">Une fois que vous avez terminé</div>
 <p>Si vous avez suspendu les transferts SnapMirror, utilisez System Manager pour reprendre les transferts.</p>
 </div>
 </div>

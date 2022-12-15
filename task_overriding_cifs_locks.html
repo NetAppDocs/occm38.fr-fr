@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:18:18 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:16:52 +0000">12/14/2022</time>
     
   
 
@@ -3397,6 +3397,7 @@
 <p>L&#8217;administrateur du compte peut activer un paramètre dans Cloud Manager qui empêche les problèmes liés au basculement du stockage Cloud Volumes ONTAP lors des événements de maintenance Azure. Lorsque vous activez ce paramètre, Cloud Volumes ONTAP vetoes les verrous CIFS et réinitialise les sessions CIFS actives.</p>
 </div>
 <div class="paragraph">
+<div class="title">Description de la tâche</div>
 <p>Microsoft Azure planifie des événements de maintenance périodiques sur ses machines virtuelles. Lorsqu&#8217;un événement de maintenance se produit sur un nœud d&#8217;une paire haute disponibilité Cloud Volumes ONTAP, la paire haute disponibilité démarre le basculement du stockage. S&#8217;il existe des sessions CIFS actives au cours de cet événement de maintenance, les verrous sur les fichiers CIFS peuvent empêcher le basculement du stockage.</p>
 </div>
 <div class="paragraph">
@@ -3415,6 +3416,7 @@ Ce processus peut entraîner des perturbations pour les clients CIFS. Les donné
 </table>
 </div>
 <div class="paragraph">
+<div class="title">Ce dont vous avez besoin</div>
 <p>Vous devez créer un connecteur pour modifier les paramètres de Cloud Manager. <a href="concept_connectors.html#how-to-create-a-connector">"Découvrez comment"</a>.</p>
 </div>
 <div class="olist arabic">

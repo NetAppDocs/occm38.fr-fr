@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:18:18 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:16:52 +0000">12/14/2022</time>
     
   
 
@@ -3407,25 +3407,25 @@
 <p>Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu&#8217;aux sections restantes pour obtenir de plus amples informations.</p>
 </div>
 <div class="sect3">
-<h4 id="configurez-les-exigences-s3-dans-votre-environnement-cloud">Configurez les exigences S3 dans votre environnement cloud</h4>
+<h4 id="configurez-les-exigences-s3-dans-votre-environnement-cloud"><span class="image"><img src="./media/number1.png" alt="Numéro 1"></span> Configurez les exigences S3 dans votre environnement cloud</h4>
 <div class="paragraph quick-margin-para">
-<p>Assurez-vous que votre environnement cloud répond aux exigences de Cloud Compliance, y compris la préparation d&#8217;un rôle IAM et la configuration de la connectivité Cloud Compliance vers S3.  S3 prerequisites,Voir la liste complète.</p>
+<p>Assurez-vous que votre environnement cloud répond aux exigences de Cloud Compliance, y compris la préparation d&#8217;un rôle IAM et la configuration de la connectivité Cloud Compliance vers S3. <a href="#vérification-des-prérequis-s3">Voir la liste complète</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="déployez-linstance-cloud-compliance">Déployez l&#8217;instance Cloud Compliance</h4>
+<h4 id="déployez-linstance-cloud-compliance"><span class="image"><img src="./media/number2.png" alt="Numéro 2"></span> Déployez l&#8217;instance Cloud Compliance</h4>
 <div class="paragraph quick-margin-para">
 <p><a href="task_deploy_cloud_compliance.html" target="_blank" rel="noopener">"Déployez Cloud Compliance dans Cloud Manager"</a> si aucune instance n&#8217;est déjà déployée.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="activez-la-conformité-sur-votre-environnement-de-travail-s3">Activez la conformité sur votre environnement de travail S3</h4>
+<h4 id="activez-la-conformité-sur-votre-environnement-de-travail-s3"><span class="image"><img src="./media/number3.png" alt="Numéro 3"></span> Activez la conformité sur votre environnement de travail S3</h4>
 <div class="paragraph quick-margin-para">
 <p>Sélectionnez l&#8217;environnement de travail Amazon S3, cliquez sur <strong>Activer la conformité</strong> et sélectionnez un rôle IAM qui inclut les autorisations requises.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sélectionnez-les-compartiments-à-numériser">Sélectionnez les compartiments à numériser</h4>
+<h4 id="sélectionnez-les-compartiments-à-numériser"><span class="image"><img src="./media/number4.png" alt="Numéro 4"></span> Sélectionnez les compartiments à numériser</h4>
 <div class="paragraph quick-margin-para">
 <p>Sélectionnez les compartiments que vous souhaitez analyser et Cloud Compliance commence à les analyser.</p>
 </div>
@@ -3547,7 +3547,7 @@ Vous ne pouvez pas utiliser de proxy pour accéder à S3 sur Internet.
 </div>
 </li>
 <li>
-<p>Lorsque vous y êtes invité, attribuez un rôle IAM à l&#8217;instance Cloud Compliance qui possède  specific to S3,les autorisations requises.</p>
+<p>Lorsque vous y êtes invité, attribuez un rôle IAM à l&#8217;instance Cloud Compliance qui possède <a href="#Requirements specific to S3">les autorisations requises</a>.</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_s3_compliance_iam_role.gif" alt="Capture d&#8217;écran de l&#8217;entrée du rôle IAM AWS pour Cloud Compliance"></span></p>
 </div>
@@ -3570,6 +3570,7 @@ Vous pouvez également activer les analyses de conformité pour un environnement
 </table>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Manager attribue le rôle IAM à l&#8217;instance.</p>
 </div>
 </div>
@@ -3584,7 +3585,7 @@ Vous pouvez également activer les analyses de conformité pour un environnement
 <p>Lorsque Cloud Manager s&#8217;exécute sur le compte AWS possédant les compartiments S3 que vous souhaitez analyser, il détecte ces compartiments et les affiche dans un environnement de travail Amazon S3.</p>
 </div>
 <div class="paragraph">
-<p>Cloud Compliance l&#8217;est également  buckets from additional AWS accounts,Analysez les compartiments S3 qui se trouvent dans différents comptes AWS.</p>
+<p>Cloud Compliance l&#8217;est également <a href="#analyse-des-compartiments-à-partir-de-comptes-aws-supplémentaires">Analysez les compartiments S3 qui se trouvent dans différents comptes AWS</a>.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Étapes</div>
@@ -3607,6 +3608,7 @@ Vous pouvez également activer les analyses de conformité pour un environnement
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Compliance commence l&#8217;analyse des compartiments S3 activés. En cas d&#8217;erreur, elles apparaîtront dans la colonne État, ainsi que l&#8217;action requise pour corriger l&#8217;erreur.</p>
 </div>
 </div>
@@ -3717,6 +3719,7 @@ Vous pouvez également activer les analyses de conformité pour un environnement
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Compliance commence l&#8217;analyse des nouveaux compartiments S3 activés.</p>
 </div>
 </div>

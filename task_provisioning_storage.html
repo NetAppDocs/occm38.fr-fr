@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:18:18 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:16:52 +0000">12/14/2022</time>
     
   
 
@@ -3419,7 +3419,8 @@ Tous les disques et agrégats doivent être créés et supprimés directement de
 <p>Si vous avez besoin de plus de stockage après le lancement d&#8217;un système Cloud Volumes ONTAP, vous pouvez créer de nouveaux volumes FlexVol pour NFS, CIFS ou iSCSI à partir de Cloud Manager.</p>
 </div>
 <div class="paragraph">
-<p>Lorsque vous créez un volume iSCSI, Cloud Manager crée automatiquement une LUN pour vous. Nous avons simplifié la gestion en créant un seul LUN par volume, donc aucune gestion n&#8217;est nécessaire. Une fois le volume créé,  a LUN to a host,Utilisez l&#8217;IQN pour vous connecter à la LUN à partir de vos hôtes.</p>
+<div class="title">Description de la tâche</div>
+<p>Lorsque vous créez un volume iSCSI, Cloud Manager crée automatiquement une LUN pour vous. Nous avons simplifié la gestion en créant un seul LUN par volume, donc aucune gestion n&#8217;est nécessaire. Une fois le volume créé, <a href="Connexion d&.html#8217;une LUN à un hôte">Utilisez l&#8217;IQN pour vous connecter à la LUN à partir de vos hôtes</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3434,6 +3435,7 @@ Vous pouvez créer des LUN supplémentaires depuis System Manager ou l&#8217;int
 </table>
 </div>
 <div class="paragraph">
+<div class="title">Avant de commencer</div>
 <p>Si vous souhaitez utiliser CIFS dans AWS, vous devez avoir configuré DNS et Active Directory. Pour plus de détails, voir <a href="reference_networking_aws.html">"Configuration réseau requise pour Cloud Volumes ONTAP pour AWS"</a>.</p>
 </div>
 <div class="olist arabic">
@@ -3608,9 +3610,11 @@ Vous pouvez créer des LUN supplémentaires depuis System Manager ou l&#8217;int
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Résultat</div>
 <p>Cloud Volumes ONTAP en assure la gestion.</p>
 </div>
 <div class="paragraph">
+<div class="title">Une fois que vous avez terminé</div>
 <p>Si vous avez provisionné un partage CIFS, donnez aux utilisateurs ou aux groupes des autorisations sur les fichiers et les dossiers et vérifiez que ces utilisateurs peuvent accéder au partage et créer un fichier.</p>
 </div>
 <div class="paragraph">
@@ -3648,6 +3652,7 @@ Vous pouvez créer des LUN supplémentaires depuis System Manager ou l&#8217;int
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Une fois que vous avez terminé</div>
 <p>Vous pouvez créer des volumes supplémentaires sur cet agrégat si nécessaire.</p>
 </div>
 <div class="admonitionblock important">
