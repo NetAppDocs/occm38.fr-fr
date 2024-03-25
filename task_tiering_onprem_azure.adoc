@@ -99,8 +99,9 @@ Lorsque vous configurez le Tiering des données, Cloud Tiering vous invite à ut
 
 
 --
-Volumes et agrégats pris en charge:: Le nombre total de volumes que vous pouvez effectuer le Tiering dans Cloud Tiering peut être inférieur au nombre de volumes sur votre système ONTAP. En effet, certains volumes ne peuvent pas être hiérarchisés à partir de certains agrégats. Par exemple, vous ne pouvez pas hiérarchiser les données depuis les volumes SnapLock ou depuis les configurations MetroCluster. Consultez la documentation ONTAP pour link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["Fonctionnalité ou fonctionnalités non prises en charge par FabricPool"^].
 
+
+Directive non résolue dans <stdin> - include:: https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc []
 
 
 NOTE: NetApp Cloud Tiering prend en charge les volumes FlexGroup, à partir de ONTAP 9.5. Le réglage fonctionne de la même façon que tout autre volume.

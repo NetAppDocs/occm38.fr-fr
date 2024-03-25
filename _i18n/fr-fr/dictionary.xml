@@ -1355,9 +1355,6 @@
   <block id="15791d531460b4c275e03017399fcd1a" category="inline-link">En savoir plus sur les IPspaces</block>
   <block id="cfff9c55ea85b0db9b604bdef2f48d4d" category="paragraph">Les IPspaces permettent la ségrégation du trafic réseau. Vous pouvez ainsi séparer le trafic client pour préserver votre confidentialité et votre sécurité.<block ref="099fdf6e8ad70f15bd41fe67513de18c" category="inline-link-rx"></block>.</block>
   <block id="96788f015626d24d63f6f02843be51c3" category="paragraph">Lorsque vous configurez le Tiering des données, Cloud Tiering vous invite à utiliser l'IPspace. Vous devez choisir l'IPspace auquel chaque LIF est associée. Il peut s'agir de l'IPspace par défaut ou d'un IPspace personnalisé que vous avez créé.</block>
-  <block id="ac711435545c1b14c721179de8ab94a0" category="list-text">Volumes et agrégats pris en charge</block>
-  <block id="cbd3171b775ecc9b275479726c41ccec" category="inline-link-macro">Fonctionnalité ou fonctionnalités non prises en charge par FabricPool</block>
-  <block id="80be9dc982f371739dd1f289a1ea008c" category="list-text">Le nombre total de volumes que vous pouvez effectuer le Tiering dans Cloud Tiering peut être inférieur au nombre de volumes sur votre système ONTAP. En effet, certains volumes ne peuvent pas être hiérarchisés à partir de certains agrégats. Par exemple, vous ne pouvez pas hiérarchiser les données depuis les volumes SnapLock ou depuis les configurations MetroCluster. Consultez la documentation ONTAP pour <block ref="735d4f7c28454cb31dcb5e7ad1dd69d6" category="inline-link-macro-rx"></block>.</block>
   <block id="c3fb869301bdf0050425864a1c816fd8" category="admonition">NetApp Cloud Tiering prend en charge les volumes FlexGroup. Le réglage fonctionne de la même façon que tout autre volume.</block>
   <block id="d32e4305e9f04e1cbc37d3e892619ee7" category="section-title">Création ou commutation de connecteurs</block>
   <block id="6f8de70a130cd2e986950accf1528a82" category="paragraph">Un connecteur est nécessaire pour transférer les données vers le cloud. Pour le Tiering des données vers Google Cloud Storage, un connecteur doit être disponible dans un VPC Google Cloud Platform. Vous devrez soit créer un nouveau connecteur, soit vérifier que le connecteur actuellement sélectionné réside dans GCP.</block>
@@ -8139,4 +8136,5 @@
   <block id="1514a9e798eb61fcbaf1fddb8eb82097" category="paragraph">NetApp BlueXP étend et améliore les fonctionnalités fournies via Cloud Manager.</block>
   <block id="ab226d70455b3dcdb3cf804792103d43" category="inline-link">Consultez la documentation BlueXP</block>
   <block id="50523074a17d5fe93be8e3f013a747de" category="paragraph"><block ref="50523074a17d5fe93be8e3f013a747de" category="inline-link-rx"></block></block>
+  <block id="c20c1f7ac23768f21f88dd6e7ca4456d" category="paragraph">Directive non résolue dans &lt;stdin&gt; - include:: https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc []</block>
 </blocks>
