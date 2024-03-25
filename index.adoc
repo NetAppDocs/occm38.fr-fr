@@ -16,6 +16,14 @@ Cloud Manager permet aux experts IT et aux architectes cloud de gérer de maniè
 
 
 
+== BlueXP
+
+NetApp BlueXP étend et améliore les fonctionnalités fournies via Cloud Manager.
+
+https://docs.netapp.com/us-en/bluexp-family/["Consultez la documentation BlueXP"^]
+
+
+
 == Découvrez les nouveautés
 
 * link:reference_key_changes.html["Modifications importantes apportées à Cloud Manager"]
