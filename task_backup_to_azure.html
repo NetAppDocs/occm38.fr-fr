@@ -1,0 +1,4550 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head class="at-element-marker">
+  <title>Sauvegarde des données dans le stockage Azure Blob</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Sauvegarde des données dans le stockage Azure Blob" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/fr-fr/occm38/task_backup_to_azure.html" />
+	<meta property="og:description" content="Réalisez quelques étapes pour commencer à sauvegarder des données de Cloud Volumes ONTAP vers le stockage Azure Blob." />
+  <meta property="og:image" content="https://docs.netapp.com/fr-fr/occm38/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta http-equiv="nss-product" content="OnCommand Cloud Manager"/><meta name="description" content="Réalisez quelques étapes pour commencer à sauvegarder des données de Cloud Volumes ONTAP vers le stockage Azure Blob.">
+  <meta name="keywords" content=" backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, azure, azure blob, back up volumes, Backup to Cloud, cloud backup service"><!-- Icons -->
+  <link rel="icon" href="/fr-fr/occm38/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/fr-fr/occm38/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/fr-fr/occm38/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/fr-fr/occm38/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/fr-fr/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/occm38/task_backup_to_azure.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/occm38/task_backup_to_azure.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/fr-fr/occm38/js/na-search.js'></script><script src='/fr-fr/occm38/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/fr-fr/occm38/js/custom-dropdown.js'></script>
+  <script src='/fr-fr/occm38/js/FileSaver.min.js'></script>
+  <script src='/fr-fr/occm38/js/jszip-utils.min.js'></script>
+  <script src='/fr-fr/occm38/js/jszip.min.js'></script><script src='/fr-fr/occm38/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/fr-fr/occm38/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/fr">
+                <image id="ie-header-logo" src="/fr-fr/occm38/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/fr/support-and-training/documentation/">Documents</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/fr-fr/occm38/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">Français</span>
+                    <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/fr-fr/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-tw/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/occm38/task_backup_to_azure.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/fr-fr/occm38/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">Tout NetApp</span>
+                    <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/fr/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">Support</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">Base de connaissances</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/fr/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">Formation</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/fr-fr/occm38/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/fr-fr/occm38/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">Tous les documents</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/fr-fr/occm38/">-->
+      Cloud Manager 3.8
+    <!--</a>-->
+  </div>
+</div>
+
+            
+
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/fr-fr/occm38/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/fr-fr/occm38/search.html" 
+        data-type="widget"
+        data-placeholder="Rechercher dans la documentation"
+        data-no-results-found="Aucun résultat trouvé pour : {query}"
+        data-did-you-mean="Rechercher {suggestion}."
+        data-no-results-found-did-you-mean="Aucun résultat n'a été trouvé pour {query}. Voulez-vous dire {suggestion} ?"
+        data-results-found="{hitCount} résultats"
+        data-error-message="Une erreur s'est produite. Merci de réessayer."
+        data-error-reset="Réinitialiser la recherche"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Documentation Cloud Manager"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/index.html">
+        Documentation Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Notes de mise à jour"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Notes de mise à jour</div>-->
+         Notes de mise à jour
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Le gestionnaire Cloud"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Le gestionnaire Cloud</div>-->
+         Le gestionnaire Cloud
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Quoi de neuf"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_new_occm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_new_occm.html">
+        Quoi de neuf
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avec la transition vers le SaaS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_saas.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_saas.html">
+        Avec la transition vers le SaaS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Problèmes connus"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_issues.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_issues.html">
+        Problèmes connus
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Limites connues"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_limitations.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_limitations.html">
+        Limites connues
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/cloud-volumes-ontap/" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://docs.netapp.com/us-en/cloud-volumes-ontap/">
+        Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Changements importants"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_key_changes.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/reference_key_changes.html">
+        Changements importants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez avec Cloud Manager"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez avec Cloud Manager</div>-->
+         Commencez avec Cloud Manager
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Cloud Manager"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_overview.html">
+        Découvrez Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation du réseau"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_networking.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/reference_networking.html">
+        Présentation du réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Inscrivez-vous à Cloud Central"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_signing_up.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_signing_up.html">
+        Inscrivez-vous à Cloud Central
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Connectez-vous à Cloud Manager"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_logging_in.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_logging_in.html">
+        Connectez-vous à Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez un compte Cloud Central"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Configurez un compte Cloud Central</div>-->
+         Configurez un compte Cloud Central
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez les comptes Cloud Central"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_cloud_central_accounts.html">
+        Découvrez les comptes Cloud Central
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez un compte"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setting_up_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_setting_up_cloud_central_accounts.html">
+        Configurez un compte
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer un connecteur"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Configurer un connecteur</div>-->
+         Configurer un connecteur
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les connecteurs"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_connectors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_connectors.html">
+        En savoir plus sur les connecteurs
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration réseau requise"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_networking_cloud_manager.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_networking_cloud_manager.html">
+        Configuration réseau requise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez un connecteur dans AWS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_creating_connectors_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_creating_connectors_aws.html">
+        Créez un connecteur dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un connecteur dans Azure"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_creating_connectors_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_creating_connectors_azure.html">
+        Créer un connecteur dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créer un connecteur dans GCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_creating_connectors_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_creating_connectors_gcp.html">
+        Créer un connecteur dans GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Par où aller plus loin"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_whats_next.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/reference_whats_next.html">
+        Par où aller plus loin
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gérer Cloud Volumes ONTAP</div>-->
+         Gérer Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Apprendre"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Apprendre</div>-->
+         Apprendre
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Présentation"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_overview_cvo.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_overview_cvo.html">
+        Présentation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Stockage"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Stockage</div>-->
+         Stockage
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Disques et agrégats"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_storage.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_storage.html">
+        Disques et agrégats
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering des données"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_data_tiering.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_data_tiering.html">
+        Tiering des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion du stockage"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_storage_management.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_storage_management.html">
+        Gestion du stockage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash cache"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_flash_cache.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_flash_cache.html">
+        Flash cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Stockage WORM"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_worm.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_worm.html">
+        Stockage WORM
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires haute disponibilité"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Paires haute disponibilité</div>-->
+         Paires haute disponibilité
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires HA dans AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_ha.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_ha.html">
+        Paires HA dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paires HA dans Azure"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_ha_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_ha_azure.html">
+        Paires HA dans Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="L'évaluation"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_evaluating.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_evaluating.html">
+        L'évaluation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Licences"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_licensing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_licensing.html">
+        Licences
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sécurité"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_security.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_security.html">
+        Sécurité
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Performance"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_performance.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_performance.html">
+        Performance
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Configurations compatibles"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html">
+        Configurations compatibles
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Régions prises en charge"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://cloud.netapp.com/cloud-volumes-global-regions" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://cloud.netapp.com/cloud-volumes-global-regions">
+        Régions prises en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration par défaut"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_default_configs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_default_configs.html">
+        Configuration par défaut
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez dans AWS"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez dans AWS</div>-->
+         Commencez dans AWS
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_getting_started_aws.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_planning_your_config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_planning_your_config.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Configurez votre réseau</div>-->
+         Configurez votre réseau
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration réseau requise"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_networking_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/reference_networking_aws.html">
+        Configuration réseau requise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration d'une passerelle de transit AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setting_up_transit_gateway.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_setting_up_transit_gateway.html">
+        Configuration d'une passerelle de transit AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Règles de groupe de sécurité pour AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_security_groups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/reference_security_groups.html">
+        Règles de groupe de sécurité pour AWS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration du KMS AWS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setting_up_kms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_setting_up_kms.html">
+        Configuration du KMS AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans AWS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deploying_otc_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_deploying_otc_aws.html">
+        Lancez un système dans AWS
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Lancez-vous dans AWS C2S"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/occm/media/c2s.pdf" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://docs.netapp.com/us-en/occm/media/c2s.pdf">
+        Lancez-vous dans AWS C2S
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez à Azure"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez à Azure</div>-->
+         Commencez à Azure
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_getting_started_azure.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_planning_your_config_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_planning_your_config_azure.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_networking_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_networking_azure.html">
+        Configurez votre réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans Azure"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deploying_otc_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_deploying_otc_azure.html">
+        Lancez un système dans Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez-vous dans GCP"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Lancez-vous dans GCP</div>-->
+         Lancez-vous dans GCP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_getting_started_gcp.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Planification de la configuration"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_planning_your_config_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_planning_your_config_gcp.html">
+        Planification de la configuration
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurez votre réseau"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_networking_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_networking_gcp.html">
+        Configurez votre réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilisez des clés de chiffrement gérées par le client"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setting_up_gcp_encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_setting_up_gcp_encryption.html">
+        Utilisez des clés de chiffrement gérées par le client
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lancez un système dans GCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deploying_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_deploying_gcp.html">
+        Lancez un système dans GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionner et gérer le stockage"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Provisionner et gérer le stockage</div>-->
+         Provisionner et gérer le stockage
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez des volumes, des agrégats et des LUN"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_provisioning_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_provisioning_storage.html">
+        Créez des volumes, des agrégats et des LUN
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des volumes et des agrégats"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_managing_storage.html">
+        Gestion des volumes et des agrégats
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Transférez les données inactives vers le stockage objet"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_tiering.html">
+        Transférez les données inactives vers le stockage objet
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les machines virtuelles de stockage"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_managing_svms.html">
+        Gérer les machines virtuelles de stockage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Utilisez ONTAP comme stockage persistant"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_connecting_kubernetes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_connecting_kubernetes.html">
+        Utilisez ONTAP comme stockage persistant
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Chiffrement des volumes avec le chiffrement NetApp"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_encrypting_volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_encrypting_volumes.html">
+        Chiffrement des volumes avec le chiffrement NetApp
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Réplication des données"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_replicating_data.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_replicating_data.html">
+        Réplication des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contrôle des performances"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Contrôle des performances</div>-->
+         Contrôle des performances
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez surveillance"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_monitoring.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_monitoring.html">
+        Découvrez surveillance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_monitoring.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_getting_started_monitoring.html">
+        Commencez
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la protection par ransomware"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_protecting_ransomware.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_protecting_ransomware.html">
+        Améliorez la protection par ransomware
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Administration</div>-->
+         Administration
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Enregistrez les systèmes avec paiement à l'utilisation"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_registering.html">
+        Enregistrez les systèmes avec paiement à l'utilisation
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setting_up_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_setting_up_ontap_cloud.html">
+        Configurer Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les licences BYOL"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_managing_licenses.html">
+        Gérez les licences BYOL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mettez à jour le logiciel"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_updating_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_updating_ontap_cloud.html">
+        Mettez à jour le logiciel
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Modifier les configurations système"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_modifying_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_modifying_ontap_cloud.html">
+        Modifier les configurations système
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Arrêter et démarrer les systèmes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_managing_state.html">
+        Arrêter et démarrer les systèmes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Contrôle des coûts AWS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_monitoring_costs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_monitoring_costs.html">
+        Contrôle des coûts AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Connectez-vous à Cloud Volumes ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_connecting_to_otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_connecting_to_otc.html">
+        Connectez-vous à Cloud Volumes ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Ajouter des systèmes existants"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_adding_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_adding_ontap_cloud.html">
+        Ajouter des systèmes existants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supprimer des systèmes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deleting_working_env.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_deleting_working_env.html">
+        Supprimer des systèmes
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Provisionner des volumes à l'aide d'un service de fichiers"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Provisionner des volumes à l'aide d'un service de fichiers</div>-->
+         Provisionner des volumes à l'aide d'un service de fichiers
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure NetApp Files"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Azure NetApp Files</div>-->
+         Azure NetApp Files
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Azure NetApp Files"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_azure_netapp_files.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_azure_netapp_files.html">
+        Découvrez Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer Azure NetApp Files"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_anf.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_anf.html">
+        Configurer Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création et gestion des volumes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_anf_volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_anf_volumes.html">
+        Création et gestion des volumes
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes Service pour AWS"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Cloud Volumes Service pour AWS</div>-->
+         Cloud Volumes Service pour AWS
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Volumes Service pour AWS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cvs_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_cvs_aws.html">
+        En savoir plus sur Cloud Volumes Service pour AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement et gestion de Cloud volumes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_cvs_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_cvs_aws.html">
+        Déploiement et gestion de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des copies Snapshot de Cloud volumes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_cloud_volumes_snapshots.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_cloud_volumes_snapshots.html">
+        Gestion des copies Snapshot de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Référence</div>-->
+         Référence
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les niveaux de service et la capacité allouée"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_cvs_service_levels_and_quotas.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/reference_cvs_service_levels_and_quotas.html">
+        Les niveaux de service et la capacité allouée
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Paramètres des groupes de sécurité AWS pour les serveurs Windows AD"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_security_groups_windows_ad_servers.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/reference_security_groups_windows_ad_servers.html">
+        Paramètres des groupes de sécurité AWS pour les serveurs Windows AD
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes Service pour GCP"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Cloud Volumes Service pour GCP</div>-->
+         Cloud Volumes Service pour GCP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Volumes Service pour GCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/concept_cvs_gcp.html">
+        En savoir plus sur Cloud Volumes Service pour GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration de Cloud Volumes Service pour GCP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_setup_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_setup_cvs_gcp.html">
+        Configuration de Cloud Volumes Service pour GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création et gestion de Cloud volumes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_cvs_gcp.html">
+        Création et gestion de Cloud volumes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des copies Snapshot de Cloud volumes"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_manage_cloud_volumes_gcp_snapshots.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_manage_cloud_volumes_gcp_snapshots.html">
+        Gestion des copies Snapshot de Cloud volumes
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les clusters ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gérer les clusters ONTAP</div>-->
+         Gérer les clusters ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrir les clusters ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_discovering_ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_discovering_ontap.html">
+        Découvrir les clusters ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer des volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_provisioning_ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_provisioning_ontap.html">
+        Gérer des volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarder dans le cloud"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Sauvegarder dans le cloud</div>-->
+         Sauvegarder dans le cloud
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez la sauvegarde dans le cloud"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_backup_to_cloud.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_backup_to_cloud.html">
+        Découvrez la sauvegarde dans le cloud
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez</div>-->
+         Commencez
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde dans Amazon S3"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_backup_to_s3.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_backup_to_s3.html">
+        Sauvegarde dans Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde dans le stockage Azure Blob"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_backup_to_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_backup_to_azure.html">
+        Sauvegarde dans le stockage Azure Blob
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Sauvegarde à partir des systèmes ONTAP sur site"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_backup_from_onprem.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_backup_from_onprem.html">
+        Sauvegarde à partir des systèmes ONTAP sur site
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les sauvegardes et restaurez les données"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_backups.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_managing_backups.html">
+        Gérez les sauvegardes et restaurez les données
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copiez et synchronisez les données"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Copiez et synchronisez les données</div>-->
+         Copiez et synchronisez les données
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Cloud Sync"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cloud_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_cloud_sync.html">
+        En savoir plus sur Cloud Sync
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez</div>-->
+         Commencez
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Démarrage rapide"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_quick_start.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_sync_quick_start.html">
+        Démarrage rapide
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Préparer la source et la cible"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_sync_requirements.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_sync_requirements.html">
+        Préparer la source et la cible
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Préparation de la mise en réseau"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_sync_networking.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_sync_networking.html">
+        Préparation de la mise en réseau
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Comment installer un courtier de données"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Comment installer un courtier de données</div>-->
+         Comment installer un courtier de données
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez dans AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_installing_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_sync_installing_aws.html">
+        Installez dans AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez-le dans Azure"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_installing_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_sync_installing_azure.html">
+        Installez-le dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez-les dans GCP"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_installing_gcp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_sync_installing_gcp.html">
+        Installez-les dans GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez sur un hôte Linux"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_installing_linux.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_sync_installing_linux.html">
+        Installez sur un hôte Linux
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création d'une relation synchrone"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_creating_relationships.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_sync_creating_relationships.html">
+        Création d'une relation synchrone
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Payer pour les relations synchronisées"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_licensing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_sync_licensing.html">
+        Payer pour les relations synchronisées
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tutoriels"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Tutoriels</div>-->
+         Tutoriels
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Copie des listes de contrôle d'accès entre les partages"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_copying_acls.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_sync_copying_acls.html">
+        Copie des listes de contrôle d'accès entre les partages
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Chiffrez les données NFS à la volée"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_nfs_encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_sync_nfs_encryption.html">
+        Chiffrez les données NFS à la volée
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des relations synchronisées"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_sync_managing_relationships.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_sync_managing_relationships.html">
+        Gestion des relations synchronisées
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="API"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/api_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/api_sync.html">
+        API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/faq_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/faq_sync.html">
+        FAQ
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la confidentialité des données"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Améliorez la confidentialité des données</div>-->
+         Améliorez la confidentialité des données
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez Cloud Compliance"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_cloud_compliance.html">
+        Découvrez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez</div>-->
+         Commencez
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déployez Cloud Compliance"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deploy_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_deploy_cloud_compliance.html">
+        Déployez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activez la numérisation sur vos sources de données"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Activez la numérisation sur vos sources de données</div>-->
+         Activez la numérisation sur vos sources de données
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Volumes ONTAP et Azure NetApp Files"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_compliance.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_getting_started_compliance.html">
+        Cloud Volumes ONTAP et Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Compartiments Amazon S3"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_scanning_s3.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_scanning_s3.html">
+        Compartiments Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Schémas de base de données"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_scanning_databases.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_scanning_databases.html">
+        Schémas de base de données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les données ONTAP sur site"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_scanning_onprem.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_scanning_onprem.html">
+        Les données ONTAP sur site
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Améliorez la visibilité et le contrôle des données"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_controlling_private_data.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_controlling_private_data.html">
+        Améliorez la visibilité et le contrôle des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Générer des rapports"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_generating_compliance_reports.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_generating_compliance_reports.html">
+        Générer des rapports
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Répondre à un DSAR"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_responding_to_dsar.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_responding_to_dsar.html">
+        Répondre à un DSAR
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Désactivez Cloud Compliance"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_managing_compliance.html">
+        Désactivez Cloud Compliance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/faq_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/faq_cloud_compliance.html">
+        FAQ
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Activez le partage global des fichiers en temps réel"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Activez le partage global des fichiers en temps réel</div>-->
+         Activez le partage global des fichiers en temps réel
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur Global File cache"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_gfc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_gfc.html">
+        En savoir plus sur Global File cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avant de commencer à déployer Global File cache"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_before_you_begin_to_deploy_gfc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_before_you_begin_to_deploy_gfc.html">
+        Avant de commencer à déployer Global File cache
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Pour commencer"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_gfc_getting_started.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_gfc_getting_started.html">
+        Pour commencer
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Avant de commencer à déployer Global File cache Edge"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/download_gfc_resources.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/download_gfc_resources.html">
+        Avant de commencer à déployer Global File cache Edge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déploiement de Global File cache Edge"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_deploy_gfc_edge_instances.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_deploy_gfc_edge_instances.html">
+        Déploiement de Global File cache Edge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Formation des utilisateurs finaux"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_gfc_enduser_training.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_gfc_enduser_training.html">
+        Formation des utilisateurs finaux
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Informations supplémentaires"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_gfc_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/reference_gfc_additional_information.html">
+        Informations supplémentaires
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Optimisation des coûts du cloud computing"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Optimisation des coûts du cloud computing</div>-->
+         Optimisation des coûts du cloud computing
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez le service de calcul"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_compute.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_compute.html">
+        Découvrez le service de calcul
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_getting_started_compute.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_getting_started_compute.html">
+        Commencez
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Basculez les données vers le cloud"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Basculez les données vers le cloud</div>-->
+         Basculez les données vers le cloud
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Découvrez NetApp Cloud Tiering"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/concept_cloud_tiering.html">
+        Découvrez NetApp Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Commencez"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Commencez</div>-->
+         Commencez
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering des données vers Amazon S3"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_tiering_onprem_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_tiering_onprem_aws.html">
+        Tiering des données vers Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Déplacez les données vers le stockage Azure Blob"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_tiering_onprem_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_tiering_onprem_azure.html">
+        Déplacez les données vers le stockage Azure Blob
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Transférez des données vers Google Cloud Storage"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_tiering_onprem_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_tiering_onprem_gcp.html">
+        Transférez des données vers Google Cloud Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering de données vers StorageGRID"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_tiering_onprem_storagegrid.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_tiering_onprem_storagegrid.html">
+        Tiering de données vers StorageGRID
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration des licences"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_licensing_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_licensing_cloud_tiering.html">
+        Configuration des licences
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer le Tiering des données"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_managing_tiering.html">
+        Gérer le Tiering des données
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="FAQ"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/faq_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/faq_cloud_tiering.html">
+        FAQ
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Référence</div>-->
+         Référence
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Classes et régions de stockage Amazon S3 prises en charge"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_aws_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_aws_support.html">
+        Classes et régions de stockage Amazon S3 prises en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Régions et tiers d'accès Azure pris en charge"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_azure_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_azure_support.html">
+        Régions et tiers d'accès Azure pris en charge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Classes et régions de stockage Google Cloud prises en charge"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_google_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_google_support.html">
+        Classes et régions de stockage Google Cloud prises en charge
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Afficher les compartiments Amazon S3"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_viewing_amazon_s3.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/task_viewing_amazon_s3.html">
+        Afficher les compartiments Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Administration de Cloud Manager"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Administration de Cloud Manager</div>-->
+         Administration de Cloud Manager
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Recherchez l'ID de votre système"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_finding_system_id.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_finding_system_id.html">
+        Recherchez l'ID de votre système
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les connecteurs"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gérer les connecteurs</div>-->
+         Gérer les connecteurs
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les connecteurs existants"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_connectors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_managing_connectors.html">
+        Gérer les connecteurs existants
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Autres façons de créer des connecteurs"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Autres façons de créer des connecteurs</div>-->
+         Autres façons de créer des connecteurs
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Exigences relatives à l'hôte de connecteur"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_cloud_mgr_reqs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/reference_cloud_mgr_reqs.html">
+        Exigences relatives à l'hôte de connecteur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Créez à partir d'AWS Marketplace"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_launching_aws_mktp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_launching_aws_mktp.html">
+        Créez à partir d'AWS Marketplace
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Création depuis Azure Marketplace"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_launching_azure_mktp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_launching_azure_mktp.html">
+        Création depuis Azure Marketplace
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez manuellement le logiciel"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_installing_linux.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_installing_linux.html">
+        Installez manuellement le logiciel
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configuration par défaut"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_connector_default_config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_connector_default_config.html">
+        Configuration par défaut
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérer les identifiants"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Gérer les identifiants</div>-->
+         Gérer les identifiants
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> AWS</div>-->
+         AWS
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_accounts_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_accounts_aws.html">
+        En savoir plus sur les identifiants AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les identifiants AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_adding_aws_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_adding_aws_accounts.html">
+        Gérez les identifiants AWS
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Azure</div>-->
+         Azure
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants Azure"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_accounts_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_accounts_azure.html">
+        En savoir plus sur les identifiants Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez les identifiants Azure"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_adding_azure_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_adding_azure_accounts.html">
+        Gérez les identifiants Azure
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="GCP"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> GCP</div>-->
+         GCP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="En savoir plus sur les identifiants GCP"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/concept_accounts_gcp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/concept_accounts_gcp.html">
+        En savoir plus sur les identifiants GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gestion des identifiants GCP"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_adding_gcp_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/fr-fr/occm38/task_adding_gcp_accounts.html">
+        Gestion des identifiants GCP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Informations d'identification du site du support NetApp"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_adding_nss_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/task_adding_nss_accounts.html">
+        Informations d'identification du site du support NetApp
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Gérez votre compte"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_managing_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_managing_cloud_central_accounts.html">
+        Gérez votre compte
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Installez un certificat HTTPS"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_installing_https_cert.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_installing_https_cert.html">
+        Installez un certificat HTTPS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Supprimer les environnements de travail"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_removing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_removing.html">
+        Supprimer les environnements de travail
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Configurer les paramètres proxy"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_configuring_proxy.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_configuring_proxy.html">
+        Configurer les paramètres proxy
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Remplacement des verrouillages CIFS dans Azure"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/task_overriding_cifs_locks.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/task_overriding_cifs_locks.html">
+        Remplacement des verrouillages CIFS dans Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Référence"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Référence</div>-->
+         Référence
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rôles utilisateur"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_user_roles.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_user_roles.html">
+        Rôles utilisateur
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Autorisations"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_permissions.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_permissions.html">
+        Autorisations
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Les pages AWS Marketplace"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_aws_marketplace.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/fr-fr/occm38/reference_aws_marketplace.html">
+        Les pages AWS Marketplace
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="API et automatisation"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/fr-fr/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/fr-fr/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> API et automatisation</div>-->
+         API et automatisation
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Guide du développeur API"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/occm/api.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://docs.netapp.com/us-en/occm/api.html">
+        Guide du développeur API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Automatisez à l'aide des outils DevOps"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_infrastructure_as_code.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/fr-fr/occm38/reference_infrastructure_as_code.html">
+        Automatisez à l'aide des outils DevOps
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Résoudre les problèmes"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services" 
+    ><a class="ie-sidebar-menuitem-1 " href="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services">
+        Résoudre les problèmes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Liens connexes"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_additional_info.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/reference_additional_info.html">
+        Liens connexes
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versions antérieures"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_earlier_versions.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/reference_earlier_versions.html">
+        Versions antérieures
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Mentions légales"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_backup_to_azure.html" 
+      dale-entry-url="/reference_legal_notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/fr-fr/occm38/reference_legal_notices.html">
+        Mentions légales
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/fr-fr/occm38"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/fr-fr/occm38"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      
+  <div class="ie-info-disclaimer" id="downlevel-banner">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/fr-fr/occm38/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span>Une version plus récente de ce produit est disponible.</span><br>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div>
+<div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/fr-fr/occm38/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> La version française est une traduction automatique. La version anglaise prévaut sur la française en cas de divergence. </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">Sauvegarde des données dans le stockage Azure Blob</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2022-12-14 18:16:52 +0000">12/14/2022</time>
+        
+    
+    
+        <span>Contributeurs
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/fr-fr/occm38/images/discuss-sm.svg" alt="" class="github-icon" />Suggérer des modifications</span>
+        <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/fr-fr/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/occm38.fr-fr/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/fr-fr/occm38/task_backup_to_azure.html&page-title=Sauvegarde des données dans le stockage Azure Blob" class="page-nav-contribute-link" role="button">Demander des modifications de la documentation</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/occm38/blob/main/task_backup_to_azure.adoc" class="page-nav-contribute-link" role="button">Modifier cette page</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >En savoir plus sur les contributions</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/fr-fr/occm38/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/fr-fr/occm38/pdfs/fullsite-sidebar/Documentation_sur_Cloud_Manager_et_Cloud_Volumes_ONTAP.pdf" >
+                    <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>Un fichier PDF de toute la documentation</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Notes_de_mise_à_jour.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Notes de mise à jour
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Le_gestionnaire_Cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Le gestionnaire Cloud
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_avec_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez avec Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurez_un_compte_Cloud_Central.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Configurez un compte Cloud Central
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurer_un_connecteur.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Configurer un connecteur
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gérer Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Apprendre.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Apprendre
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Stockage.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Stockage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Paires_haute_disponibilité.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Paires haute disponibilité
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_dans_AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez dans AWS
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Configurez_votre_réseau.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Configurez votre réseau
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez_à_Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez à Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Lancez_vous_dans_GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Lancez-vous dans GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Provisionner_et_gérer_le_stockage.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Provisionner et gérer le stockage
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Contrôle_des_performances.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Contrôle des performances
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Administration.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Administration
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Provisionner_des_volumes_à_l_aide_d_un_service_de_fichiers.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Provisionner des volumes à l'aide d'un service de fichiers
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Azure_NetApp_Files.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure NetApp Files
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Cloud_Volumes_Service_pour_AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Cloud Volumes Service pour AWS
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Cloud_Volumes_Service_pour_GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Cloud Volumes Service pour GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_clusters_ONTAP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gérer les clusters ONTAP
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Sauvegarder_dans_le_cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Sauvegarder dans le cloud
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Copiez_et_synchronisez_les_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Copiez et synchronisez les données
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Comment_installer_un_courtier_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Comment installer un courtier de données
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Tutoriels.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Tutoriels
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Améliorez_la_confidentialité_des_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Améliorez la confidentialité des données
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Activez_la_numérisation_sur_vos_sources_de_données.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Activez la numérisation sur vos sources de données
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Activez_le_partage_global_des_fichiers_en_temps_réel.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Activez le partage global des fichiers en temps réel
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Optimisation_des_coûts_du_cloud_computing.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Optimisation des coûts du cloud computing
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Basculez_les_données_vers_le_cloud.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Basculez les données vers le cloud
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Commencez.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Commencez
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Administration_de_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Administration de Cloud Manager
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_connecteurs.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gérer les connecteurs
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Autres_façons_de_créer_des_connecteurs.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Autres façons de créer des connecteurs
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Gérer_les_identifiants.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Gérer les identifiants
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/AWS.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/GCP.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            GCP
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/Référence.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Référence
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/fr-fr/occm38/pdfs/sidebar/API_et_automatisation.pdf" 
+            
+          >
+            <img src="/fr-fr/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            API et automatisation
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/fr-fr/occm38/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>Plusieurs fichiers PDF<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Réalisez quelques étapes pour commencer à sauvegarder des données de Cloud Volumes ONTAP vers le stockage Azure Blob.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="démarrage-rapide">Démarrage rapide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Pour commencer rapidement, suivez ces étapes ou faites défiler jusqu'aux sections restantes pour obtenir plus de détails.</p>
+</div>
+<div class="sect3">
+<h4 id="vérifiez-la-prise-en-charge-de-votre-configuration"><span class="image"><img src="./media/number1.png" alt="Numéro 1"></span> Vérifiez la prise en charge de votre configuration</h4>
+<div class="ulist quick-margin-list">
+<ul>
+<li>
+<p>Vous exécutez Cloud Volumes ONTAP 9.7 ou une version ultérieure dans Azure.</p>
+</li>
+<li>
+<p>Vous disposez d'un abonnement valide au fournisseur cloud pour l'espace de stockage où vos sauvegardes seront stockées.</p>
+</li>
+<li>
+<p>Vous avez souscrit au <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview" target="_blank" rel="noopener">"Offre Cloud Manager Marketplace Backup"</a>, ou vous avez acheté <a href="task_managing_licenses.html#adding-and-updating-your-backup-byol-license" target="_blank" rel="noopener">"et activé"</a> Licence BYOL pour la sauvegarde dans le cloud de NetApp.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="activation-de-la-sauvegarde-dans-le-cloud-sur-votre-système-nouveau-ou-existant"><span class="image"><img src="./media/number2.png" alt="Numéro 2"></span> Activation de la sauvegarde dans le cloud sur votre système nouveau ou existant</h4>
+<div class="ulist quick-margin-list">
+<ul>
+<li>
+<p>Nouveaux systèmes : la sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.</p>
+</li>
+<li>
+<p>Systèmes existants : sélectionnez l'environnement de travail et cliquez sur <strong>Activer</strong> en regard du service sauvegarde dans le cloud dans le panneau de droite, puis suivez l'assistant d'installation.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_to_s3_icon.gif" alt="Une capture d'écran affiche le bouton Backup to Cloud Activate, qui est disponible après la sélection d'un environnement de travail."></span></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="entrez-les-détails-du-fournisseur"><span class="image"><img src="./media/number3.png" alt="Numéro 3"></span> Entrez les détails du fournisseur</h4>
+<div class="paragraph quick-margin-para">
+<p>Sélectionnez l'abonnement du fournisseur et choisissez si vous souhaitez créer un nouveau groupe de ressources ou utiliser un groupe de ressources existant.</p>
+</div>
+<div class="paragraph quick-margin-para">
+<p><span class="image"><img src="./media/screenshot_backup_provider_settings_azure.png" alt="Une copie d'écran présente les informations détaillées du fournisseur cloud lors de la sauvegarde de volumes d'un cluster sur site vers un Tier Azure Blob"></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="définissez-la-stratégie-de-sauvegarde"><span class="image"><img src="./media/number4.png" alt="Numéro 4"></span> Définissez la stratégie de sauvegarde</h4>
+<div class="paragraph quick-margin-para">
+<p>La règle par défaut sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes de chaque volume. Passez aux sauvegardes hebdomadaires ou mensuelles ou sélectionnez l'une des règles définies par le système qui offrent plus d'options.</p>
+</div>
+<div class="paragraph quick-margin-para">
+<p><span class="image"><img src="./media/screenshot_backup_onprem_policy.png" alt="Une capture d'écran montre les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez activer ou désactiver la fonctionnalité, puis choisir la conservation de votre sauvegarde."></span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sélectionnez-les-volumes-à-sauvegarder"><span class="image"><img src="./media/number5.png" alt="Numéro 5"></span> Sélectionnez les volumes à sauvegarder</h4>
+<div class="paragraph quick-margin-para">
+<p>Identifiez les volumes à sauvegarder dans la page Sélectionner les volumes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restaurez-vos-données-à-la-demande"><span class="image"><img src="./media/number6.png" alt="Numéro 6"></span> Restaurez vos données à la demande</h4>
+<div class="paragraph quick-margin-para">
+<p>Dans la liste de sauvegarde, sélectionnez un volume, sélectionnez une sauvegarde, puis restaurez les données de la sauvegarde vers un nouveau volume.</p>
+</div>
+<div class="paragraph quick-margin-para">
+<p><span class="image"><img src="./media/screenshot_backup_to_s3_restore_icon.gif" alt="Capture d'écran de l'icône de restauration d'une sauvegarde après avoir sélectionné un volume."></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="de-formation">De formation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Avant de commencer à sauvegarder les volumes sur le stockage Azure Blob, lisez les informations suivantes pour vous assurer que la configuration est prise en charge.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Versions de ONTAP prises en charge</dt>
+<dd>
+<p>Cloud Volumes ONTAP 9.7 et versions ultérieures</p>
+</dd>
+<dt class="hdlist1">Régions Azure prises en charge</dt>
+<dd>
+<p>Backup dans le cloud est pris en charge dans toutes les régions Azure <a href="https://cloud.netapp.com/cloud-volumes-global-regions" target="_blank" rel="noopener">"Dans ce cas, Cloud Volumes ONTAP est pris en charge"</a>.</p>
+</dd>
+<dt class="hdlist1">Conditions de licence</dt>
+<dd>
+<p>Pour le modèle de licence PAYGO pour la sauvegarde dans le cloud, un abonnement via Azure Marketplace est requis avant d'activer la sauvegarde dans le cloud. La facturation pour la sauvegarde dans le cloud se fait via cet abonnement. <a href="task_deploying_otc_azure.html" target="_blank" rel="noopener">"Vous pouvez vous abonner à la page Détails et amp ; informations d'identification de l'assistant de l'environnement de travail"</a>.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Pour les licences BYOL pour la sauvegarde dans le cloud, vous avez besoin du numéro de série de NetApp qui vous permet d'utiliser le service pendant la durée et la capacité du contrat. Voir <a href="task_managing_licenses.html#adding-and-updating-your-backup-byol-license" target="_blank" rel="noopener">"Ajout et mise à jour de votre licence Backup BYOL"</a>.</p>
+</div>
+<div class="paragraph">
+<p>Vous devez également disposer d'un abonnement Microsoft Azure pour l'espace de stockage où vos sauvegardes seront stockées.</p>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="activation-de-la-sauvegarde-dans-le-cloud-sur-un-nouveau-système">Activation de la sauvegarde dans le cloud sur un nouveau système</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La sauvegarde dans le cloud est activée par défaut dans l'assistant de l'environnement de travail. Assurez-vous de conserver l'option activée.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="Remarque">
+</td>
+<td class="content">
+Si vous souhaitez choisir le nom du groupe de ressources, <strong>disable</strong> sauvegarde dans le cloud lors du déploiement de Cloud Volumes ONTAP. Suivez les étapes de la section <a href="#enabling-backup-to-cloud-on-an-existing-system">activation de la sauvegarde dans le cloud sur un système en place</a> Pour activer la sauvegarde dans le cloud et choisir le groupe de ressources.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>Cliquez sur <strong>Créer Cloud Volumes ONTAP</strong>.</p>
+</li>
+<li>
+<p>Sélectionnez Microsoft Azure comme fournisseur cloud, puis choisissez un système HA ou un seul nœud.</p>
+</li>
+<li>
+<p>Remplissez la page Détails et identifiants pour qu'un abonnement Azure Marketplace soit en place.</p>
+</li>
+<li>
+<p>Sur la page Services, laissez le service activé et cliquez sur <strong>Continuer</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_to_azure.gif" alt="L'option sauvegarde dans le cloud est illustrée dans l'assistant."></span></p>
+</div>
+</li>
+<li>
+<p>Complétez les pages de l'assistant pour déployer le système.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Résultat</div>
+<p>La sauvegarde dans le cloud est activée sur le système. Elle sauvegarde les volumes tous les jours et conserve les 30 copies de sauvegarde les plus récentes.</p>
+</div>
+<div class="paragraph">
+<div class="title">Et la suite ?</div>
+<p><a href="task_managing_backups.html" target="_blank" rel="noopener">"Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="activation-de-la-sauvegarde-dans-le-cloud-sur-un-système-existant">Activation de la sauvegarde dans le cloud sur un système existant</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Activation de la sauvegarde dans le cloud à tout moment directement depuis l'environnement de travail</p>
+</div>
+<div class="olist arabic">
+<div class="title">Étapes</div>
+<ol class="arabic">
+<li>
+<p>Sélectionnez l'environnement de travail et cliquez sur <strong>Activer</strong> en regard du service sauvegarde dans le cloud dans le panneau de droite.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_to_s3_icon.gif" alt="Une copie d'écran affiche le bouton Backup to Cloud Settings, disponible après la sélection d'un environnement de travail."></span></p>
+</div>
+</li>
+<li>
+<p>Sélectionnez les détails du fournisseur :</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>L'abonnement Azure utilisé pour stocker les sauvegardes.</p>
+</li>
+<li>
+<p>Le groupe de ressources - vous pouvez créer un nouveau groupe de ressources ou sélectionner et un groupe de ressources existant.</p>
+</li>
+<li>
+<p>Puis cliquez sur <strong>Continuer</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_provider_settings_azure.png" alt="Une copie d'écran présente les informations détaillées du fournisseur cloud lors de la sauvegarde de volumes d'un cluster sur site vers un Tier Azure Blob"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Notez que vous ne pouvez pas modifier l'abonnement ou le groupe de ressources après le démarrage des services.</p>
+</div>
+</li>
+<li>
+<p>Dans la page <em>Define Policy</em>, sélectionnez le programme de sauvegarde et la valeur de conservation, puis cliquez sur <strong>Continuer</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_onprem_policy.png" alt="Une capture d'écran montre les paramètres de sauvegarde dans le cloud dans lesquels vous pouvez activer ou désactiver la fonctionnalité, puis choisir la conservation de votre sauvegarde."></span></p>
+</div>
+<div class="paragraph">
+<p>Voir <a href="concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination" target="_blank" rel="noopener">"liste des stratégies existantes"</a>.</p>
+</div>
+</li>
+<li>
+<p>Sélectionnez les volumes à sauvegarder et cliquez sur <strong>Activer</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_backup_select_volumes.png" alt="Capture d'écran de la sélection des volumes qui seront sauvegardés."></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">Résultat</div>
+<p>La sauvegarde dans le cloud commence à effectuer les sauvegardes initiales de chaque volume sélectionné.</p>
+</div>
+<div class="paragraph">
+<div class="title">Et la suite ?</div>
+<p><a href="task_managing_backups.html" target="_blank" rel="noopener">"Vous pouvez gérer les sauvegardes en modifiant la planification des sauvegardes, en restaurant des volumes, etc"</a>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/fr-fr/occm38/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/fr-fr/occm38/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">Sur cette page</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Conditions d'utilisation</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Déclaration de confidentialité</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Déclaration sur les cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Paramètres des cookies</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">Envoyer des commentaires à propos de cette page</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/fr-fr/occm38/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/fr-fr/occm38/js/prism.js'></script>
+      <script type="text/javascript" src='/fr-fr/occm38/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/fr-fr/occm38/js/ie-tabbed-blocks.js'></script>
+    <script src='/fr-fr/occm38/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
